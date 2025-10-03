@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact Us</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+<body>
+<div class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h1 class="display-4 fw-bold mb-3">Contáctenos</h1>
+            <p class="lead text-muted">Estamos aquí para ayudarte. Envíanos un mensaje.</p>
+        </div>
+        <div class="row g-5">
+            <div class="col-lg-6">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body p-4">
+                        <h3 class="mb-4">Envíanos un Mensaje</h3>
+                        <!-- Success alert example, show after submit -->
+                        <!-- <div class="alert alert-success" role="alert">
+                          <i class="bi bi-check-circle-fill me-2"></i>
+                          ¡Gracias por contactarnos! Te responderemos pronto.
+                        </div> -->
+                        <form>
+                            <div class="mb-3">
+                                <label for="name" class="form-label">
+                                    Nombre Completo <span class="text-danger">*</span>
+                                </label>
+                                <input type="text" class="form-control" id="name" name="name" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">
+                                    Correo Electrónico <span class="text-danger">*</span>
+                                </label>
+                                <input type="email" class="form-control" id="email" name="email" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="phone" class="form-label">
+                                    Teléfono
+                                </label>
+                                <input type="tel" class="form-control" id="phone" name="phone">
+                            </div>
+                            <div class="mb-3">
+                                <label for="subject" class="form-label">
+                                    Asunto <span class="text-danger">*</span>
+                                </label>
+                                <select class="form-select" id="subject" name="subject" required>
+                                    <option value="">Seleccionar asunto...</option>
+                                    <option value="info">Información General</option>
+                                    <option value="reserva">Reservación</option>
+                                    <option value="productos">Consulta sobre Productos</option>
+                                    <option value="queja">Queja o Sugerencia</option>
+                                    <option value="otro">Otro</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="message" class="form-label">
+                                    Mensaje <span class="text-danger">*</span>
+                                </label>
+                                <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-lg w-100">
+                                <i class="bi bi-send-fill me-2"></i>
+                                Enviar Mensaje
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="card border-0 shadow-sm mb-4">
+                    <div class="card-body p-4">
+                        <h3 class="mb-4">Información de Contacto</h3>
+                        <div class="mb-4">
+                            <div class="d-flex align-items-start mb-3">
+                                <i class="bi bi-geo-alt-fill fs-4 text-accent-teal me-3"></i>
+                                <div>
+                                    <h5>Dirección</h5>
+                                    <p class="text-muted mb-0">
+                                        Calle Principal #123<br>
+                                        Jardín Balbuena<br>
+                                        Ciudad de México, CDMX 15900
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-start mb-3">
+                                <i class="bi bi-telephone-fill fs-4 text-accent-teal me-3"></i>
+                                <div>
+                                    <h5>Teléfono</h5>
+                                    <p class="text-muted mb-0">+52 55 1234 5678</p>
+                                    <p class="text-muted mb-0">+52 55 8765 4321</p>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-start mb-3">
+                                <i class="bi bi-envelope-fill fs-4 text-accent-teal me-3"></i>
+                                <div>
+                                    <h5>Correo Electrónico</h5>
+                                    <p class="text-muted mb-0">info@hbspa.com</p>
+                                    <p class="text-muted mb-0">reservas@hbspa.com</p>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-start mb-3">
+                                <i class="bi bi-clock-fill fs-4 text-accent-teal me-3"></i>
+                                <div>
+                                    <h5>Horario de Atención</h5>
+                                    <p class="text-muted mb-0">Lunes - Viernes: 9:00 - 20:00</p>
+                                    <p class="text-muted mb-0">Sábado: 10:00 - 18:00</p>
+                                    <p class="text-muted mb-0">Domingo: Cerrado</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex gap-3 mb-4">
+                            <a href="#" class="btn btn-outline-primary" aria-label="Facebook">
+                                <i class="bi bi-facebook fs-5"></i>
+                            </a>
+                            <a href="#" class="btn btn-outline-primary" aria-label="Instagram">
+                                <i class="bi bi-instagram fs-5"></i>
+                            </a>
+                            <a href="#" class="btn btn-outline-primary" aria-label="WhatsApp">
+                                <i class="bi bi-whatsapp fs-5"></i>
+                            </a>
+                            <a href="#" class="btn btn-outline-primary" aria-label="Twitter">
+                                <i class="bi bi-twitter fs-5"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card border-0 shadow-sm">
+                    <div class="card-body p-0">
+                        <div class="ratio ratio-16x9">
+                            <iframe
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15053.384738879687!2d-99.11271768715821!3d19.40848498695795!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1ff35f5bd1563%3A0x6c366f0e2de02ff7!2zSmFyZMOtbiBCYWxidWVuYSwgQ2l1ZGFkIGRlIE3DqXhpY28sIENETVg!5e0!3m2!1ses!2smx!4v1234567890123!5m2!1ses!2smx"
+                                    style="border: 0;"
+                                    allowfullscreen=""
+                                    loading="lazy"
+                                    referrerpolicy="no-referrer-when-downgrade"
+                                    title="Ubicación H&B SPA"
+                            ></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
