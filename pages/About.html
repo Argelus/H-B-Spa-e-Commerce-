@@ -4,30 +4,25 @@
     <meta charset="UTF-8">
     <title>Acerca de Nosotros</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-    <style>
-        :root {
-            --arena-suave: #F5EDE4;
-            --sal-marina: #D7ECEB;
-            --turquesa-pastel: #6EBFC3;
-            --lila-tenue: #DCCEF7;
-            --rosa-petalo: #F9D6E2;
-            --gris-humo: #4A4A4A;
-        }
-        .bg-arena-suave { background-color: var(--arena-suave) !important; }
-        .bg-sal-marina { background-color: var(--sal-marina) !important; }
-        .bg-turquesa-pastel { background-color: var(--turquesa-pastel) !important; }
-        .bg-lila-rosa-gradient {
-            background: linear-gradient(90deg, var(--lila-tenue), var(--rosa-petalo)) !important;
-        }
-        .bg-rosa-petalo { background-color: var(--rosa-petalo) !important; }
-        .text-gris-humo { color: var(--gris-humo) !important; }
-        .text-turquesa-pastel { color: var(--turquesa-pastel) !important; }
-        .text-lila-tenue { color: var(--lila-tenue) !important; }
-        .text-rosa-petalo { color: var(--rosa-petalo) !important; }
-    </style>
 </head>
 <body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="../index.html">H&B SPA</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item"><a class="nav-link" href="../index.html">Inicio</a></li>
+        <li class="nav-item"><a class="nav-link" href="Products.html">Productos</a></li>
+        <li class="nav-item"><a class="nav-link" href="Reserve.html">Reserva</a></li>
+        <li class="nav-item"><a class="nav-link active" aria-current="page" href="About.html">Acerca de Nosotros</a></li>
+        <li class="nav-item"><a class="nav-link" href="Contact.html">Contacto</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
 <div class="py-5">
     <div class="container">
         <!-- Header -->
@@ -253,5 +248,12 @@
         </section>
     </div>
 </div>
+
+<footer class="bg-light text-center py-4 mt-5">
+  <div class="container">
+    <span class="text-muted">&copy; 2025 H&B SPA Jardín Balbuena. Todos los derechos reservados.</span>
+  </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
