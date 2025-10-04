@@ -178,7 +178,9 @@ nav a:hover, nav a:focus {
     font-size: 1.5rem; 
     transition: color 0.3s ease;
 }
-//Botones redes sociales pag. contacto
+
+/* Botones redes sociales pag contacto */
+
 .social-icon{
     color: var(--gris-humo);
     border-color: var(--turquesa-pastel) ;
