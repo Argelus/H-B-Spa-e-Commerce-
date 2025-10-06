@@ -196,6 +196,13 @@ nav a:hover, nav a:focus {
     background-color: var(--rosa-petalo);
     border-color: var(--rosa-petalo);
 }
+/* Scroll de la caja de texto de contacto*/
+.form-control{
+    overflow-y: scroll;
+    resize: vertical;
+}
+
+
 
 
 
