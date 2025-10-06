@@ -157,3 +157,45 @@ nav a:hover, nav a:focus {
     .highlighted-header, .premium-section { font-size: 1.3rem; }
     .subtitle-soft { font-size: 1.1rem; }
 }
+
+.row.g-4 {
+    perspective: 1000px; 
+}
+
+
+.equipo-card .card-footer {
+    background-color: transparent; 
+    border-top: none; 
+    padding: 0.75rem 1rem 1rem;
+    transition: background-color 0.4s ease; 
+    text-align: center;
+}
+
+.equipo-card .card-footer a {
+    align-items: center;
+    color: var(--gris-humo) ; 
+    margin: 0 0.75rem; 
+    font-size: 1.5rem; 
+    transition: color 0.3s ease;
+}
+
+/* Botones redes sociales pag contacto */
+
+.social-icon{
+    color: var(--gris-humo);
+    border-color: var(--turquesa-pastel) ;
+}
+.social-icon:hover{
+    color: var(--gris-humo);
+}
+.btn-outline-primary {
+    border-color: var(--turquesa-pastel);
+}
+.btn-outline-primary:hover {
+    color: var(--gris-humo);
+    background-color: var(--rosa-petalo);
+    border-color: var(--rosa-petalo);
+}
+
+
+
