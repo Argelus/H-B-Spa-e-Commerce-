@@ -1,18 +1,18 @@
 @font-face {
     font-family: 'CormorantGaramond';
-    src: url('styles/fonts/Cormorant_Garamond/CormorantGaramond-Italic-VariableFont_wght.ttf') format('truetype');
+    src: url('fonts/Cormorant_Garamond/CormorantGaramond-Italic-VariableFont_wght.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
     font-family: 'Lato';
-    src: url('styles/fonts/Lato/Lato-LightItalic.ttf') format('truetype');
+    src: url('fonts/Lato/Lato-LightItalic.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
     font-family: 'Lora';
-    src: url('styles/fonts/Lora/Lora-Italic-VariableFont_wght.ttf') format('truetype');
+    src: url('fonts/Lora/Lora-Italic-VariableFont_wght.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
@@ -147,7 +147,7 @@ nav a:hover, nav a:focus {
 
 .main-text, p, li {
     color: var(--gris-humo);
-    font-size: 1rem;
+    font-size: 1.4rem;
 }
 
 @media (max-width: 600px) {
@@ -196,6 +196,18 @@ nav a:hover, nav a:focus {
     background-color: var(--rosa-petalo);
     border-color: var(--rosa-petalo);
 }
+/* Scroll de la caja de texto de contacto*/
+.form-control{
+    overflow-y: scroll;
+    resize: vertical;
+}
+.mapa-redondeado {
+    border-radius: var(--radius); /* usa tu variable global (12px) */
+    overflow: hidden;
+}
+
+
+
 
 
 
