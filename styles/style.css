@@ -201,6 +201,11 @@ nav a:hover, nav a:focus {
     overflow-y: scroll;
     resize: vertical;
 }
+.mapa-redondeado {
+    border-radius: var(--radius); /* usa tu variable global (12px) */
+    overflow: hidden;
+}
+
 
 
 
