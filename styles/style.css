@@ -162,6 +162,7 @@ nav a:hover, nav a:focus {
     perspective: 1000px; 
 }
 
+/* Estilo de cards */
 
 .equipo-card .card-footer {
     background-color: transparent; 
@@ -206,8 +207,242 @@ nav a:hover, nav a:focus {
     overflow: hidden;
 }
 
+/* ===== CARRUSEL 3D ===== */
 
+.carousel-3d-container {
+    position: relative;
+    width: 100%;
+    max-width: 1400px; /* Ancho máximo para contener las 3 cards */
+    height: 700px;
+    perspective: 1500px;
+    overflow: hidden; /* oculta todo lo que salga del contenedor */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 0;
+    margin: 0 auto 3rem auto; /* Centrado horizontal */
+}
 
+.carousel-3d {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+}
 
+/* Centrado usando transform */
+.carousel-card {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform-origin: center center;
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    width: 320px;
+    will-change: transform, opacity; /* Optimización de rendering */
+}
 
+/* Estados del carrusel */
+.carousel-card.active {
+    transform: translate(-50%, -50%) translateX(0) translateZ(0) rotateY(0deg) scale(1);
+    opacity: 1;
+    z-index: 10;
+    filter: blur(0px);
+}
 
+.carousel-card.next {
+    transform: translate(-50%, -50%) translateX(420px) translateZ(-320px) rotateY(-35deg) scale(0.82);
+    opacity: 0.65;
+    z-index: 5;
+    filter: blur(2px);
+}
+
+.carousel-card.prev {
+    transform: translate(-50%, -50%) translateX(-420px) translateZ(-320px) rotateY(35deg) scale(0.82);
+    opacity: 0.65;
+    z-index: 5;
+    filter: blur(2px);
+}
+
+.carousel-card.hidden-right {
+    transform: translate(-50%, -50%) translateX(850px) translateZ(-550px) rotateY(-45deg) scale(0.65);
+    opacity: 0;
+    z-index: 1;
+    filter: blur(5px);
+    pointer-events: none;
+}
+
+.carousel-card.hidden-left {
+    transform: translate(-50%, -50%) translateX(-850px) translateZ(-550px) rotateY(45deg) scale(0.65);
+    opacity: 0;
+    z-index: 1;
+    filter: blur(5px);
+    pointer-events: none;
+}
+
+/* Efecto de blur en transición */
+.carousel-card.transitioning {
+    filter: blur(6px) !important;
+    opacity: 0.4;
+}
+
+/* Controles del carrusel */
+.carousel-controls {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: space-between;
+    padding: 0 30px;
+    z-index: 20;
+    pointer-events: none;
+}
+
+.carousel-btn {
+    pointer-events: all;
+    background: var(--sal-marina);
+    border: 2px solid var(--turquesa-pastel);
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(110, 191, 195, 0.25);
+}
+
+.carousel-btn:hover {
+    background: var(--lila-rosa);
+    border-color: var(--rosa-petalo);
+    transform: scale(1.12);
+    box-shadow: 0 6px 25px rgba(235, 210, 236, 0.4);
+}
+
+.carousel-btn:active {
+    transform: scale(0.95);
+}
+
+.carousel-btn svg {
+    color: var(--gris-humo);
+}
+
+/* Estilos específicos para las cards en el carrusel */
+.carousel-card .equipo-card {
+    height: 100%;
+    background-color: var(--sal-marina);
+    box-shadow: 0 12px 45px rgba(74, 74, 74, 0.15);
+    transition: all 0.4s ease;
+    border-radius: var(--radius);
+    /* Backface oculto para mejor rendering 3D */
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+.carousel-card.active .equipo-card {
+    box-shadow: 0 18px 60px rgba(110, 191, 195, 0.3);
+    background-color: var(--sal-marina);
+}
+
+.carousel-card .equipo-card .card-img-top {
+    border-top-left-radius: var(--radius);
+    border-top-right-radius: var(--radius);
+}
+
+/* Mejora en el footer de las cards */
+.carousel-card .equipo-card .card-footer a {
+    transition: all 0.3s ease; /* Transición suave */
+}
+
+.carousel-card .equipo-card .card-footer a:hover {
+    color: var(--turquesa-pastel);
+    transform: scale(1.15);
+    display: inline-block;
+}
+
+/* Indicador de posición */
+.carousel-indicator {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 15;
+}
+
+.carousel-indicator span {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--turquesa-pastel);
+    opacity: 0.3;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.carousel-indicator span:hover {
+    opacity: 0.6;
+    transform: scale(1.2);
+}
+
+.carousel-indicator span.active {
+    opacity: 1;
+    background: var(--lila-rosa);
+    transform: scale(1.3);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .carousel-3d-container {
+        height: 550px;
+        padding: 40px 0;
+    }
+    
+    .carousel-card {
+        width: 280px;
+    }
+    
+    .carousel-card.next {
+        transform: translate(-50%, -50%) translateX(340px) translateZ(-280px) rotateY(-28deg) scale(0.75);
+    }
+    
+    .carousel-card.prev {
+        transform: translate(-50%, -50%) translateX(-340px) translateZ(-280px) rotateY(28deg) scale(0.75);
+    }
+    
+    .carousel-btn {
+        width: 45px;
+        height: 45px;
+    }
+    
+    .carousel-controls {
+        padding: 0 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .carousel-3d-container {
+        height: 500px;
+    }
+    
+    .carousel-card {
+        width: 260px;
+    }
+    
+    .carousel-card.next,
+    .carousel-card.prev {
+        opacity: 0.4;
+        filter: blur(3px);
+    }
+    
+    /* En móvil, ocultar cards laterales completamente */
+    .carousel-card.next {
+        transform: translate(-50%, -50%) translateX(300px) translateZ(-250px) rotateY(-25deg) scale(0.7);
+    }
+    
+    .carousel-card.prev {
+        transform: translate(-50%, -50%) translateX(-300px) translateZ(-250px) rotateY(25deg) scale(0.7);
+    }
+}
