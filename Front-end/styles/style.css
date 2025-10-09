@@ -30,7 +30,7 @@
 }
 
 body {
-    font-family: 'CormorantGaramond', serif;
+    font-family: 'Lato', serif;
     background-color: var(--arena-suave);
     color: var(--gris-humo);
     line-height: 1.6;
@@ -39,7 +39,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'CormorantGaramond', serif;
+    font-family: 'Lato', serif;
     color: var(--gris-humo);
     margin-top: 0;
     margin-bottom: 0.7em;
@@ -445,4 +445,9 @@ nav a:hover, nav a:focus {
     .carousel-card.prev {
         transform: translate(-50%, -50%) translateX(-300px) translateZ(-250px) rotateY(25deg) scale(0.7);
     }
+}
+
+.was-validated .form-control:valid, 
+.form-control.is-valid {
+  background-image: none !important;
 }
