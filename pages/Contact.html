@@ -43,61 +43,53 @@
                           <i class="bi bi-check-circle-fill me-2"></i>
                           ¡Gracias por contactarnos! Te responderemos pronto.
                         </div> -->
-                        <form id="contactForm" class="needs-validation" novalidate>
-                            <div class="mb-3">
-                                <label for="name" class="form-label">
-                                    Nombre Completo <span class="text-danger">*</span>
-                                </label>
-                                <input type="text" class="form-control" id="name" name="name" required>
-                                <div id="nameFeedback" class="invalid-feedback">
-                                    El nombre completo es obligatorio.
-                                </div>
-                            </div>
-                            <div class="mb-3">
-                                <label for="email" class="form-label">
-                                    Correo Electrónico <span class="text-danger">*</span>
-                                </label>
-                                <input type="email" class="form-control" id="email" name="email" required>
-                                <div id="emailFeedback" class="invalid-feedback">
-                                    Introduce un correo electrónico válido.
-                                </div>
-                            </div>
-                            <div class="mb-3">
-                                <label for="phone" class="form-label">
-                                    Teléfono
-                                </label>
-                                <input type="tel" class="form-control" id="phone" name="phone">
-                            </div>
-                            <div class="mb-3">
-                                <label for="subject" class="form-label">
-                                    Asunto <span class="text-danger">*</span>
-                                </label>
-                                <select class="form-select" id="subject" name="subject" required>
-                                    <option value="">Seleccionar asunto...</option>
-                                    <option value="info">Información General</option>
-                                    <option value="reserva">Reservación</option>
-                                    <option value="productos">Consulta sobre Productos</option>
-                                    <option value="queja">Queja o Sugerencia</option>
-                                    <option value="otro">Otro</option>
-                                </select>
-                                <div id="subjectFeedback" class="invalid-feedback">
-                                    Debes seleccionar un asunto.
-                                </div>
-                            </div>
-                            <div class="mb-3">
-                                <label for="message" class="form-label">
-                                    Mensaje <span class="text-danger">*</span>
-                                </label>
-                                <textarea class="form-control" id="message" name="message" rows="3" required></textarea>
-                                <div id="messageFeedback" class="invalid-feedback">
-                                    El mensaje es obligatorio y debe tener al menos 10 caracteres.
-                                </div>
-                            </div>
-                            <button type="submit" class="btn btn-primary btn-lg w-100">
-                                <i class="bi bi-send-fill me-2"></i>
-                                Enviar Mensaje
-                            </button>
-                        </form>
+                        <form id="contactForm">
+  <div class="mb-3">
+    <label for="name" class="form-label">Nombre Completo *</label>
+    <input type="text" class="form-control" id="name" required>
+  </div>
+
+  <div class="mb-3">
+    <label for="email" class="form-label">Correo Electrónico *</label>
+    <input type="email" class="form-control" id="email" required>
+  </div>
+
+  <div class="mb-3">
+    <label for="phone" class="form-label">Teléfono</label>
+    <input type="tel" class="form-control" id="phone">
+  </div>
+
+  <div class="mb-3">
+    <label for="subject" class="form-label">Asunto *</label>
+    <select class="form-select" id="subject" required>
+      <option value="">Seleccionar asunto...</option>
+      <option value="info">Información General</option>
+      <option value="reserva">Reservación</option>
+      <option value="productos">Consulta sobre Productos</option>
+      <option value="queja">Queja o Sugerencia</option>
+      <option value="otro">Otro</option>
+    </select>
+  </div>
+
+  <div class="mb-3">
+    <label for="message" class="form-label">Mensaje *</label>
+    <textarea class="form-control" id="message" rows="3" required></textarea>
+  </div>
+
+  <button type="submit" class="btn btn-primary btn-lg w-100">
+    <i class="bi bi-send-fill me-2"></i> Enviar Mensaje
+  </button>
+
+  <!-- Alertas de estado -->
+  <div id="successMsg" class="alert alert-success mt-3" style="display:none;">
+    <i class="bi bi-check-circle-fill me-2"></i>
+    ¡Tu mensaje ha sido enviado correctamente!
+  </div>
+  <div id="errorMsg" class="alert alert-danger mt-3" style="display:none;">
+    <i class="bi bi-x-circle-fill me-2"></i>
+    Ocurrió un error al enviar el mensaje. Inténtalo nuevamente.
+  </div>
+</form>
                     </div>
                 </div>
             </div>
@@ -240,3 +232,46 @@
     </div>
   </div>
 </footer>
+
+</body>
+<script >
+    document.getElementById("contactForm").addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const para = "cuartodeunvago@gmail.com";
+        const asunto = document.getElementById("subject").value;
+        const mensaje = `
+        Nombre: ${document.getElementById("name").value}
+        Nombre: ${document.getElementById("email").value}
+        Nombre: ${document.getElementById("phone").value}
+        Nombre: ${document.getElementById("subject").value}
+        Nombre: ${document.getElementById("message").value}`;
+
+        const params = new URLSearchParams();
+        params.append("para", para);
+        params.append("asunto",asunto)
+        params.append("mensaje",mensaje);
+
+        document.getElementById("successMsg").style.display = "none"
+        document.getElementById("errorMsg").style.display = "none"
+
+        try{
+            const response = await fetch("http://localhost:8080/api/email/enviar", {
+                method: "POST",
+                body: params
+            });
+
+            if (response.ok){
+                document.getElementById("successMsg").style.display = "block"
+                e.target.reset();
+            }else {
+                document.getElementById("errorMsg").style.display = "block";
+
+            }
+        } catch (error) {
+            document.getElementById("errorMsg").style.display = "block";
+            console.log(error);
+        }
+        });
+</script>
+</html>
