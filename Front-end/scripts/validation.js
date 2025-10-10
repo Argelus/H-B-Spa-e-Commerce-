@@ -40,7 +40,7 @@ nameInput.classList.remove('is-valid', 'is-invalid');
 
 if (nameInput.value.trim() === '') {
     nameInput.classList.add('is-invalid');
-    if (nameFeedback) nameFeedback.textContent = 'El nombre completo es obligatorio.';
+    if (nameFeedback) nameFeedback.textContent = 'El nombre es obligatorio.';
     isFormValid = false;
 } else if (!namePattern.test(nameInput.value.trim())) {
     nameInput.classList.add('is-invalid');
