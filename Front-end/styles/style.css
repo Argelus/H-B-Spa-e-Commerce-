@@ -690,3 +690,9 @@ nav a:hover, nav a:focus {
     flex-direction: column;
     justify-content: space-between; /* Distribuye el espacio entre detalles y redes */
 }
+.form-select{
+    font-family: 'lora' !important;
+}
+.btn{
+    font-family: 'lora' !important;
+}
