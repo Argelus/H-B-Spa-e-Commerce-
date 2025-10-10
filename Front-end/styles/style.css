@@ -3,18 +3,21 @@
     src: url('./fonts/Cormorant_Garamond/CormorantGaramond-Italic-VariableFont_wght.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
+    font-display: swap;
 }
 @font-face {
     font-family: 'Lato';
     src: url('./fonts/Lato/Lato-LightItalic.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap; 
 }
 @font-face {
     font-family: 'Lora';
     src: url('./fonts/Lora/Lora-Italic-VariableFont_wght.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
+    font-display: swap;
 }
 
 :root {
@@ -35,6 +38,9 @@ html {
 
 body {
     font-family: 'Lato', serif;
+    font-weight: 300; 
+    font-style: italic; 
+    font-display: swap;
     background-color: var(--arena-suave);
     color: var(--gris-humo);
     line-height: 1.6;
@@ -57,11 +63,14 @@ footer {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Lato', serif;
+    font-family: 'lora';
     color: var(--gris-humo);
     margin-top: 0;
     margin-bottom: 0.7em;
     font-weight: 800;
+    /* transform: scale(1); */
+    /* transform-origin: left-top; */
+    /* display: inline-block; */
     letter-spacing: 0.02em;
     line-height: 1.2;
     text-shadow: 0 1px 2px rgba(245,237,228,0.15);
@@ -305,8 +314,10 @@ nav a:hover, nav a:focus {
     border-radius: var(--radius);
     box-shadow: var(--shadow-card);
     padding: 1.5em;
-    margin-bottom: 2em;
+    /* ⚠️ Este es el margin que estamos anulando con la regla superior ⚠️ */
+    margin-bottom: 2em; 
 }
+
 
 .btn-primary, .cta {
     background-color: var(--turquesa-pastel);
@@ -667,5 +678,15 @@ nav a:hover, nav a:focus {
 .form-control.is-valid {
   background-image: none !important;
 }
-
-
+/* ===== ESTILOS PARA FLEXBOX & IGUALAR ALTURAS ===== */
+/* Anula el margin-bottom para las cards dentro de un contenedor flex */
+.row.g-5.d-flex .card {
+    margin-bottom: 0; /* Elimina el margen inferior cuando las cards están alineadas */
+}
+/* Asegura que el contenedor de los detalles y redes sociales se expanda al máximo */
+.contact-details-wrapper {
+    flex-grow: 1; /* Esto hace que el div ocupe todo el espacio libre */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Distribuye el espacio entre detalles y redes */
+}
