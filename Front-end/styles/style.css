@@ -690,9 +690,208 @@ nav a:hover, nav a:focus {
     flex-direction: column;
     justify-content: space-between; /* Distribuye el espacio entre detalles y redes */
 }
-.form-select{
-    font-family: 'lora' !important;
+
+
+/* Boton preg. frecuentes */
+
+.faq-floating-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background-color: var(--turquesa-pastel);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 28px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-.btn{
-    font-family: 'lora' !important;
+
+.faq-floating-btn:hover {
+    background-color: var(--lila-rosa);
+    transform: scale(1.1);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.faq-floating-btn:active {
+    transform: scale(0.95);
+}
+
+/*  MODAL */
+
+.faq-modal {
+    display: none;
+    position: fixed;
+    z-index: 1001;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    animation: fadeIn 0.3s ease;
+}
+
+.faq-modal.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.faq-modal-content {
+    background-color: var(--arena-suave);
+    border-radius: var(--radius);
+    width: 90%;
+    max-width: 600px;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.faq-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    border-bottom: 2px solid var(--sal-marina);
+    background-color: var(--turquesa-pastel);
+    border-radius: var(--radius) var(--radius) 0 0;
+}
+
+.faq-modal-header h3 {
+    color: white;
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.faq-close-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: white;
+    cursor: pointer;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease;
+}
+
+.faq-close-btn:hover {
+    transform: scale(1.2);
+}
+
+.faq-modal-body {
+    padding: 1.5rem;
+}
+
+/* Estilos*/
+
+.accordion-item {
+    background-color: var(--sal-marina);
+    border: none;
+    margin-bottom: 1rem;
+    border-radius: var(--radius);
+    overflow: hidden;
+}
+
+.accordion-button {
+    background-color: var(--sal-marina);
+    color: var(--gris-humo);
+    font-family: 'CormorantGaramond', serif;
+    font-weight: 600;
+    font-size: 1.1rem;
+    padding: 1rem 1.25rem;
+    border: none;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: var(--turquesa-pastel);
+    color: white;
+    box-shadow: none;
+}
+
+.accordion-button:focus {
+    box-shadow: none;
+    border-color: transparent;
+}
+
+.accordion-button::after {
+    filter: brightness(0) invert(0.4);
+}
+
+.accordion-button:not(.collapsed)::after {
+    filter: brightness(0) invert(1);
+}
+
+.accordion-body {
+    background-color: white;
+    color: var(--gris-humo);
+    font-family: 'Lato', sans-serif;
+    padding: 1.25rem;
+}
+
+.accordion-body a {
+    color: var(--turquesa-pastel);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.accordion-body a:hover {
+    color: var(--lila-rosa);
+    text-decoration: underline;
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+    .faq-floating-btn {
+        width: 50px;
+        height: 50px;
+        font-size: 24px;
+        bottom: 20px;
+        right: 20px;
+    }
+
+    .faq-modal-content {
+        width: 95%;
+        max-height: 85vh;
+    }
+
+    .faq-modal-header h3 {
+        font-size: 1.25rem;
+    }
+
+    .accordion-button {
+        font-size: 1rem;
+        padding: 0.875rem 1rem;
+    }
 }
