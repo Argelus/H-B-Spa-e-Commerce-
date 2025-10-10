@@ -32,10 +32,9 @@
             <h1 class="display-4 fw-bold mb-3">Contáctanos</h1>
             
         </div>
-        <div class="row g-5">
-            <div class="col-lg-6">
-
-                <div class="card border-0 shadow-sm  w-100">
+        <div class="row g-5 d-flex">
+            <div class="col-lg-6 h-100">
+                <div class="card border-0 shadow-sm  w-100 h-100">
                     <div class="card-body p-4">
                         <h3 class="mb-4">Envíanos un Mensaje</h3>
                         <!-- Success alert example, show after submit -->
@@ -43,120 +42,127 @@
                           <i class="bi bi-check-circle-fill me-2"></i>
                           ¡Gracias por contactarnos! Te responderemos pronto.
                         </div> -->
-                        <form id="contactForm" novalidate>
-  <!-- Nombre -->
-  <div class="mb-3">
-    <label for="name" class="form-label">Nombre Completo *</label>
-    <input type="text" class="form-control" id="name" required>
-    <div class="invalid-feedback" id="nameFeedback"></div>
-  </div>
+                      <form id="contactForm" novalidate>
+                        <!-- Nombre -->
+                        <div class="mb-3">
+                          <label for="name" class="form-label">Nombre Completo *</label>
+                          <input type="text" class="form-control" id="name" required>
+                          <div class="invalid-feedback" id="nameFeedback"></div>
+                        </div>
 
-  <!-- Correo -->
-  <div class="mb-3">
-    <label for="email" class="form-label">Correo Electrónico *</label>
-    <input type="email" class="form-control" id="email" required>
-    <div class="invalid-feedback" id="emailFeedback"></div>
-  </div>
+                        <!-- Correo -->
+                        <div class="mb-3">
+                          <label for="email" class="form-label">Correo Electrónico *</label>
+                          <input type="email" class="form-control" id="email" required>
+                          <div class="invalid-feedback" id="emailFeedback"></div>
+                        </div>
 
-  <!-- Teléfono -->
-  <div class="mb-3">
-    <label for="phone" class="form-label">Teléfono (Opcional)</label>
-    <input type="tel" class="form-control" id="phone">
-    <div class="invalid-feedback" id="phoneFeedback"></div>
-  </div>
+                        <!-- Teléfono -->
+                        <div class="mb-3">
+                          <label for="phone" class="form-label">Teléfono (Opcional)</label>
+                          <input type="tel" class="form-control" id="phone">
+                          <div class="invalid-feedback" id="phoneFeedback"></div>
+                        </div>
 
-  <!-- Asunto -->
-  <div class="mb-3">
-    <label for="subject" class="form-label">Asunto *</label>
-    <select class="form-select" id="subject" required>
-      <option value="">Seleccionar asunto...</option>
-      <option value="info">Información General</option>
-      <option value="reserva">Reservación</option>
-      <option value="productos">Consulta sobre Productos</option>
-      <option value="queja">Queja o Sugerencia</option>
-      <option value="otro">Otro</option>
-    </select>
-    <div class="invalid-feedback" id="subjectFeedback"></div>
-  </div>
+                        <!-- Asunto -->
+                        <div class="mb-3">
+                          <label for="subject" class="form-label">Asunto *</label>
+                          <select class="form-select" id="subject" required>
+                            <option value="">Seleccionar asunto...</option>
+                            <option value="info">Información General</option>
+                            <option value="reserva">Reservación</option>
+                            <option value="productos">Consulta sobre Productos</option>
+                            <option value="queja">Queja o Sugerencia</option>
+                            <option value="otro">Otro</option>
+                          </select>
+                          <div class="invalid-feedback" id="subjectFeedback"></div>
+                        </div>
 
-  <!-- Mensaje -->
-  <div class="mb-3">
-    <label for="message" class="form-label">Mensaje *</label>
-    <textarea class="form-control" id="message" rows="3" required></textarea>
-    <div class="invalid-feedback" id="messageFeedback"></div>
-  </div>
+                        <!-- Mensaje -->
+                        <div class="mb-3">
+                          <label for="message" class="form-label">Mensaje *</label>
+                          <textarea class="form-control" id="message" rows="7" required></textarea>
+                          <div class="invalid-feedback" id="messageFeedback"></div>
+                        </div>
 
-  <!-- Botón -->
-  <button type="submit" class="btn btn-primary btn-lg w-100">
-    <i class="bi bi-send-fill me-2"></i> Enviar Mensaje
-  </button>
+                        <!-- Botón -->
+                        <button type="submit" class="btn btn-primary btn-lg w-100">
+                          <i class="bi bi-send-fill me-2"></i> Enviar Mensaje
+                        </button>
 
-  <!-- Alertas -->
-  <div id="successMsg" class="alert alert-success mt-3" style="display:none;">
-    <i class="bi bi-check-circle-fill me-2"></i>
-    ¡Tu mensaje ha sido enviado correctamente!
-  </div>
-  <div id="errorMsg" class="alert alert-danger mt-3" style="display:none;">
-    <i class="bi bi-x-circle-fill me-2"></i>
-    Ocurrió un error al enviar el mensaje. Inténtalo nuevamente.
-  </div>
-</form>
+                        <!-- Alertas -->
+                        <div id="successMsg" class="alert alert-success mt-3" style="display:none;">
+                          <i class="bi bi-check-circle-fill me-2"></i>
+                          ¡Tu mensaje ha sido enviado correctamente!
+                        </div>
+                        <div id="errorMsg" class="alert alert-danger mt-3" style="display:none;">
+                          <i class="bi bi-x-circle-fill me-2"></i>
+                          Ocurrió un error al enviar el mensaje. Inténtalo nuevamente.
+                        </div>
+                      </form>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6">
-                <div class="card border-0 shadow-sm mb-4 w-100">
-                    <div class="card-body p-4">
+            <div class="col-lg-6 h-100">
+                <div class="card border-0 shadow-sm w-100 h-100">
+                    <div class="card-body p-4 d-flex flex-column"> 
+                        
                         <h3 class="mb-4">Información de Contacto</h3>
-                        <div class="mb-4">
-                            <div class="d-flex align-items-start mb-3">
-                                <i class="bi bi-geo-alt-fill fs-4 text-accent-teal me-3"></i>
-                                <div>
-                                    <h5>Dirección</h5>
-                                    <p class="text-muted mb-0">
-                                        Calle Genaro García 357<br>
-                                        Jardín Balbuena,Venustiano Carranza<br>
-                                        Ciudad de México, CDMX 15900
-                                    </p>
+                        
+                        
+
+                            <div class="contact-details-wrapper flex-fill">
+                                <div class="mb-4">
+                                    <div class="d-flex align-items-start mb-3">
+                                        <i class="bi bi-geo-alt-fill fs-4 text-accent-teal me-3"></i>
+                                        <div>
+                                            <h5>Dirección</h5>
+                                            <p class="text-muted mb-0">
+                                                Calle Genaro García 357<br>
+                                                Jardín Balbuena,Venustiano Carranza<br>
+                                                Ciudad de México, CDMX 15900
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex align-items-start mb-3">
+                                        <i class="bi bi-telephone-fill fs-4 text-accent-teal me-3"></i>
+                                        <div>
+                                            <h5>Teléfono </h5>
+                                            <p class="text-muted mb-0">+52 55 62 31 63 02</p>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex align-items-start mb-3">
+                                        <i class="bi bi-envelope-fill fs-4 text-accent-teal me-3"></i>
+                                        <div>
+                                            <h5>Correo Electrónico</h5>
+                                            <p class="text-muted mb-0">info@hbspa.com</p>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex align-items-start mb-3">
+                                        <i class="bi bi-clock-fill fs-4 text-accent-teal me-3"></i>
+                                        <div>
+                                            <h5>Horario de Atención</h5>
+                                            <p class="text-muted mb-0">Lunes - Viernes: 9:00 - 20:00</p>
+                                            <p class="text-muted mb-0">Sábado: 10:00 - 18:00</p>
+                                            <p class="text-muted mb-0">Domingo: Cerrado</p>
+                                        </div>
+                                </div>
+                            </div> 
+
+                            <div class="social-media-block mt-auto">
+                                <h5>Vísitanos en nuestras redes sociales:</h5>
+                                <div class="d-flex gap-3 mb-4 justify-content-center">
+                                    <a href="https://www.facebook.com/people/Spa-HB-Jard%C3%ADn-Balbuena/100063493903198/?ref=_xav_ig_profile_page_web_bt#" class="btn btn-outline-primary" target="_blank" aria-label="Facebook">
+                                        <i class="bi bi-facebook fs-5 social-icon"></i>
+                                    </a>
+                                    <a href="https://www.instagram.com/spahyb/" target="_blank" class="btn btn-outline-primary" aria-label="Instagram">
+                                        <i class="bi bi-instagram fs-5 social-icon"></i>
+                                    </a>
+                                    <a href="https://wa.me/5562316302" target="_blank" class="btn btn-outline-primary" aria-label="WhatsApp" >
+                                        <i class="bi bi-whatsapp fs-5 social-icon"></i>
+                                    </a>
                                 </div>
                             </div>
-                            <div class="d-flex align-items-start mb-3">
-                                <i class="bi bi-telephone-fill fs-4 text-accent-teal me-3"></i>
-                                <div>
-                                    <h5>Teléfono </h5>
-                                    <p class="text-muted mb-0">+52 55 62 31 63 02</p>
-                                    
-                                </div>
-                            </div>
-                            <div class="d-flex align-items-start mb-3">
-                                <i class="bi bi-envelope-fill fs-4 text-accent-teal me-3"></i>
-                                <div>
-                                    <h5>Correo Electrónico</h5>
-                                    <p class="text-muted mb-0">info@hbspa.com</p>
-                                </div>
-                            </div>
-                            <div class="d-flex align-items-start mb-3">
-                                <i class="bi bi-clock-fill fs-4 text-accent-teal me-3"></i>
-                                <div>
-                                    <h5>Horario de Atención</h5>
-                                    <p class="text-muted mb-0">Lunes - Viernes: 9:00 - 20:00</p>
-                                    <p class="text-muted mb-0">Sábado: 10:00 - 18:00</p>
-                                    <p class="text-muted mb-0">Domingo: Cerrado</p>
-                                </div>
-                            </div>
-                        </div>
-                        <h5>Vísitanos en nuestras redes sociales:</h5>
-                        <div class="d-flex gap-3 mb-4 justify-content-center">
-                            <a href="https://www.facebook.com/people/Spa-HB-Jard%C3%ADn-Balbuena/100063493903198/?ref=_xav_ig_profile_page_web_bt#" class="btn btn-outline-primary" target="_blank" aria-label="Facebook">
-                                <i class="bi bi-facebook fs-5 social-icon"></i>
-                            </a>
-                             <a href="https://www.instagram.com/spahyb/" target="_blank" class="btn btn-outline-primary" aria-label="Instagram">
-                                <i class="bi bi-instagram fs-5 social-icon"></i>
-                            </a>
-                            <a href="https://wa.me/5562316302" target="_blank" class="btn btn-outline-primary" aria-label="WhatsApp" >
-                                <i class="bi bi-whatsapp fs-5 social-icon"></i>
-                            </a>
-                           
                         </div>
                     </div>
                 </div>
@@ -180,6 +186,10 @@
             <div class="col-lg-6">
                 <div class="card-body p-0">
                         <div class="ratio ratio-4x3">
+                          <br>
+                          <br>
+                          <br>
+                          <br>
                             <iframe class="mapa-redondeado" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4347.6446444466565!2d-99.10551055118415!3d19.41044566117988!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1fea2dbf56537%3A0x915741ec01026932!2sSpa%20H%26B%20Jard%C3%ADn%20Balbuena!5e0!3m2!1ses-419!2smx!4v1759536085374!5m2!1ses-419!2smx" 
                                 width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                         </div>
