@@ -1,5 +1,6 @@
-package com.spa;
+package com.spa.controller;
 
+import com.spa.service.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
