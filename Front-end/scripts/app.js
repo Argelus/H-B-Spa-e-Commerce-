@@ -63,5 +63,8 @@ document.addEventListener('DOMContentLoaded', () => {
   if (collapse) {
     collapse.addEventListener('show.bs.collapse', onScroll);
     collapse.addEventListener('hide.bs.collapse', onScroll);
+    // Also handle when the transition finishes so the class `show` is present/removed
+    collapse.addEventListener('shown.bs.collapse', onScroll);
+    collapse.addEventListener('hidden.bs.collapse', onScroll);
   }
 });
