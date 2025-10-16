@@ -225,8 +225,65 @@ body:not(.has-hero) { padding-top: 72px; }
 
 .row.g-4 { perspective: 1000px; }
 
+/* ===== Cart preview bubble (global) ===== */
+.cart-preview-bar { position: fixed; right: calc(30px + env(safe-area-inset-right, 0px)); bottom: calc(30px + env(safe-area-inset-bottom, 0px)); left: auto; transform: none; width: 60px; height: 60px; z-index: 900; background: transparent; color: var(--gris-humo); border: none; box-shadow: none; border-radius: 50%; padding: 0; display: none; align-items: center; justify-content: center; gap: 0; cursor: pointer; }
+.cart-preview-bar.show { display: flex; }
+/* Use the existing .bag as the visual bubble */
+.cart-preview-bar .bag { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; border-radius: 50%; background: var(--turquesa-pastel); color: #ffffff; box-shadow: 0 4px 12px rgba(0,0,0,0.15); transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease; }
+.cart-preview-bar:hover .bag { transform: scale(1.1); box-shadow: 0 6px 16px rgba(0,0,0,0.2); background-color: var(--lila-rosa); }
+.cart-preview-bar .bag i { font-size: 28px; line-height: 1; }
+
+/* Cart bubble summary badge (ensure bubble stays circular) */
+.cart-preview-bar { position: fixed; }
+.cart-preview-bar .summary { position: absolute; top: 6px; right: 6px; font-size: 0; pointer-events: none; }
+.cart-preview-bar .summary #cart-count { position: relative; display: inline-flex; align-items: center; justify-content: center; min-width: 22px; height: 22px; padding: 0 6px; border-radius: 999px; background: #dc3545; color: #fff; font-weight: 800; font-size: 12px; line-height: 1; box-shadow: 0 2px 6px rgba(0,0,0,0.2); border: 2px solid #ffffff; }
+/* Hide legacy in-bubble CTA (popover provides its own CTA) */
+.cart-preview-bar .btn-review { display: none !important; }
+
+@media (max-width: 768px) {
+  .cart-preview-bar .summary { top: 4px; right: 4px; }
+  .cart-preview-bar .summary #cart-count { min-width: 20px; height: 20px; font-size: 11px; }
+}
+
+/* ===== Cart popover panel ===== */
+.cart-popover { position: fixed; right: calc(30px + env(safe-area-inset-right, 0px)); bottom: calc(102px + env(safe-area-inset-bottom, 0px)); width: 320px; max-width: calc(100vw - 40px); background: #fff; border: 1px solid rgba(0,0,0,0.08); border-radius: 14px; box-shadow: 0 12px 28px rgba(0,0,0,0.18); z-index: 1000; display: none; overflow: hidden; }
+.cart-popover.show { display: block; }
+
+/* Cart popover UX/UI enhancements */
+.cart-popover { border: 1px solid rgba(0,0,0,0.06); border-radius: 16px; overflow: hidden; backdrop-filter: saturate(140%); }
+.cart-popover::after { content: ""; position: absolute; right: 26px; bottom: -8px; width: 16px; height: 16px; background: #fff; border-left: 1px solid rgba(0,0,0,0.06); border-bottom: 1px solid rgba(0,0,0,0.06); transform: rotate(45deg); box-shadow: 3px 3px 8px rgba(0,0,0,0.05); }
+.cart-popover-header { position: sticky; top: 0; z-index: 1; display: flex; align-items: center; justify-content: space-between; padding: 10px 12px; background: var(--sal-marina); border-bottom: 1px solid rgba(0,0,0,0.06); }
+.cart-popover-header .title { font-weight: 700; font-family: 'Lora', Georgia, 'Times New Roman', serif; }
+.cart-popover-header .count-pill { display: inline-flex; align-items: center; gap: 6px; background: #fff; color: var(--gris-humo); padding: 4px 8px; border-radius: 999px; font-size: 12px; font-weight: 700; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+.cart-popover-body { max-height: 320px; overflow-y: auto; padding: 10px; background: #fff; }
+.cart-popover-item { display: grid; grid-template-columns: 56px 1fr auto; gap: 10px; align-items: center; padding: 10px; border-radius: 12px; background: #fff; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 1px 3px rgba(0,0,0,0.04); margin-bottom: 10px; }
+.cart-popover-item:hover { box-shadow: 0 2px 6px rgba(0,0,0,0.06); }
+.cart-popover-item img { width: 56px; height: 56px; object-fit: cover; border-radius: 10px; background: #f4f4f4; }
+.cart-popover-item .info { min-width: 0; }
+.cart-popover-item .name { font-weight: 700; margin-bottom: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cart-popover-item .meta { font-size: 0.9rem; color: #666; }
+.cart-popover-item .price { font-weight: 700; color: var(--gris-humo); }
+.cart-popover-item .actions { display: grid; gap: 6px; align-items: center; justify-items: end; }
+.qty-controls { display: inline-flex; align-items: center; gap: 6px; background: #fff; border: 1px solid rgba(0,0,0,0.08); border-radius: 999px; padding: 2px 6px; }
+.btn-qty { width: 24px; height: 24px; border-radius: 50%; border: 1px solid rgba(0,0,0,0.12); background: #fff; color: var(--gris-humo); display: inline-flex; align-items: center; justify-content: center; cursor: pointer; transition: transform 0.15s ease, background 0.15s ease; }
+.btn-qty:hover { transform: scale(1.05); background: var(--sal-marina); }
+.qty { min-width: 24px; text-align: center; font-weight: 700; color: var(--gris-humo); }
+.btn-remove { border: none; background: transparent; color: #888; cursor: pointer; padding: 4px; border-radius: 8px; transition: color 0.15s ease, background 0.15s ease; }
+.btn-remove:hover { color: #c53030; background: rgba(197,48,48,0.08); }
+.cart-popover-empty { padding: 24px 16px; text-align: center; color: #666; }
+.cart-popover-footer { position: sticky; bottom: 0; background: #fff; border-top: 1px solid rgba(0,0,0,0.06); padding: 10px; display: grid; gap: 8px; }
+.cart-summary { display: flex; align-items: center; justify-content: space-between; font-size: 0.95rem; }
+.cart-summary .items { color: #666; }
+.cart-summary .total { font-weight: 800; color: var(--gris-humo); }
+.cart-popover-footer .btn-cart { width: 100%; border-radius: 10px; font-weight: 700; }
+
+@media (max-width: 576px) {
+  .cart-popover { width: calc(100vw - 32px); }
+  .cart-popover::after { right: 22px; }
+}
+
 /* FAQ floating button + modal (shared) */
-.faq-floating-btn { position: fixed; bottom: 30px; left: 30px; /* moved from right to left */ width: 60px; height: 60px; background-color: var(--turquesa-pastel); color: white; border: none; border-radius: 50%; font-size: 28px; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.15); z-index: 1000; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center; }
+.faq-floating-btn { position: fixed; bottom: calc(30px + env(safe-area-inset-bottom, 0px)); left: calc(30px + env(safe-area-inset-left, 0px)); /* moved from right to left */ width: 60px; height: 60px; background-color: var(--turquesa-pastel); color: white; border: none; border-radius: 50%; font-size: 28px; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.15); z-index: 1000; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center; }
 .faq-floating-btn:hover { background-color: var(--lila-rosa); transform: scale(1.1); box-shadow: 0 6px 16px rgba(0,0,0,0.2); }
 .faq-floating-btn:active { transform: scale(0.95); }
 .faq-modal { display:none; position:fixed; z-index:1001; left:0; top:0; width:100%; height:100%; background-color: rgba(0,0,0,0.5); animation: fadeIn 0.3s ease; }
@@ -252,45 +309,31 @@ body:not(.has-hero) { padding-top: 72px; }
 .accordion-body a:hover { color: var(--lila-rosa); text-decoration: underline; }
 
 @media (max-width: 768px) {
-    .faq-floating-btn { width:50px; height:50px; font-size:24px; bottom:20px; left:20px; /* was right:20px */ }
+    .faq-floating-btn { width:56px; height:56px; font-size:22px; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); left: calc(16px + env(safe-area-inset-left, 0px)); /* standardized to match cart bubble */ }
     .faq-modal-content { width:95%; max-height:85vh; }
     .faq-modal-header h3 { font-size:1.125rem; }
     .accordion-button { font-size:1rem; padding:0.875rem 1rem; }
+
+    /* Cart bubble match size on small tablets and phones */
+    .cart-preview-bar { right: calc(16px + env(safe-area-inset-right, 0px)); bottom: calc(16px + env(safe-area-inset-bottom, 0px)); width: 56px; height: 56px; }
+    .cart-preview-bar .bag i { font-size: 22px; }
 }
 
-/* ===== Cart preview bubble (global) ===== */
-.cart-preview-bar { position: fixed; right: 20px; bottom: 20px; left: auto; transform: none; width: 64px; height: 64px; z-index: 900; background: transparent; color: var(--gris-humo); border: none; box-shadow: none; border-radius: 50%; padding: 0; display: none; align-items: center; justify-content: center; gap: 0; cursor: pointer; }
-.cart-preview-bar.show { display: flex; }
-/* Use the existing .bag as the visual bubble */
-.cart-preview-bar .bag { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; border-radius: 50%; background: linear-gradient(90deg, var(--turquesa-pastel), var(--lila-rosa)); color: #ffffff; box-shadow: 0 8px 18px rgba(110,191,195,0.35); transition: transform 0.2s ease, box-shadow 0.2s ease; }
-.cart-preview-bar:hover .bag { transform: scale(1.06); box-shadow: 0 10px 22px rgba(110,191,195,0.45); }
-.cart-preview-bar .bag i { font-size: 26px; line-height: 1; }
+@media (max-width: 576px) {
+  .cart-popover { right: calc(16px + env(safe-area-inset-right, 0px)); bottom: calc(80px + env(safe-area-inset-bottom, 0px)); width: calc(100vw - 32px); max-width: none; }
+  .cart-popover::after { right: 22px; }
+}
 
-/* Rework summary as a small badge anchored to the bubble. Hide the descriptive text but keep the count visible */
-.cart-preview-bar { position: fixed; }
-.cart-preview-bar .summary { position: absolute; top: 6px; right: 6px; font-size: 0; /* hide text like "productos en el carrito" */ pointer-events: none; }
-.cart-preview-bar .summary #cart-count { position: relative; display: inline-flex; align-items: center; justify-content: center; min-width: 22px; height: 22px; padding: 0 6px; border-radius: 999px; background: #dc3545; color: #fff; font-weight: 800; font-size: 12px; line-height: 1; box-shadow: 0 2px 6px rgba(0,0,0,0.2); border: 2px solid #ffffff; }
-
-/* Make the review button cover the entire bubble so the whole control is clickable */
-/* Replaced: hide in-bubble review link; popover will include its own CTA */
-.cart-preview-bar .btn-review { display: none !important; }
-
-/* ===== Cart popover panel ===== */
-.cart-popover { position: fixed; right: 20px; bottom: 92px; width: 320px; max-width: calc(100vw - 40px); background: #fff; border: 1px solid rgba(0,0,0,0.08); border-radius: 14px; box-shadow: 0 12px 28px rgba(0,0,0,0.18); z-index: 1000; display: none; overflow: hidden; }
-.cart-popover.show { display: block; }
-.cart-popover::after { content: ""; position: absolute; right: 26px; bottom: -8px; width: 16px; height: 16px; background: #fff; border-left: 1px solid rgba(0,0,0,0.08); border-bottom: 1px solid rgba(0,0,0,0.08); transform: rotate(45deg); box-shadow: 3px 3px 8px rgba(0,0,0,0.05); }
-.cart-popover-header { display: flex; align-items: center; justify-content: space-between; padding: 10px 12px; background: var(--sal-marina); border-bottom: 1px solid rgba(0,0,0,0.06); }
-.cart-popover-header .title { font-weight: 700; font-family: 'Lora', Georgia, 'Times New Roman', serif; }
-.cart-popover-body { max-height: 320px; overflow-y: auto; padding: 8px 8px; }
-.cart-popover-item { display: grid; grid-template-columns: 56px 1fr auto; gap: 10px; align-items: center; padding: 8px; border-radius: 10px; background: #fff; box-shadow: 0 1px 4px rgba(0,0,0,0.06); margin-bottom: 8px; }
-.cart-popover-item img { width: 56px; height: 56px; object-fit: cover; border-radius: 8px; background: #f4f4f4; }
-.cart-popover-item .name { font-weight: 600; margin-bottom: 2px; }
-.cart-popover-item .meta { font-size: 0.9rem; color: #666; }
-.cart-popover-footer { padding: 10px; border-top: 1px solid rgba(0,0,0,0.06); background: #fff; display: flex; gap: 8px; }
-.cart-popover-footer .btn-cart { flex: 1; }
-.cart-popover-empty { padding: 20px 14px; text-align: center; color: #666; }
+/* Mobile navbar: ensure readable dark text when the menu is expanded */
+@media (max-width: 991.98px) {
+  .navbar .navbar-collapse.show .nav-link { color: var(--gris-humo) !important; }
+  .navbar .navbar-collapse.show .nav-link:hover,
+  .navbar .navbar-collapse.show .nav-link:focus { color: var(--turquesa-pastel) !important; }
+  .navbar.navbar-light .nav-link { color: var(--gris-humo) !important; }
+  .navbar.navbar-light .navbar-brand { color: var(--gris-humo) !important; }
+}
 
 @media (max-width: 576px) {
-  .cart-popover { right: 16px; bottom: 80px; width: calc(100vw - 32px); max-width: none; }
-  .cart-popover::after { right: 22px; }
+  .cart-preview-bar { right: 16px; bottom: 16px; width: 56px; height: 56px; }
+  .cart-preview-bar .bag i { font-size: 22px; }
 }
