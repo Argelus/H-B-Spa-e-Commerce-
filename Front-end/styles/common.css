@@ -226,7 +226,7 @@ body:not(.has-hero) { padding-top: 72px; }
 .row.g-4 { perspective: 1000px; }
 
 /* FAQ floating button + modal (shared) */
-.faq-floating-btn { position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; background-color: var(--turquesa-pastel); color: white; border: none; border-radius: 50%; font-size: 28px; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.15); z-index: 1000; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center; }
+.faq-floating-btn { position: fixed; bottom: 30px; left: 30px; /* moved from right to left */ width: 60px; height: 60px; background-color: var(--turquesa-pastel); color: white; border: none; border-radius: 50%; font-size: 28px; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.15); z-index: 1000; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center; }
 .faq-floating-btn:hover { background-color: var(--lila-rosa); transform: scale(1.1); box-shadow: 0 6px 16px rgba(0,0,0,0.2); }
 .faq-floating-btn:active { transform: scale(0.95); }
 .faq-modal { display:none; position:fixed; z-index:1001; left:0; top:0; width:100%; height:100%; background-color: rgba(0,0,0,0.5); animation: fadeIn 0.3s ease; }
@@ -252,8 +252,45 @@ body:not(.has-hero) { padding-top: 72px; }
 .accordion-body a:hover { color: var(--lila-rosa); text-decoration: underline; }
 
 @media (max-width: 768px) {
-    .faq-floating-btn { width:50px; height:50px; font-size:24px; bottom:20px; right:20px; }
+    .faq-floating-btn { width:50px; height:50px; font-size:24px; bottom:20px; left:20px; /* was right:20px */ }
     .faq-modal-content { width:95%; max-height:85vh; }
     .faq-modal-header h3 { font-size:1.125rem; }
     .accordion-button { font-size:1rem; padding:0.875rem 1rem; }
+}
+
+/* ===== Cart preview bubble (global) ===== */
+.cart-preview-bar { position: fixed; right: 20px; bottom: 20px; left: auto; transform: none; width: 64px; height: 64px; z-index: 900; background: transparent; color: var(--gris-humo); border: none; box-shadow: none; border-radius: 50%; padding: 0; display: none; align-items: center; justify-content: center; gap: 0; cursor: pointer; }
+.cart-preview-bar.show { display: flex; }
+/* Use the existing .bag as the visual bubble */
+.cart-preview-bar .bag { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; border-radius: 50%; background: linear-gradient(90deg, var(--turquesa-pastel), var(--lila-rosa)); color: #ffffff; box-shadow: 0 8px 18px rgba(110,191,195,0.35); transition: transform 0.2s ease, box-shadow 0.2s ease; }
+.cart-preview-bar:hover .bag { transform: scale(1.06); box-shadow: 0 10px 22px rgba(110,191,195,0.45); }
+.cart-preview-bar .bag i { font-size: 26px; line-height: 1; }
+
+/* Rework summary as a small badge anchored to the bubble. Hide the descriptive text but keep the count visible */
+.cart-preview-bar { position: fixed; }
+.cart-preview-bar .summary { position: absolute; top: 6px; right: 6px; font-size: 0; /* hide text like "productos en el carrito" */ pointer-events: none; }
+.cart-preview-bar .summary #cart-count { position: relative; display: inline-flex; align-items: center; justify-content: center; min-width: 22px; height: 22px; padding: 0 6px; border-radius: 999px; background: #dc3545; color: #fff; font-weight: 800; font-size: 12px; line-height: 1; box-shadow: 0 2px 6px rgba(0,0,0,0.2); border: 2px solid #ffffff; }
+
+/* Make the review button cover the entire bubble so the whole control is clickable */
+/* Replaced: hide in-bubble review link; popover will include its own CTA */
+.cart-preview-bar .btn-review { display: none !important; }
+
+/* ===== Cart popover panel ===== */
+.cart-popover { position: fixed; right: 20px; bottom: 92px; width: 320px; max-width: calc(100vw - 40px); background: #fff; border: 1px solid rgba(0,0,0,0.08); border-radius: 14px; box-shadow: 0 12px 28px rgba(0,0,0,0.18); z-index: 1000; display: none; overflow: hidden; }
+.cart-popover.show { display: block; }
+.cart-popover::after { content: ""; position: absolute; right: 26px; bottom: -8px; width: 16px; height: 16px; background: #fff; border-left: 1px solid rgba(0,0,0,0.08); border-bottom: 1px solid rgba(0,0,0,0.08); transform: rotate(45deg); box-shadow: 3px 3px 8px rgba(0,0,0,0.05); }
+.cart-popover-header { display: flex; align-items: center; justify-content: space-between; padding: 10px 12px; background: var(--sal-marina); border-bottom: 1px solid rgba(0,0,0,0.06); }
+.cart-popover-header .title { font-weight: 700; font-family: 'Lora', Georgia, 'Times New Roman', serif; }
+.cart-popover-body { max-height: 320px; overflow-y: auto; padding: 8px 8px; }
+.cart-popover-item { display: grid; grid-template-columns: 56px 1fr auto; gap: 10px; align-items: center; padding: 8px; border-radius: 10px; background: #fff; box-shadow: 0 1px 4px rgba(0,0,0,0.06); margin-bottom: 8px; }
+.cart-popover-item img { width: 56px; height: 56px; object-fit: cover; border-radius: 8px; background: #f4f4f4; }
+.cart-popover-item .name { font-weight: 600; margin-bottom: 2px; }
+.cart-popover-item .meta { font-size: 0.9rem; color: #666; }
+.cart-popover-footer { padding: 10px; border-top: 1px solid rgba(0,0,0,0.06); background: #fff; display: flex; gap: 8px; }
+.cart-popover-footer .btn-cart { flex: 1; }
+.cart-popover-empty { padding: 20px 14px; text-align: center; color: #666; }
+
+@media (max-width: 576px) {
+  .cart-popover { right: 16px; bottom: 80px; width: calc(100vw - 32px); max-width: none; }
+  .cart-popover::after { right: 22px; }
 }

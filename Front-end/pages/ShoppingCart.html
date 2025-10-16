@@ -1,33 +1,70 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carrito de Compras</title>
+    <title>Carrito de Compras - H&B SPA</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="../styles/style.css" />
+    <link rel="stylesheet" href="../styles/common.css" />
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container">
-    <a class="navbar-brand fw-bold" href="../index.html">H&B SPA</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-        <li class="nav-item"><a class="nav-link" href="../index.html">Inicio</a></li>
-        <li class="nav-item"><a class="nav-link" href="Products.html">Productos</a></li>
-        <li class="nav-item"><a class="nav-link" href="Reserve.html">Reserva</a></li>
-        <li class="nav-item"><a class="nav-link" href="About.html">Acerca de Nosotros</a></li>
-        <li class="nav-item"><a class="nav-link" href="Contact.html">Contacto</a></li>
-        <li class="nav-item"><a class="nav-link active" aria-current="page" href="ShoppingCart.html">Carrito</a></li>
-      </ul>
-      </ul>
+    <nav class="navbar navbar-expand-lg fixed-top navbar-transparent" data-navbar-mode="transparent" data-navbar-theme="light">
+      <div class="container">
+        <a class="navbar-brand fw-bold" href="../index.html">H&B SPA</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item"><a class="nav-link" href="../index.html">Inicio</a></li>
+            <li class="nav-item"><a class="nav-link" href="Products.html">Productos</a></li>
+            <li class="nav-item"><a class="nav-link" href="Reserve.html">Reserva</a></li>
+            <li class="nav-item"><a class="nav-link" href="About.html">Acerca de Nosotros</a></li>
+            <li class="nav-item"><a class="nav-link" href="Contact.html">Contacto</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Cart preview bar (pages) -->
+    <div id="cart-preview" class="cart-preview-bar" role="region" aria-live="polite">
+      <div class="bag" aria-hidden="true"><i class="bi bi-bag-check-fill"></i></div>
+      <div class="summary"><span id="cart-count">0</span> productos en el carrito</div>
+      <a href="ShoppingCart.html" class="btn btn-primary btn-review">Revisar Carrito</a>
     </div>
-  </div>
-</nav>
+
+    <main class="py-5">
+      <div class="container">
+        <div class="text-center mb-4">
+          <h1 class="display-5 fw-bold mb-2">Tu Carrito</h1>
+          <p class="lead text-muted">Revisa tus productos y finaliza tu compra cuando estés lista.</p>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-lg-8">
+            <div class="card border-0 shadow-sm">
+              <div class="card-body">
+                <h5 class="fw-bold mb-3">Productos</h5>
+                <div id="cart-items" class="vstack gap-3">
+                  <div class="text-muted">Aún no hay productos en tu carrito.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="card border-0 shadow-sm">
+              <div class="card-body">
+                <h5 class="fw-bold mb-3">Resumen</h5>
+                <p class="mb-2">Artículos: <span id="cart-count-summary">0</span></p>
+                <a href="Products.html" class="btn btn-outline-primary w-100 mb-2">Seguir comprando</a>
+                <button class="btn btn-primary w-100" disabled id="checkout-btn">Proceder al pago</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
 
 <!-- FOOTER -->
 <footer class="bg-light pt-5 pb-3 mt-5">
@@ -84,7 +121,6 @@
     </div>
   </div>
 </footer>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 <!-- Botón Flotante -->
 <button id="faq-button" class="faq-floating-btn" aria-label="Preguntas Frecuentes">
@@ -103,226 +139,60 @@
     <div class="faq-modal-body">
       <div class="accordion" id="faqAccordion">
         
-        
-        <!-- Pregunta 1 -->
+        <!-- Preguntas: se pueden reutilizar desde otras páginas si se desea -->
         <div class="accordion-item">
           <h2 class="accordion-header">
             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
-              ¿Qué tipo de tratamientos ofrecen?
+              ¿Cómo finalizo mi compra?
             </button>
           </h2>
           <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
             <div class="accordion-body">
-              Ofrecemos una amplia variedad de tratamientos personalizados, incluyendo limpieza facial, masajes terapéuticos, depilación láser y mucho más.
+              Revisa tus productos y pulsa "Proceder al pago" para continuar con el proceso.
             </div>
           </div>
         </div>
-
-        <!-- Pregunta 2 -->
-        <div class="accordion-item">
-          <h2 class="accordion-header">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
-              ¿Cuánto tiempo dura cada sesión?
-            </button>
-          </h2>
-          <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-            <div class="accordion-body">
-              Cada sesión dura entre 45 y 60 minutos, dependiendo del tipo de tratamiento que elijas.
-            </div>
-          </div>
-        </div>
-
-        <!-- Pregunta 3 -->
-        <div class="accordion-item">
-          <h2 class="accordion-header">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
-              ¿Cómo es el proceso para reagendar?
-            </button>
-          </h2>
-          <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-            <div class="accordion-body">
-              Debes avisar por lo menos un día antes para poderte reagendar a la brevedad posible. Comunícate a los canales disponibles para que te reagendemos nuevamente.
-            </div>
-          </div>
-        </div>
-
-        <!-- Pregunta 4 -->
-        <div class="accordion-item">
-          <h2 class="accordion-header">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
-              ¿Puedo personalizar un paquete o combinar servicios?
-            </button>
-          </h2>
-          <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-            <div class="accordion-body">
-             Desde luego tenemos paquetes ya establecidos pero puedes contratar los servicios que tu necesites no hay un límite.
-            </div>
-          </div>
-        </div>
-
-        <!-- Pregunta 5 -->
-        <div class="accordion-item">
-          <h2 class="accordion-header">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
-              ¿Cómo puedo hacer una cita?
-            </button>
-          </h2>
-          <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-            <div class="accordion-body">
-              En horario de servicio 8:00 a 20:00hrs al WhatsApp (55) 1234-5678.
-            </div>
-          </div>
-        </div>
-
-        <!-- Pregunta 6 -->
-        <div class="accordion-item">
-          <h2 class="accordion-header">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq6">
-              ¿Puedo agendar una cita para otra persona?
-            </button>
-          </h2>
-          <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-            <div class="accordion-body">
-               Cuando hagas tu cita pregunta si el miembro de nuestra plantilla está disponible a ese horario.
-            </div>
-          </div>
-        </div>
-
-        <!-- Pregunta 7 -->
-        <div class="accordion-item">    
-          <h2 class="accordion-header">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq7">
-              ¿Atienden sin cita previa?
-            </button>
-          </h2>
-          <div id="faq7" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-            <div class="accordion-body">
-               Para darte un mejor servicio no atendemos sin cita previa. 
-            </div>
-          </div>
-        </div>
-
-        <!-- Pregunta 8 -->
-        <div class="accordion-item">    
-          <h2 class="accordion-header">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq8">
-              ¿Cuál es su horario de atención?
-            </button>
-          </h2>
-          <div id="faq8" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-            <div class="accordion-body">
-              Lunes - Viernes: 9:00 AM - 8:00 PM
-              Sábado: 10:00 AM - 6:00 PM
-              Domingo: Cerrado.
-            </div>
-          </div>
-        </div>
-
-        <!-- Pregunta 9 -->
-        <div class="accordion-item">    
-          <h2 class="accordion-header">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq9">
-             ¿Qué métodos de pago aceptan?
-            </button>
-          </h2>
-          <div id="faq9" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-            <div class="accordion-body">
-               Por el momento solo efectivo y transferencia.
-            </div>
-          </div>  
-        </div>
-
-        <!-- Pregunta 10 -->
-        <div class="accordion-item">    
-          <h2 class="accordion-header">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq10">
-              ¿Tienen promociones o paquetes especiales?
-            </button>
-          </h2>
-          <div id="faq10" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-            <div class="accordion-body">
-               Sí, pregunta ya que cada mes actualizamos nuestras promociones.
-            </div>
-          </div>
-        </div>
-
-          <!-- Pregunta 11 -->
-        <div class="accordion-item">
-          <h2 class="accordion-header">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq11">
-              ¿Cómo puedo cancelar mi cita?
-            </button>
-          </h2>
-          <div id="faq11" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-            <div class="accordion-body">
-              Desde luego que puedes. Pero siempre debes de avisar que no podrás asistir esto con la finalidad que podamos organizar nuestra agenda.
-            </div>
-          </div>
-        </div>
-
-        <!-- Pregunta 12 -->
-        <div class="accordion-item">
-          <h2 class="accordion-header">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq12">
-              ¿Debo llegar con anticipación a mi cita?
-            </button>
-          </h2>
-          <div id="faq12" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-            <div class="accordion-body">
-              Dependiendo de tu tratamiento te sugerimos llegar 5 minutos antes para poder empezar a tiempo.
-            </div>
-          </div>
-        </div>
-
-        <!-- Pregunta 13 -->
-        <div class="accordion-item">
-          <h2 class="accordion-header">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq13">
-              ¿Qué debo llevar para mi sesión?
-            </button>
-          </h2>
-          <div id="faq13" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-            <div class="accordion-body">
-              Lleva ropa cómoda, si el tratamiento es muy extensivo puedes traer algun refrigerio como una fruta y agua.
-            </div>
-          </div>
-        </div>
-
-        <!-- Pregunta 14 -->
-        <div class="accordion-item">
-          <h2 class="accordion-header">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq14">
-              ¿Puedo acudir con acompañante o pareja?
-            </button>
-          </h2>
-          <div id="faq14" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-            <div class="accordion-body">
-              Sí, solo que la persona acompañante deberá esperar en la sala de espera y no podrá acceder a otras áreas del salón al menos que cuente con cita para algún tratamiento.
-            </div>
-          </div>
-        </div>
-
-        <!-- Pregunta 15 -->
-        <div class="accordion-item">
-          <h2 class="accordion-header">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq15">
-              ¿Sus productos son naturales o hipoalergénicos?
-            </button>
-          </h2>
-          <div id="faq15" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-            <div class="accordion-body">
-              Usamos productos de línea profesional procurando siempre la asepsia y calidad algunos productos que utilizamos si son 100% naturales.
-            </div>
-          </div>
-        </div>
-
       </div>
     </div>
   </div>
 </div>
 
-<!-- JavaScript para el botón flotante -->
+<!-- Scripts -->
+<script src="../scripts/app.js"></script>
 <script src="../scripts/botonp.js"></script>
+<script src="../scripts/cart-preview.js"></script>
+<script>
+  // Minimal local cart renderer for summary (matches cart-preview.js storage)
+  (function(){
+    const STORAGE_KEY = 'hbspa_cart';
+    function getCart(){ try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || { items: {} }; } catch(e){ return { items: {} }; } }
+    function getCount(c){ return Object.values(c.items||{}).reduce((a,n)=>a+(+n||0),0); }
+    function render(){
+      const itemsWrap = document.getElementById('cart-items');
+      const countEl = document.getElementById('cart-count-summary');
+      const checkoutBtn = document.getElementById('checkout-btn');
+      if(!itemsWrap||!countEl) return;
+      const cart = getCart();
+      const count = getCount(cart);
+      countEl.textContent = String(count);
+      checkoutBtn.disabled = count === 0;
+      itemsWrap.innerHTML = '';
+      if(count === 0){
+        itemsWrap.innerHTML = '<div class="text-muted">Aún no hay productos en tu carrito.</div>';
+      } else {
+        // Render simple list of product IDs and quantities (placeholder until backend integration)
+        Object.entries(cart.items).forEach(([id, qty]) => {
+          const row = document.createElement('div');
+          row.className = 'd-flex align-items-center justify-content-between p-2 rounded bg-white shadow-sm';
+          row.innerHTML = `<div><i class="bi bi-box-seam me-2"></i>Producto #${id}</div><div class="fw-bold">x${qty}</div>`;
+          itemsWrap.appendChild(row);
+        });
+      }
+    }
+    document.addEventListener('DOMContentLoaded', render);
+    window.addEventListener('cart:updated', render);
+  })();
+</script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
