@@ -6,7 +6,18 @@ async function loadProducts() {
     const response = await fetch(`${API_URL}/products`);
     const products = await response.json();
 
+    // Cache metadata for cart popover
+    try {
+      const map = {};
+      products.forEach(p => {
+        if(!p || typeof p.id === 'undefined') return;
+        map[String(p.id)] = { id: p.id, name: p.name, price: p.price, imageUrl: p.imageUrl };
+      });
+      localStorage.setItem('hbspa_products', JSON.stringify(map));
+    } catch {}
+
     const container = document.getElementById("product-list");
+    if (!container) return;
     container.innerHTML = "";
 
     products.forEach(product => {
@@ -33,6 +44,28 @@ async function loadProducts() {
   }
 }
 
+// Local cart helpers for preview bar
+const STORAGE_KEY = 'hbspa_cart';
+function getLocalCart() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    const parsed = raw ? JSON.parse(raw) : { items: {}, updatedAt: 0 };
+    parsed.items = parsed.items || {};
+    return parsed;
+  } catch { return { items: {}, updatedAt: 0 }; }
+}
+function setLocalCart(cart) {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify({ items: cart.items || {}, updatedAt: Date.now() })); } catch {}
+}
+function updateLocalCart(productId, qty) {
+  const cart = getLocalCart();
+  const id = String(productId);
+  cart.items[id] = (cart.items[id] || 0) + (qty || 1);
+  setLocalCart(cart);
+  // Notify preview bars
+  window.dispatchEvent(new CustomEvent('cart:updated', { detail: { productId, qty } }));
+}
+
 // 🔹 Agregar producto al carrito
 async function addToCart(productId) {
   try {
@@ -43,13 +76,19 @@ async function addToCart(productId) {
     });
 
     if (response.ok) {
+      updateLocalCart(productId, 1);
       alert("Producto agregado al carrito 🛒");
     } else {
-      alert("Error al agregar el producto al carrito");
+      // Even if backend fails, still update the preview for UX continuity
+      updateLocalCart(productId, 1);
+      alert("Producto agregado al carrito (offline) 🛒");
     }
 
   } catch (error) {
     console.error("Error al agregar al carrito:", error);
+    // Fallback to local preview
+    updateLocalCart(productId, 1);
+    alert("Producto agregado al carrito (sin conexión) 🛒");
   }
 }
 

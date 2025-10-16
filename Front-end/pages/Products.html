@@ -26,7 +26,6 @@
         <li class="nav-item"><a class="nav-link" href="Reserve.html">Reserva</a></li>
         <li class="nav-item"><a class="nav-link" href="About.html">Acerca de Nosotros</a></li>
         <li class="nav-item"><a class="nav-link" href="Contact.html">Contacto</a></li>
-        <li class="nav-item"><a class="nav-link" href="ShoppingCart.html">Carrito</a></li>
       </ul>
     </div>
   </div>
@@ -35,37 +34,15 @@
 <div class="container mt-5">
     <h1 class="text-center mb-4">Nuestros Productos</h1>
     <div class="row" id="product-list">
-        <div class="col-md-4">
-            <div class="card mb-4">
-                <img src="https://via.placeholder.com/350x150" class="card-img-top" alt="Producto 1">
-                <div class="card-body">
-                    <h5 class="card-title">Producto 1</h5>
-                    <p class="card-text">Descripción breve del producto 1.</p>
-                    <a href="#" class="btn btn-primary">Ver más</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card mb-4">
-                <img src="https://via.placeholder.com/350x150" class="card-img-top" alt="Producto 2">
-                <div class="card-body">
-                    <h5 class="card-title">Producto 2</h5>
-                    <p class="card-text">Descripción breve del producto 2.</p>
-                    <a href="#" class="btn btn-primary">Ver más</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card mb-4">
-                <img src="https://via.placeholder.com/350x150" class="card-img-top" alt="Producto 3">
-                <div class="card-body">
-                    <h5 class="card-title">Producto 3</h5>
-                    <p class="card-text">Descripción breve del producto 3.</p>
-                    <a href="#" class="btn btn-primary">Ver más</a>
-                </div>
-            </div>
-        </div>
+        <!-- Se rellenará dinámicamente desde products.js -->
     </div>
+</div>
+
+<!-- Cart preview bar (pages) -->
+<div id="cart-preview" class="cart-preview-bar" role="region" aria-live="polite">
+  <div class="bag" aria-hidden="true"><i class="bi bi-bag-check-fill"></i></div>
+  <div class="summary"><span id="cart-count">0</span> productos en el carrito</div>
+  <a href="ShoppingCart.html" class="btn btn-primary btn-review">Revisar Carrito</a>
 </div>
 
 <!-- FOOTER -->
@@ -126,6 +103,8 @@
 
 <!-- Scripts: navbar behavior, FAQ button, Bootstrap -->
 <script src="../scripts/app.js"></script>
+<script src="../scripts/cart-preview.js"></script>
+<script src="../scripts/products.js"></script>
 <script src="../scripts/botonp.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
