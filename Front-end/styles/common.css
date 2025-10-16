@@ -1,0 +1,259 @@
+/* Common styles extracted from style.css
+   - fonts, variables, base layout, navbar, buttons, typography,
+   - FAQ modal & accordion (used across pages)
+*/
+@font-face {
+    font-family: 'Lato';
+    src: url('./fonts/Lato/Lato-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Lato';
+    src: url('./fonts/Lato/Lato-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Lora';
+    src: url('./fonts/Lora/Lora-VariableFont_wght.ttf') format('truetype');
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Lora';
+    src: url('./fonts/Lora/Lora-Italic-VariableFont_wght.ttf') format('truetype');
+    font-weight: 100 900;
+    font-style: italic;
+    font-display: swap;
+}
+/* Optional decorative display font (kept and used for accents) */
+@font-face {
+    font-family: 'CormorantGaramond';
+    src: url('./fonts/Cormorant_Garamond/CormorantGaramond-VariableFont_wght.ttf') format('truetype');
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'CormorantGaramond';
+    src: url('./fonts/Cormorant_Garamond/CormorantGaramond-Italic-VariableFont_wght.ttf') format('truetype');
+    font-weight: 100 900;
+    font-style: italic;
+    font-display: swap;
+}
+
+:root {
+    --arena-suave: #F5EDE4;
+    --sal-marina: #D7ECEB;
+    --turquesa-pastel: #6EBFC3;
+    --lila-rosa: #EBD2EC;
+    --rosa-petalo: #F9D6E2;
+    --gris-humo: #4A4A4A;
+    --shadow-card: 0 2px 8px rgba(0,0,0,0.06);
+    --radius: 12px;
+    --transition: 0.2s ease;
+
+    /* Typography scale */
+    --font-size-base: 1rem;   /* 16px */
+    --font-size-sm: 0.9375rem; /* 15px */
+    --font-size-lg: 1.125rem; /* 18px */
+    --font-size-xl: 1.25rem;  /* 20px for lead/subtitles */
+}
+
+html { height: 100%; }
+
+body {
+    font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    background-color: var(--arena-suave);
+    color: var(--gris-humo);
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-size: var(--font-size-base);
+}
+
+body > .py-5,
+body > div:not(nav):not(footer),
+body > main { flex: 1; }
+
+nav, footer { flex-shrink: 0; }
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Lora', Georgia, 'Times New Roman', serif;
+    color: var(--gris-humo);
+    margin-top: 0;
+    margin-bottom: 0.7em;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    line-height: 1.2;
+    text-shadow: 0 1px 2px rgba(245,237,228,0.15);
+}
+
+h1 { font-size: 2.25rem; }
+h2 { font-size: 1.75rem; }
+h3 { font-size: 1.5rem; }
+
+/* Utility text/background helpers used across pages */
+.text-gris-humo { color: var(--gris-humo) !important; }
+.text-turquesa-pastel { color: var(--turquesa-pastel) !important; }
+.text-lila-rosa { color: var(--lila-rosa) !important; }
+.text-rosa-petalo { color: var(--rosa-petalo) !important; }
+.bg-sal-marina { background-color: var(--sal-marina) !important; }
+.bg-turquesa-pastel { background-color: var(--turquesa-pastel) !important; }
+.bg-lila-rosa { background-color: var(--lila-rosa) !important; }
+.bg-rosa-petalo { background-color: var(--rosa-petalo) !important; }
+.text-accent-teal { color: var(--turquesa-pastel) !important; }
+.bg-lila-rosa-gradient { background: linear-gradient(90deg, var(--lila-rosa), rgba(235,210,236,0.6)); }
+
+/* Generic nav styling (non-Bootstrap). Bootstrap navbar is handled below */
+nav:not(.navbar) {
+    font-family: 'Lora', Georgia, 'Times New Roman', serif;
+    background-color: var(--sal-marina);
+    color: var(--gris-humo);
+    padding: 1em 2em;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-card);
+}
+
+nav:not(.navbar) a { color: var(--gris-humo); text-decoration: none; margin-right: 1.5em; font-weight: 500; transition: color var(--transition); }
+nav:not(.navbar) a:hover, nav:not(.navbar) a:focus { color: var(--turquesa-pastel); }
+
+/* ===== NAVBAR BOOTSTRAP tweaks ===== */
+.no-transition * { transition: none !important; }
+
+/* Default scrolled/solid navbar */
+.navbar-light { background-color: #ffffff !important; box-shadow: 0 2px 15px rgba(0,0,0,0.08); transition: all 0.3s ease; }
+
+/* Transparent navbar base */
+.navbar-transparent { background: transparent !important; box-shadow: none !important; border-radius: 0 !important; }
+/* Dark transparent over hero images */
+.navbar-transparent.navbar-dark .navbar-brand,
+.navbar-transparent.navbar-dark .nav-link { color: #ffffff !important; }
+.navbar-transparent.navbar-dark .nav-link:hover,
+.navbar-transparent.navbar-dark .nav-link:focus { color: #e9f7f8 !important; }
+.navbar-transparent.navbar-dark .navbar-toggler { border-color: rgba(255,255,255,0.8); }
+.navbar-transparent.navbar-dark .navbar-toggler-icon { filter: invert(1) grayscale(1) brightness(2); }
+/* Light transparent over light page background */
+.navbar-transparent.navbar-light .navbar-brand,
+.navbar-transparent.navbar-light .nav-link { color: var(--gris-humo) !important; }
+.navbar-transparent.navbar-light .nav-link:hover,
+.navbar-transparent.navbar-light .nav-link:focus { color: var(--turquesa-pastel) !important; }
+.navbar-transparent.navbar-light .navbar-toggler { border-color: var(--turquesa-pastel); }
+.navbar-transparent.navbar-light .navbar-toggler-icon { filter: none; }
+
+/* Explicit solid state class when scrolled */
+.navbar-scrolled { background: #ffffff !important; box-shadow: 0 2px 15px rgba(0,0,0,0.08) !important; border-radius: 0 !important; }
+.navbar-scrolled .navbar-brand,
+.navbar-scrolled .nav-link { color: var(--gris-humo) !important; }
+
+/* Base navbar link aesthetics without forcing color */
+.navbar-brand { font-family: 'Lora', Georgia, 'Times New Roman', serif; font-weight: 700; font-size: 1.25rem; transition: all 0.3s ease; position: relative; }
+.navbar-brand:hover { color: var(--turquesa-pastel) !important; transform: scale(1.05); }
+
+.navbar-brand::after { content: ''; position: absolute; width: 0; height: 3px; bottom: -5px; left: 0; background: linear-gradient(90deg, var(--turquesa-pastel), var(--lila-rosa)); transition: width 0.3s ease; }
+.navbar-brand:hover::after { width: 100%; }
+
+.nav-link { font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; font-weight: 500; font-size: 1rem; padding: 0.5rem 1rem !important; transition: all 0.3s ease; position: relative; overflow: hidden; }
+.nav-link::before { content: ''; position: absolute; bottom: 0; left: 50%; width: 0; height: 2px; background: linear-gradient(90deg, var(--turquesa-pastel), var(--lila-rosa)); transition: all 0.3s ease; transform: translateX(-50%); }
+.nav-link:hover::before, .nav-link:focus::before { width: 80%; }
+.nav-link:hover, .nav-link:focus { color: var(--turquesa-pastel) !important; transform: translateY(-2px); }
+.nav-link.active { color: var(--turquesa-pastel) !important; font-weight: 600; }
+.nav-link.active::before { width: 80%; }
+
+.navbar-toggler { border: 2px solid var(--turquesa-pastel); padding: 0.5rem 0.75rem; border-radius: 8px; transition: all 0.3s ease; position: relative; overflow: hidden; }
+.navbar-toggler::before { content: ''; position: absolute; top: 50%; left: 50%; width: 0; height: 0; border-radius: 50%; background: var(--lila-rosa); transition: width 0.4s ease, height 0.4s ease; transform: translate(-50%, -50%); z-index: 0; }
+.navbar-toggler:hover::before { width: 150%; height: 150%; }
+.navbar-toggler:hover, .navbar-toggler:focus { border-color: var(--lila-rosa); box-shadow: 0 0 0 0.2rem rgba(110,191,195,0.25); }
+.navbar-toggler[aria-expanded="true"] { transform: rotate(90deg); }
+.navbar-toggler[aria-expanded="false"] { transform: rotate(0deg); }
+.navbar-toggler-icon { position: relative; z-index: 1; transition: all 0.3s ease; }
+.navbar-toggler:hover .navbar-toggler-icon { transform: scale(1.1); }
+
+@media (max-width: 991.98px) {
+    .navbar-brand { font-size: 1.125rem; }
+    .navbar-collapse { background: linear-gradient(135deg, #ffffff 0%, var(--arena-suave) 100%); border-radius: var(--radius); margin-top: 1rem; padding: 1rem; box-shadow: 0 8px 25px rgba(0,0,0,0.15); border: 1px solid rgba(110,191,195,0.2); }
+    .nav-link { font-size: 1.0625rem; padding: 0.75rem 1rem !important; border-radius: 8px; margin-bottom: 0.5rem; }
+    .nav-link:hover { background: linear-gradient(90deg, var(--turquesa-pastel), var(--lila-rosa)); color: white !important; transform: translateX(10px); box-shadow: 0 4px 15px rgba(110,191,195,0.3); }
+    .nav-link.active { background: linear-gradient(90deg, var(--turquesa-pastel), var(--lila-rosa)); color: white !important; }
+    .nav-link::before { display: none; }
+    .navbar-nav { gap: 0.25rem; }
+}
+
+@media (max-width: 991.98px) { .navbar-collapse.collapsing { transition: height 0.35s ease, opacity 0.35s ease; } .navbar-collapse.show { opacity: 1; } .navbar-collapse:not(.show) { opacity: 0; } }
+@media (min-width: 992px) { .navbar-collapse { opacity: 1 !important; } }
+
+/* Fixed-top navbar offset: only for pages without hero */
+body.has-hero { padding-top: 0; }
+body:not(.has-hero) { padding-top: 72px; }
+@media (max-width: 991.98px) {
+  body:not(.has-hero) { padding-top: 64px; }
+}
+
+/* General shared sections */
+.section-wide { background-color: var(--arena-suave); padding: 2em 0; }
+.card, .info-block, .secondary-bg { background-color: var(--sal-marina); border-radius: var(--radius); box-shadow: var(--shadow-card); padding: 1.5em; margin-bottom: 2em; }
+
+.btn-primary, .cta { background-color: var(--turquesa-pastel); color: var(--gris-humo); font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; border: none; border-radius: var(--radius); padding: 0.75em 2em; font-size: 1rem; font-weight: 600; cursor: pointer; transition: background var(--transition), box-shadow var(--transition); box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+.btn-primary:hover, .cta:hover, .btn-primary:focus, .cta:focus { background-color: var(--lila-rosa); color: var(--gris-humo); box-shadow: 0 2px 8px rgba(0,0,0,0.12); }
+
+.icon-accent { color: var(--turquesa-pastel); }
+.description { font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; color: var(--gris-humo); font-size: var(--font-size-lg); margin-bottom: 1em; }
+.highlighted-header, .premium-section {
+    font-family: 'CormorantGaramond', Georgia, 'Times New Roman', serif;
+    color: var(--lila-rosa);
+    font-weight: 600;
+    font-size: 1.5rem;
+    letter-spacing: 0.02em;
+    line-height: 1.2;
+    text-shadow: 0 1px 2px rgba(245,237,228,0.10);
+}
+.subtitle-soft { color: var(--gris-humo); font-size: var(--font-size-xl); font-weight: 700; letter-spacing: 0.02em; line-height: 1.3; }
+.decorative-detail, .delicate-block { background-color: var(--rosa-petalo); border-radius: var(--radius); padding: 0.5em 1em; }
+.main-text, p, li { color: var(--gris-humo); font-size: var(--font-size-base); }
+.lead { font-size: var(--font-size-xl); }
+
+@media (max-width: 600px) { h1 { font-size: 1.9rem; } h2 { font-size: 1.5rem; } h3 { font-size: 1.25rem; } .highlighted-header, .premium-section { font-size: 1.25rem; } .subtitle-soft { font-size: 1.125rem; } }
+
+.row.g-4 { perspective: 1000px; }
+
+/* FAQ floating button + modal (shared) */
+.faq-floating-btn { position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; background-color: var(--turquesa-pastel); color: white; border: none; border-radius: 50%; font-size: 28px; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.15); z-index: 1000; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center; }
+.faq-floating-btn:hover { background-color: var(--lila-rosa); transform: scale(1.1); box-shadow: 0 6px 16px rgba(0,0,0,0.2); }
+.faq-floating-btn:active { transform: scale(0.95); }
+.faq-modal { display:none; position:fixed; z-index:1001; left:0; top:0; width:100%; height:100%; background-color: rgba(0,0,0,0.5); animation: fadeIn 0.3s ease; }
+.faq-modal.active { display:flex; align-items:center; justify-content:center; }
+@keyframes fadeIn { from { opacity:0 } to { opacity:1 } }
+.faq-modal-content { background-color: var(--arena-suave); border-radius: var(--radius); width:90%; max-width:600px; max-height:80vh; overflow-y:auto; box-shadow: 0 8px 32px rgba(0,0,0,0.2); animation: slideUp 0.3s ease; }
+@keyframes slideUp { from { transform: translateY(50px); opacity:0 } to { transform: translateY(0); opacity:1 } }
+.faq-modal-header { display:flex; justify-content:space-between; align-items:center; padding:1.5rem; border-bottom:2px solid var(--sal-marina); background-color:var(--turquesa-pastel); border-radius: var(--radius) var(--radius) 0 0; }
+.faq-modal-header h3 { color:white; margin:0; font-size:1.25rem; }
+.faq-close-btn { background:none; border:none; font-size:1.5rem; color:white; cursor:pointer; padding:0; width:30px; height:30px; display:flex; align-items:center; justify-content:center; transition: transform 0.2s ease; }
+.faq-close-btn:hover { transform: scale(1.2); }
+.faq-modal-body { padding:1.5rem; }
+
+/* Accordion shared styles */
+.accordion-item { background-color: var(--sal-marina); border: none; margin-bottom: 1rem; border-radius: var(--radius); overflow: hidden; }
+.accordion-button { background-color: var(--sal-marina); color: var(--gris-humo); font-family: 'CormorantGaramond', Georgia, 'Times New Roman', serif; font-weight: 600; font-size: 1.05rem; padding: 1rem 1.25rem; border: none; }
+.accordion-button:not(.collapsed) { background-color: var(--turquesa-pastel); color: white; box-shadow: none; }
+.accordion-button:focus { box-shadow: none; border-color: transparent; }
+.accordion-button::after { filter: brightness(0) invert(0.4); }
+.accordion-button:not(.collapsed)::after { filter: brightness(0) invert(1); }
+.accordion-body { background-color: white; color: var(--gris-humo); font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; padding: 1.25rem; }
+.accordion-body a { color: var(--turquesa-pastel); text-decoration: none; font-weight: 600; }
+.accordion-body a:hover { color: var(--lila-rosa); text-decoration: underline; }
+
+@media (max-width: 768px) {
+    .faq-floating-btn { width:50px; height:50px; font-size:24px; bottom:20px; right:20px; }
+    .faq-modal-content { width:95%; max-height:85vh; }
+    .faq-modal-header h3 { font-size:1.125rem; }
+    .accordion-button { font-size:1rem; padding:0.875rem 1rem; }
+}

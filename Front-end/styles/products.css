@@ -1,0 +1,10 @@
+/* Products page styles */
+
+#product-list .card { border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-card); }
+#product-list .card img { object-fit: cover; height: 200px; }
+#product-list .card .btn-primary { background: var(--turquesa-pastel); border: none; }
+
+@media (max-width: 768px) {
+  #product-list .card img { height: 160px; }
+}
+
