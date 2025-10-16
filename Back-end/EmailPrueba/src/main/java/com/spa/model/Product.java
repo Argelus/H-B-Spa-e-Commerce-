@@ -1,96 +1,74 @@
 // 📦 Paquete donde se encuentra esta clase
 package com.spa.model;
 
-// 🔽 Importaciones necesarias
-import jakarta.persistence.*; // Librería JPA para trabajar con bases de datos
-import java.math.BigDecimal; // Tipo más preciso que double para precios
+import jakarta.persistence.*;
+import java.math.BigDecimal;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
-// 🧱 Marca esta clase como una "Entidad"
-// Esto significa que representa una tabla en la base de datos
+
 @Entity
-
-// 🏷️ Define el nombre de la tabla (opcional, si no se pone, usa el nombre de la clase)
 @Table(name = "products")
 public class Product {
 
-    // 🆔 Llave primaria (ID único de cada producto)
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // Se genera automáticamente en la BD
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // 🏷️ Nombre del producto
     @Column(nullable = false, length = 100)
     private String name;
 
-    // 💲 Precio del producto
     @Column(nullable = false)
     private BigDecimal price;
 
-    // 🧾 Descripción opcional
     @Column(length = 255)
     private String description;
 
-    // 📦 Stock disponible
     @Column(nullable = false)
     private int stock;
 
-    // -------------------------------------------------------------------
-    // 🧱 CONSTRUCTORES
-    // -------------------------------------------------------------------
+    // 🏷️ Relación con Categoría
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    @JsonBackReference
+    private Category category;
+
+    // 🖼️ URL de la imagen del producto
+    @Column(length = 500)
+    private String imageUrl;
 
     // Constructor vacío (requerido por JPA)
-    public Product() {
-    }
+    public Product() {}
 
-    // Constructor con parámetros (útil para pruebas o crear productos manualmente)
-    public Product(String name, BigDecimal price, String description, int stock) {
+    // Constructor con todos los parámetros
+    public Product(String name, BigDecimal price, String description, int stock, String imageUrl) {
         this.name = name;
         this.price = price;
         this.description = description;
         this.stock = stock;
+        this.imageUrl = imageUrl;
     }
 
-    // -------------------------------------------------------------------
-    // ⚙️ GETTERS Y SETTERS
-    // -------------------------------------------------------------------
+    // Getters y Setters
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
-    public Long getId() {
-        return id;
-    }
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    public BigDecimal getPrice() { return price; }
+    public void setPrice(BigDecimal price) { this.price = price; }
 
-    public String getName() {
-        return name;
-    }
+    public String getDescription() { return description; }
+    public void setDescription(String description) { this.description = description; }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    public int getStock() { return stock; }
+    public void setStock(int stock) { this.stock = stock; }
 
-    public BigDecimal getPrice() {
-        return price;
-    }
+    public String getImageUrl() { return imageUrl; }
+    public void setImageUrl(String imageUrl) { this.imageUrl = imageUrl; }
 
-    public void setPrice(BigDecimal price) {
-        this.price = price;
-    }
+    public Category getCategory() {return category;}
 
-    public String getDescription() {
-        return description;
-    }
+    public void setCategory(Category category) {this.category = category;}
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public int getStock() {
-        return stock;
-    }
-
-    public void setStock(int stock) {
-        this.stock = stock;
-    }
 }
