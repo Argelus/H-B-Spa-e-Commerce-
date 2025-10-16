@@ -1,4 +1,4 @@
-package com.spa;
+package com.spa.config; // 🔹 Cambia el paquete a "config" (no "WebConfig")
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,10 +14,14 @@ public class WebConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/api/**")
-                        .allowedOrigins("http://127.0.0.1:5500", "http://localhost:5050","http://localhost:5500")
-                        .allowedMethods("GET", "POST")
+                        .allowedOrigins(
+                                "http://127.0.0.1:5500",
+                                "http://localhost:5500",
+                                "http://localhost:5050"
+                        )
+                        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // 🔹 Incluye todos los métodos REST
                         .allowedHeaders("*")
-                        .allowCredentials(false);
+                        .allowCredentials(true); // 🔹 True si tu frontend envía cookies o tokens
             }
         };
     }

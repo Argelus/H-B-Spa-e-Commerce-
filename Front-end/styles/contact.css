@@ -1,0 +1,53 @@
+/* Contact page specific styles */
+
+.contact-details-wrapper {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.social-icon { color: var(--gris-humo); border-color: var(--turquesa-pastel); }
+.social-icon:hover { color: var(--gris-humo); }
+
+.btn-outline-primary { border-color: var(--turquesa-pastel); }
+.btn-outline-primary:hover { color: var(--gris-humo); background-color: var(--rosa-petalo); border-color: var(--rosa-petalo); }
+
+/* Remove resize handle only for message textarea and avoid forced scrollbars */
+textarea.form-control#message {
+    resize: none;          /* No bottom-right drag handle */
+    overflow-y: auto;      /* Scroll only if needed */
+    min-height: 10rem;     /* Comfortable default height */
+}
+
+/* Equal-height cards on the top section */
+.contact-card {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto; /* Fill parent column height when parent is flex */
+}
+.contact-card .card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    flex: 1 1 auto;
+}
+
+/* Map and reviews: consistent look inside cards using Bootstrap ratio */
+.embed-card .card-body { padding: 0; }
+.embed-card .card-header {
+    background: #ffffff;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+
+/* Make any direct child of .ratio fill space (Bootstrap does this, ensure compatibility) */
+.ratio > * { width: 100% !important; height: 100% !important; }
+
+/* Elfsight widget container: fill, rounded corners, clipped overflow */
+[class^="elfsight-app-"] {
+    border-radius: var(--radius);
+    overflow: hidden;
+}
+
+/* Google map iframe: fill and rounded corners */
+.mapa-redondeado { border-radius: var(--radius); overflow: hidden; width: 100%; height: 100%; border: 0; }
