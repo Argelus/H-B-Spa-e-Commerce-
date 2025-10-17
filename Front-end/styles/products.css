@@ -1,4 +1,4 @@
-/* Products page styles */
+/* Estilos de la página de productos */
 
 #product-list .card { border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-card); }
 #product-list .card img { object-fit: cover; height: 200px; }
@@ -7,4 +7,3 @@
 @media (max-width: 768px) {
   #product-list .card img { height: 160px; }
 }
-

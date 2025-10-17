@@ -1,4 +1,4 @@
-/* Contact page specific styles */
+/* Estilos específicos de la página de contacto */
 
 .contact-details-wrapper {
     flex-grow: 1;
@@ -13,18 +13,18 @@
 .btn-outline-primary { border-color: var(--turquesa-pastel); }
 .btn-outline-primary:hover { color: var(--gris-humo); background-color: var(--rosa-petalo); border-color: var(--rosa-petalo); }
 
-/* Remove resize handle only for message textarea and avoid forced scrollbars */
+/* Eliminar el control de redimensionamiento solo para el textarea de mensaje y evitar barras de scroll forzadas */
 textarea.form-control#message {
-    resize: none;          /* No bottom-right drag handle */
-    overflow-y: auto;      /* Scroll only if needed */
-    min-height: 10rem;     /* Comfortable default height */
+    resize: none;          /* Deshabilita el control de arrastre para redimensionar */
+    overflow-y: auto;      /* Muestra la barra de scroll solo si es necesario */
+    min-height: 10rem;     /* Altura mínima por defecto para mayor comodidad */
 }
 
-/* Equal-height cards on the top section */
+/* Tarjetas de igual altura en la sección superior */
 .contact-card {
     display: flex;
     flex-direction: column;
-    flex: 1 1 auto; /* Fill parent column height when parent is flex */
+    flex: 1 1 auto; /* Rellena la altura de la columna padre cuando el padre es flex */
 }
 .contact-card .card-body {
     display: flex;
@@ -33,21 +33,21 @@ textarea.form-control#message {
     flex: 1 1 auto;
 }
 
-/* Map and reviews: consistent look inside cards using Bootstrap ratio */
+/* Mapa y reseñas: apariencia consistente dentro de las tarjetas usando la relación de aspecto de Bootstrap */
 .embed-card .card-body { padding: 0; }
 .embed-card .card-header {
     background: #ffffff;
     border-bottom: 1px solid rgba(0,0,0,0.06);
 }
 
-/* Make any direct child of .ratio fill space (Bootstrap does this, ensure compatibility) */
+/* Hacer que cualquier hijo directo de .ratio llene el espacio (Bootstrap lo hace, se asegura la compatibilidad) */
 .ratio > * { width: 100% !important; height: 100% !important; }
 
-/* Elfsight widget container: fill, rounded corners, clipped overflow */
+/* Contenedor del widget de Elfsight: relleno, esquinas redondeadas y desbordamiento recortado */
 [class^="elfsight-app-"] {
     border-radius: var(--radius);
     overflow: hidden;
 }
 
-/* Google map iframe: fill and rounded corners */
+/* Iframe del mapa de Google: relleno, esquinas redondeadas y sin borde */
 .mapa-redondeado { border-radius: var(--radius); overflow: hidden; width: 100%; height: 100%; border: 0; }
