@@ -1,9 +1,8 @@
-/* Reserve page styles */
+/* Estilos de la página de reserva */
 
-/* Placeholder for reservation form styling */
+/* Estilos para el formulario de reserva */
 .reserve-form { max-width: 800px; margin: 0 auto; }
 
 @media (max-width: 768px) {
   .reserve-form { padding: 0 1rem; }
 }
-

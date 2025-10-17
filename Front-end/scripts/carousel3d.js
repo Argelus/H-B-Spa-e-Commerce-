@@ -15,7 +15,7 @@ class Carousel3D {
     
     init() {
         if (!this.container) {
-            console.error('Contenedor del carrusel no encontrado');
+            console.error('Contenedor del carrusel no encontrado.');
             return;
         }
         
@@ -68,7 +68,7 @@ class Carousel3D {
             
             const position = (index - this.currentIndex + total) % total;
             
-            //posición de cards
+            // Asigna clases según la posición relativa a la tarjeta activa.
             if (position === 0) {
                 card.classList.add('active');
                 card.style.visibility = 'visible';
@@ -145,7 +145,7 @@ class Carousel3D {
     
     addBlurTransition() {
         const cards = this.container.querySelectorAll('.carousel-card');
-        // añade blur a las cards visibles (active, next, prev)
+        // Aplica un efecto de desenfoque a las tarjetas visibles (active, next, prev) durante la transición.
         cards.forEach(card => {
             if (!card.classList.contains('hidden-left') && !card.classList.contains('hidden-right')) {
                 card.classList.add('transitioning');
@@ -185,7 +185,7 @@ class Carousel3D {
         });
     }
     
-    // Eventos de hover de colores integrados
+    // Efectos de hover con colores integrados.
     attachCardHoverEffects() {
         const coloresHover = ['#D7ECEB', '#6EBFC3', '#EBD2EC', '#F9D6E2'];
         const colorOriginal = '#D7ECEB';
@@ -222,7 +222,7 @@ class Carousel3D {
             });
         }
         
-        // Navegación con teclado
+        // Navegación con el teclado.
         document.addEventListener('keydown', (e) => {
             if (e.key === 'ArrowRight') {
                 this.next();
@@ -233,7 +233,7 @@ class Carousel3D {
             }
         });
         
-        // Pausar autoplay al pasar el mouse
+        // Pausa el autoplay al pasar el mouse sobre el carrusel.
         this.container.parentElement.addEventListener('mouseenter', () => {
             this.stopAutoplay();
         });
@@ -265,7 +265,7 @@ class Carousel3D {
         this.startAutoplay();
     }
     
-    // Método para pausar/reanudar manualmente
+    // Método para pausar y reanudar manualmente el autoplay.
     toggleAutoplay() {
         this.isPaused = !this.isPaused;
         if (this.isPaused) {
@@ -277,7 +277,7 @@ class Carousel3D {
     }
 }
 
-// Datos del equipo
+// Datos del equipo.
 const Team = [
     {
         name: "Aylin Lucero Meléndez Juan",
@@ -344,11 +344,10 @@ const Team = [
     }
 ];
 
-// Inicializar el carrusel cuando el DOM esté listo
+// Inicializa el carrusel cuando el DOM esté listo.
 document.addEventListener('DOMContentLoaded', function() {
     const carousel = new Carousel3D('carousel3d', Team);
     
-    // Log para confirmar inicialización
-    console.log('🎠 Carrusel 3D inicializado correctamente');
-    
+    // Mensaje de confirmación en la consola.
+    console.log('🎠 Carrusel 3D inicializado correctamente.');
 });
