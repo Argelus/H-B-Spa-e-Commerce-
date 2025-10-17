@@ -40,7 +40,6 @@ body {
     font-family: 'Lato', serif;
     font-weight: 300; 
     font-style: italic; 
-    font-display: swap;
     background-color: var(--arena-suave);
     color: var(--gris-humo);
     line-height: 1.6;
@@ -63,7 +62,7 @@ footer {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'lora';
+    font-family: 'Lora', serif;
     color: var(--gris-humo);
     margin-top: 0;
     margin-bottom: 0.7em;
@@ -696,8 +695,8 @@ nav a:hover, nav a:focus {
 
 .faq-floating-btn {
     position: fixed;
+    right: 30px; /* mover a la esquina inferior derecha */
     bottom: 30px;
-    right: 30px;
     width: 60px;
     height: 60px;
     background-color: var(--turquesa-pastel);
@@ -707,7 +706,8 @@ nav a:hover, nav a:focus {
     font-size: 28px;
     cursor: pointer;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    z-index: 1000;
+    z-index: 900; /* debe quedar debajo del cart-preview (que usa z-index:1000 en common.css)
+                   aseguramos coherencia con common.css */
     transition: all 0.3s ease;
     display: flex;
     align-items: center;
@@ -726,95 +726,9 @@ nav a:hover, nav a:focus {
 
 /*  MODAL */
 
-.faq-modal {
-    display: none;
-    position: fixed;
-    z-index: 1001;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    animation: fadeIn 0.3s ease;
-}
-
-.faq-modal.active {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-.faq-modal-content {
-    background-color: var(--arena-suave);
-    border-radius: var(--radius);
-    width: 90%;
-    max-width: 600px;
-    max-height: 80vh;
-    overflow-y: auto;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-    animation: slideUp 0.3s ease;
-}
-
-@keyframes slideUp {
-    from {
-        transform: translateY(50px);
-        opacity: 0;
-    }
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
-
-.faq-modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.5rem;
-    border-bottom: 2px solid var(--sal-marina);
-    background-color: var(--turquesa-pastel);
-    border-radius: var(--radius) var(--radius) 0 0;
-}
-
-.faq-modal-header h3 {
-    color: white;
-    margin: 0;
-    font-size: 1.5rem;
-}
-
-.faq-close-btn {
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    color: white;
-    cursor: pointer;
-    padding: 0;
-    width: 30px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.2s ease;
-}
-
-.faq-close-btn:hover {
-    transform: scale(1.2);
-}
-
-.faq-modal-body {
-    padding: 1.5rem;
-}
-
-/* Estilos*/
+/* Nota: la definición del overlay/modal de FAQ se mantiene en `common.css`.
+   Se eliminó la versión comentada aquí porque contenía comentarios anidados
+   que rompían el parsing del CSS y provocaban pérdida de estilos. */
 
 .accordion-item {
     background-color: var(--sal-marina);

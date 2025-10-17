@@ -202,8 +202,40 @@ body:not(.has-hero) { padding-top: 72px; }
 .section-wide { background-color: var(--arena-suave); padding: 2em 0; }
 .card, .info-block, .secondary-bg { background-color: var(--sal-marina); border-radius: var(--radius); box-shadow: var(--shadow-card); padding: 1.5em; margin-bottom: 2em; }
 
+/* Base button styling to ensure consistent look across Bootstrap buttons */
+.btn {
+  border-radius: var(--radius);
+  font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 600;
+  transition: background var(--transition), color var(--transition), box-shadow var(--transition), border-color var(--transition), transform 0.12s ease;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+.btn:hover { transform: translateY(-1px); }
+.btn:active { transform: translateY(0); }
+.btn:focus-visible { outline: 3px solid rgba(110,191,195,0.35); outline-offset: 2px; }
+
 .btn-primary, .cta { background-color: var(--turquesa-pastel); color: var(--gris-humo); font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; border: none; border-radius: var(--radius); padding: 0.75em 2em; font-size: 1rem; font-weight: 600; cursor: pointer; transition: background var(--transition), box-shadow var(--transition); box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
 .btn-primary:hover, .cta:hover, .btn-primary:focus, .cta:focus { background-color: var(--lila-rosa); color: var(--gris-humo); box-shadow: 0 2px 8px rgba(0,0,0,0.12); }
+
+/* Outline primary adapted to brand palette instead of Bootstrap blue */
+.btn-outline-primary {
+  color: var(--turquesa-pastel) !important;
+  border-color: var(--turquesa-pastel) !important;
+  background-color: transparent !important;
+}
+.btn-outline-primary:hover,
+.btn-outline-primary:focus {
+  background-color: var(--lila-rosa) !important;
+  border-color: var(--lila-rosa) !important;
+  color: var(--gris-humo) !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12) !important;
+}
+.btn-outline-primary:active { filter: brightness(0.98); }
+
+/* Disabled states consistent with palette */
+.btn:disabled, .btn.disabled { opacity: 0.65; cursor: not-allowed; box-shadow: none; }
+.btn-primary:disabled, .btn-primary.disabled { background-color: var(--turquesa-pastel) !important; color: var(--gris-humo) !important; border: none !important; }
+.btn-outline-primary:disabled, .btn-outline-primary.disabled { color: var(--turquesa-pastel) !important; border-color: var(--turquesa-pastel) !important; background-color: transparent !important; }
 
 .icon-accent { color: var(--turquesa-pastel); }
 .description { font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; color: var(--gris-humo); font-size: var(--font-size-lg); margin-bottom: 1em; }
@@ -283,45 +315,69 @@ body:not(.has-hero) { padding-top: 72px; }
 }
 
 /* FAQ floating button + modal (shared) */
-.faq-floating-btn { position: fixed; bottom: calc(30px + env(safe-area-inset-bottom, 0px)); left: calc(30px + env(safe-area-inset-left, 0px)); /* moved from right to left */ width: 60px; height: 60px; background-color: var(--turquesa-pastel); color: white; border: none; border-radius: 50%; font-size: 28px; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.15); z-index: 1000; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center; }
-.faq-floating-btn:hover { background-color: var(--lila-rosa); transform: scale(1.1); box-shadow: 0 6px 16px rgba(0,0,0,0.2); }
-.faq-floating-btn:active { transform: scale(0.95); }
-.faq-modal { display:none; position:fixed; z-index:1001; left:0; top:0; width:100%; height:100%; background-color: rgba(0,0,0,0.5); animation: fadeIn 0.3s ease; }
+/* colocamos la FAQ en la esquina inferior derecha (debajo) y el cart preview encima */
+.faq-floating-btn {
+    position: fixed !important;
+    right: 16px !important;
+    bottom: 16px !important;
+    width: 56px;
+    height: 56px;
+    background-color: var(--turquesa-pastel);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 22px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    z-index: 900 !important; /* debajo del cart preview */
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.faq-floating-btn:hover { background-color: var(--lila-rosa); transform: scale(1.05); box-shadow: 0 6px 16px rgba(0,0,0,0.18); }
+.faq-floating-btn:active { transform: scale(0.98); }
+
+/* mantenemos la modal como overlay para interacción completa */
+.faq-modal { display:none; position:fixed; z-index:1005; left:0; top:0; width:100%; height:100%; background-color: rgba(0,0,0,0.5); animation: fadeIn 0.3s ease; }
 .faq-modal.active { display:flex; align-items:center; justify-content:center; }
 @keyframes fadeIn { from { opacity:0 } to { opacity:1 } }
-.faq-modal-content { background-color: var(--arena-suave); border-radius: var(--radius); width:90%; max-width:600px; max-height:80vh; overflow-y:auto; box-shadow: 0 8px 32px rgba(0,0,0,0.2); animation: slideUp 0.3s ease; }
-@keyframes slideUp { from { transform: translateY(50px); opacity:0 } to { transform: translateY(0); opacity:1 } }
-.faq-modal-header { display:flex; justify-content:space-between; align-items:center; padding:1.5rem; border-bottom:2px solid var(--sal-marina); background-color:var(--turquesa-pastel); border-radius: var(--radius) var(--radius) 0 0; }
-.faq-modal-header h3 { color:white; margin:0; font-size:1.25rem; }
-.faq-close-btn { background:none; border:none; font-size:1.5rem; color:white; cursor:pointer; padding:0; width:30px; height:30px; display:flex; align-items:center; justify-content:center; transition: transform 0.2s ease; }
-.faq-close-btn:hover { transform: scale(1.2); }
-.faq-modal-body { padding:1.5rem; }
 
-/* Accordion shared styles */
-.accordion-item { background-color: var(--sal-marina); border: none; margin-bottom: 1rem; border-radius: var(--radius); overflow: hidden; }
-.accordion-button { background-color: var(--sal-marina); color: var(--gris-humo); font-family: 'CormorantGaramond', Georgia, 'Times New Roman', serif; font-weight: 600; font-size: 1.05rem; padding: 1rem 1.25rem; border: none; }
-.accordion-button:not(.collapsed) { background-color: var(--turquesa-pastel); color: white; box-shadow: none; }
-.accordion-button:focus { box-shadow: none; border-color: transparent; }
-.accordion-button::after { filter: brightness(0) invert(0.4); }
-.accordion-button:not(.collapsed)::after { filter: brightness(0) invert(1); }
-.accordion-body { background-color: white; color: var(--gris-humo); font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; padding: 1.25rem; }
-.accordion-body a { color: var(--turquesa-pastel); text-decoration: none; font-weight: 600; }
-.accordion-body a:hover { color: var(--lila-rosa); text-decoration: underline; }
+/* Ajustar la posición del cart preview para que quede encima de la FAQ
+   Usamos bottom calc para apilar siempre encima de la FAQ: faq bottom (16px) + faq height (56px) + gap (10px) = 82px */
+.cart-preview-bar {
+    position: fixed !important;
+    right: 16px !important;
+    bottom: calc(16px + 56px + 10px) !important; /* 82px */
+    left: auto;
+    transform: none;
+    width: 56px;
+    height: 56px;
+    z-index: 1001 !important; /* encima de la FAQ */
+    background: transparent;
+    color: var(--gris-humo);
+    border: none;
+    box-shadow: none;
+    border-radius: 50%;
+    padding: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    cursor: pointer;
+}
+.cart-preview-bar.show { display: flex !important; }
 
+/* Small-screen adjustments: keep stacking but with smaller offsets */
 @media (max-width: 768px) {
-    .faq-floating-btn { width:56px; height:56px; font-size:22px; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); left: calc(16px + env(safe-area-inset-left, 0px)); /* standardized to match cart bubble */ }
-    .faq-modal-content { width:95%; max-height:85vh; }
-    .faq-modal-header h3 { font-size:1.125rem; }
-    .accordion-button { font-size:1rem; padding:0.875rem 1rem; }
-
-    /* Cart bubble match size on small tablets and phones */
-    .cart-preview-bar { right: calc(16px + env(safe-area-inset-right, 0px)); bottom: calc(16px + env(safe-area-inset-bottom, 0px)); width: 56px; height: 56px; }
-    .cart-preview-bar .bag i { font-size: 22px; }
+    .faq-floating-btn { width:50px; height:50px; font-size:20px; right: 12px !important; bottom: 12px !important; }
+    .cart-preview-bar { right: 12px !important; bottom: calc(12px + 50px + 8px) !important; width:50px; height:50px; }
 }
 
 @media (max-width: 576px) {
-  .cart-popover { right: calc(16px + env(safe-area-inset-right, 0px)); bottom: calc(80px + env(safe-area-inset-bottom, 0px)); width: calc(100vw - 32px); max-width: none; }
-  .cart-popover::after { right: 22px; }
+    /* On very small screens keep FAQ at bottom and push cart above it */
+    .faq-floating-btn { right: 12px !important; bottom: 12px !important; }
+    .cart-preview-bar { right: 12px !important; bottom: calc(12px + 50px + 8px) !important; }
 }
 
 /* Mobile navbar: ensure readable dark text when the menu is expanded */
@@ -336,4 +392,58 @@ body:not(.has-hero) { padding-top: 72px; }
 @media (max-width: 576px) {
   .cart-preview-bar { right: 16px; bottom: 16px; width: 56px; height: 56px; }
   .cart-preview-bar .bag i { font-size: 22px; }
+}
+
+/* FAQ modal panel - coherent with cart popover */
+.faq-modal-content {
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: 16px;
+  width: clamp(320px, 92vw, 680px);
+  max-height: 82vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 18px 45px rgba(0,0,0,0.18);
+  contain: content;
+}
+
+.faq-modal-header {
+  position: sticky; top: 0; z-index: 1;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 16px;
+  background: var(--sal-marina);
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  border-top-left-radius: 16px; border-top-right-radius: 16px;
+}
+.faq-modal-header h3 { font-family: 'Lora', Georgia, 'Times New Roman', serif; color: var(--gris-humo); margin: 0; font-weight: 800; font-size: 1.15rem; }
+.faq-close-btn { background: #fff; border: 1px solid rgba(0,0,0,0.1); color: var(--gris-humo); width: 32px; height: 32px; border-radius: 10px; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; transition: background .15s ease, transform .12s ease, box-shadow .15s ease; }
+.faq-close-btn:hover { background: var(--sal-marina); transform: scale(1.04); box-shadow: 0 4px 12px rgba(0,0,0,0.12); }
+.faq-close-btn:active { transform: scale(0.96); }
+.faq-close-btn:focus-visible { outline: 3px solid rgba(110,191,195,0.45); outline-offset: 2px; }
+
+.faq-modal-body { padding: 12px 16px; overflow-y: auto; -webkit-overflow-scrolling: touch; overscroll-behavior: contain; background: #fff; border-bottom-left-radius: 16px; border-bottom-right-radius: 16px; }
+
+/* Accordion inside FAQ modal - scoped to avoid side effects */
+.faq-modal .accordion { display: grid; gap: 12px; }
+.faq-modal .accordion-item { background: #fff; border: 1px solid rgba(0,0,0,0.06); border-radius: 12px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.04); transition: box-shadow .18s ease, transform .12s ease; }
+.faq-modal .accordion-item:hover { box-shadow: 0 8px 18px rgba(0,0,0,0.06); transform: translateY(-1px); }
+
+.faq-modal .accordion-button { background: #fff; color: var(--gris-humo); font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; font-weight: 700; font-size: 1rem; padding: 0.875rem 1rem; border: none; box-shadow: none !important; }
+.faq-modal .accordion-button:not(.collapsed) { background: var(--sal-marina); color: var(--gris-humo); }
+.faq-modal .accordion-button:focus { box-shadow: none; outline: 3px solid rgba(110,191,195,0.35); outline-offset: 2px; }
+.faq-modal .accordion-button::after { filter: grayscale(1) contrast(0.6); }
+.faq-modal .accordion-button:not(.collapsed)::after { filter: none; }
+
+.faq-modal .accordion-body { background: #fff; color: var(--gris-humo); font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; padding: 1rem 1.1rem; }
+.faq-modal .accordion-body a { color: var(--turquesa-pastel); font-weight: 700; text-decoration: none; }
+.faq-modal .accordion-body a:hover { color: var(--lila-rosa); text-decoration: underline; }
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .faq-close-btn, .faq-modal .accordion-item { transition: none !important; }
+}
+
+/* Small screens */
+@media (max-width: 480px) {
+  .faq-modal-content { width: 94vw; max-height: 86vh; }
 }
