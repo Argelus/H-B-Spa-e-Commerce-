@@ -296,7 +296,88 @@
       document.addEventListener('keydown', onKeyDown);
       bar.dataset.popoverBound = '1';
     }
+
+    // After rendering the bar ensure the FAQ modal is positioned relative to it
+    // (if present on the page). This keeps the FAQ bubble aligned with the cart preview.
+    positionFaqModal();
   }
+
+  // Position the #faq-modal bubble relative to the #cart-preview bubble.
+  // Strategy:
+  // - Align the right edge of the FAQ bubble to the right edge of the cart preview.
+  // - Prefer placing the FAQ bubble below the preview (increasing top), but if there
+  //   isn't enough space below, place it above the preview.
+  // - Clamp to viewport edges and re-calc on resize/scroll.
+  function positionFaqModal() {
+    try {
+      const preview = document.getElementById('cart-preview');
+      const faq = document.getElementById('faq-modal');
+      if (!preview || !faq) return;
+
+      const faqContent = faq.querySelector('.faq-modal-content');
+      const gap = 10; // px gap between preview and modal
+
+      const rect = preview.getBoundingClientRect();
+      // Determine content size (fallback to 320 if not measurable)
+      let contentWidth = 320;
+      let contentHeight = 200;
+      if (faqContent) {
+        // Temporarily ensure it's measurable without flashing to the user
+        const prevDisplay = faqContent.style.display;
+        const wasHidden = getComputedStyle(faqContent).display === 'none' || getComputedStyle(faq).display === 'none';
+        if (wasHidden) {
+          faqContent.style.visibility = 'hidden';
+          faqContent.style.display = 'block';
+        }
+        contentWidth = faqContent.offsetWidth || contentWidth;
+        contentHeight = faqContent.offsetHeight || contentHeight;
+        if (wasHidden) {
+          faqContent.style.display = prevDisplay;
+          faqContent.style.visibility = '';
+        }
+      }
+
+      // Align right edge: compute right offset from viewport
+      const rightOffset = Math.max(8, Math.round(window.innerWidth - rect.right));
+
+      // Decide whether to place below or above depending on available space
+      const spaceBelow = window.innerHeight - rect.bottom;
+      const spaceAbove = rect.top;
+
+      // Clear positioning anchors first
+      faq.style.left = '';
+      faq.style.right = '';
+      faq.style.top = '';
+      faq.style.bottom = '';
+
+      // Apply horizontal positioning via 'right' to keep it flush with preview
+      faq.style.right = rightOffset + 'px';
+
+      if (spaceBelow >= contentHeight + gap) {
+        // place below (use top)
+        const topPos = Math.round(rect.bottom + gap);
+        faq.style.top = topPos + 'px';
+      } else if (spaceAbove >= contentHeight + gap) {
+        // place above (use bottom measured from viewport)
+        const bottomPos = Math.round(window.innerHeight - rect.top + gap);
+        faq.style.bottom = bottomPos + 'px';
+      } else {
+        // Not enough space either side: prefer above and clamp within viewport
+        const bottomPos = Math.round(window.innerHeight - rect.top + gap);
+        faq.style.bottom = bottomPos + 'px';
+      }
+    } catch (e) {
+      // silently ignore positioning errors
+    }
+  }
+
+  // Reposition FAQ modal on resize/scroll and when DOM changes (mutation observer)
+  window.addEventListener('resize', () => positionFaqModal());
+  window.addEventListener('scroll', () => positionFaqModal(), true);
+
+  // Observe changes to cart-preview in case it moves or is recreated
+  const mo = new MutationObserver(() => positionFaqModal());
+  mo.observe(document.documentElement || document.body, { childList: true, subtree: true });
 
   document.addEventListener('DOMContentLoaded', render);
   window.addEventListener('cart:updated', (e) => {
