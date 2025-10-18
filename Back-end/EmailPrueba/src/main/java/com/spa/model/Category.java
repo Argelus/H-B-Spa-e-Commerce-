@@ -16,8 +16,6 @@ public class Category {
     @Column(nullable = false, unique = true, length = 50)
     private String name;
 
-    @Column(length = 255)
-    private String description;
 
     // Relación uno a muchos con productos
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -28,9 +26,8 @@ public class Category {
     // Constructores
     public Category() {}
 
-    public Category(String name, String description) {
+    public Category(String name) {
         this.name = name;
-        this.description = description;
     }
 
     // Getters y Setters
@@ -48,14 +45,6 @@ public class Category {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public List<Product> getProducts() {

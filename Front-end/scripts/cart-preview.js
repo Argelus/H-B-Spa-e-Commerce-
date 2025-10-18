@@ -381,22 +381,22 @@
 
   document.addEventListener('DOMContentLoaded', render);
   window.addEventListener('cart:updated', (e) => {
-    const detail = e.detail || {};
-    const cart = getCart();
+  const detail = e.detail || {};
+  const cart = getCart();
 
-    if (typeof detail.items === 'object' && detail.items) {
-      cart.items = detail.items;
-      setCart(cart);
-    } else if (typeof detail.productId !== 'undefined') {
-      const id = String(detail.productId);
-      const qty = Number(detail.qty || 1);
-      cart.items[id] = (cart.items[id] || 0) + qty;
-      setCart(cart);
-    }
+  // 🔹 Evitar doble incremento: solo actualiza si recibe lista completa
+  if (typeof detail.items === 'object' && detail.items) {
+    cart.items = detail.items;
+    setCart(cart);
+  } 
+  // ❌ no vuelvas a incrementar aquí: el updateLocalCart ya lo hace
 
-    render();
-    // If popover is open, re-render it
-    const pop = document.getElementById('cart-popover');
-    if(pop && pop.classList.contains('show')) renderPopover();
-  });
+  render();
+
+  // Si el popover está abierto, volver a renderizarlo
+  const pop = document.getElementById('cart-popover');
+  if (pop && pop.classList.contains('show')) renderPopover();
+});
+
+
 })();

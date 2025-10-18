@@ -5,7 +5,6 @@ import jakarta.persistence.*;
 import java.math.BigDecimal;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
-
 @Entity
 @Table(name = "products")
 public class Product {
@@ -26,6 +25,10 @@ public class Product {
     @Column(nullable = false)
     private int stock;
 
+    // ⚗️ Contenido del producto (ej. "250 ml", "100 mg", etc.)
+    @Column(length = 50)
+    private String contenido;
+
     // 🏷️ Relación con Categoría
     @ManyToOne
     @JoinColumn(name = "category_id")
@@ -40,12 +43,13 @@ public class Product {
     public Product() {}
 
     // Constructor con todos los parámetros
-    public Product(String name, BigDecimal price, String description, int stock, String imageUrl) {
+    public Product(String name, BigDecimal price, String description, int stock, String imageUrl, String contenido) {
         this.name = name;
         this.price = price;
         this.description = description;
         this.stock = stock;
         this.imageUrl = imageUrl;
+        this.contenido = contenido;
     }
 
     // Getters y Setters
@@ -64,11 +68,12 @@ public class Product {
     public int getStock() { return stock; }
     public void setStock(int stock) { this.stock = stock; }
 
+    public String getContenido() { return contenido; }
+    public void setContenido(String contenido) { this.contenido = contenido; }
+
     public String getImageUrl() { return imageUrl; }
     public void setImageUrl(String imageUrl) { this.imageUrl = imageUrl; }
 
-    public Category getCategory() {return category;}
-
-    public void setCategory(Category category) {this.category = category;}
-
+    public Category getCategory() { return category; }
+    public void setCategory(Category category) { this.category = category; }
 }

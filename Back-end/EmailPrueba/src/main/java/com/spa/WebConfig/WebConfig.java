@@ -1,4 +1,4 @@
-package com.spa.config; // 🔹 Cambia el paquete a "config" (no "WebConfig")
+package com.spa.WebConfig; // 🔹 Cambia el paquete a "config" (no "WebConfig")
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,6 +17,8 @@ public class WebConfig {
                         .allowedOrigins(
                                 "http://127.0.0.1:5500",
                                 "http://localhost:5500",
+                                "http://127.0.0.1:5501",
+                                "http://localhost:5501",
                                 "http://localhost:5050"
                         )
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // 🔹 Incluye todos los métodos REST
