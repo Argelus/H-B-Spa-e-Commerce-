@@ -1,0 +1,74 @@
+:root {
+  --arena-suave: #F5EDE4;
+  --sal-marina: #D7ECEB;
+  --turquesa-pastel: #6EBFC3;
+  --lila-rosa: #EBD2EC;
+  --gris-humo: #4A4A4A;
+  --radius: 12px;
+  --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+body {
+  background: linear-gradient(180deg, var(--sal-marina) 0%, var(--arena-suave) 100%);
+  font-family: 'Lato', sans-serif;
+  color: var(--gris-humo);
+}
+
+.navbar {
+  background-color: white;
+  border-bottom: 2px solid var(--turquesa-pastel);
+}
+
+h1, h4 {
+  font-family: 'Lora', serif;
+  color: var(--gris-humo);
+}
+
+.card {
+  border: none;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.btn-primary {
+  background: var(--turquesa-pastel);
+  border: none;
+  color: var(--gris-humo);
+  font-weight: 600;
+}
+
+.btn-primary:hover {
+  background: var(--lila-rosa);
+  color: var(--gris-humo);
+}
+
+.table thead {
+  background-color: var(--turquesa-pastel);
+  color: var(--gris-humo);
+}
+
+img.thumb {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+#form-message {
+  padding: 0.75rem;
+  border-radius: 10px;
+  animation: fadeIn 0.3s ease;
+}
+
+#form-message.success {
+  color: #198754;
+}
+
+#form-message.error {
+  color: #c0392b;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
