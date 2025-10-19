@@ -1,5 +1,7 @@
 const API_URL = "http://localhost:8080/api";
 
+let editingProductId = null;
+
 // ✅ Al cargar la página
 document.addEventListener("DOMContentLoaded", async () => {
   const token = localStorage.getItem("hbspa_token");
@@ -105,10 +107,14 @@ function renderProducts(products) {
       <td>${p.contenido || "-"}</td>
       <td><img src="${p.imageUrl}" alt="${p.name}" style="width:60px;height:60px;object-fit:cover;border-radius:8px;"></td>
       <td>
-        <button class="btn btn-danger btn-sm" onclick="deleteProduct(${p.id})">
-          <i class="bi bi-trash"></i>
-        </button>
-      </td>
+  <button class="btn btn-warning btn-sm me-1" onclick="editProduct(${p.id})">
+    <i class="bi bi-pencil-square"></i>
+  </button>
+  <button class="btn btn-danger btn-sm" onclick="deleteProduct(${p.id})">
+    <i class="bi bi-trash"></i>
+  </button>
+</td>
+
     `;
     tableBody.appendChild(row);
   });
@@ -162,19 +168,33 @@ async function addProduct() {
   const token = localStorage.getItem("hbspa_token");
   const formMsg = document.getElementById("form-message");
 
-  const product = {
-    name: document.getElementById("name").value,
-    price: parseFloat(document.getElementById("price").value),
-    stock: parseInt(document.getElementById("stock").value),
-    description: document.getElementById("description").value,
-    contenido: document.getElementById("contenido").value,
-    imageUrl: document.getElementById("imageUrl").value,
-    category: { id: parseInt(document.getElementById("categoryId").value) },
-  };
+  const nameValue = document.getElementById("name").value.trim();
+const priceValue = parseFloat(document.getElementById("price").value);
+const stockValue = parseInt(document.getElementById("stock").value);
+const descriptionValue = document.getElementById("description").value.trim();
+const contenidoValue = document.getElementById("contenido").value.trim();
+const imageUrlValue = document.getElementById("imageUrl").value.trim();
+const categoryIdValue = parseInt(document.getElementById("categoryId").value);
+
+const product = {
+  name: nameValue || null,
+  price: isNaN(priceValue) ? 0 : priceValue,
+  stock: isNaN(stockValue) ? 0 : stockValue,
+  description: descriptionValue || null,
+  contenido: contenidoValue || null,
+  imageUrl: imageUrlValue || null,
+  category: categoryIdValue ? { id: categoryIdValue } : null,
+};
+
 
   try {
-    const response = await fetch(`${API_URL}/products`, {
-      method: "POST",
+    const method = editingProductId ? "PUT" : "POST";
+    const url = editingProductId
+      ? `${API_URL}/products/${editingProductId}`
+      : `${API_URL}/products`;
+
+    const response = await fetch(url, {
+      method,
       headers: {
         "Content-Type": "application/json",
         "Authorization": `Bearer ${token}`,
@@ -182,20 +202,36 @@ async function addProduct() {
       body: JSON.stringify(product),
     });
 
-    if (!response.ok) throw new Error("Error al agregar producto");
-    formMsg.textContent = "✅ Producto agregado exitosamente.";
+    if (!response.ok) throw new Error("Error al guardar producto");
+
+    formMsg.textContent = editingProductId
+      ? "✅ Producto actualizado correctamente."
+      : "✅ Producto agregado exitosamente.";
     formMsg.className = "text-success";
     formMsg.style.display = "block";
+    // ⏳ Ocultar mensaje automáticamente después de 4 segundos
+setTimeout(() => {
+  formMsg.style.display = "none";
+}, 4000);
+
+
+    // Reset
+    document.getElementById("product-form").reset();
+    editingProductId = null;
+    const btn = document.querySelector("#product-form button[type='submit']");
+    btn.innerHTML = `<i class="bi bi-plus-circle"></i> Agregar producto`;
+    btn.classList.remove("btn-success");
+    btn.classList.add("btn-primary");
 
     await loadProducts();
-    document.getElementById("product-form").reset();
   } catch (err) {
-    console.error("❌ Error al agregar producto:", err);
-    formMsg.textContent = "❌ No autorizado o error al agregar producto.";
+    console.error("❌ Error al guardar producto:", err);
+    formMsg.textContent = "❌ Error al guardar producto.";
     formMsg.className = "text-danger";
     formMsg.style.display = "block";
   }
 }
+
 
 // 🗑️ Eliminar producto
 async function deleteProduct(id) {
@@ -215,3 +251,52 @@ async function deleteProduct(id) {
     alert("No autorizado o error al eliminar producto.");
   }
 }
+
+async function editProduct(id) {
+  const token = localStorage.getItem("hbspa_token");
+  try {
+    const response = await fetch(`${API_URL}/products/${id}`, {
+      headers: { "Authorization": `Bearer ${token}` },
+    });
+    const product = await response.json();
+
+    // Llenar campos
+    document.getElementById("name").value = product.name;
+    document.getElementById("price").value = product.price;
+    document.getElementById("stock").value = product.stock;
+    document.getElementById("contenido").value = product.contenido || "";
+    document.getElementById("description").value = product.description || "";
+    document.getElementById("imageUrl").value = product.imageUrl || "";
+    document.getElementById("categoryId").value = product.category?.id || "";
+    if (product.category) {
+    document.getElementById("categorySelect").value = product.category.id;
+}
+
+    // Guardar el ID que se está editando
+    editingProductId = id;
+
+    // Cambiar texto del botón
+    const btn = document.querySelector("#product-form button[type='submit']");
+    btn.innerHTML = `<i class="bi bi-save"></i> Actualizar producto`;
+    btn.classList.remove("btn-primary");
+    btn.classList.add("btn-success");
+
+    // Mostrar mensaje
+    const msg = document.getElementById("form-message");
+    msg.textContent = "✏️ Editando producto ID " + id;
+    msg.className = "text-warning text-center fw-semibold";
+    msg.style.display = "block";
+
+    // 🔝 Subir al formulario suavemente
+window.scrollTo({
+  top: 0,
+  behavior: "smooth"
+});
+
+
+  } catch (err) {
+    console.error("Error al cargar producto:", err);
+    alert("No se pudo cargar el producto para editar.");
+  }
+}
+

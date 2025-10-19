@@ -47,14 +47,34 @@ public class ProductService {
     // ✏️ 4️⃣ Actualizar un producto existente
     // ------------------------------------------------------------------
     public Optional<Product> updateProduct(Long id, Product updatedProduct) {
-        return productRepository.findById(id).map(product -> {
-            product.setName(updatedProduct.getName());
-            product.setPrice(updatedProduct.getPrice());
-            product.setDescription(updatedProduct.getDescription());
-            product.setStock(updatedProduct.getStock());
-            return productRepository.save(product);
+        return productRepository.findById(id).map(existingProduct -> {
+
+            // ✅ Solo actualiza si se envía un valor nuevo
+            if (updatedProduct.getName() != null)
+                existingProduct.setName(updatedProduct.getName());
+
+            if (updatedProduct.getPrice() != null)
+                existingProduct.setPrice(updatedProduct.getPrice());
+
+            if (updatedProduct.getDescription() != null)
+                existingProduct.setDescription(updatedProduct.getDescription());
+
+            if (updatedProduct.getStock() != null)
+                existingProduct.setStock(updatedProduct.getStock());
+
+            if (updatedProduct.getContenido() != null)
+                existingProduct.setContenido(updatedProduct.getContenido());
+
+            if (updatedProduct.getImageUrl() != null)
+                existingProduct.setImageUrl(updatedProduct.getImageUrl());
+
+            if (updatedProduct.getCategory() != null)
+                existingProduct.setCategory(updatedProduct.getCategory());
+
+            return productRepository.save(existingProduct);
         });
     }
+
 
     // ------------------------------------------------------------------
     // 🗑️ 5️⃣ Eliminar un producto por su ID
