@@ -56,6 +56,13 @@ Desarrollado con:
 - **Railway** como servidor de despliegue (Base de datos y API REST).  
 - **Cloudinary** para la gestión automática de imágenes.  
 
+> ⚙️ **Importante:**  
+> El backend se ejecuta desde la clase principal `EmailServiceApplication.java`,  
+> ubicada en `Back-end/src/main/java/com/spa/EmailServiceApplication.java`.  
+>  
+> Al ejecutar esta clase, se levanta el servidor local en `http://localhost:8080`  
+> y se habilitan todos los endpoints de productos, categorías, autenticación y correo.  
+
 ---
 
 ## ⚙️ Funcionalidades Principales
