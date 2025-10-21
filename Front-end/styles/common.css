@@ -1,6 +1,7 @@
-/* Common styles extracted from style.css
-   - fonts, variables, base layout, navbar, buttons, typography,
-   - FAQ modal & accordion (used across pages)
+/*
+ * Estilos comunes extraídos de style.css
+ * - Fuentes, variables, layout base, barra de navegación, botones, tipografía.
+ * - Modal de FAQ y acordeón (usado en múltiples páginas).
 */
 @font-face {
     font-family: 'Lato';
@@ -30,7 +31,7 @@
     font-style: italic;
     font-display: swap;
 }
-/* Optional decorative display font (kept and used for accents) */
+/* Fuente decorativa opcional (usada para acentos visuales) */
 @font-face {
     font-family: 'CormorantGaramond';
     src: url('./fonts/Cormorant_Garamond/CormorantGaramond-VariableFont_wght.ttf') format('truetype');
@@ -57,11 +58,11 @@
     --radius: 12px;
     --transition: 0.2s ease;
 
-    /* Typography scale */
+    /* Escala de tipografía */
     --font-size-base: 1rem;   /* 16px */
     --font-size-sm: 0.9375rem; /* 15px */
     --font-size-lg: 1.125rem; /* 18px */
-    --font-size-xl: 1.25rem;  /* 20px for lead/subtitles */
+    --font-size-xl: 1.25rem;  /* 20px para textos destacados o subtítulos */
 }
 
 html { height: 100%; }
@@ -102,7 +103,7 @@ h1 { font-size: 2.25rem; }
 h2 { font-size: 1.75rem; }
 h3 { font-size: 1.5rem; }
 
-/* Utility text/background helpers used across pages */
+/* Clases de utilidad para texto y fondo usadas en varias páginas */
 .text-gris-humo { color: var(--gris-humo) !important; }
 .text-turquesa-pastel { color: var(--turquesa-pastel) !important; }
 .text-lila-rosa { color: var(--lila-rosa) !important; }
@@ -114,7 +115,7 @@ h3 { font-size: 1.5rem; }
 .text-accent-teal { color: var(--turquesa-pastel) !important; }
 .bg-lila-rosa-gradient { background: linear-gradient(90deg, var(--lila-rosa), rgba(235,210,236,0.6)); }
 
-/* Generic nav styling (non-Bootstrap). Bootstrap navbar is handled below */
+/* Estilos para navegación genérica (no Bootstrap). La barra de navegación de Bootstrap se maneja más abajo. */
 nav:not(.navbar) {
     font-family: 'Lora', Georgia, 'Times New Roman', serif;
     background-color: var(--sal-marina);
@@ -127,22 +128,22 @@ nav:not(.navbar) {
 nav:not(.navbar) a { color: var(--gris-humo); text-decoration: none; margin-right: 1.5em; font-weight: 500; transition: color var(--transition); }
 nav:not(.navbar) a:hover, nav:not(.navbar) a:focus { color: var(--turquesa-pastel); }
 
-/* ===== NAVBAR BOOTSTRAP tweaks ===== */
+/* ===== AJUSTES A LA BARRA DE NAVEGACIÓN DE BOOTSTRAP ===== */
 .no-transition * { transition: none !important; }
 
-/* Default scrolled/solid navbar */
+/* Barra de navegación por defecto (sólida, al hacer scroll) */
 .navbar-light { background-color: #ffffff !important; box-shadow: 0 2px 15px rgba(0,0,0,0.08); transition: all 0.3s ease; }
 
-/* Transparent navbar base */
+/* Base para la barra de navegación transparente */
 .navbar-transparent { background: transparent !important; box-shadow: none !important; border-radius: 0 !important; }
-/* Dark transparent over hero images */
+/* Versión oscura transparente sobre imágenes de hero */
 .navbar-transparent.navbar-dark .navbar-brand,
 .navbar-transparent.navbar-dark .nav-link { color: #ffffff !important; }
 .navbar-transparent.navbar-dark .nav-link:hover,
 .navbar-transparent.navbar-dark .nav-link:focus { color: #e9f7f8 !important; }
 .navbar-transparent.navbar-dark .navbar-toggler { border-color: rgba(255,255,255,0.8); }
 .navbar-transparent.navbar-dark .navbar-toggler-icon { filter: invert(1) grayscale(1) brightness(2); }
-/* Light transparent over light page background */
+/* Versión clara transparente sobre fondos de página claros */
 .navbar-transparent.navbar-light .navbar-brand,
 .navbar-transparent.navbar-light .nav-link { color: var(--gris-humo) !important; }
 .navbar-transparent.navbar-light .nav-link:hover,
@@ -150,12 +151,12 @@ nav:not(.navbar) a:hover, nav:not(.navbar) a:focus { color: var(--turquesa-paste
 .navbar-transparent.navbar-light .navbar-toggler { border-color: var(--turquesa-pastel); }
 .navbar-transparent.navbar-light .navbar-toggler-icon { filter: none; }
 
-/* Explicit solid state class when scrolled */
+/* Clase explícita para el estado sólido al hacer scroll */
 .navbar-scrolled { background: #ffffff !important; box-shadow: 0 2px 15px rgba(0,0,0,0.08) !important; border-radius: 0 !important; }
 .navbar-scrolled .navbar-brand,
 .navbar-scrolled .nav-link { color: var(--gris-humo) !important; }
 
-/* Base navbar link aesthetics without forcing color */
+/* Estética base de los enlaces de la barra de navegación sin forzar el color */
 .navbar-brand { font-family: 'Lora', Georgia, 'Times New Roman', serif; font-weight: 700; font-size: 1.25rem; transition: all 0.3s ease; position: relative; }
 .navbar-brand:hover { color: var(--turquesa-pastel) !important; transform: scale(1.05); }
 
@@ -191,18 +192,18 @@ nav:not(.navbar) a:hover, nav:not(.navbar) a:focus { color: var(--turquesa-paste
 @media (max-width: 991.98px) { .navbar-collapse.collapsing { transition: height 0.35s ease, opacity 0.35s ease; } .navbar-collapse.show { opacity: 1; } .navbar-collapse:not(.show) { opacity: 0; } }
 @media (min-width: 992px) { .navbar-collapse { opacity: 1 !important; } }
 
-/* Fixed-top navbar offset: only for pages without hero */
+/* Espaciado para la barra de navegación fija: solo en páginas sin hero */
 body.has-hero { padding-top: 0; }
 body:not(.has-hero) { padding-top: 72px; }
 @media (max-width: 991.98px) {
   body:not(.has-hero) { padding-top: 64px; }
 }
 
-/* General shared sections */
+/* Secciones genéricas compartidas */
 .section-wide { background-color: var(--arena-suave); padding: 2em 0; }
 .card, .info-block, .secondary-bg { background-color: var(--sal-marina); border-radius: var(--radius); box-shadow: var(--shadow-card); padding: 1.5em; margin-bottom: 2em; }
 
-/* Base button styling to ensure consistent look across Bootstrap buttons */
+/* Estilo base de botones para asegurar una apariencia consistente */
 .btn {
   border-radius: var(--radius);
   font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
@@ -217,7 +218,7 @@ body:not(.has-hero) { padding-top: 72px; }
 .btn-primary, .cta { background-color: var(--turquesa-pastel); color: var(--gris-humo); font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; border: none; border-radius: var(--radius); padding: 0.75em 2em; font-size: 1rem; font-weight: 600; cursor: pointer; transition: background var(--transition), box-shadow var(--transition); box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
 .btn-primary:hover, .cta:hover, .btn-primary:focus, .cta:focus { background-color: var(--lila-rosa); color: var(--gris-humo); box-shadow: 0 2px 8px rgba(0,0,0,0.12); }
 
-/* Outline primary adapted to brand palette instead of Bootstrap blue */
+/* Botón primario delineado, adaptado a la paleta de la marca */
 .btn-outline-primary {
   color: var(--turquesa-pastel) !important;
   border-color: var(--turquesa-pastel) !important;
@@ -232,7 +233,7 @@ body:not(.has-hero) { padding-top: 72px; }
 }
 .btn-outline-primary:active { filter: brightness(0.98); }
 
-/* Disabled states consistent with palette */
+/* Estados deshabilitados consistentes con la paleta */
 .btn:disabled, .btn.disabled { opacity: 0.65; cursor: not-allowed; box-shadow: none; }
 .btn-primary:disabled, .btn-primary.disabled { background-color: var(--turquesa-pastel) !important; color: var(--gris-humo) !important; border: none !important; }
 .btn-outline-primary:disabled, .btn-outline-primary.disabled { color: var(--turquesa-pastel) !important; border-color: var(--turquesa-pastel) !important; background-color: transparent !important; }
@@ -257,19 +258,19 @@ body:not(.has-hero) { padding-top: 72px; }
 
 .row.g-4 { perspective: 1000px; }
 
-/* ===== Cart preview bubble (global) ===== */
+/* ===== Vista previa del carrito (global) ===== */
 .cart-preview-bar { position: fixed; right: calc(30px + env(safe-area-inset-right, 0px)); bottom: calc(30px + env(safe-area-inset-bottom, 0px)); left: auto; transform: none; width: 60px; height: 60px; z-index: 900; background: transparent; color: var(--gris-humo); border: none; box-shadow: none; border-radius: 50%; padding: 0; display: none; align-items: center; justify-content: center; gap: 0; cursor: pointer; }
 .cart-preview-bar.show { display: flex; }
-/* Use the existing .bag as the visual bubble */
+/* Usar .bag como la burbuja visual */
 .cart-preview-bar .bag { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; border-radius: 50%; background: var(--turquesa-pastel); color: #ffffff; box-shadow: 0 4px 12px rgba(0,0,0,0.15); transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease; }
 .cart-preview-bar:hover .bag { transform: scale(1.1); box-shadow: 0 6px 16px rgba(0,0,0,0.2); background-color: var(--lila-rosa); }
 .cart-preview-bar .bag i { font-size: 28px; line-height: 1; }
 
-/* Cart bubble summary badge (ensure bubble stays circular) */
+/* Insignia de resumen en la burbuja del carrito (asegura que la burbuja se mantenga circular) */
 .cart-preview-bar { position: fixed; }
 .cart-preview-bar .summary { position: absolute; top: 6px; right: 6px; font-size: 0; pointer-events: none; }
-.cart-preview-bar .summary #cart-count { position: relative; display: inline-flex; align-items: center; justify-content: center; min-width: 22px; height: 22px; padding: 0 6px; border-radius: 999px; background: #dc3545; color: #fff; font-weight: 800; font-size: 12px; line-height: 1; box-shadow: 0 2px 6px rgba(0,0,0,0.2); border: 2px solid #ffffff; }
-/* Hide legacy in-bubble CTA (popover provides its own CTA) */
+.cart-preview_bar .summary #cart-count { position: relative; display: inline-flex; align-items: center; justify-content: center; min-width: 22px; height: 22px; padding: 0 6px; border-radius: 999px; background: #dc3545; color: #fff; font-weight: 800; font-size: 12px; line-height: 1; box-shadow: 0 2px 6px rgba(0,0,0,0.2); border: 2px solid #ffffff; }
+/* Ocultar el CTA heredado dentro de la burbuja (el popover tiene su propio CTA) */
 .cart-preview-bar .btn-review { display: none !important; }
 
 @media (max-width: 768px) {
@@ -277,11 +278,11 @@ body:not(.has-hero) { padding-top: 72px; }
   .cart-preview-bar .summary #cart-count { min-width: 20px; height: 20px; font-size: 11px; }
 }
 
-/* ===== Cart popover panel ===== */
+/* ===== Panel popover del carrito ===== */
 .cart-popover { position: fixed; right: calc(30px + env(safe-area-inset-right, 0px)); bottom: calc(102px + env(safe-area-inset-bottom, 0px)); width: 320px; max-width: calc(100vw - 40px); background: #fff; border: 1px solid rgba(0,0,0,0.08); border-radius: 14px; box-shadow: 0 12px 28px rgba(0,0,0,0.18); z-index: 1000; display: none; overflow: hidden; }
 .cart-popover.show { display: block; }
 
-/* Cart popover UX/UI enhancements */
+/* Mejoras de UX/UI para el popover del carrito */
 .cart-popover { border: 1px solid rgba(0,0,0,0.06); border-radius: 16px; overflow: hidden; backdrop-filter: saturate(140%); }
 .cart-popover::after { content: ""; position: absolute; right: 26px; bottom: -8px; width: 16px; height: 16px; background: #fff; border-left: 1px solid rgba(0,0,0,0.06); border-bottom: 1px solid rgba(0,0,0,0.06); transform: rotate(45deg); box-shadow: 3px 3px 8px rgba(0,0,0,0.05); }
 .cart-popover-header { position: sticky; top: 0; z-index: 1; display: flex; align-items: center; justify-content: space-between; padding: 10px 12px; background: var(--sal-marina); border-bottom: 1px solid rgba(0,0,0,0.06); }
@@ -314,8 +315,8 @@ body:not(.has-hero) { padding-top: 72px; }
   .cart-popover::after { right: 22px; }
 }
 
-/* FAQ floating button + modal (shared) */
-/* colocamos la FAQ en la esquina inferior derecha (debajo) y el cart preview encima */
+/* Botón flotante de FAQ + modal (compartido) */
+/* Colocamos el botón de FAQ en la esquina inferior derecha y la vista previa del carrito encima. */
 .faq-floating-btn {
     position: fixed !important;
     right: 16px !important;
@@ -329,7 +330,7 @@ body:not(.has-hero) { padding-top: 72px; }
     font-size: 22px;
     cursor: pointer;
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    z-index: 900 !important; /* debajo del cart preview */
+    z-index: 900 !important; /* Debe estar debajo de la vista previa del carrito */
     transition: all 0.3s ease;
     display: flex;
     align-items: center;
@@ -338,13 +339,16 @@ body:not(.has-hero) { padding-top: 72px; }
 .faq-floating-btn:hover { background-color: var(--lila-rosa); transform: scale(1.05); box-shadow: 0 6px 16px rgba(0,0,0,0.18); }
 .faq-floating-btn:active { transform: scale(0.98); }
 
-/* mantenemos la modal como overlay para interacción completa */
+/* Mantenemos la modal como una superposición para una interacción completa */
 .faq-modal { display:none; position:fixed; z-index:1005; left:0; top:0; width:100%; height:100%; background-color: rgba(0,0,0,0.5); animation: fadeIn 0.3s ease; }
 .faq-modal.active { display:flex; align-items:center; justify-content:center; }
 @keyframes fadeIn { from { opacity:0 } to { opacity:1 } }
 
-/* Ajustar la posición del cart preview para que quede encima de la FAQ
-   Usamos bottom calc para apilar siempre encima de la FAQ: faq bottom (16px) + faq height (56px) + gap (10px) = 82px */
+/*
+ * Ajustar la posición de la vista previa del carrito para que quede encima del botón de FAQ.
+ * Usamos `calc` en `bottom` para apilarlo dinámicamente:
+ * bottom de FAQ (16px) + altura de FAQ (56px) + espacio (10px) = 82px
+ */
 .cart-preview-bar {
     position: fixed !important;
     right: 16px !important;
@@ -353,7 +357,7 @@ body:not(.has-hero) { padding-top: 72px; }
     transform: none;
     width: 56px;
     height: 56px;
-    z-index: 1001 !important; /* encima de la FAQ */
+    z-index: 1001 !important; /* Asegura que esté sobre el botón de FAQ */
     background: transparent;
     color: var(--gris-humo);
     border: none;
@@ -368,19 +372,19 @@ body:not(.has-hero) { padding-top: 72px; }
 }
 .cart-preview-bar.show { display: flex !important; }
 
-/* Small-screen adjustments: keep stacking but with smaller offsets */
+/* Ajustes para pantallas pequeñas: mantener el apilamiento con desplazamientos menores */
 @media (max-width: 768px) {
     .faq-floating-btn { width:50px; height:50px; font-size:20px; right: 12px !important; bottom: 12px !important; }
     .cart-preview-bar { right: 12px !important; bottom: calc(12px + 50px + 8px) !important; width:50px; height:50px; }
 }
 
 @media (max-width: 576px) {
-    /* On very small screens keep FAQ at bottom and push cart above it */
+    /* En pantallas muy pequeñas, mantener FAQ abajo y el carrito justo encima */
     .faq-floating-btn { right: 12px !important; bottom: 12px !important; }
     .cart-preview-bar { right: 12px !important; bottom: calc(12px + 50px + 8px) !important; }
 }
 
-/* Mobile navbar: ensure readable dark text when the menu is expanded */
+/* Barra de navegación en móviles: asegurar texto oscuro legible cuando el menú está expandido */
 @media (max-width: 991.98px) {
   .navbar .navbar-collapse.show .nav-link { color: var(--gris-humo) !important; }
   .navbar .navbar-collapse.show .nav-link:hover,
@@ -394,7 +398,7 @@ body:not(.has-hero) { padding-top: 72px; }
   .cart-preview-bar .bag i { font-size: 22px; }
 }
 
-/* FAQ modal panel - coherent with cart popover */
+/* Panel de la modal de FAQ - coherente con el popover del carrito */
 .faq-modal-content {
   background: #fff;
   border: 1px solid rgba(0,0,0,0.06);
@@ -423,7 +427,7 @@ body:not(.has-hero) { padding-top: 72px; }
 
 .faq-modal-body { padding: 12px 16px; overflow-y: auto; -webkit-overflow-scrolling: touch; overscroll-behavior: contain; background: #fff; border-bottom-left-radius: 16px; border-bottom-right-radius: 16px; }
 
-/* Accordion inside FAQ modal - scoped to avoid side effects */
+/* Acordeón dentro de la modal de FAQ - con scope para evitar efectos secundarios */
 .faq-modal .accordion { display: grid; gap: 12px; }
 .faq-modal .accordion-item { background: #fff; border: 1px solid rgba(0,0,0,0.06); border-radius: 12px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.04); transition: box-shadow .18s ease, transform .12s ease; }
 .faq-modal .accordion-item:hover { box-shadow: 0 8px 18px rgba(0,0,0,0.06); transform: translateY(-1px); }
@@ -438,12 +442,12 @@ body:not(.has-hero) { padding-top: 72px; }
 .faq-modal .accordion-body a { color: var(--turquesa-pastel); font-weight: 700; text-decoration: none; }
 .faq-modal .accordion-body a:hover { color: var(--lila-rosa); text-decoration: underline; }
 
-/* Reduced motion */
+/* Reducción de movimiento */
 @media (prefers-reduced-motion: reduce) {
   .faq-close-btn, .faq-modal .accordion-item { transition: none !important; }
 }
 
-/* Small screens */
+/* Pantallas pequeñas */
 @media (max-width: 480px) {
   .faq-modal-content { width: 94vw; max-height: 86vh; }
 }
