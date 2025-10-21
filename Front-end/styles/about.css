@@ -1,6 +1,6 @@
-/* About page specific styles: carousel and team cards */
+/* Estilos específicos de la página "Acerca de": carrusel y tarjetas de equipo */
 
-/* Equipo card tweaks used in carousel */
+/* Ajustes en las tarjetas de equipo usadas en el carrusel */
 .equipo-card .card-footer {
     background-color: transparent;
     border-top: none;
@@ -17,7 +17,7 @@
     transition: color 0.3s ease;
 }
 
-/* Carousel 3D (copied from original but scoped to About) */
+/* Carrusel 3D (estilos específicos para la página "Acerca de") */
 .carousel-3d-container {
     position: relative;
     width: 100%;
@@ -74,7 +74,6 @@
     .carousel-card.prev { transform: translate(-50%, -50%) translateX(-300px) translateZ(-250px) rotateY(25deg) scale(0.7); }
 }
 
-/* Small hover for value cards */
+/* Pequeño efecto hover para las tarjetas de valores */
 .tarjeta-hover { transition: transform 0.25s ease, box-shadow 0.25s ease; }
 .tarjeta-hover:hover { transform: translateY(-6px); box-shadow: 0 12px 30px rgba(74,74,74,0.12); }
-

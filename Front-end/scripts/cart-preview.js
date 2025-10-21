@@ -1,19 +1,19 @@
-// Lightweight cart preview controller
-// - Keeps a small cart count in localStorage to power the preview bar
-// - Listens for `cart:updated` custom events to refresh the UI
-// - Always shows the preview bar (replacing the navbar cart link site-wide)
+// Controlador ligero para la vista previa del carrito.
+// - Mantiene un recuento del carrito en localStorage para alimentar la barra de vista previa.
+// - Escucha eventos personalizados `cart:updated` para refrescar la interfaz.
+// - Muestra siempre la barra de vista previa, reemplazando el enlace del carrito en la barra de navegación en todo el sitio.
 
 (function(){
   const STORAGE_KEY = 'hbspa_cart';
   const PRODUCTS_KEY = 'hbspa_products';
 
-  // Resolve the Shopping Cart URL relative to current page
+  // Resuelve la URL del Carrito de Compras relativa a la página actual.
   function computeCartUrl(){
     try {
       const path = (window.location && window.location.pathname) || '';
-      // If we're already inside /pages/, a relative link is enough
+      // Si ya estamos dentro de /pages/, un enlace relativo es suficiente.
       if (path.includes('/pages/')) return 'ShoppingCart.html';
-      // Otherwise, link to pages/ShoppingCart.html from root or other dirs
+      // De lo contrario, enlaza a pages/ShoppingCart.html desde la raíz u otros directorios.
       return 'pages/ShoppingCart.html';
     } catch {
       return 'pages/ShoppingCart.html';
@@ -34,7 +34,7 @@
   function setCart(cart) {
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify({ items: cart.items || {}, updatedAt: Date.now() }));
-    } catch (e) { /* ignore */ }
+    } catch (e) { /* ignorar errores de escritura */ }
   }
 
   function getCount(cart) {
@@ -68,21 +68,21 @@
       </div>
     `;
     document.body.appendChild(pop);
-    // Close button
+    // Botón de cerrar.
     pop.querySelector('#cart-popover-close').addEventListener('click', () => hidePopover());
 
-    // Ensure CTA navigates reliably
+    // Asegura que el CTA navegue de forma fiable.
     const ctaEl = pop.querySelector('#cart-popover-cta');
     if (ctaEl) {
       ctaEl.addEventListener('click', () => {
         const url = computeCartUrl();
         ctaEl.setAttribute('href', url);
-        // allow default navigation for anchors; do not preventDefault
+        // Permite la navegación por defecto para los anclajes; no se usa preventDefault.
         hidePopover();
       });
     }
 
-    // Event delegation for qty and remove actions
+    // Delegación de eventos para acciones de cantidad y eliminación.
     pop.addEventListener('click', (e) => {
       const actionBtn = e.target.closest('[data-action]');
       if(!actionBtn) return;
@@ -103,7 +103,7 @@
         delete cart.items[id];
       }
       setCart(cart);
-      // Notify and re-render
+      // Notifica y vuelve a renderizar.
       window.dispatchEvent(new CustomEvent('cart:updated', { detail: { items: cart.items } }));
       renderPopover();
     });
@@ -145,11 +145,11 @@
     const entries = Object.entries(cart.items || {});
     const { itemsCount, total } = computeSummary(cart, map);
 
-    // Update header/footer summary
+    // Actualiza el resumen del encabezado/pie de página.
     if(countPill) countPill.textContent = String(itemsCount);
     if(itemsLabel) itemsLabel.textContent = `${itemsCount} artículo${itemsCount===1?'':'s'}`;
     if(totalLabel) totalLabel.textContent = fmtCurrency(total);
-    // Always allow navigating to the cart, even if it's empty
+    // Siempre permite navegar al carrito, incluso si está vacío.
     if(cta) {
       cta.classList.remove('disabled');
       cta.setAttribute('href', computeCartUrl());
@@ -161,7 +161,7 @@
       return;
     }
 
-    // Render up to 6 items for compact preview
+    // Renderiza hasta 6 ítems para una vista previa compacta.
     const limit = 6;
     const parts = [];
     let shown = 0;
@@ -251,7 +251,7 @@
     bar.innerHTML = `
       <div class="bag" aria-hidden="true"><i class="bi bi-bag-check-fill"></i></div>
       <div class="summary"><span id="cart-count">0</span> productos en el carrito</div>
-    `; // omit in-bar CTA; popover has CTA
+    `; // Se omite el CTA en la barra; el popover ya tiene uno.
     document.body.appendChild(bar);
     return bar;
   }
@@ -265,7 +265,7 @@
     const cart = getCart();
     const count = getCount(cart);
 
-    // Ensure badge exists and update only the number
+    // Asegura que la insignia exista y actualiza solo el número.
     if (!countEl && summaryEl) {
       countEl = document.createElement('span');
       countEl.id = 'cart-count';
@@ -273,18 +273,18 @@
     }
     if (countEl) countEl.textContent = String(count);
 
-    // Always visible across pages
+    // Siempre visible en todas las páginas.
     bar.classList.add('show');
     bar.setAttribute('aria-hidden', 'false');
 
-    // Accessibility attributes
+    // Atributos de accesibilidad.
     bar.setAttribute('role', 'button');
     bar.setAttribute('tabindex', '0');
     bar.setAttribute('aria-label', 'Abrir vista previa del carrito');
     bar.setAttribute('aria-controls', 'cart-popover');
     if (!bar.hasAttribute('aria-expanded')) bar.setAttribute('aria-expanded', 'false');
 
-    // Attach click/keyboard/touch toggle once
+    // Asocia el evento de toggle (click/teclado/táctil) una sola vez.
     if(!bar.dataset.popoverBound){
       const onToggle = (ev) => {
         ev.preventDefault();
@@ -296,88 +296,7 @@
       document.addEventListener('keydown', onKeyDown);
       bar.dataset.popoverBound = '1';
     }
-
-    // After rendering the bar ensure the FAQ modal is positioned relative to it
-    // (if present on the page). This keeps the FAQ bubble aligned with the cart preview.
-    positionFaqModal();
   }
-
-  // Position the #faq-modal bubble relative to the #cart-preview bubble.
-  // Strategy:
-  // - Align the right edge of the FAQ bubble to the right edge of the cart preview.
-  // - Prefer placing the FAQ bubble below the preview (increasing top), but if there
-  //   isn't enough space below, place it above the preview.
-  // - Clamp to viewport edges and re-calc on resize/scroll.
-  function positionFaqModal() {
-    try {
-      const preview = document.getElementById('cart-preview');
-      const faq = document.getElementById('faq-modal');
-      if (!preview || !faq) return;
-
-      const faqContent = faq.querySelector('.faq-modal-content');
-      const gap = 10; // px gap between preview and modal
-
-      const rect = preview.getBoundingClientRect();
-      // Determine content size (fallback to 320 if not measurable)
-      let contentWidth = 320;
-      let contentHeight = 200;
-      if (faqContent) {
-        // Temporarily ensure it's measurable without flashing to the user
-        const prevDisplay = faqContent.style.display;
-        const wasHidden = getComputedStyle(faqContent).display === 'none' || getComputedStyle(faq).display === 'none';
-        if (wasHidden) {
-          faqContent.style.visibility = 'hidden';
-          faqContent.style.display = 'block';
-        }
-        contentWidth = faqContent.offsetWidth || contentWidth;
-        contentHeight = faqContent.offsetHeight || contentHeight;
-        if (wasHidden) {
-          faqContent.style.display = prevDisplay;
-          faqContent.style.visibility = '';
-        }
-      }
-
-      // Align right edge: compute right offset from viewport
-      const rightOffset = Math.max(8, Math.round(window.innerWidth - rect.right));
-
-      // Decide whether to place below or above depending on available space
-      const spaceBelow = window.innerHeight - rect.bottom;
-      const spaceAbove = rect.top;
-
-      // Clear positioning anchors first
-      faq.style.left = '';
-      faq.style.right = '';
-      faq.style.top = '';
-      faq.style.bottom = '';
-
-      // Apply horizontal positioning via 'right' to keep it flush with preview
-      faq.style.right = rightOffset + 'px';
-
-      if (spaceBelow >= contentHeight + gap) {
-        // place below (use top)
-        const topPos = Math.round(rect.bottom + gap);
-        faq.style.top = topPos + 'px';
-      } else if (spaceAbove >= contentHeight + gap) {
-        // place above (use bottom measured from viewport)
-        const bottomPos = Math.round(window.innerHeight - rect.top + gap);
-        faq.style.bottom = bottomPos + 'px';
-      } else {
-        // Not enough space either side: prefer above and clamp within viewport
-        const bottomPos = Math.round(window.innerHeight - rect.top + gap);
-        faq.style.bottom = bottomPos + 'px';
-      }
-    } catch (e) {
-      // silently ignore positioning errors
-    }
-  }
-
-  // Reposition FAQ modal on resize/scroll and when DOM changes (mutation observer)
-  window.addEventListener('resize', () => positionFaqModal());
-  window.addEventListener('scroll', () => positionFaqModal(), true);
-
-  // Observe changes to cart-preview in case it moves or is recreated
-  const mo = new MutationObserver(() => positionFaqModal());
-  mo.observe(document.documentElement || document.body, { childList: true, subtree: true });
 
   document.addEventListener('DOMContentLoaded', render);
   window.addEventListener('cart:updated', (e) => {
