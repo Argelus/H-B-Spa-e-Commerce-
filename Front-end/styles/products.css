@@ -1,9 +1,99 @@
-/* Estilos de la página de productos */
+/* === 🧴 Products page styles === */
 
-#product-list .card { border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-card); }
-#product-list .card img { object-fit: cover; height: 200px; }
-#product-list .card .btn-primary { background: var(--turquesa-pastel); border: none; }
+/* === Estructura general de las cards === */
+#product-list .card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  margin-bottom: 1rem;
+  border-radius: var(--radius);
+  background-color: var(--sal-marina);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: var(--shadow-card);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
 
+#product-list .card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+}
+
+/* === Imagen fija y ajustada === */
+#product-list .card img {
+  object-fit: cover;
+  height: 200px;
+}
+
+/* === Cuerpo flexible para empujar el botón al fondo === */
+#product-list .card-body {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+/* 🔹 Mantener separación visual pero no romper el flex */
+#product-list .card-body > div:first-child {
+  flex-grow: 1;
+}
+
+/* === Contenedor del botón (fijo y centrado) === */
+.card-actions {
+  min-height: 85px; /* fija la altura total (botón + mensaje) */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: auto;
+}
+
+/* === Botón === */
+.card-actions button {
+  width: 90%;
+  margin-bottom: 6px;
+  background: var(--turquesa-pastel);
+  border: none;
+  transition: all 0.2s ease-in-out;
+}
+
+/* === Mensaje de éxito === */
+.added-msg {
+  color: #198754;
+  font-size: 0.95rem;
+  font-weight: 600;
+  opacity: 0;
+  transform: translateY(5px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  pointer-events: none;
+  line-height: 1; /* evita empujar nada */
+  min-height: 1em; /* mantiene altura estable incluso oculta */
+}
+
+.added-msg.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* === Texto del stock === */
+#product-list .card-body .text-muted {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+}
+
+/* === Espaciado entre las cards (horizontal y vertical) === */
+#product-list > .col-md-4 {
+  padding: 1.2rem; /* Aumenta el espacio general entre cards */
+}
+
+/* Margen inferior extra entre filas */
+#product-list .card {
+  margin-bottom: 2rem; /* Aumenta el espacio entre las filas */
+}
+
+
+/* === Responsividad === */
 @media (max-width: 768px) {
-  #product-list .card img { height: 160px; }
+  #product-list .card img {
+    height: 160px;
+  }
 }

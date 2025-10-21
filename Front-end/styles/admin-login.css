@@ -1,0 +1,83 @@
+:root {
+  --arena-suave: #F5EDE4;
+  --sal-marina: #D7ECEB;
+  --turquesa-pastel: #6EBFC3;
+  --lila-rosa: #EBD2EC;
+  --rosa-petalo: #F9D6E2;
+  --gris-humo: #4A4A4A;
+  --radius: 14px;
+  --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+body {
+  font-family: 'Lato', sans-serif;
+  background: linear-gradient(120deg, var(--sal-marina), var(--lila-rosa));
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-container {
+  width: 100%;
+  max-width: 420px;
+  padding: 20px;
+}
+
+.login-card {
+  background: var(--arena-suave);
+  border-radius: var(--radius);
+  padding: 2rem;
+  box-shadow: var(--shadow);
+  animation: fadeInUp 0.6s ease;
+}
+
+h1 {
+  color: var(--gris-humo);
+  font-family: 'Lora', serif;
+}
+
+.btn-primary {
+  background: var(--turquesa-pastel);
+  border: none;
+  color: var(--gris-humo);
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background: var(--lila-rosa);
+  transform: scale(1.02);
+}
+
+.form-control {
+  border-radius: var(--radius);
+  border: 1px solid rgba(0,0,0,0.15);
+  padding: 10px 14px;
+}
+
+.input-group .btn-outline-secondary {
+  border-radius: 0 var(--radius) var(--radius) 0;
+  border-color: rgba(0,0,0,0.1);
+  background-color: white;
+}
+
+.input-group .btn-outline-secondary:hover {
+  background-color: var(--sal-marina);
+  border-color: var(--turquesa-pastel);
+}
+
+#login-message {
+  animation: fadeIn 0.4s ease;
+}
+
+/* 🔹 Animaciones */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

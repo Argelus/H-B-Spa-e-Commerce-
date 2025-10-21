@@ -6,6 +6,7 @@ import com.spa.model.Product;
 import com.spa.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize; // ✅ Import necesario
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,8 +25,9 @@ public class ProductController {
     private ProductService productService;
 
     // ------------------------------------------------------------------
-    // ➕ 1️⃣ Crear un nuevo producto
+    // ➕ 1️⃣ Crear un nuevo producto (solo ADMIN)
     // ------------------------------------------------------------------
+    @PreAuthorize("hasRole('ADMIN')") // 🔒 Solo los usuarios con rol ADMIN pueden crear productos
     @PostMapping
     public ResponseEntity<Product> createProduct(@RequestBody Product product) {
         Product savedProduct = productService.saveProduct(product);
@@ -33,7 +35,7 @@ public class ProductController {
     }
 
     // ------------------------------------------------------------------
-    // 📋 2️⃣ Obtener todos los productos
+    // 📋 2️⃣ Obtener todos los productos (público)
     // ------------------------------------------------------------------
     @GetMapping
     public ResponseEntity<List<Product>> getAllProducts() {
@@ -42,7 +44,7 @@ public class ProductController {
     }
 
     // ------------------------------------------------------------------
-    // 🔍 3️⃣ Obtener un producto por su ID
+    // 🔍 3️⃣ Obtener un producto por su ID (público)
     // ------------------------------------------------------------------
     @GetMapping("/{id}")
     public ResponseEntity<Product> getProductById(@PathVariable Long id) {
@@ -52,8 +54,9 @@ public class ProductController {
     }
 
     // ------------------------------------------------------------------
-    // ✏️ 4️⃣ Actualizar un producto existente
+    // ✏️ 4️⃣ Actualizar un producto existente (solo ADMIN)
     // ------------------------------------------------------------------
+    @PreAuthorize("hasRole('ADMIN')") // 🔒 Solo ADMIN puede actualizar
     @PutMapping("/{id}")
     public ResponseEntity<Product> updateProduct(@PathVariable Long id, @RequestBody Product updatedProduct) {
         Optional<Product> updated = productService.updateProduct(id, updatedProduct);
@@ -62,8 +65,9 @@ public class ProductController {
     }
 
     // ------------------------------------------------------------------
-    // 🗑️ 5️⃣ Eliminar un producto
+    // 🗑️ 5️⃣ Eliminar un producto (solo ADMIN)
     // ------------------------------------------------------------------
+    @PreAuthorize("hasRole('ADMIN')") // 🔒 Solo ADMIN puede eliminar
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteProduct(@PathVariable Long id) {
         productService.deleteProduct(id);

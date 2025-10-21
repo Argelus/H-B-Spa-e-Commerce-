@@ -1,60 +1,122 @@
 const API_URL = "http://localhost:8080/api";
 
-// Carga todos los productos al iniciar la página.
+// 🔹 Cargar categorías y productos
 async function loadProducts() {
   try {
-    const response = await fetch(`${API_URL}/products`);
-    const products = await response.json();
+    // --- 1️⃣ Obtener categorías ---
+    const catResponse = await fetch(`${API_URL}/categories`);
+    const categories = await catResponse.json();
+    renderCategories(categories);
 
-    // Almacena en caché los metadatos de los productos para el popover del carrito.
-    try {
-      const productMap = products.reduce((map, product) => {
-        if (product && typeof product.id !== 'undefined') {
-          map[String(product.id)] = {
-            id: product.id,
-            name: product.name,
-            price: product.price,
-            imageUrl: product.imageUrl
-          };
-        }
-        return map;
-      }, {});
-      localStorage.setItem('hbspa_products', JSON.stringify(productMap));
-    } catch (e) {
-      console.error("Error al guardar productos en caché:", e);
-    }
+    // --- 2️⃣ Obtener productos ---
+    const prodResponse = await fetch(`${API_URL}/products`);
+    const products = await prodResponse.json();
 
-    const container = document.getElementById("product-list");
-    if (!container) return;
-
-    container.innerHTML = ""; // Limpia el contenedor antes de añadir nuevos productos.
-
-    products.forEach(product => {
-      const card = document.createElement("div");
-      card.className = "col-md-4";
-      card.innerHTML = `
-        <div class="card mb-4 shadow-sm">
-          <img src="${product.imageUrl || 'https://via.placeholder.com/350x150'}" class="card-img-top" alt="${product.name}">
-          <div class="card-body">
-            <h5 class="card-title">${product.name}</h5>
-            <p class="card-text">${product.description || 'Sin descripción disponible.'}</p>
-            <p class="fw-bold text-success">$${product.price}</p>
-            <button class="btn btn-primary w-100" onclick="addToCart(${product.id})">
-              <i class="bi bi-cart-plus"></i> Agregar al carrito
-            </button>
-          </div>
-        </div>
-      `;
-      container.appendChild(card);
+    // Cachear metadatos (para carrito y resumen)
+    const map = {};
+    products.forEach(p => {
+      if (!p || typeof p.id === "undefined") return;
+      map[String(p.id)] = {
+        id: p.id,
+        name: p.name,
+        price: p.price,
+        imageUrl: p.imageUrl
+      };
     });
+    localStorage.setItem("hbspa_products", JSON.stringify(map));
 
+    renderProducts(products);
   } catch (error) {
     console.error("Error cargando productos:", error);
   }
 }
 
-// Helpers para gestionar el carrito localmente para la barra de vista previa.
-const STORAGE_KEY = 'hbspa_cart';
+// 🔹 Renderizar categorías
+function renderCategories(categories) {
+  const container = document.getElementById("category-list");
+  if (!container) return;
+
+  container.innerHTML = `
+    <button class="btn btn-outline-primary active" data-category="all">
+      <i class="bi bi-grid"></i> Todos
+    </button>
+  `;
+
+  categories.forEach(cat => {
+    const btn = document.createElement("button");
+    btn.className = "btn btn-outline-primary";
+    btn.dataset.category = cat.id;
+    btn.textContent = cat.name;
+    btn.addEventListener("click", () => filterByCategory(cat.id));
+    container.appendChild(btn);
+  });
+}
+
+// 🔹 Filtrar productos por categoría
+async function filterByCategory(categoryId) {
+  const allBtns = document.querySelectorAll("#category-list button");
+  allBtns.forEach(b => b.classList.remove("active"));
+  const activeBtn = document.querySelector(`#category-list button[data-category="${categoryId}"]`);
+  if (activeBtn) activeBtn.classList.add("active");
+
+  const response = categoryId === "all"
+    ? await fetch(`${API_URL}/products`)
+    : await fetch(`${API_URL}/products/category/${categoryId}`);
+
+  const products = await response.json();
+  renderProducts(products);
+}
+
+// 🔹 Renderizar productos
+function renderProducts(products) {
+  const container = document.getElementById("product-list");
+  if (!container) return;
+  container.innerHTML = "";
+
+  products.forEach(product => {
+    const card = document.createElement("div");
+    card.classList.add("col-md-4", "d-flex");
+
+    card.innerHTML = `
+      <div class="card mb-4 shadow-sm flex-fill">
+        <img src="${product.imageUrl || 'https://via.placeholder.com/350x150'}"
+             class="card-img-top" alt="${product.name}">
+        <div class="card-body text-center d-flex flex-column justify-content-between flex-grow-1">
+          <div>
+            <h5 class="card-title">${product.name}</h5>
+            <p class="card-text">${product.description || 'Sin descripción disponible.'}</p>
+            <p class="fw-bold text-success">$${product.price}</p>
+          </div>
+
+          <!-- 🔹 Contenedor fijo del botón -->
+          <div class="card-actions">
+            <button class="btn btn-primary w-100 mb-2 add-to-cart-btn" data-id="${product.id}">
+              <i class="bi bi-cart-plus"></i> Agregar al carrito
+            </button>
+            <div class="added-msg text-success fw-semibold">
+              <i class="bi bi-check-circle"></i> Agregado al carrito
+            </div>
+          </div>
+
+          <p class="text-muted mb-0"><small>Stock disponible: ${product.stock}</small></p>
+        </div>
+      </div>
+    `;
+
+    container.appendChild(card);
+  });
+
+  // Reasignar eventos después de renderizar
+  document.querySelectorAll(".add-to-cart-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const productId = btn.dataset.id;
+      addToCart(productId, btn);
+    });
+  });
+}
+
+// 🔹 Carrito local
+const STORAGE_KEY = "hbspa_cart";
 
 function getLocalCart() {
   try {
@@ -69,10 +131,11 @@ function getLocalCart() {
 
 function setLocalCart(cart) {
   try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify({ items: cart.items || {}, updatedAt: Date.now() }));
-  } catch (e) {
-    console.error("Error al guardar el carrito local:", e);
-  }
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({
+      items: cart.items || {},
+      updatedAt: Date.now()
+    }));
+  } catch {}
 }
 
 function updateLocalCart(productId, qty) {
@@ -80,33 +143,32 @@ function updateLocalCart(productId, qty) {
   const id = String(productId);
   cart.items[id] = (cart.items[id] || 0) + (qty || 1);
   setLocalCart(cart);
-  // Notifica a la barra de vista previa para que se actualice.
-  window.dispatchEvent(new CustomEvent('cart:updated', { detail: { productId, qty } }));
+  window.dispatchEvent(new CustomEvent("cart:updated", { detail: { productId, qty } }));
 }
 
-// Agrega un producto al carrito.
-async function addToCart(productId) {
-  // Actualiza la UI local inmediatamente para una mejor experiencia de usuario.
-  updateLocalCart(productId, 1);
-  alert("Producto agregado al carrito 🛒");
-
+// 🔹 Agregar producto al carrito
+async function addToCart(productId, btn) {
   try {
-    const response = await fetch(`${API_URL}/cart/add`, {
+    updateLocalCart(productId, 1);
+
+    // Mostrar mensaje sin mover el botón
+    const msg = btn.parentElement.querySelector(".added-msg");
+    if (msg) {
+      msg.classList.add("show");
+      setTimeout(() => msg.classList.remove("show"), 1800);
+    }
+
+    // Enviar al backend (no bloqueante)
+    await fetch(`${API_URL}/cart/add`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ productId, quantity: 1 })
     });
 
-    if (!response.ok) {
-      // Si la API falla, el cambio ya está reflejado localmente.
-      // Se podría implementar una lógica para revertir si la sincronización es crítica.
-      console.warn("El producto se agregó localmente, pero falló la sincronización con el servidor.");
-    }
   } catch (error) {
-    console.error("Error al agregar al carrito (sin conexión):", error);
-    // El producto ya fue agregado localmente, por lo que la UI es consistente.
+    console.error("Error al agregar al carrito:", error);
   }
 }
 
-// Carga los productos cuando la página esté lista.
+// 🔹 Inicializar
 document.addEventListener("DOMContentLoaded", loadProducts);
