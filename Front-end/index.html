@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="styles/common.css" />
     <link rel="stylesheet" href="styles/index.css" />
+    <link rel="stylesheet" href="components/team-carousel.css" />
 </head>
 <body class="has-hero">
 <nav class="navbar navbar-expand-lg fixed-top navbar-dark navbar-transparent">
@@ -127,6 +128,40 @@
     <i class="bi bi-chevron-down"></i>
   </a>
 </div>
+
+<!-- Sección de Equipo Profesional -->
+<section>
+    <div class="container">
+        <div class="text-center pt-5 pb-4">
+            <h2 class="display-5 fw-bold text-gris-humo">Conoce a Nuestro Equipo Profesional</h2>
+            <p class="lead text-muted">Personas apasionadas dedicadas a tu bienestar.</p>
+        </div>
+    </div>
+    <div id="team-section" class="team-container">
+        <div class="team-grid">
+            <!-- Columna de Imagen -->
+            <div class="image-column">
+                <div class="image-stack">
+                    <!-- Las imágenes se insertarán aquí con JS -->
+                </div>
+            </div>
+            <!-- Columna de Contenido -->
+            <div class="content-column">
+                <div class="team-member-content-wrapper">
+                    <!-- El contenido del miembro del equipo se insertará aquí con JS -->
+                </div>
+                <div class="team-member-nav">
+                    <button id="team-member-prev" class="nav-arrow" aria-label="Miembro anterior">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </button>
+                    <button id="team-member-next" class="nav-arrow" aria-label="Siguiente miembro">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 <!-- Contenido principal de la página de inicio -->
 <div id="home-content" class="py-5">
@@ -264,6 +299,7 @@
 <!-- Scripts de la aplicación -->
 <script src="./scripts/app.js" defer></script>
 <script src="./scripts/cart-preview.js" defer></script>
+<script src="components/team-carousel.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
 </body>
 </html>
