@@ -29,56 +29,11 @@
         <li class="nav-item"><a class="nav-link" href="pages/Reserve.html">Reserva</a></li>
         <li class="nav-item"><a class="nav-link" href="pages/About.html">Acerca de Nosotros</a></li>
         <li class="nav-item"><a class="nav-link" href="pages/Contact.html">Contacto</a></li>
-        <li class="nav-item"><a class="nav-link" href="pages/Login.html">Iniciar Sesión</a></li>
+        <li class="nav-item"><a class="nav-link" href="pages/Login.html">Registro</a></li>
       </ul>
     </div>
   </div>
 </nav>
-
-<!-- 🧾 FORMULARIO DE REGISTRO -->
-<div class="container mt-5 pt-5">
-    <div class="card mx-auto shadow" style="max-width: 450px;">
-        <div class="card-body">
-            <h3 class="text-center mb-4">Registro de Usuario</h3>
-
-            <form id="registroForm" novalidate>
-                <div class="mb-3">
-                    <label for="nombre" class="form-label">Nombre completo</label>
-                    <input type="text" class="form-control" id="nombre" required>
-                    <div class="invalid-feedback">Ingrese su nombre completo.</div>
-                </div>
-
-                <div class="mb-3">
-                    <label for="telefono" class="form-label">Número de teléfono</label>
-                    <input type="tel" class="form-control" id="telefono" required>
-                    <div class="invalid-feedback">Ingrese un teléfono válido (10 dígitos).</div>
-                </div>
-
-                <div class="mb-3">
-                    <label for="email" class="form-label">Correo electrónico</label>
-                    <input type="email" class="form-control" id="email" required>
-                    <div class="invalid-feedback">Ingrese un correo electrónico válido.</div>
-                </div>
-
-                <div class="mb-3">
-                    <label for="password" class="form-label">Contraseña</label>
-                    <input type="password" class="form-control" id="password" required minlength="6">
-                    <div class="invalid-feedback">La contraseña debe tener al menos 6 caracteres.</div>
-                </div>
-
-                <div class="mb-3">
-                    <label for="confirmPassword" class="form-label">Confirmar contraseña</label>
-                    <input type="password" class="form-control" id="confirmPassword" required>
-                    <div class="invalid-feedback">Las contraseñas no coinciden.</div>
-                </div>
-
-                <button type="submit" class="btn btn-primary w-100">Registrarse</button>
-            </form>
-
-            <div id="mensaje" class="mt-3 text-center fw-bold"></div>
-        </div>
-    </div>
-</div>
 
 <!-- Hero Carousel -->
 <div id="hero-carousel" class="carousel slide" data-bs-ride="carousel">
