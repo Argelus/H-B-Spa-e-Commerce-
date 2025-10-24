@@ -1,18 +1,18 @@
-package com.spa.security.controller; // 1. Paquete principal
+package com.spa.security.controller;
 
-// Tus DTOs
+// 📦 DTOs: objetos que viajan entre el front y el back
 import com.spa.dto.LoginRequest;
-import com.spa.dto.RegisterRequest; // 2. Usamos el DTO de registro
+import com.spa.dto.RegisterRequest;
 
-// Tu utilidad JWT
+// 🔐 Utilidad para generar y validar tokens JWT
 import com.spa.security.jwt.JwtUtil;
 
-// Clases de tu lógica
-import com.spa.security.repository.UsuarioRepository;
+// 🧩 Clases del modelo y lógica de usuario
 import com.spa.security.model.Usuario;
-import com.spa.service.UsuarioService;      // 4. Servicio para lógica de registro
+import com.spa.security.repository.UsuarioRepository;
+import com.spa.service.UsuarioService;
 
-// Dependencias de Spring Security
+// ⚙️ Dependencias de Spring Security
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -26,17 +26,20 @@ import java.util.Map;
 @RequestMapping("/api/auth")
 public class AuthController {
 
-    // 5. Inyección por constructor (como en tu nuevo archivo)
     private final AuthenticationManager authManager;
     private final JwtUtil jwtUtil;
     private final UsuarioService usuarioService;
-    private final UsuarioRepository usuarioRepository; // Necesario para buscar el rol
+    private final UsuarioRepository usuarioRepository;
     private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public AuthController(AuthenticationManager authManager, JwtUtil jwtUtil,
-                          UsuarioService usuarioService, UsuarioRepository usuarioRepository,
-                          PasswordEncoder passwordEncoder) {
+    public AuthController(
+            AuthenticationManager authManager,
+            JwtUtil jwtUtil,
+            UsuarioService usuarioService,
+            UsuarioRepository usuarioRepository,
+            PasswordEncoder passwordEncoder
+    ) {
         this.authManager = authManager;
         this.jwtUtil = jwtUtil;
         this.usuarioService = usuarioService;
@@ -44,12 +47,13 @@ public class AuthController {
         this.passwordEncoder = passwordEncoder;
     }
 
-    /**
-     * Endpoint de Login
-     * (Lógica de tu nuevo controller, devuelve Map<String, String>)
-     */
+    // ============================================================
+    // 🟢 LOGIN: Autentica credenciales y devuelve un token JWT
+    // ============================================================
     @PostMapping("/login")
     public Map<String, String> login(@RequestBody LoginRequest loginRequest) {
+
+        // 1️⃣ Autenticar al usuario con Spring Security
         Authentication authentication = authManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         loginRequest.getUsername(),
@@ -57,44 +61,43 @@ public class AuthController {
                 )
         );
 
-        // Buscar usuario en BD para obtener el rol correcto
+        // 2️⃣ Buscar el usuario en la base de datos
         Usuario user = usuarioRepository.findByUsername(authentication.getName())
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado después de autenticar"));
 
-        // Normalizar el rol (buena práctica de tu controller)
+        // 3️⃣ Normalizar el rol
         String role = user.getRole();
         if (role == null || !role.startsWith("ROLE_")) {
             role = "ROLE_" + (role != null ? role.toUpperCase() : "USER");
         }
 
-        // Generar token con tu JwtUtil
+        // 4️⃣ Generar token JWT con username y rol
         String token = jwtUtil.generateToken(user.getUsername(), role);
 
-        // Devolver el Map (como en tu nuevo controller)
+        // 5️⃣ Devolver respuesta al frontend
         return Map.of(
+                "message", "Login exitoso",
                 "token", token,
                 "username", user.getUsername(),
                 "role", role
         );
     }
 
-    /**
-     * Endpoint de Registro
-     * (Lógica de mi controller, usa RegisterRequest DTO por seguridad)
-     */
+    // ============================================================
+    // 🟣 REGISTER: Crea un nuevo usuario y devuelve token
+    // ============================================================
     @PostMapping("/register")
     public Map<String, String> register(@RequestBody RegisterRequest registerRequest) {
 
-        // 1. Validar usando el Servicio
+        // 1️⃣ Validaciones: evitar duplicados
         if (usuarioService.existePorUsername(registerRequest.getUsername())) {
             throw new RuntimeException("Error: El nombre de usuario ya existe.");
         }
-
         if (usuarioService.existePorEmail(registerRequest.getEmail())) {
             throw new RuntimeException("Error: El email ya está en uso.");
         }
 
-        // 2. Normalizar el rol (lógica de tu nuevo controller)
+        // 2️⃣ Normalizar el rol
         String role = registerRequest.getRole();
         if (role == null || role.isBlank()) {
             role = "ROLE_USER";
@@ -102,20 +105,25 @@ public class AuthController {
             role = "ROLE_" + role.toUpperCase();
         }
 
-        // 3. Crear la entidad Usuario
+        // 3️⃣ Crear la entidad Usuario y encriptar la contraseña
         Usuario usuario = new Usuario();
         usuario.setUsername(registerRequest.getUsername());
+        usuario.setEmail(registerRequest.getEmail());
         usuario.setPassword(passwordEncoder.encode(registerRequest.getPassword()));
         usuario.setRole(role);
 
-        // 4. Guardar usando el Servicio
+        // 4️⃣ Guardar el usuario en la base de datos
         usuarioService.guardarUsuario(usuario);
 
-        // 5. Devolver Map (como en tu nuevo controller)
+        // 5️⃣ Generar token automático (útil para login inmediato tras registro)
+        String token = jwtUtil.generateToken(usuario.getUsername(), usuario.getRole());
+
+        // 6️⃣ Respuesta al frontend
         return Map.of(
                 "message", "Usuario registrado correctamente",
                 "username", usuario.getUsername(),
-                "role", usuario.getRole()
+                "role", usuario.getRole(),
+                "token", token
         );
     }
 }
