@@ -451,3 +451,59 @@ body:not(.has-hero) { padding-top: 72px; }
 @media (max-width: 480px) {
   .faq-modal-content { width: 94vw; max-height: 86vh; }
 }
+
+.boton-login-registro {
+    /* Resetear el botón por defecto y usar flex para centrar el enlace */
+    background: transparent;
+   border: 1px solid var(--turquesa-pastel);
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    
+    /* 1. Redondeo */
+    border-radius: var(--radius); /* Usa la variable global de redondeo */
+
+    /* 2. Transparencia */
+    /* Usamos el color --sal-marina (c8e4e6) con opacidad reducida */
+    background-color: rgba(200, 228, 230, 0.4);
+    
+    /* Transición y Sombra para un look suave */
+    transition: all var(--transition);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+    outline: none; /* Asegura que no haya outline por defecto */
+}
+
+/* Efecto al pasar el ratón (hover) */
+.boton-login-registro:hover {
+    /* Aumentar la opacidad y cambiar el color de borde */
+    background-color: rgba(200, 228, 230, 0.7); /* Sal Marina más opaca */
+    /*border-color: var(--lila-rosa);*/
+    transform: translateY(-1px); /* Pequeño levantamiento */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.12);
+}
+
+/* Efecto al hacer clic o focus */
+.boton-login-registro:active, .boton-registro:focus-visible {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.boton-login-registro:focus-visible {
+    outline: 3px solid rgba(110,191,195,0.45);
+    outline-offset: 2px;
+}
+
+/* Ajuste para el enlace interno: el enlace ya tiene padding, color y transiciones */
+.boton-login-registro .nav-link {
+    /* Asegurar que el nav-link no anule el background transparente del botón */
+    background: transparent !important;
+    /* Asegurar que el nav-link se vea mejor */
+    font-weight: 700;
+}
+
+/* Revertir el efecto de levantamiento que aplica .nav-link:hover para que el efecto lo maneje el contenedor del botón */
+.boton-login-registro .nav-link:hover,
+.boton-login-registro .nav-link:focus {
+    transform: none; 
+}

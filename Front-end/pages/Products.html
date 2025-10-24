@@ -20,14 +20,31 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 justify-content-lg-center">
         <li class="nav-item"><a class="nav-link" href="../index.html">Inicio</a></li>
         <li class="nav-item"><a class="nav-link active" aria-current="page" href="Products.html">Productos</a></li>
         <li class="nav-item"><a class="nav-link" href="Reserve.html">Reserva</a></li>
         <li class="nav-item"><a class="nav-link" href="About.html">Acerca de Nosotros</a></li>
         <li class="nav-item"><a class="nav-link" href="Contact.html">Contacto</a></li>
-        <li class="nav-item"><a class="nav-link" href="Login.html">Registro</a></li>
       </ul>
+          <div class="d-flex align-items-center ms-auto">
+        <div class="d-none d-lg-flex">
+            <button class="boton-login-registro btn btn-sm btn-outline-primary me-2">
+                <a class="nav-link p-0 text-decoration-none" href="Register.html">Registro</a>
+            </button>
+            <button class="boton-login-registro btn btn-sm btn-outline-primary me-2">
+                <a class="nav-link p-0 text-white text-decoration-none" href="Login.html">Log In</a>
+            </button>
+        </div>
+
+        <!-- Botones visibles en Móvil (dentro del menú colapsado) -->
+        <div class="d-lg-none d-flex flex-column mt-3 w-100">
+             <button class="boton-login-registro btn btn-sm btn-outline-primary mb-2 w-100">
+                <a class="nav-link p-0 text-decoration-none" href="Register.html">Registro</a>
+            </button>
+            <button class="boton-login-registro btn btn-sm btn-outline-primary w-100">
+                <a class="nav-link p-0 text-white text-decoration-none" href="Login.html">Log In</a>
+            </button>
     </div>
   </div>
 </nav>
