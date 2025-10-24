@@ -1,15 +1,16 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Reserva - H&B SPA Jardín Balbuena</title>
+    <title>Registro de usuario - H&B SPA</title>
     <!-- Preload critical fonts -->
     <link rel="preload" href="../styles/fonts/Lato/Lato-Regular.ttf" as="font" type="font/ttf" crossorigin>
     <link rel="preload" href="../styles/fonts/Lora/Lora-VariableFont_wght.ttf" as="font" type="font/ttf" crossorigin>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="../styles/common.css" />
-    <link rel="stylesheet" href="../styles/reserve.css" />
+    <link rel="stylesheet" href="../styles/common.css">
+    <link rel="stylesheet" href="../styles/register.css">
+    <script defer src="../scripts/validation.js"></script>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg fixed-top navbar-transparent" data-navbar-mode="transparent" data-navbar-theme="light">
@@ -22,7 +23,7 @@
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0 justify-content-lg-center">
         <li class="nav-item"><a class="nav-link" href="../index.html">Inicio</a></li>
         <li class="nav-item"><a class="nav-link" href="Products.html">Productos</a></li>
-        <li class="nav-item"><a class="nav-link active" aria-current="page" href="Reserve.html">Reserva</a></li>
+        <li class="nav-item"><a class="nav-link" href="Reserve.html">Reserva</a></li>
         <li class="nav-item"><a class="nav-link" href="About.html">Acerca de Nosotros</a></li>
         <li class="nav-item"><a class="nav-link" href="Contact.html">Contacto</a></li>
       </ul>
@@ -48,22 +49,50 @@
   </div>
 </nav>
 
-<div class="py-5">
-    <div class="container">
-        <div class="text-center mb-5">
-            <h1 class="display-4 fw-bold mb-3">Reserva tu cita</h1>
-            <p class="lead text-muted">Agenda tu servicio de spa y bienestar fácilmente.</p>
+<div class="container mt-5 pt-5">
+    <div class="card mx-auto shadow" style="max-width: 450px;">
+        <div class="card-body">
+            <h3 class="text-center mb-4">Registro de Usuario</h3>
+
+            <form id="registroForm" novalidate>
+                <div class="mb-3">
+                    <label for="nombre" class="form-label">Nombre completo</label>
+                    <input type="text" class="form-control" id="nombre" required>
+                    <div class="invalid-feedback">Ingrese su nombre completo.</div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="telefono" class="form-label">Número de teléfono</label>
+                    <input type="tel" class="form-control" id="telefono" required>
+                    <div class="invalid-feedback">Ingrese un teléfono válido (10 dígitos).</div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="email" class="form-label">Correo electrónico</label>
+                    <input type="email" class="form-control" id="email" required>
+                    <div class="invalid-feedback">Ingrese un correo electrónico válido.</div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="password" class="form-label">Contraseña</label>
+                    <input type="password" class="form-control" id="password" required minlength="6">
+                    <div class="invalid-feedback">La contraseña debe tener al menos 6 caracteres.</div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="confirmPassword" class="form-label">Confirmar contraseña</label>
+                    <input type="password" class="form-control" id="confirmPassword" required>
+                    <div class="invalid-feedback">Las contraseñas no coinciden.</div>
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100">Registrarse</button>
+            </form>
+
+            <div id="mensaje" class="mt-3 text-center fw-bold"></div>
         </div>
-        <!-- Aquí iría el formulario de reserva -->
     </div>
 </div>
 
-<!-- Cart preview bar (pages) -->
-<div id="cart-preview" class="cart-preview-bar" role="region" aria-live="polite">
-  <div class="bag" aria-hidden="true"><i class="bi bi-bag-check-fill"></i></div>
-  <div class="summary"><span id="cart-count">0</span> productos en el carrito</div>
-  <a href="ShoppingCart.html" class="btn btn-primary btn-review">Revisar Carrito</a>
-</div>
 
 <!-- FOOTER -->
 <footer class="bg-light pt-5 pb-3 mt-5">
@@ -79,7 +108,7 @@
       </div>
 
       <!-- Columna 2 -->
-      <div class="mb-4">
+     <div class="mb-4">
         <h5 class="fw-bold mb-3">Enlaces Rápidos</h5>
         <ul class="list-unstyled">
           <li class="mb-2"><a href="../index.html" class="text-muted text-decoration-none">Inicio</a></li>
@@ -120,16 +149,16 @@
     </div>
   </div>
 </footer>
+<!-- Scripts -->
+<script src="../scripts/validation.js"></script>
 <script src="../scripts/app.js"></script>
 <script src="../scripts/cart-preview.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-<!-- Botón Flotante -->
+<!-- Botón Flotante y Modal FAQ -->
 <button id="faq-button" class="faq-floating-btn" aria-label="Preguntas Frecuentes">
   <i class="bi bi-question-circle-fill"></i>
 </button>
-
-<!-- Modal de Preguntas Frecuentes -->
 <div id="faq-modal" class="faq-modal">
   <div class="faq-modal-content">
     <div class="faq-modal-header">
@@ -148,6 +177,118 @@
   </div>
 </div>
 
+<!-- Inline form submit script -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("contactForm");
+  const successMsg = document.getElementById("successMsg");
+  const errorMsg = document.getElementById("errorMsg");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    // Ejecutar validación antes de enviar
+    const isValid = typeof validateForm === "function" ? validateForm() : true;
+
+    if (!isValid) {
+      successMsg.style.display = "none";
+      errorMsg.style.display = "none";
+      return; // Detener envío
+    }
+
+    // Si pasa validación → preparar envío
+    const para = "cuartodeunvago@gmail.com";
+    const asunto = document.getElementById("subject").value;
+    const mensaje = `
+      Nombre: ${document.getElementById("name").value}
+      Correo: ${document.getElementById("email").value}
+      Teléfono: ${document.getElementById("phone").value}
+      Asunto: ${document.getElementById("subject").value}
+      Mensaje: ${document.getElementById("message").value}
+    `;
+
+    const params = new URLSearchParams();
+    params.append("para", para);
+    params.append("asunto", asunto);
+    params.append("mensaje", mensaje);
+
+    successMsg.style.display = "none";
+    errorMsg.style.display = "none";
+
+    try {
+      const response = await fetch("http://localhost:8080/api/email/enviar", {
+        method: "POST",
+        body: params,
+      });
+
+      if (response.ok) {
+        successMsg.style.display = "block";
+        errorMsg.style.display = "none";
+        form.reset();
+
+        // Quitar clases de validación al limpiar
+        form.classList.remove("was-validated");
+        document
+          .querySelectorAll(".is-valid, .is-invalid")
+          .forEach((el) => el.classList.remove("is-valid", "is-invalid"));
+      } else {
+        errorMsg.style.display = "block";
+        successMsg.style.display = "none";
+      }
+    } catch (error) {
+      errorMsg.style.display = "block";
+      successMsg.style.display = "none";
+    }
+  });
+});
+</script>
+
+<!-- Equalize the two top cards' heights for better UX on desktop -->
+<script>
+(function() {
+  function equalize() {
+    var formCard = document.getElementById('contact-form-card');
+    var infoCard = document.getElementById('contact-info-card');
+    if (!formCard || !infoCard) return;
+    // Reset first
+    formCard.style.minHeight = 'auto';
+    infoCard.style.minHeight = 'auto';
+
+    var isDesktop = window.matchMedia('(min-width: 992px)').matches; // Bootstrap lg breakpoint
+    if (!isDesktop) return; // No equalization on stacked layout
+
+    // Measure
+    var maxH = Math.max(formCard.offsetHeight, infoCard.offsetHeight);
+    formCard.style.minHeight = maxH + 'px';
+    infoCard.style.minHeight = maxH + 'px';
+  }
+
+  // Run on load, resize, and after fonts/widget load
+  window.addEventListener('load', equalize);
+  window.addEventListener('resize', function(){
+    // Debounce a bit
+    clearTimeout(window.__eqTimer);
+    window.__eqTimer = setTimeout(equalize, 100);
+  });
+
+  // In case of dynamic content changes (validation messages etc.)
+  document.addEventListener('DOMContentLoaded', function(){
+    equalize();
+    // Observe mutations inside the two cards to recalc when content changes
+    try {
+      var obs = new MutationObserver(function(){ equalize(); });
+      var cfg = { childList: true, subtree: true, characterData: true };
+      var formCard = document.getElementById('contact-form-card');
+      var infoCard = document.getElementById('contact-info-card');
+      if (formCard) obs.observe(formCard, cfg);
+      if (infoCard) obs.observe(infoCard, cfg);
+    } catch(e) { /* no-op */ }
+  });
+})();
+</script>
+
+<!-- Cart preview script -->
+<script src="../scripts/cart-preview.js"></script>
 <script>
   fetch('/pages/faq.html')
     .then(response => response.text())
