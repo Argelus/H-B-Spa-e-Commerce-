@@ -33,23 +33,16 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        // ✅ Permitir preflights de CORS sin autenticación
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-
-                        // 🔓 Endpoints públicos
                         .requestMatchers("/api/auth/**").permitAll()
-
-                        // 📦 Lectura pública
                         .requestMatchers(HttpMethod.GET, "/api/products/**", "/api/categories/**").permitAll()
-
-                        // 🔐 Operaciones de admin
+                        .requestMatchers(HttpMethod.POST, "/api/email/enviar").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/products/**", "/api/categories/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.PUT, "/api/products/**", "/api/categories/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/api/products/**", "/api/categories/**").hasRole("ADMIN")
-
-                        // Resto requiere autenticación
                         .anyRequest().authenticated()
                 )
+
                 // Agregar el filtro JWT
                 .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 
