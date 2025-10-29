@@ -1,0 +1,25 @@
+<head>
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+</head>
+
+<body>
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 800, // Duración de la animación en ms
+      once: true,    // Si la animación debe ocurrir solo una vez
+    });
+  </script>
+</body>
+
+
+Añade atributos data-aos="fade-up"
+
+Ejemplo:
+
+<div class="text-center pt-5 pb-4" data-aos="fade-up">
+  <h2 class="display-5 fw-bold text-gris-humo">Conoce a Nuestro Equipo Profesional</h2>
+  <p class="lead text-muted">Personas apasionadas dedicadas a tu bienestar.</p>
+</div>
+
+
