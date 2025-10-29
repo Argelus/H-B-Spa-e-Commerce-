@@ -1,0 +1,201 @@
+:root {
+  --primary-color: #c8a2c8;
+  --secondary-color: #e8d5e8;
+  --lila-rosa: #ebcaec;
+  --text-dark: #2c3e50;
+  --text-muted: #6c757d;
+  --text-gris-humo: #4a5568;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  color: var(--text-dark);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+.text-gris-humo {
+  color: var(--text-gris-humo);
+}
+
+.navbar {
+  transition: all 0.4s ease;
+  backdrop-filter: blur(10px);
+}
+
+.navbar-transparent {
+  background-color: rgba(0, 0, 0, 0.3) !important;
+}
+
+.navbar-scrolled {
+  background-color: rgba(0, 0, 0, 0.9) !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #b88eb8;
+  border-color: #b88eb8;
+  color: white;
+}
+
+.btn-outline-primary {
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}
+
+.btn-outline-primary:hover {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  color: white;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 600;
+}
+
+.lead {
+  font-size: 1.1rem;
+  line-height: 1.8;
+}
+
+.faq-floating-btn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 60px;
+  height: 60px;
+  background-color: var(--primary-color);
+  border: none;
+  border-radius: 50%;
+  color: white;
+  font-size: 28px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.faq-floating-btn:hover {
+  background-color: #b88eb8;
+}
+
+.faq-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1050;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.faq-modal.show {
+  opacity: 1;
+}
+
+.faq-modal-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 600px;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.faq-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.faq-close-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--text-muted);
+  transition: color 0.3s ease;
+}
+
+.faq-close-btn:hover {
+  color: var(--text-dark);
+}
+
+.faq-modal-body {
+  padding: 1.5rem;
+  overflow-y: auto;
+}
+
+.cart-preview-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: white;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 999;
+  gap: 1rem;
+}
+
+.cart-preview-bar.show {
+  display: flex;
+}
+
+.cart-preview-bar .bag {
+  font-size: 1.5rem;
+  color: var(--primary-color);
+}
+
+.cart-preview-bar .summary {
+  flex: 1;
+  font-weight: 600;
+}
+
+.cart-preview-bar .btn-review {
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .cart-preview-bar {
+    flex-wrap: wrap;
+    padding: 0.75rem;
+  }
+
+  .faq-floating-btn {
+    bottom: 100px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+  }
+}

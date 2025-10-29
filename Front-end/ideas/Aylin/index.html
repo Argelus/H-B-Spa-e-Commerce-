@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>H&B SPA Jardín Balbuena</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Conoce la historia, misión, valores y equipo profesional de H&B SPA Jardín Balbuena." />
+    <link rel="preload" href="styles/fonts/Lato/Lato-Regular.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="styles/fonts/Lora/Lora-VariableFont_wght.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="styles/fonts/Cormorant_Garamond/CormorantGaramond-VariableFont_wght.ttf" as="font" type="font/ttf" crossorigin>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="styles/common.css" />
+    <link rel="stylesheet" href="styles/index.css" />
+    <link rel="stylesheet" href="components/team-carousel.css" />
+</head>
+<body class="has-hero">
+<nav class="navbar navbar-expand-lg fixed-top navbar-dark navbar-transparent">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="index.html">H&B SPA</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 justify-content-lg-center">
+        <li class="nav-item"><a class="nav-link active" aria-current="page" href="index.html">Inicio</a></li>
+        <li class="nav-item"><a class="nav-link" href="pages/Products.html">Productos</a></li>
+        <li class="nav-item"><a class="nav-link" href="pages/Reserve.html">Reserva</a></li>
+        <li class="nav-item"><a class="nav-link" href="pages/About.html">Acerca de Nosotros</a></li>
+        <li class="nav-item"><a class="nav-link" href="pages/Contact.html">Contacto</a></li>
+      </ul>
+      <div class="d-flex align-items-center ms-auto">
+        <div class="d-none d-lg-flex">
+            <button class="boton-login-registro btn btn-sm btn-outline-primary me-2">
+                <a class="nav-link p-0 text-decoration-none" href="pages/Register.html">Registro</a>
+            </button>
+            <button class="boton-login-registro btn btn-sm btn-outline-primary me-2">
+                <a class="nav-link p-0 text-white text-decoration-none" href="pages/Login.html">Log In</a>
+            </button>
+        </div>
+
+        <div class="d-lg-none d-flex flex-column mt-3 w-100">
+             <button class="boton-login-registro btn btn-sm btn-outline-primary mb-2 w-100">
+                <a class="nav-link p-0 text-decoration-none" href="pages/Register.html">Registro</a>
+            </button>
+            <button class="boton-login-registro btn btn-sm btn-outline-primary w-100">
+                <a class="nav-link p-0 text-white text-decoration-none" href="pages/Login.html">Log In</a>
+            </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div id="hero-carousel" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#hero-carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#hero-carousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#hero-carousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+
+  <div class="carousel-inner">
+    <div class="carousel-item active c-item">
+      <img src="https://images.unsplash.com/photo-1579033461380-adb47c3eb938?fit=crop&w=1964&q=100" class="d-block w-100 c-img" alt="Tratamientos faciales de calidad">
+      <div class="carousel-caption top-0 mt-4">
+        <p class="mt-5 fs-3 text-uppercase hero-subtitle">Descubre tu mejor versión</p>
+        <h1 class="display-1 fw-bolder text-capitalize hero-title">Bienestar y Belleza</h1>
+        <a href="pages/Reserve.html" class="btn btn-primary px-4 py-2 fs-5 mt-5 hero-cta">Reserva ahora</a>
+      </div>
+    </div>
+    <div class="carousel-item c-item">
+      <img src="https://images.unsplash.com/photo-1516466723877-e4ec1d736c8a?fit=crop&w=2134&q=100" class="d-block w-100 c-img" alt="Ambiente relajante en spa">
+      <div class="carousel-caption top-0 mt-4">
+        <p class="text-uppercase fs-3 mt-5 hero-subtitle">Relájate con nosotros</p>
+        <p class="display-1 fw-bolder text-capitalize hero-title">Experiencias únicas</p>
+        <a href="pages/Products.html" class="btn btn-primary px-4 py-2 fs-5 mt-5 hero-cta">Ver productos</a>
+      </div>
+    </div>
+    <div class="carousel-item c-item">
+      <img src="https://images.unsplash.com/photo-1612686635542-2244ed9f8ddc?fit=crop&w=2070&q=100" class="d-block w-100 c-img" alt="Servicios profesionales">
+      <div class="carousel-caption top-0 mt-4">
+        <p class="text-uppercase fs-3 mt-5 hero-subtitle">Cuidado profesional</p>
+        <p class="display-1 fw-bolder text-capitalize hero-title">Resultados visibles</p>
+        <a href="pages/Reserve.html" class="btn btn-primary px-4 py-2 fs-5 mt-5 hero-cta">Agenda tu cita</a>
+      </div>
+    </div>
+  </div>
+
+  <button class="carousel-control-prev" type="button" data-bs-target="#hero-carousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Anterior</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#hero-carousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Siguiente</span>
+  </button>
+
+  <a href="#home-content" class="scroll-cue" aria-label="Desplazarse al contenido">
+    <i class="bi bi-chevron-down"></i>
+  </a>
+</div>
+
+<section>
+    <div class="container">
+        <div class="text-center pt-5 pb-4 fade-in-section">
+            <h2 class="display-5 fw-bold text-gris-humo">Conoce a Nuestro Equipo Profesional</h2>
+            <p class="lead text-muted">Personas apasionadas dedicadas a tu bienestar.</p>
+        </div>
+    </div>
+    <div id="team-section" class="team-container fade-in-section">
+        <div class="team-grid">
+            <div class="image-column">
+                <div class="image-stack">
+                </div>
+            </div>
+            <div class="content-column">
+                <div class="team-member-content-wrapper">
+                </div>
+                <div class="team-member-nav">
+                    <button id="team-member-prev" class="nav-arrow" aria-label="Miembro anterior">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </button>
+                    <button id="team-member-next" class="nav-arrow" aria-label="Siguiente miembro">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div id="home-content" class="py-5">
+    <div class="container">
+        <div class="text-center mb-5 fade-in-section">
+            <div class="elfsight-app-fe189f22-bf26-437b-aed6-dda28d5e9e47" data-elfsight-app-lazy></div>
+        </div>
+        <script src="https://elfsightcdn.com/platform.js" async></script>
+    </div>
+
+    <section class="py-5 mb-5 fade-in-section" id="gallery-section">
+        <div class="container">
+            <div class="text-center mb-5">
+                <p class="text-uppercase text-muted mb-2 letter-spacing-wide">Nuestras Instalaciones</p>
+                <h2 class="display-5 fw-bold text-gris-humo mb-3">Galería</h2>
+                <p class="lead text-muted">Descubre nuestros espacios diseñados para tu confort y relajación</p>
+            </div>
+
+            <div class="gallery-grid" id="gallery-grid">
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5 mb-5 fade-in-section" id="instagram-section">
+        <div class="container">
+            <div class="text-center mb-5">
+                <p class="text-uppercase text-muted mb-2 letter-spacing-wide">Síguenos en</p>
+                <h2 class="display-5 fw-bold text-gris-humo mb-3">Instagram</h2>
+                <a href="https://www.instagram.com/spahyb" target="_blank" rel="noopener" class="instagram-handle">
+                    <i class="bi bi-instagram"></i> @spahyb
+                </a>
+            </div>
+
+            <div class="instagram-grid" id="instagram-grid">
+            </div>
+
+            <div class="text-center mt-4">
+                <a href="https://www.instagram.com/spahyb" target="_blank" rel="noopener" class="btn btn-outline-primary btn-lg px-5">
+                    <i class="bi bi-instagram me-2"></i>Ver más en Instagram
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5 bg-lila-rosa-gradient rounded fade-in-section">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="fw-bold mb-4 text-gris-humo">Certificaciones y Reconocimientos</h2>
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="d-flex flex-wrap justify-content-center gap-4">
+                            <div class="p-3 cert-badge">
+                                <i class="bi bi-award-fill fs-1 text-gris-humo"></i>
+                                <p class="mt-2 text-gris-humo fw-bold">ISO 9001</p>
+                            </div>
+                            <div class="p-3 cert-badge">
+                                <i class="bi bi-check-circle-fill fs-1 text-gris-humo"></i>
+                                <p class="mt-2 text-gris-humo fw-bold">COFEPRIS</p>
+                            </div>
+                            <div class="p-3 cert-badge">
+                                <i class="bi bi-star-fill fs-1 text-gris-humo"></i>
+                                <p class="mt-2 text-gris-humo fw-bold">5 Estrellas</p>
+                            </div>
+                            <div class="p-3 cert-badge">
+                                <i class="bi bi-shield-check fs-1 text-gris-humo"></i>
+                                <p class="mt-2 text-gris-humo fw-bold">Certificación Orgánica</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<footer class="bg-light pt-5 pb-3 mt-5">
+  <div class="container">
+    <div class="d-flex justify-content-evenly flex-wrap text-center text-md-start">
+      <div class="mb-4">
+        <h5 class="fw-bold mb-3">H&B SPA Jardín Balbuena</h5>
+        <p class="text-muted">Tu refugio de belleza y bienestar desde 2015.</p>
+        <p class="text-muted mb-1"><i class="bi bi-geo-alt-fill"></i> Jardín Balbuena, CDMX</p>
+        <p class="text-muted mb-1"><i class="bi bi-telephone-fill"></i> (55) 1234-5678</p>
+        <p class="text-muted"><i class="bi bi-envelope-fill"></i> contacto@hbspa.com</p>
+      </div>
+
+      <div class="mb-4">
+        <h5 class="fw-bold mb-3">Enlaces Rápidos</h5>
+        <ul class="list-unstyled">
+          <li class="mb-2"><a href="./index.html" class="text-muted text-decoration-none">Inicio</a></li>
+          <li class="mb-2"><a href="./pages/Products.html" class="text-muted text-decoration-none">Productos</a></li>
+          <li class="mb-2"><a href="./pages/Reserve.html" class="text-muted text-decoration-none">Reserva</a></li>
+          <li class="mb-2"><a href="./pages/About.html" class="text-muted text-decoration-none">Acerca de Nosotros</a></li>
+          <li class="mb-2"><a href="./pages/Contact.html" class="text-muted text-decoration-none">Contacto</a></li>
+        </ul>
+      </div>
+
+      <div class="mb-4">
+        <h5 class="fw-bold mb-3">Síguenos</h5>
+        <div class="d-flex justify-content-start gap-3 mb-3">
+          <a href="https://wa.me/5562316302" target="_blank" rel="noopener" class="text-muted fs-4 text-decoration-none social-icon" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+          <a href="https://www.facebook.com/share/1AezGeWWhd/" target="_blank" rel="noopener" class="text-muted fs-4 text-decoration-none social-icon" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+          <a href="https://www.instagram.com/spahyb?igsh=c2ttcnhuY2k1N2F3" target="_blank" rel="noopener" class="text-muted fs-4 text-decoration-none social-icon" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+        </div>
+        <h6 class="fw-bold mt-4 mb-2">Horarios</h6>
+        <ul class="list-unstyled text-muted mb-0">
+          <li>Lunes - Viernes: 9:00 AM - 8:00 PM</li>
+          <li>Sábado: 10:00 AM - 6:00 PM</li>
+          <li>Domingo: Cerrado</li>
+        </ul>
+      </div>
+    </div>
+
+    <hr class="my-4">
+    <div class="row">
+      <div class="col-12 text-center">
+        <p class="text-muted mb-0">&copy; 2025 H&B SPA Jardín Balbuena. Todos los derechos reservados.</p>
+        <p class="text-muted small mb-0">
+          <a href="#" class="text-muted text-decoration-none">Política de Privacidad</a> |
+          <a href="#" class="text-muted text-decoration-none">Términos y Condiciones</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<button id="faq-button" class="faq-floating-btn" aria-label="Preguntas Frecuentes">
+  <i class="bi bi-question-circle-fill"></i>
+</button>
+
+<div id="faq-modal" class="faq-modal">
+  <div class="faq-modal-content">
+    <div class="faq-modal-header">
+      <h3 class="mb-0">Preguntas Frecuentes</h3>
+      <button id="close-faq" class="faq-close-btn" aria-label="Cerrar">
+        <i class="bi bi-x-lg"></i>
+      </button>
+    </div>
+    <div class="faq-modal-body">
+      <div class="accordion" id="faqAccordion">
+        <div id="faq-container">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="cart-preview" class="cart-preview-bar" role="region" aria-live="polite">
+  <div class="bag" aria-hidden="true"><i class="bi bi-bag-check-fill"></i></div>
+  <div class="summary"><span id="cart-count">0</span> productos en el carrito</div>
+  <a href="pages/ShoppingCart.html" class="btn btn-primary btn-review">Revisar Carrito</a>
+</div>
+
+<script src="./scripts/app.js" defer></script>
+<script src="./scripts/cart-preview.js" defer></script>
+<script src="components/team-carousel.js" defer></script>
+<script src="./scripts/animations.js" defer></script>
+<script src="./scripts/gallery.js" defer></script>
+<script src="./scripts/instagram.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
+</body>
+</html>
