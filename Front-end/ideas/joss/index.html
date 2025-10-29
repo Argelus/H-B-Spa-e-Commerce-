@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>H&B SPA Jardín Balbuena</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Conoce la historia, misión, valores y equipo profesional de H&B SPA Jardín Balbuena." />
+    <!-- Preload critical fonts -->
+    <link rel="preload" href="styles/fonts/Lato/Lato-Regular.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="styles/fonts/Lora/Lora-VariableFont_wght.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="styles/fonts/Cormorant_Garamond/CormorantGaramond-VariableFont_wght.ttf" as="font" type="font/ttf" crossorigin>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="/Front-end/styles/common.css" />
+    <link rel="stylesheet" href="../joss/index.css" />
+    <link rel="stylesheet" href="/Front-end/components/team-carousel.css" />
+</head>
+<body class="has-hero">
+<!-- Barra de progreso de scroll -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- Contenedor de partículas de agua -->
+<div id="waterParticles"></div>
+
+<nav class="navbar navbar-expand-lg fixed-top navbar-dark">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="index.html">H&B SPA</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item"><a class="nav-link active" href="index.html">Inicio</a></li>
+        <li class="nav-item"><a class="nav-link" href="pages/Products.html">Productos</a></li>
+        <li class="nav-item"><a class="nav-link" href="pages/Reserve.html">Reserva</a></li>
+        <li class="nav-item"><a class="nav-link" href="pages/About.html">Acerca de Nosotros</a></li>
+        <li class="nav-item"><a class="nav-link" href="pages/Contact.html">Contacto</a></li>
+      </ul>
+      <div class="d-flex align-items-center ms-auto">
+        <div class="d-none d-lg-flex">
+            <button class="boton-login-registro btn btn-sm me-2">
+                <a class="nav-link p-0 text-decoration-none" href="pages/Register.html">Registro</a>
+            </button>
+            <button class="boton-login-registro btn btn-sm me-2">
+                <a class="nav-link p-0 text-decoration-none" href="pages/Login.html">Log In</a>
+            </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero Carousel -->
+<div id="hero-carousel" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#hero-carousel" data-bs-slide-to="0" class="active" aria-current="true"></button>
+    <button type="button" data-bs-target="#hero-carousel" data-bs-slide-to="1"></button>
+    <button type="button" data-bs-target="#hero-carousel" data-bs-slide-to="2"></button>
+  </div>
+
+  <div class="carousel-inner">
+    <div class="carousel-item active c-item">
+      <img src="https://images.unsplash.com/photo-1579033461380-adb47c3eb938?fit=crop&w=1964&q=100" class="d-block w-100 c-img" alt="Tratamientos faciales">
+      <div class="carousel-caption">
+        <p class="fs-3 text-uppercase">Descubre tu mejor versión</p>
+        <h1 class="display-1 fw-bolder text-capitalize">Bienestar y Belleza</h1>
+        <a href="pages/Reserve.html" class="btn btn-primary px-4 py-2 fs-5 mt-4">Reserva ahora</a>
+      </div>
+    </div>
+    <div class="carousel-item c-item">
+      <img src="https://images.unsplash.com/photo-1516466723877-e4ec1d736c8a?fit=crop&w=2134&q=100" class="d-block w-100 c-img" alt="Ambiente relajante">
+      <div class="carousel-caption">
+        <p class="text-uppercase fs-3">Relájate con nosotros</p>
+        <p class="display-1 fw-bolder text-capitalize">Experiencias únicas</p>
+        <a href="pages/Products.html" class="btn btn-primary px-4 py-2 fs-5 mt-4">Ver productos</a>
+      </div>
+    </div>
+    <div class="carousel-item c-item">
+      <img src="https://images.unsplash.com/photo-1612686635542-2244ed9f8ddc?fit=crop&w=2070&q=100" class="d-block w-100 c-img" alt="Servicios profesionales">
+      <div class="carousel-caption">
+        <p class="text-uppercase fs-3">Cuidado profesional</p>
+        <p class="display-1 fw-bolder text-capitalize">Resultados visibles</p>
+        <a href="pages/Reserve.html" class="btn btn-primary px-4 py-2 fs-5 mt-4">Agenda tu cita</a>
+      </div>
+    </div>
+  </div>
+
+  <button class="carousel-control-prev" type="button" data-bs-target="#hero-carousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+    <span class="visually-hidden">Anterior</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#hero-carousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon"></span>
+    <span class="visually-hidden">Siguiente</span>
+  </button>
+
+  <a href="#home-content" class="scroll-cue">
+    <i class="bi bi-chevron-down"></i>
+  </a>
+</div>
+
+<!-- Sección de Equipo Profesional -->
+<section id="team-section" class="scroll-reveal">
+    <div class="container">
+        <div class="text-center pt-5 pb-4">
+            <h2 class="display-5 fw-bold text-gris-humo">Conoce a Nuestro Equipo Profesional</h2>
+            <p class="lead text-muted">Personas apasionadas dedicadas a tu bienestar.</p>
+        </div>
+        <div class="row g-4 justify-content-center">
+            <div class="col-md-4 scroll-reveal-left">
+                <div class="card border-0 shadow-sm wave-effect" style="border-radius: 15px; overflow: hidden;">
+                    <img src="https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?w=400&h=400&fit=crop" class="card-img-top" alt="Especialista">
+                    <div class="card-body text-center p-4">
+                        <h5 class="fw-bold">Dra. María González</h5>
+                        <p class="text-muted mb-0">Dermatóloga Certificada</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 scroll-reveal-scale">
+                <div class="card border-0 shadow-sm wave-effect" style="border-radius: 15px; overflow: hidden;">
+                    <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&h=400&fit=crop" class="card-img-top" alt="Terapeuta">
+                    <div class="card-body text-center p-4">
+                        <h5 class="fw-bold">Laura Martínez</h5>
+                        <p class="text-muted mb-0">Terapeuta de Spa</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 scroll-reveal-right">
+                <div class="card border-0 shadow-sm wave-effect" style="border-radius: 15px; overflow: hidden;">
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=400&fit=crop" class="card-img-top" alt="Esteticista">
+                    <div class="card-body text-center p-4">
+                        <h5 class="fw-bold">Ana Rodríguez</h5>
+                        <p class="text-muted mb-0">Esteticista Profesional</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contenido principal -->
+<div id="home-content" class="py-5">
+    <div class="container">
+        <div class="text-center mb-5 scroll-reveal">
+            <h2 class="display-5 fw-bold mb-3">Tu Oasis de Tranquilidad</h2>
+            <p class="lead text-muted">Experimenta la armonía perfecta entre bienestar y belleza</p>
+        </div>
+
+        <!-- Sección de Certificaciones -->
+        <section class="py-5 bg-lila-rosa-gradient rounded scroll-reveal-scale" style="border-radius: 20px !important;">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="fw-bold mb-5 text-gris-humo">Certificaciones y Reconocimientos</h2>
+                    <div class="row justify-content-center">
+                        <div class="col-lg-10">
+                            <div class="d-flex flex-wrap justify-content-center gap-5">
+                                <div class="certification-item p-4">
+                                    <i class="bi bi-award-fill fs-1 text-gris-humo d-block mb-3"></i>
+                                    <p class="text-gris-humo fw-bold mb-0">ISO 9001</p>
+                                </div>
+                                <div class="certification-item p-4">
+                                    <i class="bi bi-check-circle-fill fs-1 text-gris-humo d-block mb-3"></i>
+                                    <p class="text-gris-humo fw-bold mb-0">COFEPRIS</p>
+                                </div>
+                                <div class="certification-item p-4">
+                                    <i class="bi bi-star-fill fs-1 text-gris-humo d-block mb-3"></i>
+                                    <p class="text-gris-humo fw-bold mb-0">5 Estrellas</p>
+                                </div>
+                                <div class="certification-item p-4">
+                                    <i class="bi bi-shield-check fs-1 text-gris-humo d-block mb-3"></i>
+                                    <p class="text-gris-humo fw-bold mb-0">Certificación Orgánica</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="pt-5 pb-3 mt-5">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-md-4 scroll-reveal-left">
+        <h5 class="fw-bold mb-3">H&B SPA Jardín Balbuena</h5>
+        <p class="text-muted">Tu refugio de belleza y bienestar desde 2015.</p>
+        <p class="text-muted mb-1"><i class="bi bi-geo-alt-fill"></i> Jardín Balbuena, CDMX</p>
+        <p class="text-muted mb-1"><i class="bi bi-telephone-fill"></i> (55) 1234-5678</p>
+        <p class="text-muted"><i class="bi bi-envelope-fill"></i> contacto@hbspa.com</p>
+      </div>
+
+      <div class="col-md-4 scroll-reveal">
+        <h5 class="fw-bold mb-3">Enlaces Rápidos</h5>
+        <ul class="list-unstyled">
+          <li class="mb-2"><a href="./index.html" class="text-muted text-decoration-none">Inicio</a></li>
+          <li class="mb-2"><a href="./pages/Products.html" class="text-muted text-decoration-none">Productos</a></li>
+          <li class="mb-2"><a href="./pages/Reserve.html" class="text-muted text-decoration-none">Reserva</a></li>
+          <li class="mb-2"><a href="./pages/About.html" class="text-muted text-decoration-none">Acerca de Nosotros</a></li>
+          <li class="mb-2"><a href="./pages/Contact.html" class="text-muted text-decoration-none">Contacto</a></li>
+        </ul>
+      </div>
+
+      <div class="col-md-4 scroll-reveal-right">
+        <h5 class="fw-bold mb-3">Síguenos</h5>
+        <div class="d-flex gap-3 mb-3">
+          <a href="https://wa.me/5562316302" target="_blank" class="text-muted fs-4"><i class="bi bi-whatsapp"></i></a>
+          <a href="https://www.facebook.com/share/1AezGeWWhd/" target="_blank" class="text-muted fs-4"><i class="bi bi-facebook"></i></a>
+          <a href="https://www.instagram.com/spahyb?igsh=c2ttcnhuY2k1N2F3" target="_blank" class="text-muted fs-4"><i class="bi bi-instagram"></i></a>
+        </div>
+        <h6 class="fw-bold mt-4 mb-2">Horarios</h6>
+        <p class="text-muted mb-1">Lunes - Viernes: 9:00 AM - 8:00 PM</p>
+        <p class="text-muted mb-1">Sábado: 10:00 AM - 6:00 PM</p>
+        <p class="text-muted">Domingo: Cerrado</p>
+      </div>
+    </div>
+
+    <hr class="my-4">
+    <div class="text-center">
+      <p class="text-muted mb-0">&copy; 2025 H&B SPA Jardín Balbuena. Todos los derechos reservados.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+// ===== ANIMACIONES DE SCROLL =====
+function revealOnScroll() {
+    const reveals = document.querySelectorAll('.scroll-reveal, .scroll-reveal-left, .scroll-reveal-right, .scroll-reveal-scale');
+    
+    reveals.forEach(element => {
+        const windowHeight = window.innerHeight;
+        const elementTop = element.getBoundingClientRect().top;
+        const elementVisible = 150;
+        
+        if (elementTop < windowHeight - elementVisible) {
+            element.classList.add('active');
+        }
+    });
+}
+
+// ===== NAVBAR SCROLL =====
+function handleNavbarScroll() {
+    const navbar = document.querySelector('.navbar');
+    if (window.scrollY > 100) {
+        navbar.classList.add('navbar-scrolled');
+    } else {
+        navbar.classList.remove('navbar-scrolled');
+    }
+}
+
+// ===== BARRA DE PROGRESO =====
+function updateScrollProgress() {
+    const scrollProgress = document.getElementById('scrollProgress');
+    const windowHeight = window.innerHeight;
+    const documentHeight = document.documentElement.scrollHeight - windowHeight;
+    const scrolled = (window.scrollY / documentHeight);
+    
+    scrollProgress.style.transform = `scaleX(${scrolled})`;
+}
+
+// ===== PARTÍCULAS DE AGUA FLOTANTES =====
+function createWaterParticle() {
+    const container = document.getElementById('waterParticles');
+    if (!container) return;
+    
+    const particle = document.createElement('div');
+    particle.className = 'water-particle';
+    
+    // Posición aleatoria en el ancho de la pantalla
+    const startX = Math.random() * window.innerWidth;
+    particle.style.left = startX + 'px';
+    particle.style.bottom = '-10px';
+    
+    // Duración aleatoria entre 8-15 segundos
+    const duration = 8 + Math.random() * 7;
+    particle.style.animation = `floatUp ${duration}s linear`;
+    
+    // Desplazamiento horizontal aleatorio
+    const drift = (Math.random() - 0.5) * 100;
+    particle.style.setProperty('--drift', drift + 'px');
+    
+    container.appendChild(particle);
+    
+    // Eliminar partícula después de la animación
+    setTimeout(() => {
+        particle.remove();
+    }, duration * 1000);
+}
+
+// Crear partículas periódicamente
+let particleInterval;
+function startWaterParticles() {
+    // Solo en desktop y si el usuario no prefiere reducir movimiento
+    if (window.innerWidth > 768 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        particleInterval = setInterval(createWaterParticle, 800);
+    }
+}
+
+function stopWaterParticles() {
+    if (particleInterval) {
+        clearInterval(particleInterval);
+    }
+}
+
+// ===== PARALLAX SUAVE EN HERO =====
+function handleParallax() {
+    const scrolled = window.scrollY;
+    const heroImages = document.querySelectorAll('.c-img');
+    
+    heroImages.forEach(img => {
+        if (img.closest('.carousel-item.active')) {
+            img.style.transform = `translateY(${scrolled * 0.3}px)`;
+        }
+    });
+}
+
+// ===== ANIMACIÓN DE CERTIFICACIONES AL ENTRAR =====
+function animateCertifications() {
+    const certs = document.querySelectorAll('.certification-item');
+    certs.forEach((cert, index) => {
+        setTimeout(() => {
+            cert.style.opacity = '0';
+            cert.style.transform = 'translateY(30px)';
+            
+            setTimeout(() => {
+                cert.style.transition = 'all 0.6s ease';
+                cert.style.opacity = '1';
+                cert.style.transform = 'translateY(0)';
+            }, 50);
+        }, index * 100);
+    });
+}
+
+// ===== EFECTO DE ONDA AL HACER CLICK =====
+function createRipple(event, element) {
+    const ripple = document.createElement('span');
+    const rect = element.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height);
+    const x = event.clientX - rect.left - size / 2;
+    const y = event.clientY - rect.top - size / 2;
+    
+    ripple.style.cssText = `
+        position: absolute;
+        width: ${size}px;
+        height: ${size}px;
+        border-radius: 50%;
+        background: rgba(235, 210, 236, 0.5);
+        top: ${y}px;
+        left: ${x}px;
+        transform: scale(0);
+        animation: rippleEffect 0.6s ease-out;
+        pointer-events: none;
+    `;
+    
+    element.style.position = 'relative';
+    element.style.overflow = 'hidden';
+    element.appendChild(ripple);
+    
+    setTimeout(() => ripple.remove(), 600);
+}
+
+// Agregar animación de ripple
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes rippleEffect {
+        to {
+            transform: scale(4);
+            opacity: 0;
+        }
+    }
+`;
+document.head.appendChild(style);
+
+// ===== EVENT LISTENERS =====
+window.addEventListener('scroll', () => {
+    revealOnScroll();
+    handleNavbarScroll();
+    updateScrollProgress();
+    handleParallax();
+});
+
+// Smooth scroll para el botón de scroll cue
+document.querySelector('.scroll-cue')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    document.querySelector('#home-content')?.scrollIntoView({ 
+        behavior: 'smooth' 
+    });
+});
+
+// Ripple effect en botones
+document.querySelectorAll('.btn-primary, .certification-item').forEach(el => {
+    el.addEventListener('click', function(e) {
+        createRipple(e, this);
+    });
+});
+
+// ===== INICIALIZACIÓN =====
+document.addEventListener('DOMContentLoaded', () => {
+    revealOnScroll();
+    handleNavbarScroll();
+    updateScrollProgress();
+    startWaterParticles();
+    
+    // Animar certificaciones cuando sean visibles
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && entry.target.classList.contains('bg-lila-rosa-gradient')) {
+                animateCertifications();
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.3 });
+    
+    document.querySelectorAll('.bg-lila-rosa-gradient').forEach(el => {
+        observer.observe(el);
+    });
+});
+
+// Detener partículas en dispositivos móviles o al cambiar tamaño
+window.addEventListener('resize', () => {
+    stopWaterParticles();
+    if (window.innerWidth > 768) {
+        startWaterParticles();
+    }
+});
+
+// Pausar animaciones cuando la pestaña no está activa
+document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+        stopWaterParticles();
+    } else if (window.innerWidth > 768) {
+        startWaterParticles();
+    }
+});
+</script>
+</body>
+</html>

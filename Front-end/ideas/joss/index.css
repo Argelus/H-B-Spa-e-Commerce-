@@ -1,0 +1,564 @@
+/* Importación de fuentes */
+        @font-face {
+            font-family: 'Lato';
+            src: url('styles/fonts/Lato/Lato-Regular.ttf') format('truetype');
+        }
+        @font-face {
+            font-family: 'Lora';
+            src: url('styles/fonts/Lora/Lora-VariableFont_wght.ttf') format('truetype');
+        }
+        @font-face {
+            font-family: 'Cormorant Garamond';
+            src: url('styles/fonts/Cormorant_Garamond/CormorantGaramond-VariableFont_wght.ttf') format('truetype');
+        }
+
+        /* Variables de color del SPA */
+        :root {
+            --lila-rosa: #EBD2EC;
+            --rosa-claro: #F5E6F6;
+            --gris-humo: #4A4A4A;
+            --blanco-puro: #FFFFFF;
+            --agua-transparente: rgba(235, 210, 236, 0.1);
+            --agua-flow: rgba(235, 210, 236, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            color: var(--gris-humo);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Efecto de ondas de agua de fondo */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, var(--agua-transparente) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, var(--agua-flow) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+            animation: waterFlow 20s ease-in-out infinite;
+        }
+
+        @keyframes waterFlow {
+            0%, 100% { opacity: 0.3; transform: translateY(0); }
+            50% { opacity: 0.5; transform: translateY(-20px); }
+        }
+
+        /* Navbar elegante */
+        .navbar {
+            background: rgba(74, 74, 74, 0.95);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .navbar.navbar-scrolled {
+            background: rgba(74, 74, 74, 0.98);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            color: var(--lila-rosa) !important;
+            transition: transform 0.3s ease;
+        }
+
+        .navbar-brand:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-link {
+            color: var(--blanco-puro) !important;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--lila-rosa);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 80%;
+        }
+
+        /* Hero Carousel */
+        #hero-carousel {
+            height: 100vh;
+            position: relative;
+        }
+
+        .c-item {
+            height: 100vh;
+        }
+
+        @supports (height: 100svh) {
+            #hero-carousel, .c-item {
+                height: 100svh;
+            }
+        }
+
+        .c-img {
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.6);
+        }
+
+        .carousel-caption {
+            top: 0;
+            bottom: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .carousel-caption p,
+        .carousel-caption h1 {
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .btn-primary {
+            background: var(--lila-rosa);
+            border: none;
+            color: var(--gris-humo);
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn-primary:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(235, 210, 236, 0.4);
+        }
+
+        /* Scroll cue */
+        .scroll-cue {
+            position: absolute;
+            left: 50%;
+            bottom: 30px;
+            transform: translateX(-50%);
+            color: #fff;
+            opacity: 0.9;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            transition: opacity 0.3s ease;
+        }
+
+        .scroll-cue:hover {
+            opacity: 1;
+        }
+
+        .scroll-cue .bi {
+            font-size: 1.5rem;
+            animation: cue-bounce 1.4s ease-in-out infinite;
+        }
+
+        @keyframes cue-bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        /* Partículas flotantes de agua */
+        .water-particle {
+            position: fixed;
+            width: 6px;
+            height: 6px;
+            background: radial-gradient(circle, var(--lila-rosa), transparent);
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0;
+            z-index: 1;
+        }
+
+        @keyframes floatUp {
+            0% {
+                opacity: 0;
+                transform: translateY(0) scale(1);
+            }
+            10% {
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-100vh) scale(0.5);
+            }
+        }
+
+        /* Animaciones de scroll para secciones */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .scroll-reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .scroll-reveal-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .scroll-reveal-left.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .scroll-reveal-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .scroll-reveal-right.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .scroll-reveal-scale {
+            opacity: 0;
+            transform: scale(0.9);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .scroll-reveal-scale.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Efecto de onda al pasar el mouse */
+        .wave-effect {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .wave-effect::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(235, 210, 236, 0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .wave-effect:hover::after {
+            width: 500px;
+            height: 500px;
+        }
+
+        /* Sección de equipo */
+        #team-section {
+            position: relative;
+            padding: 4rem 0;
+            background: linear-gradient(135deg, var(--rosa-claro) 0%, var(--blanco-puro) 100%);
+        }
+
+        .team-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Certificaciones con hover elegante */
+        .certification-item {
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        .certification-item:hover {
+            transform: translateY(-10px) scale(1.05);
+        }
+
+        .certification-item i {
+            transition: all 0.4s ease;
+        }
+
+        .certification-item:hover i {
+            color: var(--lila-rosa) !important;
+            transform: rotateY(360deg);
+        }
+
+        /* Gradiente de fondo */
+        .bg-lila-rosa-gradient {
+            background: linear-gradient(135deg, var(--lila-rosa) 0%, rgba(235, 210, 236, 0.6) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bg-lila-rosa-gradient::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, var(--agua-transparente) 0%, transparent 70%);
+            animation: gentleRotate 30s linear infinite;
+        }
+
+        @keyframes gentleRotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Footer elegante */
+        footer {
+            background: linear-gradient(to bottom, var(--rosa-claro), var(--blanco-puro));
+            position: relative;
+        }
+
+        footer a {
+            transition: all 0.3s ease;
+        }
+
+        footer a:hover {
+            color: var(--lila-rosa) !important;
+            transform: translateX(5px);
+        }
+
+        footer .bi {
+            transition: transform 0.3s ease;
+        }
+
+        footer a:hover .bi {
+            transform: scale(1.2) rotate(5deg);
+        }
+
+        /* Scroll suave */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        #home-content {
+            scroll-margin-top: 80px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Botones de login/registro */
+        .boton-login-registro {
+            background: transparent;
+            border: 2px solid var(--lila-rosa);
+            transition: all 0.3s ease;
+        }
+
+        .boton-login-registro:hover {
+            background: var(--lila-rosa);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(235, 210, 236, 0.3);
+        }
+
+        .boton-login-registro a {
+            color: var(--blanco-puro) !important;
+            transition: color 0.3s ease;
+        }
+
+        .boton-login-registro:hover a {
+            color: var(--gris-humo) !important;
+        }
+
+        /* Títulos con efecto de agua */
+        .display-5, .display-1 {
+            font-family: 'Cormorant Garamond', serif;
+            position: relative;
+            display: inline-block;
+        }
+
+        .display-5::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--lila-rosa), transparent);
+            animation: flowLine 3s ease-in-out infinite;
+        }
+
+        @keyframes flowLine {
+            0%, 100% { transform: translateX(-100%); opacity: 0; }
+            50% { transform: translateX(0); opacity: 1; }
+        }
+
+        /* Efecto de reflejo en tarjetas */
+        .card {
+            position: relative;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(235, 210, 236, 0.3), transparent);
+            transition: left 0.7s;
+        }
+
+        .card:hover::before {
+            left: 100%;
+        }
+
+        .card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(235, 210, 236, 0.3);
+        }
+
+        /* Animación de entrada con delay */
+        .scroll-reveal-left {
+            transition-delay: 0.1s;
+        }
+
+        .scroll-reveal-scale {
+            transition-delay: 0.2s;
+        }
+
+        .scroll-reveal-right {
+            transition-delay: 0.3s;
+        }
+
+        /* Efecto de onda en certificaciones */
+        .certification-item {
+            position: relative;
+        }
+
+        .certification-item::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(235, 210, 236, 0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+            z-index: -1;
+        }
+
+        .certification-item:hover::before {
+            width: 150%;
+            height: 150%;
+        }
+
+        /* Efecto parallax sutil */
+        .parallax-section {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        /* Línea de progreso de scroll */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--lila-rosa), var(--rosa-claro));
+            z-index: 9999;
+            transform-origin: left;
+            transform: scaleX(0);
+            transition: transform 0.1s ease-out;
+        }
+
+        /* Hover suave en links del footer */
+        footer a {
+            display: inline-block;
+        }
+
+        footer li {
+            transition: transform 0.3s ease;
+        }
+
+        footer li:hover {
+            transform: translateX(10px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .carousel-caption h1 {
+                font-size: 2.5rem;
+            }
+            
+            .carousel-caption p {
+                font-size: 1.2rem;
+            }
+
+            .water-particle {
+                display: none;
+            }
+
+            body::before {
+                animation: none;
+            }
+        }
