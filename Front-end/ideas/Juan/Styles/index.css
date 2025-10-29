@@ -1,0 +1,133 @@
+/* Estilos específicos para la página de inicio (index.html) */
+
+/* Pequeños ajustes específicos para la página de inicio (hero, encabezado) */
+.text-center .display-4 { margin-bottom: 0.5rem; }
+
+.bg-lila-rosa-gradient { background: linear-gradient(90deg, var(--lila-rosa), rgba(235,210,236,0.6)); }
+
+/* Mantener el hero un poco más compacto en la página de inicio */
+.header-hero { padding: 3rem 0; }
+
+@media (max-width: 600px) {
+  .header-hero { padding: 2rem 0; }
+}
+
+/* Carrusel de hero: hacerlo de pantalla completa */
+#hero-carousel { height: 100vh; position: relative; }
+.c-item { height: 100vh; }
+@supports (height: 100svh) {
+  #hero-carousel, .c-item { height: 100svh; }
+}
+
+/* Asegurar que las imágenes cubran completamente y oscurecerlas ligeramente para que los textos sean legibles */
+.c-img { height: 100%; object-fit: cover; filter: brightness(0.6); }
+
+/* Centrar el contenido del caption verticalmente */
+.carousel-caption { top: 0; bottom: 0; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 0.5rem; }
+.carousel-caption p, .carousel-caption h1 { text-shadow: 0 2px 10px rgba(0,0,0,0.45); }
+
+/* Indicador de scroll en la parte inferior central */
+.scroll-cue { position: absolute; left: 50%; bottom: 18px; transform: translateX(-50%); color: #fff; opacity: 0.9; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; font-weight: 600; }
+.scroll-cue .bi { font-size: 1.25rem; animation: cue-bounce 1.4s ease-in-out infinite; }
+.scroll-cue:hover { opacity: 1; }
+@keyframes cue-bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+
+/* Desplazamiento suave para los anclajes (solo en la página de inicio) */
+html { scroll-behavior: smooth; }
+
+/* Desplazamiento para la barra de navegación fija al saltar al contenido */
+#home-content { scroll-margin-top: 80px; }
+@media (max-width: 991.98px) { #home-content { scroll-margin-top: 68px; } }
+/*__________________________________________*/
+.about-image-container {
+    flex: 1;
+    position: relative;
+}
+
+.about-image-container img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.experience-badge {
+    position: absolute;
+    bottom: -30px;
+    left: 0;
+    background-color: white;
+    padding: 20px 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.experience-badge p:first-child {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    line-height: 1;
+    overflow-x: 20;
+}
+.about-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: white;
+    padding: 80px 5%;
+}
+
+.about-content {
+    flex: 1;
+    max-width: 50%;
+    padding-right: 50px;
+}
+
+.about-content h2 {
+    font-size: 2.8rem;
+}
+.discover-btn {
+    background-color: var(--gris-humo);
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 30px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+/* Estilos específicos para los nuevos carruseles */
+
+/* Altura uniforme para las imágenes de los carruseles de producto/servicio */
+.product-carousel, .service-carousel {
+    /* Altura base para escritorio, da buen impacto visual */
+    height: 450px; 
+}
+
+.product-img, .service-img {
+    height: 100%;
+    /* Asegura que la imagen cubra el carrusel y no se distorsione */
+    object-fit: cover; 
+    /* Quitar el filtro de brillo que se aplicó en el hero para el contenido */
+    filter: brightness(1); 
+}
+
+/* Ajustes para dispositivos más pequeños */
+@media (max-width: 991.98px) {
+    /* En móvil y tablet, las columnas del grid se apilan, por lo que el carrusel ya no necesita una altura fija */
+    .product-carousel, .service-carousel {
+        height: auto;
+        /* Aseguramos que la altura mínima sea decente al apilarse */
+        min-height: 300px;
+        margin-bottom: 2rem; /* Espacio extra al apilarse encima de la descripción */
+    }
+
+    .product-img, .service-img {
+        /* Permitir que la imagen ajuste su altura automáticamente al ancho disponible */
+        height: auto;
+    }
+    
+    /* Invertimos el orden para que la descripción quede siempre al inicio en móvil (opcional, pero mejora el flujo) */
+    #servicios-destacados .row {
+        flex-direction: column;
+    }
+}

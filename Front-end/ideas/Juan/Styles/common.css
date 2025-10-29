@@ -1,0 +1,509 @@
+/*
+ * Estilos comunes extraídos de style.css
+ * - Fuentes, variables, layout base, barra de navegación, botones, tipografía.
+ * - Modal de FAQ y acordeón (usado en múltiples páginas).
+*/
+@font-face {
+    font-family: 'Lato';
+    src: url('./fonts/Lato/Lato-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Lato';
+    src: url('./fonts/Lato/Lato-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Lora';
+    src: url('./fonts/Lora/Lora-VariableFont_wght.ttf') format('truetype');
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Lora';
+    src: url('./fonts/Lora/Lora-Italic-VariableFont_wght.ttf') format('truetype');
+    font-weight: 100 900;
+    font-style: italic;
+    font-display: swap;
+}
+/* Fuente decorativa opcional (usada para acentos visuales) */
+@font-face {
+    font-family: 'CormorantGaramond';
+    src: url('./fonts/Cormorant_Garamond/CormorantGaramond-VariableFont_wght.ttf') format('truetype');
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'CormorantGaramond';
+    src: url('./fonts/Cormorant_Garamond/CormorantGaramond-Italic-VariableFont_wght.ttf') format('truetype');
+    font-weight: 100 900;
+    font-style: italic;
+    font-display: swap;
+}
+
+:root {
+    --arena-suave: #F5EDE4;
+    --sal-marina: #c8e4e6;
+    --turquesa-pastel: #6EBFC3;
+    --lila-rosa: #EBD2EC;
+    --rosa-petalo: #F9D6E2;
+    --gris-humo: #4A4A4A;
+    --shadow-card: 0 2px 8px rgba(0,0,0,0.06);
+    --radius: 12px;
+    --transition: 0.2s ease;
+
+    /* Escala de tipografía */
+    --font-size-base: 1rem;   /* 16px */
+    --font-size-sm: 0.9375rem; /* 15px */
+    --font-size-lg: 1.125rem; /* 18px */
+    --font-size-xl: 1.25rem;  /* 20px para textos destacados o subtítulos */
+}
+
+html { height: 100%; }
+
+body {
+    font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    background-color: var(--arena-suave);
+    color: var(--gris-humo);
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-size: var(--font-size-base);
+}
+
+body > .py-5,
+body > div:not(nav):not(footer),
+body > main { flex: 1; }
+
+nav, footer { flex-shrink: 0; }
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Lora', Georgia, 'Times New Roman', serif;
+    color: var(--gris-humo);
+    margin-top: 0;
+    margin-bottom: 0.7em;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    line-height: 1.2;
+    text-shadow: 0 1px 2px rgba(245,237,228,0.15);
+}
+
+h1 { font-size: 2.25rem; }
+h2 { font-size: 1.75rem; }
+h3 { font-size: 1.5rem; }
+
+/* Clases de utilidad para texto y fondo usadas en varias páginas */
+.text-gris-humo { color: var(--gris-humo) !important; }
+.text-turquesa-pastel { color: var(--turquesa-pastel) !important; }
+.text-lila-rosa { color: var(--lila-rosa) !important; }
+.text-rosa-petalo { color: var(--rosa-petalo) !important; }
+.bg-sal-marina { background-color: var(--sal-marina) !important; }
+.bg-turquesa-pastel { background-color: var(--turquesa-pastel) !important; }
+.bg-lila-rosa { background-color: var(--lila-rosa) !important; }
+.bg-rosa-petalo { background-color: var(--rosa-petalo) !important; }
+.text-accent-teal { color: var(--turquesa-pastel) !important; }
+.bg-lila-rosa-gradient { background: linear-gradient(90deg, var(--lila-rosa), rgba(235,210,236,0.6)); }
+
+/* Estilos para navegación genérica (no Bootstrap). La barra de navegación de Bootstrap se maneja más abajo. */
+nav:not(.navbar) {
+    font-family: 'Lora', Georgia, 'Times New Roman', serif;
+    background-color: var(--sal-marina);
+    color: var(--gris-humo);
+    padding: 1em 2em;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-card);
+}
+
+nav:not(.navbar) a { color: var(--gris-humo); text-decoration: none; margin-right: 1.5em; font-weight: 500; transition: color var(--transition); }
+nav:not(.navbar) a:hover, nav:not(.navbar) a:focus { color: var(--turquesa-pastel); }
+
+/* ===== AJUSTES A LA BARRA DE NAVEGACIÓN DE BOOTSTRAP ===== */
+.no-transition * { transition: none !important; }
+
+/* Barra de navegación por defecto (sólida, al hacer scroll) */
+.navbar-light { background-color: #ffffff !important; box-shadow: 0 2px 15px rgba(0,0,0,0.08); transition: all 0.3s ease; }
+
+/* Base para la barra de navegación transparente */
+.navbar-transparent { background: transparent !important; box-shadow: none !important; border-radius: 0 !important; }
+/* Versión oscura transparente sobre imágenes de hero */
+.navbar-transparent.navbar-dark .navbar-brand,
+.navbar-transparent.navbar-dark .nav-link { color: #ffffff !important; }
+.navbar-transparent.navbar-dark .nav-link:hover,
+.navbar-transparent.navbar-dark .nav-link:focus { color: #e9f7f8 !important; }
+.navbar-transparent.navbar-dark .navbar-toggler { border-color: rgba(255,255,255,0.8); }
+.navbar-transparent.navbar-dark .navbar-toggler-icon { filter: invert(1) grayscale(1) brightness(2); }
+/* Versión clara transparente sobre fondos de página claros */
+.navbar-transparent.navbar-light .navbar-brand,
+.navbar-transparent.navbar-light .nav-link { color: var(--gris-humo) !important; }
+.navbar-transparent.navbar-light .nav-link:hover,
+.navbar-transparent.navbar-light .nav-link:focus { color: var(--turquesa-pastel) !important; }
+.navbar-transparent.navbar-light .navbar-toggler { border-color: var(--turquesa-pastel); }
+.navbar-transparent.navbar-light .navbar-toggler-icon { filter: none; }
+
+/* Clase explícita para el estado sólido al hacer scroll */
+.navbar-scrolled { background: #ffffff !important; box-shadow: 0 2px 15px rgba(0,0,0,0.08) !important; border-radius: 0 !important; }
+.navbar-scrolled .navbar-brand,
+.navbar-scrolled .nav-link { color: var(--gris-humo) !important; }
+
+/* Estética base de los enlaces de la barra de navegación sin forzar el color */
+.navbar-brand { font-family: 'Lora', Georgia, 'Times New Roman', serif; font-weight: 700; font-size: 1.25rem; transition: all 0.3s ease; position: relative; }
+.navbar-brand:hover { color: var(--turquesa-pastel) !important; transform: scale(1.05); }
+
+.navbar-brand::after { content: ''; position: absolute; width: 0; height: 3px; bottom: -5px; left: 0; background: linear-gradient(90deg, var(--turquesa-pastel), var(--lila-rosa)); transition: width 0.3s ease; }
+.navbar-brand:hover::after { width: 100%; }
+
+.nav-link { font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; font-weight: 500; font-size: 1rem; padding: 0.5rem 1rem !important; transition: all 0.3s ease; position: relative; overflow: hidden; }
+.nav-link::before { content: ''; position: absolute; bottom: 0; left: 50%; width: 0; height: 2px; background: linear-gradient(90deg, var(--turquesa-pastel), var(--lila-rosa)); transition: all 0.3s ease; transform: translateX(-50%); }
+.nav-link:hover::before, .nav-link:focus::before { width: 80%; }
+.nav-link:hover, .nav-link:focus { color: var(--turquesa-pastel) !important; transform: translateY(-2px); }
+.nav-link.active { color: var(--turquesa-pastel) !important; font-weight: 600; }
+.nav-link.active::before { width: 80%; }
+
+.navbar-toggler { border: 2px solid var(--turquesa-pastel); padding: 0.5rem 0.75rem; border-radius: 8px; transition: all 0.3s ease; position: relative; overflow: hidden; }
+.navbar-toggler::before { content: ''; position: absolute; top: 50%; left: 50%; width: 0; height: 0; border-radius: 50%; background: var(--lila-rosa); transition: width 0.4s ease, height 0.4s ease; transform: translate(-50%, -50%); z-index: 0; }
+.navbar-toggler:hover::before { width: 150%; height: 150%; }
+.navbar-toggler:hover, .navbar-toggler:focus { border-color: var(--lila-rosa); box-shadow: 0 0 0 0.2rem rgba(110,191,195,0.25); }
+.navbar-toggler[aria-expanded="true"] { transform: rotate(90deg); }
+.navbar-toggler[aria-expanded="false"] { transform: rotate(0deg); }
+.navbar-toggler-icon { position: relative; z-index: 1; transition: all 0.3s ease; }
+.navbar-toggler:hover .navbar-toggler-icon { transform: scale(1.1); }
+
+@media (max-width: 991.98px) {
+    .navbar-brand { font-size: 1.125rem; }
+    .navbar-collapse { background: linear-gradient(135deg, #ffffff 0%, var(--arena-suave) 100%); border-radius: var(--radius); margin-top: 1rem; padding: 1rem; box-shadow: 0 8px 25px rgba(0,0,0,0.15); border: 1px solid rgba(110,191,195,0.2); }
+    .nav-link { font-size: 1.0625rem; padding: 0.75rem 1rem !important; border-radius: 8px; margin-bottom: 0.5rem; }
+    .nav-link:hover { background: linear-gradient(90deg, var(--turquesa-pastel), var(--lila-rosa)); color: white !important; transform: translateX(10px); box-shadow: 0 4px 15px rgba(110,191,195,0.3); }
+    .nav-link.active { background: linear-gradient(90deg, var(--turquesa-pastel), var(--lila-rosa)); color: white !important; }
+    .nav-link::before { display: none; }
+    .navbar-nav { gap: 0.25rem; }
+}
+
+@media (max-width: 991.98px) { .navbar-collapse.collapsing { transition: height 0.35s ease, opacity 0.35s ease; } .navbar-collapse.show { opacity: 1; } .navbar-collapse:not(.show) { opacity: 0; } }
+@media (min-width: 992px) { .navbar-collapse { opacity: 1 !important; } }
+
+/* Espaciado para la barra de navegación fija: solo en páginas sin hero */
+body.has-hero { padding-top: 0; }
+body:not(.has-hero) { padding-top: 72px; }
+@media (max-width: 991.98px) {
+  body:not(.has-hero) { padding-top: 64px; }
+}
+
+/* Secciones genéricas compartidas */
+.section-wide { background-color: var(--arena-suave); padding: 2em 0; }
+.card, .info-block, .secondary-bg { background-color: var(--sal-marina); border-radius: var(--radius); box-shadow: var(--shadow-card); padding: 1.5em; margin-bottom: 2em; }
+
+/* Estilo base de botones para asegurar una apariencia consistente */
+.btn {
+  border-radius: var(--radius);
+  font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 600;
+  transition: background var(--transition), color var(--transition), box-shadow var(--transition), border-color var(--transition), transform 0.12s ease;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+.btn:hover { transform: translateY(-1px); }
+.btn:active { transform: translateY(0); }
+.btn:focus-visible { outline: 3px solid rgba(110,191,195,0.35); outline-offset: 2px; }
+
+.btn-primary, .cta { background-color: var(--turquesa-pastel); color: var(--gris-humo); font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; border: none; border-radius: var(--radius); padding: 0.75em 2em; font-size: 1rem; font-weight: 600; cursor: pointer; transition: background var(--transition), box-shadow var(--transition); box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+.btn-primary:hover, .cta:hover, .btn-primary:focus, .cta:focus { background-color: var(--lila-rosa); color: var(--gris-humo); box-shadow: 0 2px 8px rgba(0,0,0,0.12); }
+
+/* Botón primario delineado, adaptado a la paleta de la marca */
+.btn-outline-primary {
+  color: var(--turquesa-pastel) !important;
+  border-color: var(--turquesa-pastel) !important;
+  background-color: transparent !important;
+}
+.btn-outline-primary:hover,
+.btn-outline-primary:focus {
+  background-color: var(--lila-rosa) !important;
+  border-color: var(--lila-rosa) !important;
+  color: var(--gris-humo) !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12) !important;
+}
+.btn-outline-primary:active { filter: brightness(0.98); }
+
+/* Estados deshabilitados consistentes con la paleta */
+.btn:disabled, .btn.disabled { opacity: 0.65; cursor: not-allowed; box-shadow: none; }
+.btn-primary:disabled, .btn-primary.disabled { background-color: var(--turquesa-pastel) !important; color: var(--gris-humo) !important; border: none !important; }
+.btn-outline-primary:disabled, .btn-outline-primary.disabled { color: var(--turquesa-pastel) !important; border-color: var(--turquesa-pastel) !important; background-color: transparent !important; }
+
+.icon-accent { color: var(--turquesa-pastel); }
+.description { font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; color: var(--gris-humo); font-size: var(--font-size-lg); margin-bottom: 1em; }
+.highlighted-header, .premium-section {
+    font-family: 'CormorantGaramond', Georgia, 'Times New Roman', serif;
+    color: var(--lila-rosa);
+    font-weight: 600;
+    font-size: 1.5rem;
+    letter-spacing: 0.02em;
+    line-height: 1.2;
+    text-shadow: 0 1px 2px rgba(245,237,228,0.10);
+}
+.subtitle-soft { color: var(--gris-humo); font-size: var(--font-size-xl); font-weight: 700; letter-spacing: 0.02em; line-height: 1.3; }
+.decorative-detail, .delicate-block { background-color: var(--rosa-petalo); border-radius: var(--radius); padding: 0.5em 1em; }
+.main-text, p, li { color: var(--gris-humo); font-size: var(--font-size-base); }
+.lead { font-size: var(--font-size-xl); }
+
+@media (max-width: 600px) { h1 { font-size: 1.9rem; } h2 { font-size: 1.5rem; } h3 { font-size: 1.25rem; } .highlighted-header, .premium-section { font-size: 1.25rem; } .subtitle-soft { font-size: 1.125rem; } }
+
+.row.g-4 { perspective: 1000px; }
+
+/* ===== Vista previa del carrito (global) ===== */
+.cart-preview-bar { position: fixed; right: calc(30px + env(safe-area-inset-right, 0px)); bottom: calc(30px + env(safe-area-inset-bottom, 0px)); left: auto; transform: none; width: 60px; height: 60px; z-index: 900; background: transparent; color: var(--gris-humo); border: none; box-shadow: none; border-radius: 50%; padding: 0; display: none; align-items: center; justify-content: center; gap: 0; cursor: pointer; }
+.cart-preview-bar.show { display: flex; }
+/* Usar .bag como la burbuja visual */
+.cart-preview-bar .bag { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; border-radius: 50%; background: var(--turquesa-pastel); color: #ffffff; box-shadow: 0 4px 12px rgba(0,0,0,0.15); transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease; }
+.cart-preview-bar:hover .bag { transform: scale(1.1); box-shadow: 0 6px 16px rgba(0,0,0,0.2); background-color: var(--lila-rosa); }
+.cart-preview-bar .bag i { font-size: 28px; line-height: 1; }
+
+/* Insignia de resumen en la burbuja del carrito (asegura que la burbuja se mantenga circular) */
+.cart-preview-bar { position: fixed; }
+.cart-preview-bar .summary { position: absolute; top: 6px; right: 6px; font-size: 0; pointer-events: none; }
+.cart-preview-bar .summary #cart-count { position: relative; display: inline-flex; align-items: center; justify-content: center; min-width: 22px; height: 22px; padding: 0 6px; border-radius: 999px; background: #dc3545; color: #fff; font-weight: 800; font-size: 12px; line-height: 1; box-shadow: 0 2px 6px rgba(0,0,0,0.2); border: 2px solid #ffffff; }
+/* Ocultar el CTA heredado dentro de la burbuja (el popover tiene su propio CTA) */
+.cart-preview-bar .btn-review { display: none !important; }
+
+@media (max-width: 768px) {
+  .cart-preview-bar .summary { top: 4px; right: 4px; }
+  .cart-preview-bar .summary #cart-count { min-width: 20px; height: 20px; font-size: 11px; }
+}
+
+/* ===== Panel popover del carrito ===== */
+.cart-popover { position: fixed; right: calc(30px + env(safe-area-inset-right, 0px)); bottom: calc(102px + env(safe-area-inset-bottom, 0px)); width: 320px; max-width: calc(100vw - 40px); background: #fff; border: 1px solid rgba(0,0,0,0.08); border-radius: 14px; box-shadow: 0 12px 28px rgba(0,0,0,0.18); z-index: 1000; display: none; overflow: hidden; }
+.cart-popover.show { display: block; }
+
+/* Mejoras de UX/UI para el popover del carrito */
+.cart-popover { border: 1px solid rgba(0,0,0,0.06); border-radius: 16px; overflow: hidden; backdrop-filter: saturate(140%); }
+.cart-popover::after { content: ""; position: absolute; right: 26px; bottom: -8px; width: 16px; height: 16px; background: #fff; border-left: 1px solid rgba(0,0,0,0.06); border-bottom: 1px solid rgba(0,0,0,0.06); transform: rotate(45deg); box-shadow: 3px 3px 8px rgba(0,0,0,0.05); }
+.cart-popover-header { position: sticky; top: 0; z-index: 1; display: flex; align-items: center; justify-content: space-between; padding: 10px 12px; background: var(--sal-marina); border-bottom: 1px solid rgba(0,0,0,0.06); }
+.cart-popover-header .title { font-weight: 700; font-family: 'Lora', Georgia, 'Times New Roman', serif; }
+.cart-popover-header .count-pill { display: inline-flex; align-items: center; gap: 6px; background: #fff; color: var(--gris-humo); padding: 4px 8px; border-radius: 999px; font-size: 12px; font-weight: 700; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+.cart-popover-body { max-height: 320px; overflow-y: auto; padding: 10px; background: #fff; }
+.cart-popover-item { display: grid; grid-template-columns: 56px 1fr auto; gap: 10px; align-items: center; padding: 10px; border-radius: 12px; background: #fff; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 1px 3px rgba(0,0,0,0.04); margin-bottom: 10px; }
+.cart-popover-item:hover { box-shadow: 0 2px 6px rgba(0,0,0,0.06); }
+.cart-popover-item img { width: 56px; height: 56px; object-fit: cover; border-radius: 10px; background: #f4f4f4; }
+.cart-popover-item .info { min-width: 0; }
+.cart-popover-item .name { font-weight: 700; margin-bottom: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cart-popover-item .meta { font-size: 0.9rem; color: #666; }
+.cart-popover-item .price { font-weight: 700; color: var(--gris-humo); }
+.cart-popover-item .actions { display: grid; gap: 6px; align-items: center; justify-items: end; }
+.qty-controls { display: inline-flex; align-items: center; gap: 6px; background: #fff; border: 1px solid rgba(0,0,0,0.08); border-radius: 999px; padding: 2px 6px; }
+.btn-qty { width: 24px; height: 24px; border-radius: 50%; border: 1px solid rgba(0,0,0,0.12); background: #fff; color: var(--gris-humo); display: inline-flex; align-items: center; justify-content: center; cursor: pointer; transition: transform 0.15s ease, background 0.15s ease; }
+.btn-qty:hover { transform: scale(1.05); background: var(--sal-marina); }
+.qty { min-width: 24px; text-align: center; font-weight: 700; color: var(--gris-humo); }
+.btn-remove { border: none; background: transparent; color: #888; cursor: pointer; padding: 4px; border-radius: 8px; transition: color 0.15s ease, background 0.15s ease; }
+.btn-remove:hover { color: #c53030; background: rgba(197,48,48,0.08); }
+.cart-popover-empty { padding: 24px 16px; text-align: center; color: #666; }
+.cart-popover-footer { position: sticky; bottom: 0; background: #fff; border-top: 1px solid rgba(0,0,0,0.06); padding: 10px; display: grid; gap: 8px; }
+.cart-summary { display: flex; align-items: center; justify-content: space-between; font-size: 0.95rem; }
+.cart-summary .items { color: #666; }
+.cart-summary .total { font-weight: 800; color: var(--gris-humo); }
+.cart-popover-footer .btn-cart { width: 100%; border-radius: 10px; font-weight: 700; }
+
+@media (max-width: 576px) {
+  .cart-popover { width: calc(100vw - 32px); }
+  .cart-popover::after { right: 22px; }
+}
+
+/* Botón flotante de FAQ + modal (compartido) */
+/* Colocamos el botón de FAQ en la esquina inferior derecha y la vista previa del carrito encima. */
+.faq-floating-btn {
+    position: fixed !important;
+    right: 16px !important;
+    bottom: 16px !important;
+    width: 56px;
+    height: 56px;
+    background-color: var(--turquesa-pastel);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 22px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    z-index: 900 !important; /* Debe estar debajo de la vista previa del carrito */
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.faq-floating-btn:hover { background-color: var(--lila-rosa); transform: scale(1.05); box-shadow: 0 6px 16px rgba(0,0,0,0.18); }
+.faq-floating-btn:active { transform: scale(0.98); }
+
+/* Mantenemos la modal como una superposición para una interacción completa */
+.faq-modal { display:none; position:fixed; z-index:1005; left:0; top:0; width:100%; height:100%; background-color: rgba(0,0,0,0.5); animation: fadeIn 0.3s ease; }
+.faq-modal.active { display:flex; align-items:center; justify-content:center; }
+@keyframes fadeIn { from { opacity:0 } to { opacity:1 } }
+
+/*
+ * Ajustar la posición de la vista previa del carrito para que quede encima del botón de FAQ.
+ * Usamos `calc` en `bottom` para apilarlo dinámicamente:
+ * bottom de FAQ (16px) + altura de FAQ (56px) + espacio (10px) = 82px
+ */
+.cart-preview-bar {
+    position: fixed !important;
+    right: 16px !important;
+    bottom: calc(16px + 56px + 10px) !important; /* 82px */
+    left: auto;
+    transform: none;
+    width: 56px;
+    height: 56px;
+    z-index: 1001 !important; /* Asegura que esté sobre el botón de FAQ */
+    background: transparent;
+    color: var(--gris-humo);
+    border: none;
+    box-shadow: none;
+    border-radius: 50%;
+    padding: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    cursor: pointer;
+}
+.cart-preview-bar.show { display: flex !important; }
+
+/* Ajustes para pantallas pequeñas: mantener el apilamiento con desplazamientos menores */
+@media (max-width: 768px) {
+    .faq-floating-btn { width:50px; height:50px; font-size:20px; right: 12px !important; bottom: 12px !important; }
+    .cart-preview-bar { right: 12px !important; bottom: calc(12px + 50px + 8px) !important; width:50px; height:50px; }
+}
+
+@media (max-width: 576px) {
+    /* En pantallas muy pequeñas, mantener FAQ abajo y el carrito justo encima */
+    .faq-floating-btn { right: 12px !important; bottom: 12px !important; }
+    .cart-preview-bar { right: 12px !important; bottom: calc(12px + 50px + 8px) !important; }
+}
+
+/* Barra de navegación en móviles: asegurar texto oscuro legible cuando el menú está expandido */
+@media (max-width: 991.98px) {
+  .navbar .navbar-collapse.show .nav-link { color: var(--gris-humo) !important; }
+  .navbar .navbar-collapse.show .nav-link:hover,
+  .navbar .navbar-collapse.show .nav-link:focus { color: var(--turquesa-pastel) !important; }
+  .navbar.navbar-light .nav-link { color: var(--gris-humo) !important; }
+  .navbar.navbar-light .navbar-brand { color: var(--gris-humo) !important; }
+}
+
+@media (max-width: 576px) {
+  .cart-preview-bar { right: 16px; bottom: 16px; width: 56px; height: 56px; }
+  .cart-preview-bar .bag i { font-size: 22px; }
+}
+
+/* Panel de la modal de FAQ - coherente con el popover del carrito */
+.faq-modal-content {
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: 16px;
+  width: clamp(320px, 92vw, 680px);
+  max-height: 82vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 18px 45px rgba(0,0,0,0.18);
+  contain: content;
+}
+
+.faq-modal-header {
+  position: sticky; top: 0; z-index: 1;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 16px;
+  background: var(--sal-marina);
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  border-top-left-radius: 16px; border-top-right-radius: 16px;
+}
+.faq-modal-header h3 { font-family: 'Lora', Georgia, 'Times New Roman', serif; color: var(--gris-humo); margin: 0; font-weight: 800; font-size: 1.15rem; }
+.faq-close-btn { background: #fff; border: 1px solid rgba(0,0,0,0.1); color: var(--gris-humo); width: 32px; height: 32px; border-radius: 10px; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; transition: background .15s ease, transform .12s ease, box-shadow .15s ease; }
+.faq-close-btn:hover { background: var(--sal-marina); transform: scale(1.04); box-shadow: 0 4px 12px rgba(0,0,0,0.12); }
+.faq-close-btn:active { transform: scale(0.96); }
+.faq-close-btn:focus-visible { outline: 3px solid rgba(110,191,195,0.45); outline-offset: 2px; }
+
+.faq-modal-body { padding: 12px 16px; overflow-y: auto; -webkit-overflow-scrolling: touch; overscroll-behavior: contain; background: #fff; border-bottom-left-radius: 16px; border-bottom-right-radius: 16px; }
+
+/* Acordeón dentro de la modal de FAQ - con scope para evitar efectos secundarios */
+.faq-modal .accordion { display: grid; gap: 12px; }
+.faq-modal .accordion-item { background: #fff; border: 1px solid rgba(0,0,0,0.06); border-radius: 12px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.04); transition: box-shadow .18s ease, transform .12s ease; }
+.faq-modal .accordion-item:hover { box-shadow: 0 8px 18px rgba(0,0,0,0.06); transform: translateY(-1px); }
+
+.faq-modal .accordion-button { background: #fff; color: var(--gris-humo); font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; font-weight: 700; font-size: 1rem; padding: 0.875rem 1rem; border: none; box-shadow: none !important; }
+.faq-modal .accordion-button:not(.collapsed) { background: var(--sal-marina); color: var(--gris-humo); }
+.faq-modal .accordion-button:focus { box-shadow: none; outline: 3px solid rgba(110,191,195,0.35); outline-offset: 2px; }
+.faq-modal .accordion-button::after { filter: grayscale(1) contrast(0.6); }
+.faq-modal .accordion-button:not(.collapsed)::after { filter: none; }
+
+.faq-modal .accordion-body { background: #fff; color: var(--gris-humo); font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; padding: 1rem 1.1rem; }
+.faq-modal .accordion-body a { color: var(--turquesa-pastel); font-weight: 700; text-decoration: none; }
+.faq-modal .accordion-body a:hover { color: var(--lila-rosa); text-decoration: underline; }
+
+/* Reducción de movimiento */
+@media (prefers-reduced-motion: reduce) {
+  .faq-close-btn, .faq-modal .accordion-item { transition: none !important; }
+}
+
+/* Pantallas pequeñas */
+@media (max-width: 480px) {
+  .faq-modal-content { width: 94vw; max-height: 86vh; }
+}
+
+.boton-login-registro {
+    /* Resetear el botón por defecto y usar flex para centrar el enlace */
+    background: transparent;
+   border: 1px solid var(--turquesa-pastel);
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    
+    /* 1. Redondeo */
+    border-radius: var(--radius); /* Usa la variable global de redondeo */
+
+    /* 2. Transparencia */
+    /* Usamos el color --sal-marina (c8e4e6) con opacidad reducida */
+    background-color: rgba(200, 228, 230, 0.4);
+    
+    /* Transición y Sombra para un look suave */
+    transition: all var(--transition);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+    outline: none; /* Asegura que no haya outline por defecto */
+}
+
+/* Efecto al pasar el ratón (hover) */
+.boton-login-registro:hover {
+    /* Aumentar la opacidad y cambiar el color de borde */
+    background-color: rgba(200, 228, 230, 0.7); /* Sal Marina más opaca */
+    /*border-color: var(--lila-rosa);*/
+    transform: translateY(-1px); /* Pequeño levantamiento */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.12);
+}
+
+/* Efecto al hacer clic o focus */
+.boton-login-registro:active, .boton-registro:focus-visible {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.boton-login-registro:focus-visible {
+    outline: 3px solid rgba(110,191,195,0.45);
+    outline-offset: 2px;
+}
+
+/* Ajuste para el enlace interno: el enlace ya tiene padding, color y transiciones */
+.boton-login-registro .nav-link {
+    /* Asegurar que el nav-link no anule el background transparente del botón */
+    background: transparent !important;
+    /* Asegurar que el nav-link se vea mejor */
+    font-weight: 700;
+}
+
+/* Revertir el efecto de levantamiento que aplica .nav-link:hover para que el efecto lo maneje el contenedor del botón */
+.boton-login-registro .nav-link:hover,
+.boton-login-registro .nav-link:focus {
+    transform: none; 
+}

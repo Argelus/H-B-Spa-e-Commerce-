@@ -1,0 +1,528 @@
+/* ===== FOOTER STYLES ===== */
+
+footer {
+  position: relative;
+  background: linear-gradient(135deg, #f8f9fa 0%, var(--arena-suave) 50%, var(--lila-rosa) 100%);
+  overflow: hidden;
+  box-shadow: 0 -5px 30px rgba(110, 191, 195, 0.15);
+}
+
+/* Efecto de onda decorativa en la parte superior */
+footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  background: linear-gradient(90deg, 
+    var(--turquesa-pastel) 0%, 
+    var(--lila-rosa) 50%, 
+    var(--turquesa-pastel) 100%);
+  background-size: 200% 100%;
+  animation: gradientShift 8s ease infinite;
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Títulos del footer */
+footer h5, footer h6 {
+  color: var(--gris-humo);
+  position: relative;
+  display: inline-block;
+  letter-spacing: 0.5px;
+}
+
+footer h5::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--turquesa-pastel), var(--lila-rosa));
+  border-radius: 2px;
+  transition: width 0.4s ease;
+}
+
+footer h5:hover::after {
+  width: 100%;
+}
+
+/* Iconos de información con animación */
+footer .bi-geo-alt-fill,
+footer .bi-telephone-fill,
+footer .bi-envelope-fill {
+  color: var(--turquesa-pastel);
+  margin-right: 8px;
+  transition: transform 0.3s ease, color 0.3s ease;
+  display: inline-block;
+}
+
+footer p:hover .bi-geo-alt-fill,
+footer p:hover .bi-telephone-fill,
+footer p:hover .bi-envelope-fill {
+  transform: scale(1.2) rotate(5deg);
+  color: var(--lila-rosa);
+}
+
+/* Enlaces del footer */
+footer a {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+footer ul li a {
+  padding-left: 0;
+  display: inline-block;
+  position: relative;
+}
+
+footer ul li a::before {
+  content: '→';
+  position: absolute;
+  left: -20px;
+  opacity: 0;
+  color: var(--turquesa-pastel);
+  transition: all 0.3s ease;
+  font-weight: bold;
+}
+
+footer ul li a:hover {
+  color: var(--turquesa-pastel) !important;
+  transform: translateX(8px);
+  font-weight: 600;
+}
+
+footer ul li a:hover::before {
+  opacity: 1;
+  left: -15px;
+}
+
+/* Redes sociales con efectos especiales */
+footer .d-flex.gap-3 a {
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: white;
+  box-shadow: var(--shadow);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+footer .d-flex.gap-3 a::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--turquesa-pastel), var(--lila-rosa));
+  transform: scale(0);
+  transition: transform 0.4s ease;
+  border-radius: 50%;
+  z-index: 0;
+}
+
+footer .d-flex.gap-3 a:hover::before {
+  transform: scale(1);
+}
+
+footer .d-flex.gap-3 a i {
+  position: relative;
+  z-index: 1;
+  transition: all 0.4s ease;
+}
+
+footer .d-flex.gap-3 a:hover {
+  transform: translateY(-8px) rotate(5deg);
+  box-shadow: 0 10px 25px rgba(110, 191, 195, 0.4);
+}
+
+footer .d-flex.gap-3 a:hover i {
+  color: white !important;
+  transform: scale(1.2);
+}
+
+/* Animación específica para WhatsApp */
+footer .d-flex.gap-3 a:nth-child(1):hover {
+  animation: shake 0.6s ease;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateY(-8px) rotate(0deg); }
+  25% { transform: translateY(-8px) rotate(-5deg); }
+  75% { transform: translateY(-8px) rotate(5deg); }
+}
+
+/* Horarios con estilo mejorado */
+footer ul.list-unstyled.text-muted li {
+  padding: 6px 0;
+  padding-left: 20px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+footer ul.list-unstyled.text-muted li::before {
+  content: '🕐';
+  position: absolute;
+  left: 0;
+  opacity: 0.7;
+  transition: all 0.3s ease;
+}
+
+footer ul.list-unstyled.text-muted li:hover {
+  padding-left: 25px;
+  color: var(--turquesa-pastel) !important;
+}
+
+footer ul.list-unstyled.text-muted li:hover::before {
+  opacity: 1;
+  transform: scale(1.2);
+}
+
+/* Divisor con efecto degradado */
+footer hr {
+  border: none;
+  height: 2px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    var(--turquesa-pastel) 20%, 
+    var(--lila-rosa) 50%,
+    var(--turquesa-pastel) 80%, 
+    transparent 100%);
+  opacity: 0.5;
+  margin: 1rem 0;
+}
+
+/* Links de política con hover elegante */
+footer .text-center a.text-muted {
+  position: relative;
+  padding: 0 5px;
+  transition: all 0.3s ease;
+}
+
+footer .text-center a.text-muted::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background: var(--turquesa-pastel);
+  transition: width 0.3s ease;
+}
+
+footer .text-center a.text-muted:hover {
+  color: var(--turquesa-pastel) !important;
+}
+
+footer .text-center a.text-muted:hover::after {
+  width: 100%;
+}
+
+/* Copyright con animación sutil */
+footer .text-center p {
+  animation: fadeInUp 1s ease;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Efecto de partículas decorativas (opcional) */
+footer .container {
+  position: relative;
+  z-index: 1;
+}
+
+/* Responsivo: ajustes para móviles */
+@media (max-width: 768px) {
+  footer .d-flex.justify-content-evenly {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  footer .mb-4 {
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  footer .d-flex.gap-3 {
+    justify-content: center !important;
+  }
+  
+  footer ul li a::before {
+    display: none;
+  }
+  
+  footer ul li a:hover {
+    transform: translateX(0);
+  }
+}
+
+/* Efecto de brillo al hacer scroll (opcional - requiere JS) */
+@keyframes pulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+footer h5.fw-bold {
+  animation: pulse 3s ease-in-out infinite;
+}
+
+/* ===== MEDIA QUERIES RESPONSIVAS ===== */
+
+/* Tablets grandes y escritorio pequeño (992px - 1199px) */
+@media (max-width: 1199px) {
+  footer .container {
+    padding: 0 2rem;
+  }
+  
+  footer h5 {
+    font-size: 1.1rem;
+  }
+  
+  footer .d-flex.justify-content-evenly > div {
+    min-width: 250px;
+  }
+}
+
+/* Tablets (768px - 991px) */
+@media (max-width: 991px) {
+  footer {
+    padding-top: 2.5rem !important;
+    padding-bottom: 1.5rem !important;
+  }
+  
+  footer .d-flex.justify-content-evenly {
+    justify-content: center !important;
+    gap: 2rem;
+  }
+  
+  footer .d-flex.justify-content-evenly > div {
+    flex: 0 0 45%;
+    min-width: 200px;
+  }
+  
+  footer h5 {
+    font-size: 1rem;
+  }
+  
+  footer .d-flex.gap-3 a {
+    width: 42px;
+    height: 42px;
+  }
+}
+
+/* Móviles grandes y tablets pequeñas (576px - 767px) */
+@media (max-width: 767px) {
+  footer {
+    padding-top: 2rem !important;
+    padding-bottom: 1rem !important;
+  }
+  
+  footer .d-flex.justify-content-evenly {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  
+  footer .mb-4 {
+    width: 100%;
+    max-width: 350px;
+    margin-bottom: 2rem !important;
+  }
+  
+  footer h5 {
+    font-size: 1.1rem;
+    margin-bottom: 1rem !important;
+  }
+  
+  footer h6 {
+    font-size: 0.95rem;
+  }
+  
+  footer .d-flex.gap-3 {
+    justify-content: center !important;
+  }
+  
+  footer ul li a::before {
+    display: none;
+  }
+  
+  footer ul li a:hover {
+    transform: translateX(0);
+    padding-left: 8px;
+  }
+  
+  footer hr {
+    margin: 1.5rem 0;
+  }
+  
+  footer .text-center p {
+    font-size: 0.9rem;
+  }
+  
+  footer .text-center .small {
+    font-size: 0.8rem !important;
+  }
+}
+
+/* Móviles pequeños (hasta 575px) */
+@media (max-width: 575px) {
+  footer {
+    padding-top: 1.5rem !important;
+    padding-bottom: 0.75rem !important;
+  }
+  
+  footer .container {
+    padding: 0 1rem;
+  }
+  
+  footer .mb-4 {
+    max-width: 100%;
+    margin-bottom: 1.5rem !important;
+    padding: 0 0.5rem;
+  }
+  
+  footer h5 {
+    font-size: 1rem;
+    margin-bottom: 0.75rem !important;
+  }
+  
+  footer h6 {
+    font-size: 0.9rem;
+    margin-top: 1rem !important;
+  }
+  
+  footer p, footer li {
+    font-size: 0.85rem;
+  }
+  
+  footer .d-flex.gap-3 {
+    gap: 0.75rem !important;
+  }
+  
+  footer .d-flex.gap-3 a {
+    width: 40px;
+    height: 40px;
+    font-size: 1.1rem;
+  }
+  
+  footer .d-flex.gap-3 a:hover {
+    transform: translateY(-5px) rotate(5deg);
+  }
+  
+  footer ul.list-unstyled li {
+    padding: 4px 0;
+    padding-left: 18px;
+    font-size: 0.85rem;
+  }
+  
+  footer hr {
+    margin: 1rem 0;
+  }
+  
+  footer .text-center p {
+    font-size: 0.8rem;
+    line-height: 1.4;
+  }
+  
+  footer .text-center .small {
+    font-size: 0.75rem !important;
+    display: block;
+    margin-top: 0.5rem;
+  }
+  
+  footer .text-center a.text-muted {
+    display: inline-block;
+    margin: 0.25rem 0.5rem;
+  }
+  
+  /* Desactivar algunas animaciones en móviles para mejor rendimiento */
+  footer h5.fw-bold {
+    animation: none;
+  }
+  
+  footer::before {
+    animation-duration: 12s;
+  }
+}
+
+/* Móviles muy pequeños (hasta 375px) */
+@media (max-width: 375px) {
+  footer {
+    padding-top: 1.25rem !important;
+  }
+  
+  footer h5 {
+    font-size: 0.95rem;
+  }
+  
+  footer p, footer li {
+    font-size: 0.8rem;
+  }
+  
+  footer .d-flex.gap-3 a {
+    width: 38px;
+    height: 38px;
+    font-size: 1rem;
+  }
+  
+  footer .mb-4 {
+    margin-bottom: 1.25rem !important;
+  }
+}
+
+/* Modo paisaje en móviles */
+@media (max-height: 500px) and (orientation: landscape) {
+  footer {
+    padding-top: 1rem !important;
+    padding-bottom: 0.5rem !important;
+  }
+  
+  footer .mb-4 {
+    margin-bottom: 1rem !important;
+  }
+  
+  footer h5 {
+    margin-bottom: 0.5rem !important;
+  }
+}
+
+/* Efecto de brillo al hacer scroll (opcional - requiere JS) */
+@keyframes pulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+footer h5.fw-bold {
+  animation: pulse 3s ease-in-out infinite;
+}
+
+/* Desactivar animación en dispositivos con preferencia de movimiento reducido */
+@media (prefers-reduced-motion: reduce) {
+  footer *,
+  footer *::before,
+  footer *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
