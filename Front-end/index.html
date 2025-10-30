@@ -53,7 +53,7 @@
 
 
 <!-- 🟣 HERO / CARRUSEL -->
-<header id="hero">
+<header id="hero" class="animate-on-scroll" >
   <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
     <div class="carousel-inner">
       <div class="carousel-item active" style="background-image:url('/images/seleccionadas/1000484060.jpg')">
@@ -91,7 +91,7 @@
 </header>
 
 <!-- 🟢 GALERÍA -->
-<section id="servicios">
+<section id="servicios" class="animate-on-scroll">
   <div class="container">
     <h2 class="display-5 fw-bold text-gris-humo mb-3 text-center">Nuestros Servicios</h2>
     <p class="text-muted mb-5 text-center">Explora la calidad y el detalle de nuestros tratamientos y espacios.</p>
@@ -184,7 +184,7 @@
 </section>
 
 <!-- 🟢 SECCIÓN DE RESEÑAS -->
-<section id="reseñas" class="py-5" style="background: linear-gradient(180deg, var(--sal-marina) 0%, var(--arena-suave) 100%);">
+<section id="reseñas" class="animate-on-scroll" class="py-5" style="background: linear-gradient(180deg, var(--sal-marina) 0%, var(--arena-suave) 100%);">
   <div class="container text-center">
     <h2 class="display-5 fw-bold text-gris-humo mb-3">Opiniones de Nuestros Clientes</h2>
     <p class="text-muted mb-5">Conoce las experiencias reales de quienes disfrutan H&B Spa Jardín Balbuena.</p>
@@ -202,7 +202,7 @@
 
 
 <!-- 🟢 FOOTER -->
-<footer class="pt-5 pb-3" id="contacto">
+<footer class="pt-5 pb-3"  id="contacto">
   <div class="container">
     <div class="d-flex justify-content-evenly flex-wrap text-center text-md-start">
       
@@ -313,83 +313,119 @@
   <i class="bi bi-question-circle-fill"></i>
 </button>
 
-<!-- 🟣 SCRIPTS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-<!-- Sistema centralizado de FAQs y Modals -->
-<script src="./scripts/faq-data.js"></script>
-<script src="./scripts/modal-manager-fixed.js"></script>
-<script>
-document.addEventListener("DOMContentLoaded", () => {
+  <!-- 🟣 SCRIPTS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Sistema centralizado de FAQs y Modals -->
+  <script src="./scripts/faq-data.js"></script>
+  <script src="./scripts/modal-manager-fixed.js"></script>
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+
+    // --- Navbar Scroll ---
+    window.addEventListener("scroll", () => {
+      const n = document.querySelector(".navbar-overlay");
+      window.scrollY > 50 ? n.classList.add("scrolled") : n.classList.remove("scrolled");
+    });
 
 
-  // Carrusel 3D
-  const cards = document.querySelectorAll(".carousel-3d .team-card");
-  let current = 0;
+    // --- Carrusel 3D ---
+    const cards = document.querySelectorAll(".carousel-3d .team-card");
+    let current = 0;
 
-  function updateCarousel() {
-    cards.forEach((c, i) => {
-      const o = (i - current + cards.length) % cards.length;
-      if (o === 0) {
-        c.style.transform = "translateZ(0) scale(1)";
-        c.style.opacity = "1";
-        c.style.zIndex = "3";
-      } else if (o === 1 || o === -cards.length + 1) {
-        c.style.transform = "translateX(240px) translateZ(-250px) rotateY(-30deg)";
-        c.style.opacity = "0.75";
-        c.style.zIndex = "2";
-      } else if (o === cards.length - 1 || o === -1) {
-        c.style.transform = "translateX(-240px) translateZ(-250px) rotateY(30deg)";
-        c.style.opacity = "0.75";
-        c.style.zIndex = "2";
-      } else {
-        c.style.transform = "translateZ(-500px)";
-        c.style.opacity = "0";
-        c.style.zIndex = "1";
+    function updateCarousel() {
+      cards.forEach((c, i) => {
+        const o = (i - current + cards.length) % cards.length;
+        if (o === 0) {
+          c.style.transform = "translateZ(0) scale(1)";
+          c.style.opacity = "1";
+          c.style.zIndex = "3";
+        } else if (o === 1 || o === -cards.length + 1) {
+          c.style.transform = "translateX(240px) translateZ(-250px) rotateY(-30deg)";
+          c.style.opacity = "0.75";
+          c.style.zIndex = "2";
+        } else if (o === cards.length - 1 || o === -1) {
+          c.style.transform = "translateX(-240px) translateZ(-250px) rotateY(30deg)";
+          c.style.opacity = "0.75";
+          c.style.zIndex = "2";
+        } else {
+          c.style.transform = "translateZ(-500px)";
+          c.style.opacity = "0";
+          c.style.zIndex = "1";
+        }
+      });
+    }
+    
+    // Solo agregar listeners si los botones existen (más robusto)
+    const prevButton = document.getElementById("prev");
+    const nextButton = document.getElementById("next");
+
+    if (prevButton && nextButton && cards.length > 0) {
+      prevButton.addEventListener("click", () => {
+        current = (current - 1 + cards.length) % cards.length;
+        updateCarousel();
+      });
+
+      nextButton.addEventListener("click", () => {
+        current = (current + 1) % cards.length;
+        updateCarousel();
+      });
+      
+      updateCarousel();
+    }
+
+
+    // --- Galería Lightbox ---
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    const modal = document.getElementById('lightboxModal');
+    const modalImg = document.getElementById('lightboxImg');
+    const modalTitle = document.getElementById('lightboxTitle');
+    const closeModal = document.querySelector('.close-lightbox');
+
+    if (modal && modalImg && modalTitle && closeModal && galleryItems.length > 0) {
+      galleryItems.forEach(item => {
+        item.addEventListener('click', () => {
+          const imgUrl = item.getAttribute('data-img');
+          const title = item.getAttribute('data-title');
+          modalImg.src = imgUrl;
+          modalTitle.textContent = title;
+          modal.style.display = 'block';
+        });
+      });
+
+      function closeLightbox() {
+        modal.style.display = 'none';
+        modalImg.src = "";
       }
+
+      closeModal.addEventListener('click', closeLightbox);
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeLightbox();
+      });
+    }
+    
+    const observerOptions = {
+      root: null, // 
+      rootMargin: '0px',
+      threshold: 0.1 
+    };
+    
+    const observerCallback = (entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible'); 
+          observer.unobserve(entry.target); 
+        }
+      });
+    };
+    
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+    const targets = document.querySelectorAll('.animate-on-scroll');
+    
+    targets.forEach(target => {
+      observer.observe(target);
     });
-  }
 
-  document.getElementById("prev").addEventListener("click", () => {
-    current = (current - 1 + cards.length) % cards.length;
-    updateCarousel();
-  });
-
-  document.getElementById("next").addEventListener("click", () => {
-    current = (current + 1) % cards.length;
-    updateCarousel();
-  });
-
-  updateCarousel();
-
-  // Galería Lightbox
-  const galleryItems = document.querySelectorAll('.gallery-item');
-  const modal = document.getElementById('lightboxModal');
-  const modalImg = document.getElementById('lightboxImg');
-  const modalTitle = document.getElementById('lightboxTitle');
-  const closeModal = document.querySelector('.close-lightbox');
-
-  galleryItems.forEach(item => {
-    item.addEventListener('click', () => {
-      const imgUrl = item.getAttribute('data-img');
-      const title = item.getAttribute('data-title');
-      modalImg.src = imgUrl;
-      modalTitle.textContent = title;
-      modal.style.display = 'block';
-    });
-  });
-
-  function closeLightbox() {
-    modal.style.display = 'none';
-    modalImg.src = "";
-  }
-
-  closeModal.addEventListener('click', closeLightbox);
-  modal.addEventListener('click', (e) => {
-    if (e.target === modal) closeLightbox();
-  });
-
-  // Los modals FAQ y Cart ahora se manejan automáticamente con modal-manager.js
-});
-</script>
+  }); 
+  </script>
 </body>
 </html>

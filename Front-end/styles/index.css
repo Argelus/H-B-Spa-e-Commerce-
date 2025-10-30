@@ -432,3 +432,17 @@ section#servicios {
     bottom: 20px;
   }
 }
+/* =================================
+   Efecto de Aparición (Animate on Scroll)
+==================================== */
+
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+.animate-on-scroll.is-visible {
+
+  opacity: 1;
+  transform: translateY(0);
+}
