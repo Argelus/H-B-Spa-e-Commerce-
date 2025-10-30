@@ -1,9 +1,17 @@
 package com.spa.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
+import lombok.*;
 import java.math.BigDecimal;
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Table(name = "cart_items")
 public class CartItem {
 
@@ -11,54 +19,49 @@ public class CartItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    /**
+     * Producto al que pertenece este ítem.
+     */
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "product_id", nullable = false)
+    @JsonIgnoreProperties({
+            "description", "stock", "imageUrl", "category"
+    })
     private Product product;
 
+    /**
+     * Cantidad de unidades del producto.
+     */
     @Column(nullable = false)
     private int quantity;
 
-    @Column(nullable = false)
+    /**
+     * Precio total (cantidad × precio unitario del producto).
+     */
+    @Column(name = "total_price", precision = 10, scale = 2, nullable = false)
     private BigDecimal totalPrice;
 
-    public CartItem() {}
+    /**
+     * Relación con la orden a la que pertenece el ítem.
+     * Muchas líneas (items) pueden pertenecer a una misma orden.
+     */
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "order_id")
+    @JsonBackReference
+    private Order order;
 
-    public CartItem(Product product, int quantity) {
-        this.product = product;
-        this.quantity = quantity;
-        this.totalPrice = product.getPrice().multiply(BigDecimal.valueOf(quantity));
+    // 🔹 Método auxiliar para calcular el total automático
+    public void calculateTotal() {
+        if (product != null && product.getPrice() != null) {
+            this.totalPrice = product.getPrice().multiply(BigDecimal.valueOf(quantity));
+        } else {
+            this.totalPrice = BigDecimal.ZERO;
+        }
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-        this.totalPrice = this.product.getPrice().multiply(BigDecimal.valueOf(quantity));
-    }
-
-    public BigDecimal getTotalPrice() {
-        return totalPrice;
-    }
-
-    public void setTotalPrice(BigDecimal totalPrice) {
-        this.totalPrice = totalPrice;
+    @PrePersist
+    @PreUpdate
+    private void preSave() {
+        calculateTotal();
     }
 }

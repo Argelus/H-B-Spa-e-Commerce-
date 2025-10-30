@@ -73,12 +73,17 @@ public class JwtRequestFilter extends OncePerRequestFilter {
                 String role = jwtUtil.extractRole(jwt);
                 System.out.println("✅ Token válido para usuario: " + username + " con rol: " + role);
 
-                var authorities = List.of(new SimpleGrantedAuthority(role));
+                // ✅ Normaliza el rol para evitar ROLE_ROLE_ADMIN o ADMIN sin prefijo
+                String normalizedRole = role.startsWith("ROLE_") ? role : "ROLE_" + role;
+
+                var authorities = List.of(new SimpleGrantedAuthority(normalizedRole));
                 UsernamePasswordAuthenticationToken authToken =
                         new UsernamePasswordAuthenticationToken(userDetails, null, authorities);
                 authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 
                 SecurityContextHolder.getContext().setAuthentication(authToken);
+                System.out.println("🔐 Autoridad establecida en contexto: " + normalizedRole);
+
             } else {
                 System.out.println("❌ Token inválido o expirado para usuario: " + username);
             }

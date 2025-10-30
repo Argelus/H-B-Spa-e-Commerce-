@@ -20,12 +20,13 @@ public class WebConfig {
                                 "http://localhost:5500",
                                 "http://127.0.0.1:5500",
                                 "http://localhost:5501",
-                                "http://127.0.0.1:5501"
+                                "http://127.0.0.1:5501",
+                                "*" // 👈 Agregado solo para Postman
                         )
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*")
                         .exposedHeaders("Authorization")
-                        .allowCredentials(true);
+                        .allowCredentials(false); // 👈 Importante: cámbialo a false cuando usas "*"
             }
         };
     }

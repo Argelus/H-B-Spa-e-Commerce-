@@ -18,9 +18,13 @@ public class ImageService {
     }
 
     public String uploadImage(MultipartFile file) throws IOException {
-        // 📤 Sube la imagen a Cloudinary
-        Map uploadResult = cloudinary.uploader().upload(file.getBytes(), ObjectUtils.emptyMap());
-        // 🔗 Devuelve la URL pública
+        Map uploadResult = cloudinary.uploader().upload(
+                file.getBytes(),
+                ObjectUtils.asMap(
+                        "folder", "spa_services",  // 🔸 Carpeta organizada
+                        "resource_type", "image"
+                )
+        );
         return uploadResult.get("secure_url").toString();
     }
 }
