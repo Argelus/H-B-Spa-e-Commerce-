@@ -13,38 +13,25 @@
     <script defer src="../scripts/validation.js"></script>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg fixed-top navbar-transparent" data-navbar-mode="transparent" data-navbar-theme="light">
+<nav class="navbar navbar-expand-lg fixed-top navbar-dark navbar-overlay py-3">
   <div class="container">
     <a class="navbar-brand fw-bold" href="../index.html">H&B SPA</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 justify-content-lg-center">
+    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+      <ul class="navbar-nav gap-3">
         <li class="nav-item"><a class="nav-link" href="../index.html">Inicio</a></li>
         <li class="nav-item"><a class="nav-link" href="Products.html">Productos</a></li>
         <li class="nav-item"><a class="nav-link" href="Reserve.html">Reserva</a></li>
         <li class="nav-item"><a class="nav-link" href="About.html">Acerca de Nosotros</a></li>
         <li class="nav-item"><a class="nav-link active" aria-current="page" href="Contact.html">Contacto</a></li>
       </ul>
-          <div class="d-flex align-items-center ms-auto">
-        <div class="d-none d-lg-flex">
-            <button class="boton-login-registro btn btn-sm btn-outline-primary me-2">
-                <a class="nav-link p-0 text-decoration-none" href="Register.html">Registro</a>
-            </button>
-            <button class="boton-login-registro btn btn-sm btn-outline-primary me-2">
-                <a class="nav-link p-0 text-white text-decoration-none" href="Login.html">Log In</a>
-            </button>
-        </div>
+    </div>
 
-        <!-- Botones visibles en Móvil (dentro del menú colapsado) -->
-        <div class="d-lg-none d-flex flex-column mt-3 w-100">
-             <button class="boton-login-registro btn btn-sm btn-outline-primary mb-2 w-100">
-                <a class="nav-link p-0 text-decoration-none" href="Register.html">Registro</a>
-            </button>
-            <button class="boton-login-registro btn btn-sm btn-outline-primary w-100">
-                <a class="nav-link p-0 text-white text-decoration-none" href="Login.html">Log In</a>
-            </button>
+    <div class="d-none d-lg-flex ms-3">
+      <a href="Register.html" class="btn btn-outline-light rounded-pill me-2">Registro</a>
+      <a href="Login.html" class="btn btn-light rounded-pill text-turquesa">Log In</a>
     </div>
   </div>
 </nav>
@@ -174,14 +161,14 @@
                             <div class="social-media-block mt-auto">
                                 <h5>Visítanos en nuestras redes sociales:</h5>
                                 <div class="d-flex gap-3 mb-4">
-                                    <a href="https://www.facebook.com/people/Spa-HB-Jard%C3%ADn-Balbuena/100063493903198/?ref=_xav_ig_profile_page_web_bt#" class="btn btn-outline-primary" target="_blank" aria-label="Facebook">
-                                        <i class="bi bi-facebook fs-5 social-icon"></i>
+                                    <a href="https://www.facebook.com/people/Spa-HB-Jard%C3%ADn-Balbuena/100063493903198/?ref=_xav_ig_profile_page_web_bt#" class="social-link" target="_blank" rel="noopener" aria-label="Facebook">
+                                        <i class="bi bi-facebook"></i>
                                     </a>
-                                    <a href="https://www.instagram.com/spahyb/" target="_blank" class="btn btn-outline-primary" aria-label="Instagram">
-                                        <i class="bi bi-instagram fs-5 social-icon"></i>
+                                    <a href="https://www.instagram.com/spahyb/" target="_blank" rel="noopener" class="social-link" aria-label="Instagram">
+                                        <i class="bi bi-instagram"></i>
                                     </a>
-                                    <a href="https://wa.me/5562316302" target="_blank" class="btn btn-outline-primary" aria-label="WhatsApp" >
-                                        <i class="bi bi-whatsapp fs-5 social-icon"></i>
+                                    <a href="https://wa.me/5562316302" target="_blank" rel="noopener" class="social-link" aria-label="WhatsApp">
+                                        <i class="bi bi-whatsapp"></i>
                                     </a>
                                 </div>
                             </div>
@@ -253,9 +240,9 @@
       <div class="mb-4">
         <h5 class="fw-bold mb-3">Síguenos</h5>
         <div class="d-flex justify-content-start gap-3 mb-3">
-          <a href="https://wa.me/5562316302" target="_blank" rel="noopener" class="text-muted fs-4 text-decoration-none" aria-label="Facebook"><i class="bi bi-whatsapp"></i></a>
-          <a href="https://www.facebook.com/share/1AezGeWWhd/" target="_blank" rel="noopener" class="text-muted fs-4 text-decoration-none" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
-          <a href="https://www.instagram.com/spahyb?igsh=c2ttcnhuY2k1N2F3" target="_blank" rel="noopener" class="text-muted fs-4 text-decoration-none" aria-label="Facebook"><i class="bi bi-instagram"></i></a>
+          <a href="https://wa.me/5562316302" target="_blank" rel="noopener" class="social-link" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+          <a href="https://www.facebook.com/share/1AezGeWWhd/" target="_blank" rel="noopener" class="social-link" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+          <a href="https://www.instagram.com/spahyb?igsh=c2ttcnhuY2k1N2F3" target="_blank" rel="noopener" class="social-link" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
         </div>
         <h6 class="fw-bold mt-4 mb-2">Horarios</h6>
         <ul class="list-unstyled text-muted mb-0">
@@ -284,6 +271,18 @@
 <script src="../scripts/app.js"></script>
 <script src="../scripts/cart-preview.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Navbar Scroll Effect -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  window.addEventListener("scroll", () => {
+    const navbar = document.querySelector(".navbar-overlay");
+    if (navbar) {
+      window.scrollY > 50 ? navbar.classList.add("scrolled") : navbar.classList.remove("scrolled");
+    }
+  });
+});
+</script>
 
 <!-- Botón Flotante y Modal FAQ -->
 <button id="faq-button" class="faq-floating-btn" aria-label="Preguntas Frecuentes">
