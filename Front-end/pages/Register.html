@@ -8,144 +8,170 @@
     <link rel="preload" href="../styles/fonts/Lora/Lora-VariableFont_wght.ttf" as="font" type="font/ttf" crossorigin>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="../styles/common.css">
-    <link rel="stylesheet" href="../styles/register.css">
+    <link rel="stylesheet" href="/Front-end/styles/register.css">
     <script defer src="../scripts/validation.js"></script>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg fixed-top navbar-transparent" data-navbar-mode="transparent" data-navbar-theme="light">
+<!-- 🟢 NAVBAR -->
+<nav class="navbar navbar-expand-lg fixed-top navbar-dark navbar-overlay py-3">
   <div class="container">
-    <a class="navbar-brand fw-bold" href="../index.html">H&B SPA</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <a class="navbar-brand fw-bold" href="#">H&B SPA</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 justify-content-lg-center">
-        <li class="nav-item"><a class="nav-link" href="../index.html">Inicio</a></li>
-        <li class="nav-item"><a class="nav-link" href="Products.html">Productos</a></li>
-        <li class="nav-item"><a class="nav-link" href="Reserve.html">Reserva</a></li>
-        <li class="nav-item"><a class="nav-link" href="About.html">Acerca de Nosotros</a></li>
-        <li class="nav-item"><a class="nav-link" href="Contact.html">Contacto</a></li>
-      </ul>
-          <div class="d-flex align-items-center ms-auto">
-        <div class="d-none d-lg-flex">
-            <button class="boton-login-registro btn btn-sm btn-outline-primary me-2">
-                <a class="nav-link p-0 text-decoration-none" href="Register.html">Registro</a>
-            </button>
-            <button class="boton-login-registro btn btn-sm btn-outline-primary me-2">
-                <a class="nav-link p-0 text-white text-decoration-none" href="Login.html">Log In</a>
-            </button>
-        </div>
 
-        <!-- Botones visibles en Móvil (dentro del menú colapsado) -->
-        <div class="d-lg-none d-flex flex-column mt-3 w-100">
-             <button class="boton-login-registro btn btn-sm btn-outline-primary mb-2 w-100">
-                <a class="nav-link p-0 text-decoration-none" href="Register.html">Registro</a>
-            </button>
-            <button class="boton-login-registro btn btn-sm btn-outline-primary w-100">
-                <a class="nav-link p-0 text-white text-decoration-none" href="Login.html">Log In</a>
-            </button>
+    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+      <ul class="navbar-nav gap-3">
+        <li class="nav-item"><a class="nav-link active" href="#">Inicio</a></li>
+        <li class="nav-item"><a class="nav-link" href="./pages/Products.html">Productos</a></li>
+        <li class="nav-item"><a class="nav-link" href="./pages/Reserve.html">Reserva</a></li>
+        <li class="nav-item"><a class="nav-link" href="./pages/About.html">Acerca de Nosotros</a></li>
+        <li class="nav-item"><a class="nav-link" href="./pages/Contact.html">Contacto</a></li>
+      </ul>
+    </div>
+
+    <div class="d-none d-lg-flex ms-3">
+      <a href="#" class="btn btn-outline-light rounded-pill me-2">Registro</a>
+      <a href="#" class="btn btn-light rounded-pill text-turquesa">Log In</a>
     </div>
   </div>
 </nav>
 
-<div class="container mt-5 pt-5">
-    <div class="card mx-auto shadow" style="max-width: 450px;">
-        <div class="card-body">
-            <h3 class="text-center mb-4">Registro de Usuario</h3>
-
-            <form id="registroForm" novalidate>
-                <div class="mb-3">
-                    <label for="nombre" class="form-label">Nombre completo</label>
-                    <input type="text" class="form-control" id="nombre" required>
-                    <div class="invalid-feedback">Ingrese su nombre completo.</div>
-                </div>
-
-                <div class="mb-3">
-                    <label for="telefono" class="form-label">Número de teléfono</label>
-                    <input type="tel" class="form-control" id="telefono" required>
-                    <div class="invalid-feedback">Ingrese un teléfono válido (10 dígitos).</div>
-                </div>
-
-                <div class="mb-3">
-                    <label for="email" class="form-label">Correo electrónico</label>
-                    <input type="email" class="form-control" id="email" required>
-                    <div class="invalid-feedback">Ingrese un correo electrónico válido.</div>
-                </div>
-
-                <div class="mb-3">
-                    <label for="password" class="form-label">Contraseña</label>
-                    <input type="password" class="form-control" id="password" required minlength="6">
-                    <div class="invalid-feedback">La contraseña debe tener al menos 6 caracteres.</div>
-                </div>
-
-                <div class="mb-3">
-                    <label for="confirmPassword" class="form-label">Confirmar contraseña</label>
-                    <input type="password" class="form-control" id="confirmPassword" required>
-                    <div class="invalid-feedback">Las contraseñas no coinciden.</div>
-                </div>
-
-                <button type="submit" class="btn btn-primary w-100">Registrarse</button>
+<section class="py-5" style="background: linear-gradient(to bottom, var(--sal-marina) 0%, var(--lila-rosa) 100%); margin-top: 80px;">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-11">
+        <div class="d-lg-flex shadow rounded overflow-hidden" style="height: 600px;">
+          
+          <!-- 🧊 Formulario con clases reutilizadas -->
+          <div class="col-lg-5 p-4 d-flex flex-column justify-content-center glass-card animate-login">
+            <h2 class="text-center mb-4" style="color: var(--gris-humo); font-weight: 700;">Registro de Usuario</h2>
+            <form id="registroForm" class="needs-validation" novalidate>
+              <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre completo</label>
+                <input type="text" class="form-control" id="nombre" required>
+                <div class="invalid-feedback">Ingrese su nombre completo.</div>
+              </div>
+              <div class="mb-3">
+                <label for="telefono" class="form-label">Número de teléfono</label>
+                <input type="tel" class="form-control" id="telefono" required>
+                <div class="invalid-feedback">Ingrese un teléfono válido (10 dígitos).</div>
+              </div>
+              <div class="mb-3">
+                <label for="email" class="form-label">Correo electrónico</label>
+                <input type="email" class="form-control" id="email" required>
+                <div class="invalid-feedback">Ingrese un correo electrónico válido.</div>
+              </div>
+              <div class="mb-3">
+                <label for="password" class="form-label">Contraseña</label>
+                <input type="password" class="form-control" id="password" required minlength="6">
+                <div class="invalid-feedback">La contraseña debe tener al menos 6 caracteres.</div>
+              </div>
+              <div class="mb-3">
+                <label for="confirmPassword" class="form-label">Confirmar contraseña</label>
+                <input type="password" class="form-control" id="confirmPassword" required>
+                <div class="invalid-feedback">Las contraseñas no coinciden.</div>
+              </div>
+              <div class="text-center">
+                <button type="submit" class="btn btn-spa">Registrarse</button>
+              </div>
             </form>
-
             <div id="mensaje" class="mt-3 text-center fw-bold"></div>
-        </div>
-    </div>
-</div>
+          </div>
 
+          <!-- 🎠 Carrusel con clases reutilizadas -->
+          <div class="col-lg-7 p-0">
+            <div id="registroCarousel" class="carousel slide h-100" data-bs-ride="carousel">
+              <div class="carousel-inner h-100">
+                <div class="carousel-item active h-100" style="background-image: url('https://images.unsplash.com/photo-1596178060810-485914b62b67?w=1600&q=80'); background-size: cover; background-position: center;">
+                  <div class="hero-overlay"></div>
+                  <div class="carousel-caption d-flex flex-column justify-content-center align-items-center text-center">
+                    <h3 class="text-white fw-bold">Bienestar & Belleza</h3>
+                    <p class="text-white">Tu refugio de relajación y armonía</p>
+                  </div>
+                </div>
+                <div class="carousel-item h-100" style="background-image: url('https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=1600&q=80'); background-size: cover; background-position: center;">
+                  <div class="hero-overlay"></div>
+                  <div class="carousel-caption d-flex flex-column justify-content-center align-items-center text-center">
+                    <h3 class="text-white fw-bold">Cuidado Profesional</h3>
+                    <p class="text-white">Tratamientos especializados en bienestar</p>
+                  </div>
+                </div>
+                <div class="carousel-item h-100" style="background-image: url('https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=1600&q=80'); background-size: cover; background-position: center;">
+                  <div class="hero-overlay"></div>
+                  <div class="carousel-caption d-flex flex-column justify-content-center align-items-center text-center">
+                    <h3 class="text-white fw-bold">Relajación Pura</h3>
+                    <p class="text-white">Vive la experiencia H&B Spa</p>
+                  </div>
+                </div>
+              </div>
+              <button class="carousel-control-prev" type="button" data-bs-target="#registroCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#registroCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- FOOTER -->
-<footer class="bg-light pt-5 pb-3 mt-5">
+<footer class="pt-5 pb-3" id="contacto" style="margin-top: 0;">
   <div class="container">
     <div class="d-flex justify-content-evenly flex-wrap text-center text-md-start">
-      <!-- Columna 1 -->
+      
+      <!-- Columna 1: Información -->
       <div class="mb-4">
         <h5 class="fw-bold mb-3">H&B SPA Jardín Balbuena</h5>
         <p class="text-muted">Tu refugio de belleza y bienestar desde 2015.</p>
-        <p class="text-muted mb-1"><i class="bi bi-geo-alt-fill"></i> Jardín Balbuena, CDMX</p>
-        <p class="text-muted mb-1"><i class="bi bi-telephone-fill"></i> (55) 1234-5678</p>
-        <p class="text-muted"><i class="bi bi-envelope-fill"></i> contacto@hbspa.com</p>
+        <p class="text-muted mb-1"><i class="bi bi-geo-alt-fill me-2"></i>Jardín Balbuena, CDMX</p>
+        <p class="text-muted mb-1"><i class="bi bi-telephone-fill me-2"></i>(55) 1234-5678</p>
+        <p class="text-muted"><i class="bi bi-envelope-fill me-2"></i>contacto@hbspa.com</p>
       </div>
 
-      <!-- Columna 2 -->
-     <div class="mb-4">
+      <!-- Columna 2: Enlaces -->
+      <div class="mb-4">
         <h5 class="fw-bold mb-3">Enlaces Rápidos</h5>
         <ul class="list-unstyled">
-          <li class="mb-2"><a href="../index.html" class="text-muted text-decoration-none">Inicio</a></li>
-          <li class="mb-2"><a href="./Products.html" class="text-muted text-decoration-none">Productos</a></li>
-          <li class="mb-2"><a href="./Reserve.html" class="text-muted text-decoration-none">Reserva</a></li>
-          <li class="mb-2"><a href="./About.html" class="text-muted text-decoration-none">Acerca de Nosotros</a></li>
-          <li class="mb-2"><a href="./Contact.html" class="text-muted text-decoration-none">Contacto</a></li>
+          <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Inicio</a></li>
+          <li class="mb-2"><a href="#servicios" class="text-muted text-decoration-none">Productos</a></li>
+          <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Reserva</a></li>
+          <li class="mb-2"><a href="#equipo" class="text-muted text-decoration-none">Acerca de Nosotros</a></li>
+          <li class="mb-2"><a href="#contacto" class="text-muted text-decoration-none">Contacto</a></li>
         </ul>
       </div>
 
-      <!-- Columna 3 -->
+      <!-- Columna 3: Redes y Horarios -->
       <div class="mb-4">
         <h5 class="fw-bold mb-3">Síguenos</h5>
-        <div class="d-flex justify-content-start gap-3 mb-3">
-          <a href="https://wa.me/5562316302" target="_blank" rel="noopener" class="text-muted fs-4 text-decoration-none" aria-label="Facebook"><i class="bi bi-whatsapp"></i></a>
-          <a href="https://www.facebook.com/share/1AezGeWWhd/" target="_blank" rel="noopener" class="text-muted fs-4 text-decoration-none" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
-          <a href="https://www.instagram.com/spahyb?igsh=c2ttcnhuY2k1N2F3" target="_blank" rel="noopener" class="text-muted fs-4 text-decoration-none" aria-label="Facebook"><i class="bi bi-instagram"></i></a>
+        <div class="d-flex justify-content-center justify-content-md-start gap-3 mb-3">
+          <a href="#" class="social-link"><i class="bi bi-whatsapp"></i></a>
+          <a href="#" class="social-link"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="social-link"><i class="bi bi-instagram"></i></a>
         </div>
         <h6 class="fw-bold mt-4 mb-2">Horarios</h6>
         <ul class="list-unstyled text-muted mb-0">
-          <li>Lunes - Viernes: 9:00 AM - 8:00 PM</li>
-          <li>Sábado: 10:00 AM - 6:00 PM</li>
-          <li>Domingo: Cerrado</li>
+          <li class="mb-1"><i class="bi bi-clock me-2"></i>Lunes - Viernes: 9:00 AM - 8:00 PM</li>
+          <li class="mb-1"><i class="bi bi-clock me-2"></i>Sábado: 10:00 AM - 6:00 PM</li>
+          <li><i class="bi bi-clock me-2"></i>Domingo: Cerrado</li>
         </ul>
       </div>
+
     </div>
 
-    <!-- Divider y copyright igual -->
     <hr class="my-4">
-    <div class="row">
-      <div class="col-12 text-center">
-        <p class="text-muted mb-0">&copy; 2025 H&B SPA Jardín Balbuena. Todos los derechos reservados.</p>
-        <p class="text-muted small mb-0">
-          <a href="#" class="text-muted text-decoration-none">Política de Privacidad</a> |
-          <a href="#" class="text-muted text-decoration-none">Términos y Condiciones</a>
-        </p>
-      </div>
+
+    <div class="text-center">
+      <p class="text-muted mb-0">&copy; 2025 H&B SPA Jardín Balbuena. Todos los derechos reservados.</p>
+      <p class="text-muted small mb-0 mt-2">
+        <a href="#" class="text-muted text-decoration-none">Política de Privacidad</a> |
+        <a href="#" class="text-muted text-decoration-none">Términos y Condiciones</a>
+      </p>
     </div>
   </div>
 </footer>
