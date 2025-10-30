@@ -1,53 +1,620 @@
-/* Estilos específicos de la página de contacto */
+/* ========================================
+   ESTILOS ESPECÍFICOS - PÁGINA DE CONTACTO
+   H&B SPA - Diseño coherente con index
+   ======================================== */
 
-.contact-details-wrapper {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+/* ========================================
+   HERO / ENCABEZADO DE CONTACTO
+   ======================================== */
+.pt-5 {
+  padding-top: 6rem !important;
 }
 
-.social-icon { color: var(--gris-humo); border-color: var(--turquesa-pastel); }
-.social-icon:hover { color: var(--gris-humo); }
-
-.btn-outline-primary { border-color: var(--turquesa-pastel); }
-.btn-outline-primary:hover { color: var(--gris-humo); background-color: var(--rosa-petalo); border-color: var(--rosa-petalo); }
-
-/* Eliminar el control de redimensionamiento solo para el textarea de mensaje y evitar barras de scroll forzadas */
-textarea.form-control#message {
-    resize: none;          /* Deshabilita el control de arrastre para redimensionar */
-    overflow-y: auto;      /* Muestra la barra de scroll solo si es necesario */
-    min-height: 10rem;     /* Altura mínima por defecto para mayor comodidad */
+.pb-3 {
+  padding-bottom: 2rem !important;
 }
 
-/* Tarjetas de igual altura en la sección superior */
+.pb-5 {
+  padding-bottom: 4rem !important;
+}
+
+/* Mejorar espaciado entre secciones */
+.container > .row {
+  margin-bottom: 2rem;
+}
+
+/* Asegurar que todas las columnas tengan el mismo comportamiento */
+.container .row .col-lg-6 {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Hacer que las tarjetas llenen completamente el espacio disponible */
+.col-lg-6 .card {
+  width: 100%;
+  flex: 1;
+}
+
+/* Alinear todas las filas con align-items-stretch */
+.row.g-5,
+.row.align-items-stretch {
+  align-items: stretch !important;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* Asegurar que h-100 y d-flex funcionen correctamente */
+.h-100.d-flex {
+  display: flex !important;
+  height: 100% !important;
+  flex: 1;
+}
+
+/* Título principal de la página */
+.display-4,
+.display-6 {
+  color: var(--gris-humo);
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-top: 2rem;
+  position: relative;
+  display: inline-block;
+}
+
+.display-4::after,
+.display-6::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--turquesa-pastel), var(--lila-rosa));
+  border-radius: 2px;
+}
+
+/* ========================================
+   ANIMACIONES
+   ======================================== */
+.contact-card,
+.embed-card {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.contact-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.contact-card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.embed-card:nth-child(1) {
+  animation-delay: 0.3s;
+}
+
+.embed-card:nth-child(2) {
+  animation-delay: 0.4s;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ========================================
+   TARJETAS DE CONTACTO
+   ======================================== */
 .contact-card {
-    display: flex;
-    flex-direction: column;
-    flex: 1 1 auto; /* Rellena la altura de la columna padre cuando el padre es flex */
+  border-radius: 25px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  background: var(--blanco);
+  overflow: hidden;
+  position: relative;
+  border: 1px solid rgba(110, 191, 195, 0.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08) !important;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
 }
+
+.contact-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--turquesa-pastel), var(--lila-rosa));
+  transition: all 0.4s ease;
+  z-index: 1;
+}
+
+.contact-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 45px rgba(110, 191, 195, 0.25) !important;
+  border-color: rgba(110, 191, 195, 0.3);
+}
+
+.contact-card:hover::before {
+  height: 6px;
+}
+
 .contact-card .card-body {
-    display: flex;
+  padding: 2.5rem !important;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-card h3 {
+  color: var(--gris-humo);
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  position: relative;
+  padding-bottom: 1rem;
+}
+
+.contact-card h3::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--turquesa-pastel), var(--lila-rosa));
+  border-radius: 3px;
+}
+
+/* ========================================
+   FORMULARIO DE CONTACTO
+   ======================================== */
+#contactForm .form-label {
+  color: var(--gris-humo);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+}
+
+#contactForm .form-control,
+#contactForm .form-select {
+  border: 2px solid rgba(110, 191, 195, 0.15);
+  border-radius: 15px;
+  padding: 0.75rem 1rem;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+  background: rgba(245, 237, 228, 0.2);
+}
+
+#contactForm .form-control:focus,
+#contactForm .form-select:focus {
+  border-color: var(--turquesa-pastel);
+  box-shadow: 0 0 0 0.25rem rgba(110, 191, 195, 0.15);
+  outline: none;
+  background: var(--blanco);
+  transform: translateY(-2px);
+}
+
+#contactForm .form-control.is-invalid,
+#contactForm .form-select.is-invalid {
+  border-color: #dc3545;
+}
+
+#contactForm .form-control.is-valid,
+#contactForm .form-select.is-valid {
+  border-color: #28a745;
+}
+
+#contactForm textarea.form-control {
+  min-height: 150px;
+  resize: none; /* Eliminar la posibilidad de redimensionar */
+}
+
+#contactForm .invalid-feedback {
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+}
+
+/* Botón de envío del formulario */
+#contactForm button[type="submit"],
+.btn-primary {
+  background: var(--turquesa-pastel);
+  border: none;
+  padding: 0.8rem 2.5rem;
+  border-radius: 25px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  color: var(--blanco);
+  box-shadow: 0 5px 15px rgba(110, 191, 195, 0.3);
+}
+
+#contactForm button[type="submit"]:hover,
+.btn-primary:hover {
+  background: #5aa9ad;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(110, 191, 195, 0.45);
+  color: var(--blanco);
+}
+
+#contactForm button[type="submit"]:active {
+  transform: translateY(-1px);
+}
+
+/* ========================================
+   ALERTAS DE ÉXITO/ERROR
+   ======================================== */
+.alert {
+  border-radius: 15px;
+  border: none;
+  padding: 1rem 1.5rem;
+  margin-bottom: 1.5rem;
+  animation: slideInUp 0.5s ease;
+}
+
+.alert-success {
+  background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+  color: #155724;
+  box-shadow: 0 5px 15px rgba(40, 167, 69, 0.2);
+}
+
+.alert-danger {
+  background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
+  color: #721c24;
+  box-shadow: 0 5px 15px rgba(220, 53, 69, 0.2);
+}
+
+.alert i {
+  font-size: 1.2rem;
+  vertical-align: middle;
+}
+
+/* ========================================
+   INFORMACIÓN DE CONTACTO
+   ======================================== */
+.contact-details-wrapper {
+  margin-bottom: 1.5rem;
+}
+
+.contact-info-item,
+.d-flex.align-items-start {
+  display: flex;
+  align-items: start;
+  margin-bottom: 1.5rem;
+  padding: 1.2rem;
+  border-radius: 15px;
+  transition: all 0.3s ease;
+  background: rgba(245, 237, 228, 0.3);
+  border: 1px solid transparent;
+}
+
+.contact-info-item:hover,
+.d-flex.align-items-start:hover {
+  background: var(--arena-suave);
+  transform: translateX(5px);
+  border-color: rgba(110, 191, 195, 0.2);
+  box-shadow: 0 5px 15px rgba(110, 191, 195, 0.1);
+}
+
+.contact-info-item i,
+.d-flex.align-items-start i {
+  font-size: 1.8rem;
+  color: var(--turquesa-pastel);
+  margin-right: 1.2rem;
+  min-width: 45px;
+  text-align: center;
+  transition: transform 0.3s ease;
+  background: rgba(110, 191, 195, 0.1);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contact-info-item:hover i,
+.d-flex.align-items-start:hover i {
+  transform: scale(1.1) rotate(5deg);
+  background: rgba(110, 191, 195, 0.2);
+}
+
+.contact-info-item h5,
+.d-flex.align-items-start h5 {
+  color: var(--gris-humo);
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+  font-size: 1.1rem;
+}
+
+.contact-info-item p,
+.d-flex.align-items-start p {
+  color: var(--gris-humo);
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.contact-info-item a {
+  color: var(--turquesa-pastel);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.contact-info-item a:hover {
+  color: #5aa9ad;
+  text-decoration: underline;
+}
+
+/* ========================================
+   MAPA (si se incluye)
+   ======================================== */
+.map-container {
+  border-radius: 25px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  height: 400px;
+  margin-top: 2rem;
+}
+
+.map-container iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* ========================================
+   TARJETAS DE RESEÑAS Y MAPA
+   ======================================== */
+.embed-card {
+  border-radius: 25px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  background: var(--blanco);
+  overflow: hidden;
+  position: relative;
+  border: 1px solid rgba(110, 191, 195, 0.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08) !important;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  height: 100%;
+}
+
+.embed-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--turquesa-pastel), var(--lila-rosa));
+  z-index: 10;
+  transition: all 0.4s ease;
+}
+
+.embed-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 45px rgba(110, 191, 195, 0.25) !important;
+  border-color: rgba(110, 191, 195, 0.3);
+}
+
+.embed-card:hover::before {
+  height: 6px;
+}
+
+.embed-card .card-body {
+  padding: 0 !important;
+  min-height: 500px;
+  height: 100%;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  flex: 1;
+}
+
+/* Widget de Elfsight (reseñas de Google) */
+.elfsight-app-fe189f22-bf26-437b-aed6-dda28d5e9e47,
+.embed-card .card-body > div {
+  width: 100%;
+  min-height: 500px;
+  height: 100%;
+  display: flex;
+}
+
+/* Asegurar que el iframe y el widget ocupen todo el espacio */
+.mapa-redondeado,
+.embed-card .card-body iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  min-height: 500px;
+  flex: 1;
+}
+
+/* ========================================
+   BLOQUE DE REDES SOCIALES
+   ======================================== */
+.social-media-block {
+  padding: 1.5rem;
+  margin-top: 1.5rem;
+  border-top: 2px solid rgba(110, 191, 195, 0.15);
+  background: rgba(245, 237, 228, 0.3);
+  border-radius: 15px;
+}
+
+.social-media-block h5 {
+  color: var(--gris-humo);
+  font-weight: 700;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.social-media-block .d-flex {
+  justify-content: center;
+}
+
+/* Ajustar la información de contacto */
+.contact-info-item i {
+  color: var(--turquesa-pastel);
+}
+
+.text-accent-teal {
+  color: var(--turquesa-pastel) !important;
+}
+
+/* ========================================
+   SECCIÓN DE HORARIOS
+   ======================================== */
+.schedule-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.schedule-list li {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.8rem 1rem;
+  border-bottom: 1px solid #e0e0e0;
+  transition: all 0.3s ease;
+}
+
+.schedule-list li:last-child {
+  border-bottom: none;
+}
+
+.schedule-list li:hover {
+  background: var(--arena-suave);
+  padding-left: 1.5rem;
+}
+
+.schedule-list .day {
+  font-weight: 600;
+  color: var(--gris-humo);
+}
+
+.schedule-list .time {
+  color: var(--turquesa-pastel);
+  font-weight: 500;
+}
+
+/* ========================================
+   FAQ / PREGUNTAS FRECUENTES
+   ======================================== */
+.faq-item {
+  background: var(--blanco);
+  border-radius: 15px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.faq-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(110, 191, 195, 0.2);
+}
+
+.faq-item h5 {
+  color: var(--gris-humo);
+  font-weight: 700;
+  margin-bottom: 0.8rem;
+  display: flex;
+  align-items: center;
+}
+
+.faq-item h5 i {
+  color: var(--turquesa-pastel);
+  margin-right: 0.8rem;
+  font-size: 1.3rem;
+}
+
+.faq-item p {
+  color: var(--gris-humo);
+  margin: 0;
+  line-height: 1.7;
+}
+
+/* ========================================
+   MEDIA QUERIES - RESPONSIVE
+   ======================================== */
+@media (max-width: 992px) {
+  .contact-card .card-body {
+    padding: 2rem !important;
+  }
+
+  .contact-info-item {
+    margin-bottom: 1.5rem;
+  }
+
+  .pt-5 {
+    padding-top: 5rem !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .display-4 {
+    font-size: 2.5rem;
+  }
+
+  .contact-card .card-body {
+    padding: 1.5rem !important;
+  }
+
+  .contact-card h3 {
+    font-size: 1.5rem;
+  }
+
+  #contactForm button[type="submit"] {
+    width: 100%;
+    padding: 1rem;
+  }
+
+  .contact-info-item {
+    padding: 0.8rem;
+  }
+
+  .contact-info-item i {
+    font-size: 1.5rem;
+    margin-right: 1rem;
+  }
+
+  .map-container {
+    height: 1px;
+  }
+}
+
+@media (max-width: 576px) {
+  .pt-5 {
+    padding-top: 4rem !important;
+  }
+
+  .display-4 {
+    font-size: 2rem;
+    margin-top: 1rem;
+  }
+
+  .contact-card .card-body {
+    padding: 1.2rem !important;
+  }
+
+  .contact-info-item {
     flex-direction: column;
-    gap: 0.75rem;
-    flex: 1 1 auto;
+    align-items: center;
+    text-align: center;
+  }
+
+  .contact-info-item i {
+    margin-right: 0;
+    margin-bottom: 0.8rem;
+  }
 }
-
-/* Mapa y reseñas: apariencia consistente dentro de las tarjetas usando la relación de aspecto de Bootstrap */
-.embed-card .card-body { padding: 0; }
-.embed-card .card-header {
-    background: #ffffff;
-    border-bottom: 1px solid rgba(0,0,0,0.06);
-}
-
-/* Hacer que cualquier hijo directo de .ratio llene el espacio (Bootstrap lo hace, se asegura la compatibilidad) */
-.ratio > * { width: 100% !important; height: 100% !important; }
-
-/* Contenedor del widget de Elfsight: relleno, esquinas redondeadas y desbordamiento recortado */
-[class^="elfsight-app-"] {
-    border-radius: var(--radius);
-    overflow: hidden;
-}
-
-/* Iframe del mapa de Google: relleno, esquinas redondeadas y sin borde */
-.mapa-redondeado { border-radius: var(--radius); overflow: hidden; width: 100%; height: 100%; border: 0; }
