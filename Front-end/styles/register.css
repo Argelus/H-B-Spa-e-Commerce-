@@ -1,3 +1,95 @@
-/* Estilos específicos de la página de registro */
+:root{--arena-suave:#f5ede4;--sal-marina:#d7eceb;--turquesa-pastel:#6ebfc3;--lila-rosa:#ebd2ec;--gris-humo:#4a4a4a}
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;color:var(--gris-humo);overflow-x:hidden;}
+    .navbar-overlay{background:rgba(0,0,0,.4);backdrop-filter:blur(10px);transition:all .4s ease;z-index:1000}
+    .navbar-overlay.scrolled{background:rgba(255,255,255,.95);backdrop-filter:blur(12px);box-shadow:0 2px 20px rgba(0,0,0,.1)}
+    .navbar-overlay .nav-link,.navbar-overlay .navbar-brand{color:#fff!important;font-weight:500;transition:color .3s ease}
+    .navbar-overlay.scrolled .nav-link,.navbar-overlay.scrolled .navbar-brand{color:var(--gris-humo)!important}
+    .navbar-overlay.scrolled .navbar-toggler-icon{background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2874, 74, 74, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e")!important}
+    .nav-link{position:relative;padding:.5rem 1rem!important}
+    .nav-link::after{content:'';position:absolute;bottom:0;left:50%;width:0;height:2px;background:var(--turquesa-pastel);transform:translateX(-50%);transition:width .3s ease}
+    .nav-link:hover::after,.nav-link.active::after{width:60%}
+    #hero{position:relative;height:100vh;overflow:hidden}
+    .carousel-item{height:100vh;background-size:cover;background-position:center}
+    .hero-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(110,191,195,.3),rgba(0,0,0,.6))}
+    .carousel-caption{height:100%}
+    .carousel-caption h1{text-shadow:2px 2px 8px rgba(0,0,0,.3);letter-spacing:2px}
+    @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+    .modal-content-lightbox{position:relative;margin:auto;padding:0;width:90%;max-width:1200px;height:100%;display:flex;align-items:center;justify-content:center}
+    .modal-lightbox img{max-width:100%;max-height:90vh;border-radius:15px;box-shadow:0 25px 80px rgba(0,0,0,.6);animation:zoomIn .4s ease}
+    @keyframes zoomIn{from{transform:scale(.8);opacity:0}to{transform:scale(1);opacity:1}}
+    .close-lightbox{position:absolute;top:30px;right:50px;color:#fff;font-size:50px;font-weight:700;cursor:pointer;z-index:10001;transition:all .3s ease;background:rgba(110,191,195,.3);width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;line-height:1;padding-bottom:5px;backdrop-filter:blur(10px)}
+    .close-lightbox:hover{background:var(--turquesa-pastel);transform:rotate(90deg) scale(1.1)}
+    .lightbox-title{position:absolute;bottom:50px;left:50%;transform:translateX(-50%);color:#fff;font-size:1.8rem;font-weight:700;background:rgba(0,0,0,.8);padding:1.2rem 3rem;border-radius:60px;backdrop-filter:blur(20px);box-shadow:0 10px 40px rgba(0,0,0,.5);border:2px solid rgba(110,191,195,.3)}
+    #equipo{background:linear-gradient(180deg,var(--arena-suave) 0,var(--sal-marina) 100%);padding:5rem 0}
+    .carousel-3d{position:relative;display:flex;justify-content:center;align-items:center;height:420px;perspective:1800px;transform-style:preserve-3d;margin-top:2rem}
+    .team-card{position:absolute;width:220px;height:300px;background:#fff;border-radius:25px;box-shadow:0 15px 40px rgba(0,0,0,.2);transition:transform 1s cubic-bezier(.4,0,.2,1),opacity 1s ease;text-align:center;opacity:0;overflow:hidden}
+    .team-card img{width:100%;height:65%;object-fit:cover;border-radius:25px 25px 0 0;transition:transform .3s ease}
+    .team-card:hover img{transform:scale(1.15)}
+    .team-card h5{margin-top:15px;font-weight:700;color:var(--gris-humo);font-size:1.1rem}
+    .team-card p{font-size:.95rem;color:var(--turquesa-pastel);margin:5px 0;font-weight:600}
+    .carousel-controls{margin-top:3rem}
+    .carousel-controls button{width:60px;height:60px;border-radius:50%;border:3px solid var(--turquesa-pastel);background:#fff;color:var(--turquesa-pastel);transition:all .3s ease;font-size:24px;display:inline-flex;align-items:center;justify-content:center;box-shadow:0 5px 20px rgba(0,0,0,.1)}
+    .carousel-controls button:hover{background:var(--turquesa-pastel);color:#fff;transform:scale(1.15);box-shadow:0 10px 30px rgba(110,191,195,.4)}
+    footer{background:linear-gradient(135deg,var(--arena-suave),var(--lila-rosa));margin-top:4rem}
+    footer a:hover{color:var(--turquesa-pastel)!important;transform:translateX(5px);transition:all .3s ease}
+    .social-link{display:inline-flex;align-items:center;justify-content:center;width:50px;height:50px;border-radius:50%;background:#fff;color:var(--turquesa-pastel);transition:all .3s ease;text-decoration:none;font-size:22px;box-shadow:0 5px 15px rgba(0,0,0,.1)}
+    .social-link:hover{background:var(--turquesa-pastel);color:#fff;transform:translateY(-8px) scale(1.1);box-shadow:0 15px 30px rgba(110,191,195,.4)}
+    @media(max-width:992px){.gallery-masonry{column-count:2}}
+    @media(max-width:768px){.gallery-masonry{column-count:1}.carousel-caption h1{font-size:2rem}.lightbox-title{font-size:1.2rem;padding:.8rem 2rem}}
+    .text-turquesa{color:var(--turquesa-pastel)}
+.bg-fusion-login-footer {
+  background: linear-gradient(to bottom, var(--sal-marina) 0%, var(--lila-rosa) 100%);
+}@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
+.animate-login {
+  animation: fadeSlideUp 0.8s ease-out forwards;
+}
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
+.animate-login {
+  animation: fadeSlideUp 0.8s ease-out forwards;
+}
+.glass-card {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 0px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+}
+.btn-spa {
+  background-color: var(--turquesa-pastel);
+  color: #fff;
+  font-weight: 600;
+  padding: 0.5rem 1.2rem;       /* ⬅️ Menos alto y ancho */
+  font-size: 1rem; 
+ 
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(110, 191, 195, 0.3);
+}
+
+.btn-spa:hover {
+  background-color: #4aa7ab;
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 8px 25px rgba(110, 191, 195, 0.5);
+}
