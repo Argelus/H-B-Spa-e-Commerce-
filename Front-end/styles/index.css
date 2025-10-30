@@ -241,19 +241,20 @@ section#servicios {
 }
 
 .lightbox-title {
-    position: absolute;
-    bottom: 50px;
-    left: 50%;
-    transform: translateX(-50%);
-    color: #fff;
-    font-size: 1.8rem;
-    font-weight: 700;
-    background: rgba(0, 0, 0, 0.8);
-    padding: 1.2rem 3rem;
-    border-radius: 60px;
-    backdrop-filter: blur(20px);
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-    border: 2px solid rgba(110, 191, 195, 0.3);
+  position: absolute;
+  /* 1. Cambiamos su posición para que esté más arriba */
+  bottom: 140px; 
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fff;
+  font-size: 1.8rem;
+  font-weight: 700;
+  background: rgba(0, 0, 0, .8);
+  padding: 1.2rem 3rem;
+  border-radius: 60px;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, .5);
+  border: 2px solid rgba(110, 191, 195, .3);
 }
 
 /* =================================
@@ -402,4 +403,32 @@ section#servicios {
         height: 50px;
     }
 }
+/* =================================
+   Estilos para el botón del Lightbox
+==================================== */
 
+#lightbox-action-button {
+  position: absolute;
+  bottom: 50px; 
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10002;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+
+  font-size: 1.6rem !important;
+  font-weight: 700 !important;
+  padding: 1.2rem 1rem !important;
+  border-radius: 60px !important;
+}
+@media (max-width: 768px) {
+  
+  #lightbox-action-button {
+    bottom: 120px; 
+    padding: .9rem 1rem; 
+    font-size: 0.9rem;
+  }
+  
+  .lightbox-title {
+    bottom: 20px;
+  }
+}

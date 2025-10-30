@@ -12,7 +12,6 @@
 <body>
 
 <!-- 🟢 NAVBAR -->
-<!-- 🟢 NAVBAR -->
 <nav class="navbar navbar-expand-lg fixed-top navbar-dark navbar-overlay py-3">
   <div class="container">
     <a class="navbar-brand fw-bold" href="#">H&B SPA</a>
@@ -47,7 +46,7 @@
         <span class="cart-badge">0</span>
       </a>
       <a href="./pages/Register.html" class="btn btn-outline-light rounded-pill me-2">Registro</a>
-      <a href="./pages/Login.html" class="btn btn-light rounded-pill text-turquesa">Log In</a>
+      <a href="./pages/Login.html" class="btn btn-light rounded-pill text-turquesa">Acceder</a>
     </div>
   </div>
 </nav>
@@ -57,7 +56,7 @@
 <header id="hero">
   <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
     <div class="carousel-inner">
-      <div class="carousel-item active" style="background-image:url('https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=1600&q=80')">
+      <div class="carousel-item active" style="background-image:url('/images/seleccionadas/1000484060.jpg')">
         <div class="hero-overlay"></div>
         <div class="carousel-caption d-flex flex-column justify-content-center align-items-center text-center">
           <h1 class="display-3 fw-bold mb-3">Bienestar & Belleza</h1>
@@ -65,14 +64,14 @@
           <a href="#servicios" class="btn btn-light rounded-pill px-5 py-3 text-turquesa fw-bold">Explorar Servicios</a>
         </div>
       </div>
-      <div class="carousel-item" style="background-image:url('https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=1600&q=80')">
+      <div class="carousel-item" style="background-image:url('/images/seleccionadas/1000484075.jpg')">
         <div class="hero-overlay"></div>
         <div class="carousel-caption d-flex flex-column justify-content-center align-items-center text-center">
           <h1 class="display-3 fw-bold mb-3">Cuidado Profesional</h1>
           <p class="lead mb-4">Tratamientos especializados en bienestar integral</p>
         </div>
       </div>
-      <div class="carousel-item" style="background-image:url('https://images.unsplash.com/photo-1596178060810-485914b62b67?w=1600&q=80')">
+      <div class="carousel-item" style="background-image:url('/images/seleccionadas/1000484087.jpg')">
         <div class="hero-overlay"></div>
         <div class="carousel-caption d-flex flex-column justify-content-center align-items-center text-center">
           <h1 class="display-3 fw-bold mb-3">Relajación Pura</h1>
@@ -104,8 +103,8 @@
         <div class="gallery-icon"><i class="bi bi-zoom-in"></i></div>
       </div>
 
-      <div class="gallery-item" data-title="Facial Premium" data-img="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&q=80">
-        <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=600&q=80" alt="Facial">
+      <div class="gallery-item" data-title="Facial Premium" data-img="/images/seleccionadas/1000484126.jpg">
+        <img src="/images/seleccionadas/1000484126.jpg" alt="Facial">
         <div class="gallery-overlay"><h5 class="gallery-title">Facial Premium</h5></div>
         <div class="gallery-icon"><i class="bi bi-zoom-in"></i></div>
       </div>
@@ -161,6 +160,7 @@
   <div class="modal-content-lightbox">
     <img id="lightboxImg" src="" alt="">
     <div class="lightbox-title" id="lightboxTitle"></div>
+    <a href="pages/Reserve.html" class="btn btn-light rounded-pill px-4 py-2 text-turquesa fw-bold" id="lightbox-action-button">Agenda tu tratamiento</a>
   </div>
 </div>
 
@@ -201,8 +201,6 @@
 </section>
 
 
-
-<!-- 🟢 FOOTER -->
 <!-- 🟢 FOOTER -->
 <footer class="pt-5 pb-3" id="contacto">
   <div class="container">
@@ -222,10 +220,10 @@
         <h5 class="fw-bold mb-3">Enlaces Rápidos</h5>
         <ul class="list-unstyled">
           <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Inicio</a></li>
-          <li class="mb-2"><a href="#servicios" class="text-muted text-decoration-none">Productos</a></li>
-          <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Reserva</a></li>
-          <li class="mb-2"><a href="#equipo" class="text-muted text-decoration-none">Acerca de Nosotros</a></li>
-          <li class="mb-2"><a href="#contacto" class="text-muted text-decoration-none">Contacto</a></li>
+          <li class="mb-2"><a href="pages/Products.html" class="text-muted text-decoration-none">Productos</a></li>
+          <li class="mb-2"><a href="pages/Reserve.html" class="text-muted text-decoration-none">Reserva</a></li>
+          <li class="mb-2"><a href="pages/About.html" class="text-muted text-decoration-none">Acerca de Nosotros</a></li>
+          <li class="mb-2"><a href="/pages/Contact.html" class="text-muted text-decoration-none">Contacto</a></li>
         </ul>
       </div>
 
@@ -233,9 +231,9 @@
       <div class="mb-4">
         <h5 class="fw-bold mb-3">Síguenos</h5>
         <div class="d-flex justify-content-center justify-content-md-start gap-3 mb-3">
-          <a href="#" class="social-link"><i class="bi bi-whatsapp"></i></a>
-          <a href="#" class="social-link"><i class="bi bi-facebook"></i></a>
-          <a href="#" class="social-link"><i class="bi bi-instagram"></i></a>
+          <a href="https://wa.me/5562316302" target="_blank" rel="noopener" class="social-link"><i class="bi bi-whatsapp"></i></a>
+          <a href="https://www.facebook.com/share/1AezGeWWhd/" target="_blank" rel="noopener" class="social-link"><i class="bi bi-facebook"></i></a>
+          <a href="https://www.instagram.com/spahyb?igsh=c2ttcnhuY2k1N2F3" target="_blank" rel="noopener" class="social-link"><i class="bi bi-instagram"></i></a>
         </div>
         <h6 class="fw-bold mt-4 mb-2">Horarios</h6>
         <ul class="list-unstyled text-muted mb-0">
