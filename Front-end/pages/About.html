@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="../styles/common.css" />
     <link rel="stylesheet" href="../styles/about.css" />
+    
 </head>
 <body>
 <nav class="navbar navbar-expand-lg fixed-top navbar-dark navbar-overlay py-3">
@@ -276,6 +277,47 @@
       </div>
     </div>
 
+
+
+
+    <!-- MODAL FAQ -->
+<div id="faqModal" class="side-modal">
+  <div class="side-modal-content">
+    <div class="side-modal-header">
+      <h3><i class="bi bi-question-circle-fill"></i>Preguntas Frecuentes</h3>
+      <button class="close-modal" id="closeFaqModal">&times;</button>
+    </div>
+    <div class="side-modal-body">
+      <p class="modal-intro">
+        <i class="bi bi-info-circle me-2" style="color: var(--turquesa-pastel);"></i>
+        Encuentra respuestas rápidas a las preguntas más comunes sobre nuestros servicios.
+      </p>
+      <!-- FAQ se carga dinámicamente desde faq-data.js -->
+      <div data-faq="true" data-accordion-id="faqAccordionModal" data-id-prefix="faqModal"></div>
+    </div>
+  </div>
+
+<!-- BOTÓN FLOTANTE FAQ -->
+<button id="floatingFaqBtn" class="floating-faq-btn" title="Preguntas Frecuentes">
+  <i class="bi bi-question-circle-fill"></i>
+</button>
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Sistema centralizado de FAQs y Modals -->
+<script src="../scripts/faq-data.js"></script>
+<script src="../scripts/modal-manager-fixed.js"></script>
+<script src="../scripts/validation.js"></script>
+<script src="../scripts/app.js"></script>
+<!-- Los modals FAQ y Cart ahora se manejan automáticamente con modal-manager.js -->
+<script src="../scripts/cart-preview.js"></script>
+</script>
+<script src="../scripts/app.js"></script>
+<script src="../scripts/carousel3d.js"></script>
+<script src="../scripts/cart-preview.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<link rel="stylesheet" href="../styles/common.css">
+<link rel="stylesheet" href="../styles/tu-pagina.css">
+
     <!-- Divider y copyright-->
     <hr class="my-4">
     <div class="row">
@@ -289,34 +331,10 @@
     </div>
   </div>
 </footer>
-<script src="../scripts/app.js"></script>
-<script src="../scripts/carousel3d.js"></script>
-<script src="../scripts/cart-preview.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-<!-- Botón Flotante -->
-<button id="faq-button" class="faq-floating-btn" aria-label="Preguntas Frecuentes">
-  <i class="bi bi-question-circle-fill"></i>
-</button>
 
-<!-- Modal de Preguntas Frecuentes -->
-<div id="faq-modal" class="faq-modal">
-  <div class="faq-modal-content">
-    <div class="faq-modal-header">
-      <h3 class="mb-0">Preguntas Frecuentes</h3>
-      <button id="close-faq" class="faq-close-btn" aria-label="Cerrar">
-        <i class="bi bi-x-lg"></i>
-      </button>
-    </div>
-    <div class="faq-modal-body">
-      <div class="accordion" id="faqAccordion">
-        <div id="faq-container">
 
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+
 
 <script>
   fetch('/pages/faq.html')
