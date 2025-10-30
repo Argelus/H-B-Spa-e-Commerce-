@@ -6,67 +6,8 @@
   <title>H&B SPA Jardín Balbuena</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
-  <style>
-    :root{--arena-suave:#f5ede4;--sal-marina:#d7eceb;--turquesa-pastel:#6ebfc3;--lila-rosa:#ebd2ec;--gris-humo:#4a4a4a}
-    *{margin:0;padding:0;box-sizing:border-box}
-    body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;color:var(--gris-humo);overflow-x:hidden;background:#fff}
-    .navbar-overlay{background:rgba(0,0,0,.4);backdrop-filter:blur(10px);transition:all .4s ease;z-index:1000}
-    .navbar-overlay.scrolled{background:rgba(255,255,255,.95);backdrop-filter:blur(12px);box-shadow:0 2px 20px rgba(0,0,0,.1)}
-    .navbar-overlay .nav-link,.navbar-overlay .navbar-brand{color:#fff!important;font-weight:500;transition:color .3s ease}
-    .navbar-overlay.scrolled .nav-link,.navbar-overlay.scrolled .navbar-brand{color:var(--gris-humo)!important}
-    .navbar-overlay.scrolled .navbar-toggler-icon{background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2874, 74, 74, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e")!important}
-    .nav-link{position:relative;padding:.5rem 1rem!important}
-    .nav-link::after{content:'';position:absolute;bottom:0;left:50%;width:0;height:2px;background:var(--turquesa-pastel);transform:translateX(-50%);transition:width .3s ease}
-    .nav-link:hover::after,.nav-link.active::after{width:60%}
-    #hero{position:relative;height:100vh;overflow:hidden}
-    .carousel-item{height:100vh;background-size:cover;background-position:center}
-    .hero-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(110,191,195,.3),rgba(0,0,0,.6))}
-    .carousel-caption{height:100%}
-    .carousel-caption h1{text-shadow:2px 2px 8px rgba(0,0,0,.3);letter-spacing:2px}
-    #servicios{background:linear-gradient(180deg,#fff 0,var(--arena-suave) 100%);padding:5rem 0}
-    .gallery-masonry{column-count:3;column-gap:20px;padding:2rem 0}
-    .gallery-item{break-inside:avoid;margin-bottom:20px;position:relative;border-radius:20px;overflow:hidden;cursor:pointer;transition:all .5s cubic-bezier(.4,0,.2,1);box-shadow:0 8px 25px rgba(0,0,0,.12);background:#fff;display:inline-block;width:100%}
-    .gallery-item:hover{transform:translateY(-12px) rotate(1deg);box-shadow:0 25px 50px rgba(110,191,195,.35)}
-    .gallery-item:nth-child(odd){transform:rotate(-1deg)}
-    .gallery-item:nth-child(even){transform:rotate(1deg)}
-    .gallery-item:hover:nth-child(odd){transform:translateY(-12px) rotate(-2deg)}
-    .gallery-item:hover:nth-child(even){transform:translateY(-12px) rotate(2deg)}
-    .gallery-item::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(135deg,var(--turquesa-pastel),var(--lila-rosa));opacity:0;transition:opacity .4s ease;z-index:1;mix-blend-mode:overlay}
-    .gallery-item:hover::before{opacity:.6}
-    .gallery-item img{width:100%;height:auto;display:block;transition:transform .6s cubic-bezier(.4,0,.2,1);border-radius:20px}
-    .gallery-item:hover img{transform:scale(1.1)}
-    .gallery-overlay{position:absolute;bottom:0;left:0;right:0;padding:1.5rem;background:linear-gradient(to top,rgba(0,0,0,.9) 0%,rgba(0,0,0,.6) 60%,transparent 100%);transform:translateY(100%);transition:transform .5s cubic-bezier(.4,0,.2,1);z-index:2}
-    .gallery-item:hover .gallery-overlay{transform:translateY(0)}
-    .gallery-title{color:#fff;font-size:1.2rem;font-weight:700;margin:0;text-shadow:2px 2px 8px rgba(0,0,0,.5);letter-spacing:.5px}
-    .gallery-icon{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(0) rotate(180deg);width:70px;height:70px;background:rgba(255,255,255,.98);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:all .5s cubic-bezier(.68,-.55,.265,1.55);z-index:3;box-shadow:0 10px 30px rgba(0,0,0,.3)}
-    .gallery-item:hover .gallery-icon{transform:translate(-50%,-50%) scale(1) rotate(0deg)}
-    .gallery-icon i{font-size:28px;color:var(--turquesa-pastel)}
-    .modal-lightbox{display:none;position:fixed;z-index:10000;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,.97);animation:fadeIn .3s ease}
-    @keyframes fadeIn{from{opacity:0}to{opacity:1}}
-    .modal-content-lightbox{position:relative;margin:auto;padding:0;width:90%;max-width:1200px;height:100%;display:flex;align-items:center;justify-content:center}
-    .modal-lightbox img{max-width:100%;max-height:90vh;border-radius:15px;box-shadow:0 25px 80px rgba(0,0,0,.6);animation:zoomIn .4s ease}
-    @keyframes zoomIn{from{transform:scale(.8);opacity:0}to{transform:scale(1);opacity:1}}
-    .close-lightbox{position:absolute;top:30px;right:50px;color:#fff;font-size:50px;font-weight:700;cursor:pointer;z-index:10001;transition:all .3s ease;background:rgba(110,191,195,.3);width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;line-height:1;padding-bottom:5px;backdrop-filter:blur(10px)}
-    .close-lightbox:hover{background:var(--turquesa-pastel);transform:rotate(90deg) scale(1.1)}
-    .lightbox-title{position:absolute;bottom:50px;left:50%;transform:translateX(-50%);color:#fff;font-size:1.8rem;font-weight:700;background:rgba(0,0,0,.8);padding:1.2rem 3rem;border-radius:60px;backdrop-filter:blur(20px);box-shadow:0 10px 40px rgba(0,0,0,.5);border:2px solid rgba(110,191,195,.3)}
-    #equipo{background:linear-gradient(180deg,var(--arena-suave) 0,var(--sal-marina) 100%);padding:5rem 0}
-    .carousel-3d{position:relative;display:flex;justify-content:center;align-items:center;height:420px;perspective:1800px;transform-style:preserve-3d;margin-top:2rem}
-    .team-card{position:absolute;width:220px;height:300px;background:#fff;border-radius:25px;box-shadow:0 15px 40px rgba(0,0,0,.2);transition:transform 1s cubic-bezier(.4,0,.2,1),opacity 1s ease;text-align:center;opacity:0;overflow:hidden}
-    .team-card img{width:100%;height:65%;object-fit:cover;border-radius:25px 25px 0 0;transition:transform .3s ease}
-    .team-card:hover img{transform:scale(1.15)}
-    .team-card h5{margin-top:15px;font-weight:700;color:var(--gris-humo);font-size:1.1rem}
-    .team-card p{font-size:.95rem;color:var(--turquesa-pastel);margin:5px 0;font-weight:600}
-    .carousel-controls{margin-top:3rem}
-    .carousel-controls button{width:60px;height:60px;border-radius:50%;border:3px solid var(--turquesa-pastel);background:#fff;color:var(--turquesa-pastel);transition:all .3s ease;font-size:24px;display:inline-flex;align-items:center;justify-content:center;box-shadow:0 5px 20px rgba(0,0,0,.1)}
-    .carousel-controls button:hover{background:var(--turquesa-pastel);color:#fff;transform:scale(1.15);box-shadow:0 10px 30px rgba(110,191,195,.4)}
-    footer{background:linear-gradient(135deg,var(--arena-suave),var(--lila-rosa));margin-top:4rem}
-    footer a:hover{color:var(--turquesa-pastel)!important;transform:translateX(5px);transition:all .3s ease}
-    .social-link{display:inline-flex;align-items:center;justify-content:center;width:50px;height:50px;border-radius:50%;background:#fff;color:var(--turquesa-pastel);transition:all .3s ease;text-decoration:none;font-size:22px;box-shadow:0 5px 15px rgba(0,0,0,.1)}
-    .social-link:hover{background:var(--turquesa-pastel);color:#fff;transform:translateY(-8px) scale(1.1);box-shadow:0 15px 30px rgba(110,191,195,.4)}
-    @media(max-width:992px){.gallery-masonry{column-count:2}}
-    @media(max-width:768px){.gallery-masonry{column-count:1}.carousel-caption h1{font-size:2rem}.lightbox-title{font-size:1.2rem;padding:.8rem 2rem}}
-    .text-turquesa{color:var(--turquesa-pastel)}
-  </style>
+  <link rel="stylesheet" href="./styles/common.css">
+  <link rel="stylesheet" href="./styles/index.css">
 </head>
 <body>
 
@@ -142,18 +83,59 @@
     <p class="text-muted mb-5 text-center">Explora la calidad y el detalle de nuestros tratamientos y espacios.</p>
 
     <div class="gallery-masonry">
-      <!-- ejemplos (mantén todos los que tenías) -->
       <div class="gallery-item" data-title="Masajes Relajantes" data-img="https://images.unsplash.com/photo-1519824145371-296894a0daa9?w=800&q=80">
         <img src="https://images.unsplash.com/photo-1519824145371-296894a0daa9?w=600&q=80" alt="Masajes">
         <div class="gallery-overlay"><h5 class="gallery-title">Masajes Relajantes</h5></div>
         <div class="gallery-icon"><i class="bi bi-zoom-in"></i></div>
       </div>
+
       <div class="gallery-item" data-title="Facial Premium" data-img="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&q=80">
         <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=600&q=80" alt="Facial">
         <div class="gallery-overlay"><h5 class="gallery-title">Facial Premium</h5></div>
         <div class="gallery-icon"><i class="bi bi-zoom-in"></i></div>
       </div>
-      <!-- ... demás imágenes ... -->
+
+      <div class="gallery-item" data-title="Aromaterapia" data-img="https://images.unsplash.com/photo-1600334129128-685c5582fd35?w=800&q=80">
+        <img src="https://images.unsplash.com/photo-1600334129128-685c5582fd35?w=600&q=80" alt="Aromaterapia">
+        <div class="gallery-overlay"><h5 class="gallery-title">Aromaterapia</h5></div>
+        <div class="gallery-icon"><i class="bi bi-zoom-in"></i></div>
+      </div>
+
+      <div class="gallery-item" data-title="Tratamientos Corporales" data-img="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=800&q=80">
+        <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=600&q=80" alt="Tratamientos">
+        <div class="gallery-overlay"><h5 class="gallery-title">Tratamientos Corporales</h5></div>
+        <div class="gallery-icon"><i class="bi bi-zoom-in"></i></div>
+      </div>
+
+      <div class="gallery-item" data-title="Manicure & Pedicure" data-img="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=800&q=80">
+        <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=600&q=80" alt="Manicure">
+        <div class="gallery-overlay"><h5 class="gallery-title">Manicure & Pedicure</h5></div>
+        <div class="gallery-icon"><i class="bi bi-zoom-in"></i></div>
+      </div>
+
+      <div class="gallery-item" data-title="Reflexología" data-img="https://images.unsplash.com/photo-1629198735700-086e0edea1a7?w=800&q=80">
+        <img src="https://images.unsplash.com/photo-1629198735700-086e0edea1a7?w=600&q=80" alt="Reflexología">
+        <div class="gallery-overlay"><h5 class="gallery-title">Reflexología</h5></div>
+        <div class="gallery-icon"><i class="bi bi-zoom-in"></i></div>
+      </div>
+
+      <div class="gallery-item" data-title="Sauna y Vapor" data-img="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=800&q=80">
+        <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=600&q=80" alt="Sauna">
+        <div class="gallery-overlay"><h5 class="gallery-title">Sauna y Vapor</h5></div>
+        <div class="gallery-icon"><i class="bi bi-zoom-in"></i></div>
+      </div>
+
+      <div class="gallery-item" data-title="Depilación Láser" data-img="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=800&q=80">
+        <img src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=600&q=80" alt="Depilación">
+        <div class="gallery-overlay"><h5 class="gallery-title">Depilación Láser</h5></div>
+        <div class="gallery-icon"><i class="bi bi-zoom-in"></i></div>
+      </div>
+
+      <div class="gallery-item" data-title="Hidroterapia" data-img="https://images.unsplash.com/photo-1596178060810-485914b62b67?w=800&q=80">
+        <img src="https://images.unsplash.com/photo-1596178060810-485914b62b67?w=600&q=80" alt="Hidroterapia">
+        <div class="gallery-overlay"><h5 class="gallery-title">Hidroterapia</h5></div>
+        <div class="gallery-icon"><i class="bi bi-zoom-in"></i></div>
+      </div>
     </div>
   </div>
 </section>
