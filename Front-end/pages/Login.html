@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
+<html lang="es">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>H&B SPA Jardín Balbuena</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="/Front-end/styles/register.css" rel="stylesheet">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>H&B SPA Jardín Balbuena</title>
@@ -13,7 +20,14 @@
 
 <!-- 🟢 NAVBAR -->
 <nav class="navbar navbar-expand-lg fixed-top navbar-dark navbar-overlay py-3">
+<body>
+
+
+<!-- 🟢 NAVBAR -->
+<nav class="navbar navbar-expand-lg fixed-top navbar-dark navbar-overlay py-3">
   <div class="container">
+    <a class="navbar-brand fw-bold" href="#">H&B SPA</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
     <a class="navbar-brand fw-bold" href="#">H&B SPA</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
       <span class="navbar-toggler-icon"></span>
@@ -27,6 +41,7 @@
         <li class="nav-item"><a class="nav-link" href="/Front-end/pages/pages/About.html">Acerca de Nosotros</a></li>
         <li class="nav-item"><a class="nav-link" href="/Front-end/pages/pages/Contact.html">Contacto<a><li>
       </ul>
+    </div>
     </div>
 
     <div class="d-none d-lg-flex ms-3">
@@ -52,6 +67,22 @@
                     <h3 class="text-white fw-bold">Relajación Pura</h3>
                     <p class="text-white">Vive la experiencia H&B Spa</p>
                   </div>
+<section class="py-5" style="background: linear-gradient(to bottom, var(--sal-marina) 0%, var(--lila-rosa) 100%); margin-top: 60px;">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-11">
+        <div class="d-lg-flex shadow rounded overflow-hidden" style="height: 600px;">
+          
+          <!-- 🖼️ Carrusel -->
+          <div class="col-lg-7 p-0">
+            <div id="loginCarousel" class="carousel slide h-100" data-bs-ride="carousel">
+              <div class="carousel-inner h-100">
+                <div class="carousel-item active h-100" style="background-image: url('https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=1600&q=80'); background-size: cover; background-position: center;">
+                  <div class="hero-overlay"></div>
+                  <div class="carousel-caption d-flex flex-column justify-content-center align-items-center text-center">
+                    <h3 class="text-white fw-bold">Relajación Pura</h3>
+                    <p class="text-white">Vive la experiencia H&B Spa</p>
+                  </div>
                 </div>
                 <div class="carousel-item h-100" style="background-image: url('https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=1600&q=80'); background-size: cover; background-position: center;">
                   <div class="hero-overlay"></div>
@@ -59,7 +90,29 @@
                     <h3 class="text-white fw-bold">Cuidado Profesional</h3>
                     <p class="text-white">Tratamientos especializados en bienestar</p>
                   </div>
+                <div class="carousel-item h-100" style="background-image: url('https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=1600&q=80'); background-size: cover; background-position: center;">
+                  <div class="hero-overlay"></div>
+                  <div class="carousel-caption d-flex flex-column justify-content-center align-items-center text-center">
+                    <h3 class="text-white fw-bold">Cuidado Profesional</h3>
+                    <p class="text-white">Tratamientos especializados en bienestar</p>
+                  </div>
                 </div>
+                <div class="carousel-item h-100" style="background-image: url('https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=1600&q=80'); background-size: cover; background-position: center;">
+                  <div class="hero-overlay"></div>
+                  <div class="carousel-caption d-flex flex-column justify-content-center align-items-center text-center">
+                    <h3 class="text-white fw-bold">Bienestar & Belleza</h3>
+                    <p class="text-white">Tu refugio de relajación y armonía</p>
+                  </div>
+                </div>
+              </div>
+              <button class="carousel-control-prev" type="button" data-bs-target="#loginCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#loginCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+              </button>
+            </div>
+          </div>
                 <div class="carousel-item h-100" style="background-image: url('https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=1600&q=80'); background-size: cover; background-position: center;">
                   <div class="hero-overlay"></div>
                   <div class="carousel-caption d-flex flex-column justify-content-center align-items-center text-center">
@@ -102,7 +155,10 @@
               <div id="errorMsg" class="alert alert-danger mt-3 d-none">Error al iniciar sesión.</div>
             </form>
           </div>
+          </div>
 
+        </div>
+      </div>
         </div>
       </div>
     </div>
@@ -111,11 +167,20 @@
 
 
 
+  </div>
+</section>
 
+
+
+
+<!-- 🟢 FOOTER -->
+<footer class="pt-5 pb-3" id="contacto" style="margin-top: 0;">
 <!-- 🟢 FOOTER -->
 <footer class="pt-5 pb-3" id="contacto" style="margin-top: 0;">
   <div class="container">
     <div class="d-flex justify-content-evenly flex-wrap text-center text-md-start">
+      
+      <!-- Columna 1: Información -->
       
       <!-- Columna 1: Información -->
       <div class="mb-4">
@@ -124,8 +189,13 @@
         <p class="text-muted mb-1"><i class="bi bi-geo-alt-fill me-2"></i>Jardín Balbuena, CDMX</p>
         <p class="text-muted mb-1"><i class="bi bi-telephone-fill me-2"></i>(55) 1234-5678</p>
         <p class="text-muted"><i class="bi bi-envelope-fill me-2"></i>contacto@hbspa.com</p>
+        <p class="text-muted mb-1"><i class="bi bi-geo-alt-fill me-2"></i>Jardín Balbuena, CDMX</p>
+        <p class="text-muted mb-1"><i class="bi bi-telephone-fill me-2"></i>(55) 1234-5678</p>
+        <p class="text-muted"><i class="bi bi-envelope-fill me-2"></i>contacto@hbspa.com</p>
       </div>
 
+      <!-- Columna 2: Enlaces -->
+      <div class="mb-4">
       <!-- Columna 2: Enlaces -->
       <div class="mb-4">
         <h5 class="fw-bold mb-3">Enlaces Rápidos</h5>
@@ -135,12 +205,22 @@
           <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Reserva</a></li>
           <li class="mb-2"><a href="#equipo" class="text-muted text-decoration-none">Acerca de Nosotros</a></li>
           <li class="mb-2"><a href="#contacto" class="text-muted text-decoration-none">Contacto</a></li>
+          <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Inicio</a></li>
+          <li class="mb-2"><a href="#servicios" class="text-muted text-decoration-none">Productos</a></li>
+          <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Reserva</a></li>
+          <li class="mb-2"><a href="#equipo" class="text-muted text-decoration-none">Acerca de Nosotros</a></li>
+          <li class="mb-2"><a href="#contacto" class="text-muted text-decoration-none">Contacto</a></li>
         </ul>
       </div>
 
       <!-- Columna 3: Redes y Horarios -->
+      <!-- Columna 3: Redes y Horarios -->
       <div class="mb-4">
         <h5 class="fw-bold mb-3">Síguenos</h5>
+        <div class="d-flex justify-content-center justify-content-md-start gap-3 mb-3">
+          <a href="#" class="social-link"><i class="bi bi-whatsapp"></i></a>
+          <a href="#" class="social-link"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="social-link"><i class="bi bi-instagram"></i></a>
         <div class="d-flex justify-content-center justify-content-md-start gap-3 mb-3">
           <a href="#" class="social-link"><i class="bi bi-whatsapp"></i></a>
           <a href="#" class="social-link"><i class="bi bi-facebook"></i></a>
@@ -151,8 +231,12 @@
           <li class="mb-1"><i class="bi bi-clock me-2"></i>Lunes - Viernes: 9:00 AM - 8:00 PM</li>
           <li class="mb-1"><i class="bi bi-clock me-2"></i>Sábado: 10:00 AM - 6:00 PM</li>
           <li><i class="bi bi-clock me-2"></i>Domingo: Cerrado</li>
+          <li class="mb-1"><i class="bi bi-clock me-2"></i>Lunes - Viernes: 9:00 AM - 8:00 PM</li>
+          <li class="mb-1"><i class="bi bi-clock me-2"></i>Sábado: 10:00 AM - 6:00 PM</li>
+          <li><i class="bi bi-clock me-2"></i>Domingo: Cerrado</li>
         </ul>
       </div>
+
 
     </div>
 
@@ -164,9 +248,20 @@
         <a href="#" class="text-muted text-decoration-none">Política de Privacidad</a> |
         <a href="#" class="text-muted text-decoration-none">Términos y Condiciones</a>
       </p>
+
+    <div class="text-center">
+      <p class="text-muted mb-0">&copy; 2025 H&B SPA Jardín Balbuena. Todos los derechos reservados.</p>
+      <p class="text-muted small mb-0 mt-2">
+        <a href="#" class="text-muted text-decoration-none">Política de Privacidad</a> |
+        <a href="#" class="text-muted text-decoration-none">Términos y Condiciones</a>
+      </p>
     </div>
   </div>
 </footer>
+
+
+<!-- 🟣 SCRIPTS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 
 <!-- 🟣 SCRIPTS -->
