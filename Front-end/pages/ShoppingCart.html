@@ -7,77 +7,96 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="../styles/common.css" />
+    <link rel="stylesheet" href="../styles/cart.css" />
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg fixed-top navbar-transparent" data-navbar-mode="transparent" data-navbar-theme="light">
-  <div class="container">
-    <a class="navbar-brand fw-bold" href="../index.html">H&B SPA</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 justify-content-lg-center">
-        <li class="nav-item"><a class="nav-link" href="../index.html">Inicio</a></li>
-        <li class="nav-item"><a class="nav-link" href="Products.html">Productos</a></li>
-        <li class="nav-item"><a class="nav-link" href="Reserve.html">Reserva</a></li>
-        <li class="nav-item"><a class="nav-link" href="About.html">Acerca de Nosotros</a></li>
-        <li class="nav-item"><a class="nav-link" href="Contact.html">Contacto</a></li>
-      </ul>
-          <div class="d-flex align-items-center ms-auto">
-        <div class="d-none d-lg-flex">
-            <button class="boton-login-registro btn btn-sm btn-outline-primary me-2">
-                <a class="nav-link p-0 text-decoration-none" href="Register.html">Registro</a>
+    <nav class="navbar navbar-expand-lg fixed-top navbar-dark navbar-overlay py-3">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="../index.html">H&B SPA</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
             </button>
-            <button class="boton-login-registro btn btn-sm btn-outline-primary me-2">
-                <a class="nav-link p-0 text-white text-decoration-none" href="Login.html">Log In</a>
-            </button>
+
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                <ul class="navbar-nav gap-3">
+                    <li class="nav-item"><a class="nav-link" href="../index.html">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./Products.html">Productos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./Reserve.html">Reserva</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./About.html">Acerca de Nosotros</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./Contact.html">Contacto</a></li>
+                </ul>
+
+                <!-- Botones móviles -->
+                <div class="d-lg-none mt-3 d-flex gap-3 justify-content-center">
+                    <a href="#" class="nav-icon-btn-mobile" id="openFaqBtnMobile">
+                        <i class="bi bi-question-circle me-2"></i>FAQ
+                    </a>
+                </div>
+            </div>
+
+            <!-- Botones desktop (sin carrito, ya está en la página) -->
+            <div class="d-none d-lg-flex ms-3 align-items-center gap-2">
+                <a href="./Register.html" class="btn btn-outline-light rounded-pill me-2">Registro</a>
+                <a href="./Login.html" class="btn btn-light rounded-pill text-turquesa">Acceder</a>
+            </div>
         </div>
+    </nav>
 
-        <!-- Botones visibles en Móvil (dentro del menú colapsado) -->
-        <div class="d-lg-none d-flex flex-column mt-3 w-100">
-             <button class="boton-login-registro btn btn-sm btn-outline-primary mb-2 w-100">
-                <a class="nav-link p-0 text-decoration-none" href="Register.html">Registro</a>
-            </button>
-            <button class="boton-login-registro btn btn-sm btn-outline-primary w-100">
-                <a class="nav-link p-0 text-white text-decoration-none" href="Login.html">Log In</a>
-            </button>
-    </div>
-  </div>
-</nav>
 
-    <!-- Cart preview bar (pages) -->
-    <div id="cart-preview" class="cart-preview-bar" role="region" aria-live="polite">
-      <div class="bag" aria-hidden="true"><i class="bi bi-bag-check-fill"></i></div>
-      <div class="summary"><span id="cart-count">0</span> productos en el carrito</div>
-      <a href="ShoppingCart.html" class="btn btn-primary btn-review">Revisar Carrito</a>
-    </div>
-
-    <main class="py-5">
+    <main class="py-5" style="margin-top: 80px;">
       <div class="container">
-        <div class="text-center mb-4">
-          <h1 class="display-5 fw-bold mb-2">Tu Carrito</h1>
-          <p class="lead text-muted">Revisa tus productos y finaliza tu compra cuando estés lista.</p>
+        <div class="text-center mb-5">
+          <h1 class="display-4 fw-bold mb-3" style="color: var(--gris-humo);">
+            <i class="bi bi-cart-check-fill me-3" style="color: var(--turquesa-pastel);"></i>Tu Carrito
+          </h1>
+          <p class="lead text-muted">Revisa tus productos y finaliza tu compra cuando esté todo listo.</p>
         </div>
 
         <div class="row g-4">
           <div class="col-lg-8">
-            <div class="card border-0 shadow-sm">
+            <div class="card border-0 shadow-sm" style="border-radius: var(--radius); background-color: var(--blanco);">
               <div class="card-body">
-                <h5 class="fw-bold mb-3">Productos</h5>
+                <h5 class="fw-bold mb-4" style="color: var(--gris-humo);">
+                  <i class="bi bi-bag-fill me-2" style="color: var(--turquesa-pastel);"></i>Productos
+                </h5>
                 <div id="cart-items" class="vstack gap-3">
-                  <div class="text-muted">Aún no hay productos en tu carrito.</div>
+                  <div class="text-center py-5">
+                    <i class="bi bi-cart-x" style="font-size: 4rem; color: var(--turquesa-pastel); opacity: 0.5;"></i>
+                    <p class="text-muted mt-3 mb-0">Aún no hay productos en tu carrito.</p>
+                    <a href="./Products.html" class="btn btn-turquesa mt-3">
+                      <i class="bi bi-shop me-2"></i>Explorar Productos
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
           <div class="col-lg-4">
-            <div class="card border-0 shadow-sm">
+            <div class="card border-0 shadow-sm" style="border-radius: var(--radius); background: linear-gradient(135deg, var(--sal-marina) 0%, var(--lila-rosa) 100%);">
               <div class="card-body">
-                <h5 class="fw-bold mb-3">Resumen</h5>
-                <p class="mb-2">Artículos: <span id="cart-count-summary">0</span></p>
-                <p class="mb-3 fw-bold">Total: <span id="cart-total">$0.00</span></p>
-                <a href="Products.html" class="btn btn-outline-primary w-100 mb-2">Seguir comprando</a>
-                <button class="btn btn-primary w-100" disabled id="checkout-btn">Proceder al pago</button>
+                <h5 class="fw-bold mb-4" style="color: var(--gris-humo);">
+                  <i class="bi bi-receipt me-2" style="color: var(--turquesa-pastel);"></i>Resumen de Compra
+                </h5>
+                <div class="mb-3 p-3" style="background: rgba(255, 255, 255, 0.8); border-radius: 8px;">
+                  <p class="mb-2 d-flex justify-content-between">
+                    <span><i class="bi bi-box-seam me-2"></i>Artículos:</span>
+                    <strong id="cart-count-summary" style="color: var(--turquesa-pastel);">0</strong>
+                  </p>
+                  <hr class="my-2">
+                  <p class="mb-0 d-flex justify-content-between fs-5">
+                    <span class="fw-bold">Total:</span>
+                    <strong id="cart-total" style="color: var(--turquesa-pastel);">$0.00</strong>
+                  </p>
+                </div>
+                <a href="./Products.html" class="btn btn-outline-secondary w-100 mb-2" style="border-color: var(--turquesa-pastel); color: var(--turquesa-pastel);">
+                  <i class="bi bi-arrow-left me-2"></i>Seguir Comprando
+                </a>
+                <button class="btn btn-turquesa w-100" disabled id="checkout-btn">
+                  <i class="bi bi-credit-card me-2"></i>Proceder al Pago
+                </button>
+                <small class="d-block text-center mt-2 text-muted">
+                  <i class="bi bi-shield-check me-1"></i>Compra 100% segura
+                </small>
               </div>
             </div>
           </div>
@@ -93,9 +112,9 @@
       <div class="mb-4">
         <h5 class="fw-bold mb-3">H&B SPA Jardín Balbuena</h5>
         <p class="text-muted">Tu refugio de belleza y bienestar desde 2015.</p>
-        <p class="text-muted mb-1"><i class="bi bi-geo-alt-fill"></i> Jardín Balbuena, CDMX</p>
-        <p class="text-muted mb-1"><i class="bi bi-telephone-fill"></i> (55) 1234-5678</p>
-        <p class="text-muted"><i class="bi bi-envelope-fill"></i> contacto@hbspa.com</p>
+        <p class="text-muted mb-1"><i class="bi bi-geo-alt-fill me-2"></i>Jardín Balbuena, CDMX</p>
+        <p class="text-muted mb-1"><i class="bi bi-telephone-fill me-2"></i>(55) 1234-5678</p>
+        <p class="text-muted"><i class="bi bi-envelope-fill me-2"></i>contacto@hbspa.com</p>
       </div>
 
       <!-- Columna 2 -->
@@ -114,9 +133,9 @@
       <div class="mb-4">
         <h5 class="fw-bold mb-3">Síguenos</h5>
         <div class="d-flex justify-content-start gap-3 mb-3">
-          <a href="https://wa.me/5562316302" target="_blank" rel="noopener" class="text-muted fs-4 text-decoration-none" aria-label="Facebook"><i class="bi bi-whatsapp"></i></a>
-          <a href="https://www.facebook.com/share/1AezGeWWhd/" target="_blank" rel="noopener" class="text-muted fs-4 text-decoration-none" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
-          <a href="https://www.instagram.com/spahyb?igsh=c2ttcnhuY2k1N2F3" target="_blank" rel="noopener" class="text-muted fs-4 text-decoration-none" aria-label="Facebook"><i class="bi bi-instagram"></i></a>
+          <a href="https://wa.me/5562316302" target="_blank" rel="noopener" class="social-link" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+          <a href="https://www.facebook.com/share/1AezGeWWhd/" target="_blank" rel="noopener" class="social-link" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+          <a href="https://www.instagram.com/spahyb?igsh=c2ttcnhuY2k1N2F3" target="_blank" rel="noopener" class="social-link" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
         </div>
         <h6 class="fw-bold mt-4 mb-2">Horarios</h6>
         <ul class="list-unstyled text-muted mb-0">
@@ -142,36 +161,32 @@
 </footer>
 
 <!-- Botón Flotante -->
-<button id="faq-button" class="faq-floating-btn" aria-label="Preguntas Frecuentes">
-  <i class="bi bi-question-circle-fill"></i>
-</button>
-
-<!-- Modal de Preguntas Frecuentes -->
-<div id="faq-modal" class="faq-modal">
-  <div class="faq-modal-content">
-    <div class="faq-modal-header">
-      <h3 class="mb-0">Preguntas Frecuentes</h3>
-      <button id="close-faq" class="faq-close-btn" aria-label="Cerrar">
-        <i class="bi bi-x-lg"></i>
-      </button>
+<!-- MODAL FAQ -->
+<div id="faqModal" class="side-modal">
+  <div class="side-modal-content">
+    <div class="side-modal-header">
+      <h3><i class="bi bi-question-circle-fill"></i>Preguntas Frecuentes</h3>
+      <button class="close-modal" id="closeFaqModal">&times;</button>
     </div>
-    <div class="faq-modal-body">
-      <div class="accordion" id="faqAccordion">
-        <div id="faq-container">
-
-        </div>
-      </div>
+    <div class="side-modal-body">
+      <p class="modal-intro">
+        <i class="bi bi-info-circle me-2" style="color: var(--turquesa-pastel);"></i>
+        Encuentra respuestas rápidas a las preguntas más comunes sobre nuestros servicios.
+      </p>
+      <div data-faq="true" data-accordion-id="faqAccordionModal" data-id-prefix="faqModal"></div>
     </div>
   </div>
 </div>
 
+<!-- BOTÓN FLOTANTE FAQ -->
+<button id="floatingFaqBtn" class="floating-faq-btn" title="Preguntas Frecuentes">
+  <i class="bi bi-question-circle-fill"></i>
+</button>
+
 <!-- Scripts -->
-<script src="../scripts/app.js"></script>
-<script src="../scripts/botonp.js"></script>
-
-<script src="../scripts/cart.js"></script>
-
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../scripts/cart.js"></script>
+<script src="../scripts/faq-data.js"></script>
+<script src="../scripts/modal-manager-fixed.js"></script>
 </body>
 </html>

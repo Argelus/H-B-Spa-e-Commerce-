@@ -1,9 +1,7 @@
-/* UX/UI de la página del carrito: cohesiva, accesible, responsiva y optimizada */
-:root {
-  --cart-gap: 14px;
-  --cart-radius: 14px;
-  --cart-shadow: 0 8px 22px rgba(0,0,0,0.08);
-}
+/* =====================================================
+   🎨 ESTILOS PÁGINA CARRITO DE COMPRAS
+   Variables base en common.css
+   ===================================================== */
 
 /* Encabezado de la página */
 .cart-header h1 {
@@ -12,17 +10,22 @@
 }
 
 /* Layout */
-.cart-card { border: 1px solid rgba(0,0,0,0.06); border-radius: var(--cart-radius); background: #fff; box-shadow: var(--cart-shadow); }
+.cart-card {
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: var(--radius);
+  background: #fff;
+  box-shadow: var(--shadow-card);
+}
 .cart-card .card-body { padding: 18px; }
 
 /* Lista de ítems */
-.cart-items { display: grid; gap: var(--cart-gap); }
+.cart-items { display: grid; gap: 14px; }
 
 .cart-item {
   display: grid;
   grid-template-columns: 88px 1fr auto;
   align-items: center;
-  gap: var(--cart-gap);
+  gap: 14px;
   padding: 10px;
   border: 1px solid rgba(0,0,0,0.06);
   border-radius: 12px;

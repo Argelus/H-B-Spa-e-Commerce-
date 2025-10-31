@@ -48,7 +48,7 @@
         <span class="cart-badge">0</span>
       </a>
       <a href="Register.html" class="btn btn-outline-light rounded-pill me-2">Registro</a>
-      <a href="Login.html" class="btn btn-light rounded-pill text-turquesa">Log In</a>
+      <a href="Login.html" class="btn btn-light rounded-pill text-turquesa">Acceder</a>
     </div>
   </div>
 </nav>
@@ -340,36 +340,9 @@
 
 <!-- Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<!-- Sistema centralizado de FAQs y Modals -->
 <script src="../scripts/faq-data.js"></script>
 <script src="../scripts/modal-manager-fixed.js"></script>
 <script src="../scripts/validation.js"></script>
-<script src="../scripts/app.js"></script>
-<!-- Los modals FAQ y Cart ahora se manejan automáticamente con modal-manager.js -->
-<script src="../scripts/cart-preview.js"></script>
-</script>
-
-<!-- Botón Flotante y Modal FAQ -->
-<button id="faq-button" class="faq-floating-btn" aria-label="Preguntas Frecuentes">
-  <i class="bi bi-question-circle-fill"></i>
-</button>
-<div id="faq-modal" class="faq-modal">
-  <div class="faq-modal-content">
-    <div class="faq-modal-header">
-      <h3 class="mb-0">Preguntas Frecuentes</h3>
-      <button id="close-faq" class="faq-close-btn" aria-label="Cerrar">
-        <i class="bi bi-x-lg"></i>
-      </button>
-    </div>
-    <div class="faq-modal-body">
-      <div class="accordion" id="faqAccordion">
-        <div id="faq-container">
-
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 
 <!-- Inline form submit script -->
 <script>
@@ -437,63 +410,5 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 
-<!-- Equalize the two top cards' heights for better UX on desktop -->
-<script>
-(function() {
-  function equalize() {
-    var formCard = document.getElementById('contact-form-card');
-    var infoCard = document.getElementById('contact-info-card');
-    if (!formCard || !infoCard) return;
-    // Reset first
-    formCard.style.minHeight = 'auto';
-    infoCard.style.minHeight = 'auto';
-
-    var isDesktop = window.matchMedia('(min-width: 992px)').matches; // Bootstrap lg breakpoint
-    if (!isDesktop) return; // No equalization on stacked layout
-
-    // Measure
-    var maxH = Math.max(formCard.offsetHeight, infoCard.offsetHeight);
-    formCard.style.minHeight = maxH + 'px';
-    infoCard.style.minHeight = maxH + 'px';
-  }
-
-  // Run on load, resize, and after fonts/widget load
-  window.addEventListener('load', equalize);
-  window.addEventListener('resize', function(){
-    // Debounce a bit
-    clearTimeout(window.__eqTimer);
-    window.__eqTimer = setTimeout(equalize, 100);
-  });
-
-  // In case of dynamic content changes (validation messages etc.)
-  document.addEventListener('DOMContentLoaded', function(){
-    equalize();
-    // Observe mutations inside the two cards to recalc when content changes
-    try {
-      var obs = new MutationObserver(function(){ equalize(); });
-      var cfg = { childList: true, subtree: true, characterData: true };
-      var formCard = document.getElementById('contact-form-card');
-      var infoCard = document.getElementById('contact-info-card');
-      if (formCard) obs.observe(formCard, cfg);
-      if (infoCard) obs.observe(infoCard, cfg);
-    } catch(e) { /* no-op */ }
-  });
-})();
-</script>
-
-<!-- Cart preview script -->
-<script src="../scripts/cart-preview.js"></script>
-<script>
-  fetch('/pages/faq.html')
-    .then(response => response.text())
-    .then(data => {
-      document.getElementById('faq-container').innerHTML = data;
-      const collapses = document.querySelectorAll('#faq-container .accordion-collapse');
-      collapses.forEach(collapse => {
-        new bootstrap.Collapse(collapse, { toggle: false });
-      });
-    })
-    .catch(error => console.error('Error al cargar FAQ:', error));
-</script>
 </body>
 </html>

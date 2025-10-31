@@ -1,33 +1,11 @@
 /* =====================================================
    🎨 ESTILOS PÁGINA "ACERCA DE" (CARRUSEL, FAQ, VALORES)
+   Variables y estilos base en common.css
    ===================================================== */
 
-/* Paleta base */
-:root {
-  --arena-suave: #f5ede4;
-  --sal-marina: #d7eceb;
-  --turquesa-pastel: #6ebfc3;
-  --lila-rosa: #ebd2ec;
-  --gris-humo: #4a4a4a;
-  --blanco: #ffffff;
-}
-
-/* =====================================================
-   🧭 FIX NAVBAR SUPERPUESTO
-   ===================================================== */
-
+/* Ajustes específicos de About */
 body {
-  margin: 0;
-  font-family: 'Poppins', sans-serif;
-  background-color: var(--arena-suave);
-  color: var(--gris-humo);
   padding-top: 90px; /* evita que el navbar tape el título */
-  overflow-x: hidden;
-}
-
-.navbar.fixed-top {
-  z-index: 1050;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 /* ==============================
@@ -415,4 +393,77 @@ body {
   background: linear-gradient(145deg, var(--turquesa-pastel), var(--lila-rosa));
   transform: translateY(-8px) scale(1.03);
   box-shadow: 0 14px 40px rgba(110, 191, 195, 0.3);
+}
+
+/* ===============================
+   🎠 AUTO-SCROLL VALORES (sin scrollbar)
+   =============================== */
+.valores-scroll-container {
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+  padding: 10px 0;
+}
+
+.valores-scroll-track {
+  display: flex;
+  gap: 1.5rem;
+  animation: scrollInfinito 40s linear infinite;
+  width: fit-content;
+}
+
+.valores-scroll-track:hover {
+  animation-play-state: paused;
+}
+
+.valor-card {
+  min-width: 280px;
+  flex-shrink: 0;
+}
+
+@keyframes scrollInfinito {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Gradientes en los bordes para efecto de desvanecimiento */
+.valores-scroll-container::before,
+.valores-scroll-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.valores-scroll-container::before {
+  left: 0;
+  background: linear-gradient(to right, var(--arena-suave), transparent);
+}
+
+.valores-scroll-container::after {
+  right: 0;
+  background: linear-gradient(to left, var(--arena-suave), transparent);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .valores-scroll-track {
+    animation-duration: 30s;
+  }
+
+  .valor-card {
+    min-width: 260px;
+  }
+
+  .valores-scroll-container::before,
+  .valores-scroll-container::after {
+    width: 50px;
+  }
 }
