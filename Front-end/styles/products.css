@@ -1,5 +1,9 @@
 /* === 🧴 Products page styles === */
 
+#product-list .col-md-4 {
+  perspective: 1000px; /* Permite el efecto 3D */
+}
+
 /* === Estructura general de las cards === */
 #product-list .card {
   display: flex;
@@ -8,31 +12,109 @@
   height: 100%;
   margin-bottom: 1rem;
   border-radius: var(--radius);
-  background-color: var(--sal-marina);
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  box-shadow: var(--shadow-card);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  background: linear-gradient(135deg, #F5EDE4 0%, #E8F5F7 20%, #D7ECEB 40%, #B8E3E8 70%, #6EBFC3 100%);
+  border: 1px solid rgba(110, 191, 195, 0.2);
+  box-shadow: 0 4px 15px rgba(110, 191, 195, 0.15);
+  transition: all 0.4s ease;
+  position: relative;
+  opacity: 0;
+  transform: translateY(30px);
 }
 
+#product-list .card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 🔹 Efecto hover - Voltea la card */
 #product-list .card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(110, 191, 195, 0.3);
+  border-color: rgba(110, 191, 195, 0.4);
 }
 
 /* === Imagen fija y ajustada === */
 #product-list .card img {
   object-fit: cover;
   height: 200px;
+  border-radius: var(--radius) var(--radius) 0 0;
+  transition: filter 0.3s ease;
 }
+
 
 /* === Cuerpo flexible para empujar el botón al fondo === */
 #product-list .card-body {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 0 0 var(--radius) var(--radius);
+  transition: all 0.3s ease;
+  position: relative;
 }
 
-/* 🔹 Mantener separación visual pero no romper el flex */
+/* INFORMACIÓN ADICIONAL (REVERSO DE LA CARD) */
+/* Contenedor de información extra - Reverso de la tarjeta */
+.card-extra-info {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 85px;
+  background: linear-gradient(135deg, rgba(110, 191, 195, 0.95) 0%, rgba(90, 173, 178, 0.95) 100%);
+  backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem;
+  border-radius: 0;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.4s ease;
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* 🔹 Muestra la información extra al hacer hover en la card */
+#product-list .card:hover .card-extra-info {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* Estilos del texto de información extra */
+.card-extra-info h5 {
+  color: white;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  font-weight: 700;
+}
+
+.card-extra-info p {
+  color: white;
+   font-size: 0.95rem;
+  line-height: 1.5;
+  text-align: center;
+  margin-bottom: 1rem;
+  max-height: 80px;
+  overflow-y: auto;
+}
+
+.card-extra-info .extra-detail {
+  background: rgba(255, 255, 255, 0.25);
+  padding: 0.4rem 1rem;
+  border-radius: 8px;
+  margin: 0.3rem 0;
+  font-weight: 600;
+  color: white;
+  font-size: 0.95rem;
+}
+
+/* Mantener separación visual pero no romper el flex */
 #product-list .card-body > div:first-child {
   flex-grow: 1;
 }
@@ -47,13 +129,32 @@
   margin-top: auto;
 }
 
-/* === Botón === */
+/* === Botón carrito === */
 .card-actions button {
   width: 90%;
   margin-bottom: 6px;
-  background: var(--turquesa-pastel);
+  /* 🔹 Botón con Turquesa Pastel sólido */
+  background: #6EBFC3;
   border: none;
-  transition: all 0.2s ease-in-out;
+  color: white;
+  font-weight: 700;
+  padding: 0.7rem;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(110, 191, 195, 0.3);
+}
+
+/* 🔹 Hover del botón - Cambia a morado */
+.card-actions button:hover {
+  background: #EBD2EC; /* Lila-Rosa de tu paleta */
+  color: #4A4A4A; /* Gris Humo */
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(235, 210, 236, 0.4);
+}
+
+/* 🔹 Estado activo del botón (cuando se hace clic) */
+.card-actions button:active {
+  transform: scale(0.98);
 }
 
 /* === Mensaje de éxito === */
@@ -78,6 +179,7 @@
 #product-list .card-body .text-muted {
   margin-top: 0.5rem;
   font-size: 0.9rem;
+  color: #666;
 }
 
 /* === Espaciado entre las cards (horizontal y vertical) === */
@@ -97,3 +199,12 @@
     height: 160px;
   }
 }
+
+ /* 🔹 En móvil, reduce ligeramente el espaciado */
+  #product-list > .col-md-4 {
+    padding: 0.8rem;
+  }
+  
+  #product-list .card {
+    margin-bottom: 1.5rem;
+  }
