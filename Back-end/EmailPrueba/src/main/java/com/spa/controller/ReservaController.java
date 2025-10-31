@@ -1,7 +1,9 @@
 package com.spa.controller;
 
 import com.spa.model.Reserva;
+import com.spa.security.model.Usuario;
 import com.spa.service.ReservaService;
+import com.spa.service.UsuarioService;
 import com.spa.service.WhatsappService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,10 +17,14 @@ public class ReservaController {
 
     private final ReservaService reservaService;
     private final WhatsappService whatsappService;
+    private final UsuarioService usuarioService; // 👈 NUEVO: para resolver el usuario por token
 
-    public ReservaController(ReservaService reservaService, WhatsappService whatsappService) {
+    public ReservaController(ReservaService reservaService,
+                             WhatsappService whatsappService,
+                             UsuarioService usuarioService) { // 👈 inyectamos también UsuarioService
         this.reservaService = reservaService;
         this.whatsappService = whatsappService;
+        this.usuarioService = usuarioService;
     }
 
     // 🟢 Crear una nueva reserva
@@ -44,7 +50,6 @@ public class ReservaController {
                 reserva.getHoraReserva()
         );
 
-
         whatsappService.enviarMensaje(reserva.getTelefono(), mensaje);
 
         return ResponseEntity.ok(nuevaReserva);
@@ -56,10 +61,17 @@ public class ReservaController {
         return ResponseEntity.ok(reservaService.listarTodas());
     }
 
-    // 🟣 Obtener reservas por usuario
+    // 🟣 Obtener reservas por usuario (por ID explícito)
     @GetMapping("/usuario/{usuarioId}")
     public ResponseEntity<List<Reserva>> listarPorUsuario(@PathVariable Long usuarioId) {
         return ResponseEntity.ok(reservaService.listarPorUsuario(usuarioId));
+    }
+
+    // ✅ NUEVO: Obtener reservas del usuario autenticado (por token)
+    @GetMapping("/mias")
+    public ResponseEntity<List<Reserva>> listarMias(org.springframework.security.core.Authentication auth) {
+        Usuario u = usuarioService.buscarPorUsername(auth.getName());
+        return ResponseEntity.ok(reservaService.listarPorUsuario(u.getId()));
     }
 
     // 🟡 Obtener reservas por estado

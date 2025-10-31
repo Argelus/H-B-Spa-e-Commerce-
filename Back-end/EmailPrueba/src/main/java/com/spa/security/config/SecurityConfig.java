@@ -33,59 +33,49 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        // 🔓 Permisos públicos
+                        // 🔓 Públicos
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                         .requestMatchers("/api/auth/**").permitAll()
                         .requestMatchers(HttpMethod.GET,
-                                "/api/products/**",
-                                "/api/categories/**",
-                                "/api/services/**",
-                                "/api/service-categories/**").permitAll()
+                                "/api/products", "/api/products/**",
+                                "/api/categories", "/api/categories/**",
+                                "/api/spa-services", "/api/spa-services/**",
+                                "/api/service-categories", "/api/service-categories/**"
+                        ).permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/email/enviar").permitAll()
 
-                        // ✅ Permitir crear reservas a usuarios autenticados
-                        .requestMatchers(HttpMethod.POST, "/api/reservas/**").hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
+                        // ✅ Reservas
+                        .requestMatchers(HttpMethod.POST, "/api/reservas/**").hasAnyAuthority("ROLE_USER","ROLE_ADMIN")
+                        .requestMatchers(HttpMethod.GET,  "/api/reservas/**").hasAnyAuthority("ROLE_USER","ROLE_ADMIN")
 
-                        // 🔒 Consultar reservas también solo si está logueado
-                        .requestMatchers(HttpMethod.GET, "/api/reservas/**").hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
+                        // ✅ Órdenes
+                        .requestMatchers("/api/orders/**").hasAnyAuthority("ROLE_USER","ROLE_ADMIN")
 
-                        // 🔒 Lo mismo para órdenes
-                        .requestMatchers("/api/orders/**").hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
+                        // ✅ Usuarios (perfil/historial)
+                        .requestMatchers(HttpMethod.GET, "/api/usuarios/**").hasAnyAuthority("ROLE_USER","ROLE_ADMIN")
 
-                        // 🧠 Subida de imágenes solo para admin
+                        // 🧠 Admin
                         .requestMatchers(HttpMethod.POST, "/api/images/upload").hasAuthority("ROLE_ADMIN")
-
-                        // 🔐 Solo ADMIN puede crear/editar/eliminar productos, categorías y servicios
                         .requestMatchers(HttpMethod.POST,
-                                "/api/products/**",
-                                "/api/categories/**",
-                                "/api/services/**",
-                                "/api/service-categories/**").hasAuthority("ROLE_ADMIN")
-
+                                "/api/products/**","/api/categories/**",
+                                "/api/services/**","/api/service-categories/**"
+                        ).hasAuthority("ROLE_ADMIN")
                         .requestMatchers(HttpMethod.PUT,
-                                "/api/products/**",
-                                "/api/categories/**",
-                                "/api/services/**",
-                                "/api/service-categories/**").hasAuthority("ROLE_ADMIN")
-
+                                "/api/products/**","/api/categories/**",
+                                "/api/services/**","/api/service-categories/**"
+                        ).hasAuthority("ROLE_ADMIN")
                         .requestMatchers(HttpMethod.DELETE,
-                                "/api/products/**",
-                                "/api/categories/**",
-                                "/api/services/**",
-                                "/api/service-categories/**").hasAuthority("ROLE_ADMIN")
+                                "/api/products/**","/api/categories/**",
+                                "/api/services/**","/api/service-categories/**"
+                        ).hasAuthority("ROLE_ADMIN")
 
-                        // ✅ Consultar órdenes o historial
-                        .requestMatchers(HttpMethod.GET, "/api/orders/**").hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
-                        .requestMatchers(HttpMethod.GET, "/api/usuarios/**").hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
-
-                        // ⚠️ Cualquier otra petición requiere autenticación
+                        // ⚠️ Resto autenticado
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
-
 
     @Bean
     public PasswordEncoder passwordEncoder() {

@@ -39,7 +39,13 @@ public class UsuarioService {
         return usuarioRepository.existsByEmail(email);
     }
 
-    // 🟩 NUEVO: obtener historial completo del usuario
+    // ✅ NUEVO: buscar por username (para /me)
+    public Usuario buscarPorUsername(String username) {
+        return usuarioRepository.findByUsername(username)
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado: " + username));
+    }
+
+    // ✅ Existente: historial completo del usuario por ID
     public UsuarioHistorialDTO obtenerHistorial(Long usuarioId) {
         Usuario usuario = usuarioRepository.findById(usuarioId)
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
