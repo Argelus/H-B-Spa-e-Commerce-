@@ -3,12 +3,12 @@ const API_URL = "http://localhost:8080/api";
 // 🔹 Cargar categorías y productos
 async function loadProducts() {
   try {
-    // --- 1️⃣ Obtener categorías ---
+    // --- Obtener categorías ---
     const catResponse = await fetch(`${API_URL}/categories`);
     const categories = await catResponse.json();
     renderCategories(categories);
 
-    // --- 2️⃣ Obtener productos ---
+    // --- Obtener productos ---
     const prodResponse = await fetch(`${API_URL}/products`);
     const products = await prodResponse.json();
 
@@ -26,6 +26,13 @@ async function loadProducts() {
     localStorage.setItem("hbspa_products", JSON.stringify(map));
 
     renderProducts(products);
+    
+    // 🔹 Inicializar efectos después de renderizar productos
+    setTimeout(() => {
+      initScrollAnimations();
+      addExtraInfoToCards();
+    }, 100);
+    
   } catch (error) {
     console.error("Error cargando productos:", error);
   }
@@ -65,6 +72,12 @@ async function filterByCategory(categoryId) {
 
   const products = await response.json();
   renderProducts(products);
+  
+  // 🔹 Re-inicializar efectos después de filtrar
+  setTimeout(() => {
+    initScrollAnimations();
+    addExtraInfoToCards();
+  }, 100);
 }
 
 // 🔹 Renderizar productos
@@ -85,7 +98,7 @@ function renderProducts(products) {
           <div>
             <h5 class="card-title">${product.name}</h5>
             <p class="card-text">${product.description || 'Sin descripción disponible.'}</p>
-            <p class="fw-bold text-success">$${product.price}</p>
+            <p class="fw-bold text-success">${product.price}</p>
           </div>
 
           <!-- 🔹 Contenedor fijo del botón -->
@@ -115,7 +128,93 @@ function renderProducts(products) {
   });
 }
 
-// 🔹 Carrito local
+// ============================================
+// 🔹 EFECTO DE APARICIÓN AL HACER SCROLL
+// ============================================
+
+/**
+ * Observa cuando las cards entran en el viewport y les agrega
+ * la clase 'visible' para activar la animación
+ */
+function initScrollAnimations() {
+  // Configuración del Intersection Observer
+  const observerOptions = {
+    root: null, // usa el viewport del navegador
+    rootMargin: '0px',
+    threshold: 0.1 // Se activa cuando el 10% del elemento es visible
+  };
+
+  // Callback que se ejecuta cuando un elemento entra/sale del viewport
+  const observerCallback = (entries, observer) => {
+    entries.forEach((entry, index) => {
+      if (entry.isIntersecting) {
+        // Añade un pequeño delay escalonado para efecto cascada
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, index * 100); // 100ms de delay entre cada card
+        
+        // Deja de observar este elemento una vez que ya apareció
+        observer.unobserve(entry.target);
+      }
+    });
+  };
+
+  // Crea el observer
+  const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+  // Observa todas las cards de productos
+  const cards = document.querySelectorAll('#product-list .card');
+  cards.forEach(card => {
+    observer.observe(card);
+  });
+}
+
+// ============================================
+// 🔹 AGREGAR INFORMACIÓN EXTRA EN HOVER
+// ============================================
+
+/**
+ * Agrega un div con información adicional a cada card
+ * que se mostrará al hacer hover
+ */
+function addExtraInfoToCards() {
+  const cards = document.querySelectorAll('#product-list .card');
+  
+  cards.forEach(card => {
+    // Verifica si ya tiene la info extra para no duplicar
+    if (card.querySelector('.card-extra-info')) return;
+    
+    // Obtiene información de la card
+    const title = card.querySelector('.card-title')?.textContent || 'Producto';
+    const description = card.querySelector('.card-text')?.textContent || 'Descripción no disponible';
+    const price = card.querySelector('.text-success')?.textContent || 'Precio no disponible';
+    const stock = card.querySelector('.text-muted small')?.textContent || 'Stock: No disponible';
+    
+    // Crea el div de información extra
+    const extraInfo = document.createElement('div');
+    extraInfo.className = 'card-extra-info';
+    extraInfo.innerHTML = `
+      <h5>${title}</h5>
+      <p>${description}</p>
+      <div class="extra-detail">${price}</div>
+      <div class="extra-detail">${stock}</div>
+      <div class="extra-detail">Disponible ahora</div>
+      <div class="extra-detail">Incluye consulta personalizada</div>
+    `;
+    
+    // Busca el card-body y le agrega la información extra
+    const cardBody = card.querySelector('.card-body');
+    if (cardBody) {
+      cardBody.style.position = 'relative';
+      cardBody.appendChild(extraInfo);
+    }
+  });
+}
+
+// ============================================
+// 🔹 CARRITO LOCAL
+// ============================================
+
 const STORAGE_KEY = "hbspa_cart";
 
 function getLocalCart() {
