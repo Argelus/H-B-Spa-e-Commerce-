@@ -12,7 +12,6 @@
 <body>
 
 <!-- 🟢 NAVBAR -->
-<!-- 🟢 NAVBAR -->
 <nav class="navbar navbar-expand-lg fixed-top navbar-dark navbar-overlay py-3">
   <div class="container">
     <a class="navbar-brand fw-bold" href="#">H&B SPA</a>
@@ -47,17 +46,17 @@
         <span class="cart-badge">0</span>
       </a>
       <a href="./pages/Register.html" class="btn btn-outline-light rounded-pill me-2">Registro</a>
-      <a href="./pages/Login.html" class="btn btn-light rounded-pill text-turquesa">Log In</a>
+      <a href="./pages/Login.html" class="btn btn-light rounded-pill text-turquesa">Acceder</a>
     </div>
   </div>
 </nav>
 
 
 <!-- 🟣 HERO / CARRUSEL -->
-<header id="hero">
+<header id="hero" class="animate-on-scroll" >
   <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
     <div class="carousel-inner">
-      <div class="carousel-item active" style="background-image:url('https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=1600&q=80')">
+      <div class="carousel-item active" style="background-image:url('/images/seleccionadas/1000484060.jpg')">
         <div class="hero-overlay"></div>
         <div class="carousel-caption d-flex flex-column justify-content-center align-items-center text-center">
           <h1 class="display-3 fw-bold mb-3">Bienestar & Belleza</h1>
@@ -65,14 +64,14 @@
           <a href="#servicios" class="btn btn-light rounded-pill px-5 py-3 text-turquesa fw-bold">Explorar Servicios</a>
         </div>
       </div>
-      <div class="carousel-item" style="background-image:url('https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=1600&q=80')">
+      <div class="carousel-item" style="background-image:url('/images/seleccionadas/1000484075.jpg')">
         <div class="hero-overlay"></div>
         <div class="carousel-caption d-flex flex-column justify-content-center align-items-center text-center">
           <h1 class="display-3 fw-bold mb-3">Cuidado Profesional</h1>
           <p class="lead mb-4">Tratamientos especializados en bienestar integral</p>
         </div>
       </div>
-      <div class="carousel-item" style="background-image:url('https://images.unsplash.com/photo-1596178060810-485914b62b67?w=1600&q=80')">
+      <div class="carousel-item" style="background-image:url('/images/seleccionadas/1000484087.jpg')">
         <div class="hero-overlay"></div>
         <div class="carousel-caption d-flex flex-column justify-content-center align-items-center text-center">
           <h1 class="display-3 fw-bold mb-3">Relajación Pura</h1>
@@ -92,7 +91,7 @@
 </header>
 
 <!-- 🟢 GALERÍA -->
-<section id="servicios">
+<section id="servicios" class="animate-on-scroll">
   <div class="container">
     <h2 class="display-5 fw-bold text-gris-humo mb-3 text-center">Nuestros Servicios</h2>
     <p class="text-muted mb-5 text-center">Explora la calidad y el detalle de nuestros tratamientos y espacios.</p>
@@ -104,8 +103,8 @@
         <div class="gallery-icon"><i class="bi bi-zoom-in"></i></div>
       </div>
 
-      <div class="gallery-item" data-title="Facial Premium" data-img="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&q=80">
-        <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=600&q=80" alt="Facial">
+      <div class="gallery-item" data-title="Facial Premium" data-img="/images/seleccionadas/1000484126.jpg">
+        <img src="/images/seleccionadas/1000484126.jpg" alt="Facial">
         <div class="gallery-overlay"><h5 class="gallery-title">Facial Premium</h5></div>
         <div class="gallery-icon"><i class="bi bi-zoom-in"></i></div>
       </div>
@@ -161,6 +160,7 @@
   <div class="modal-content-lightbox">
     <img id="lightboxImg" src="" alt="">
     <div class="lightbox-title" id="lightboxTitle"></div>
+    <a href="pages/Reserve.html" class="btn btn-light rounded-pill px-4 py-2 text-turquesa fw-bold" id="lightbox-action-button">Agenda tu tratamiento</a>
   </div>
 </div>
 
@@ -184,7 +184,7 @@
 </section>
 
 <!-- 🟢 SECCIÓN DE RESEÑAS -->
-<section id="reseñas" class="py-5" style="background: linear-gradient(180deg, var(--sal-marina) 0%, var(--arena-suave) 100%);">
+<section id="reseñas" class="animate-on-scroll" class="py-5" style="background: linear-gradient(180deg, var(--sal-marina) 0%, var(--arena-suave) 100%);">
   <div class="container text-center">
     <h2 class="display-5 fw-bold text-gris-humo mb-3">Opiniones de Nuestros Clientes</h2>
     <p class="text-muted mb-5">Conoce las experiencias reales de quienes disfrutan H&B Spa Jardín Balbuena.</p>
@@ -201,10 +201,8 @@
 </section>
 
 
-
 <!-- 🟢 FOOTER -->
-<!-- 🟢 FOOTER -->
-<footer class="pt-5 pb-3" id="contacto">
+<footer class="pt-5 pb-3"  id="contacto">
   <div class="container">
     <div class="d-flex justify-content-evenly flex-wrap text-center text-md-start">
       
@@ -222,10 +220,10 @@
         <h5 class="fw-bold mb-3">Enlaces Rápidos</h5>
         <ul class="list-unstyled">
           <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Inicio</a></li>
-          <li class="mb-2"><a href="#servicios" class="text-muted text-decoration-none">Productos</a></li>
-          <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Reserva</a></li>
-          <li class="mb-2"><a href="#equipo" class="text-muted text-decoration-none">Acerca de Nosotros</a></li>
-          <li class="mb-2"><a href="#contacto" class="text-muted text-decoration-none">Contacto</a></li>
+          <li class="mb-2"><a href="pages/Products.html" class="text-muted text-decoration-none">Productos</a></li>
+          <li class="mb-2"><a href="pages/Reserve.html" class="text-muted text-decoration-none">Reserva</a></li>
+          <li class="mb-2"><a href="pages/About.html" class="text-muted text-decoration-none">Acerca de Nosotros</a></li>
+          <li class="mb-2"><a href="/pages/Contact.html" class="text-muted text-decoration-none">Contacto</a></li>
         </ul>
       </div>
 
@@ -233,9 +231,9 @@
       <div class="mb-4">
         <h5 class="fw-bold mb-3">Síguenos</h5>
         <div class="d-flex justify-content-center justify-content-md-start gap-3 mb-3">
-          <a href="#" class="social-link"><i class="bi bi-whatsapp"></i></a>
-          <a href="#" class="social-link"><i class="bi bi-facebook"></i></a>
-          <a href="#" class="social-link"><i class="bi bi-instagram"></i></a>
+          <a href="https://wa.me/5562316302" target="_blank" rel="noopener" class="social-link"><i class="bi bi-whatsapp"></i></a>
+          <a href="https://www.facebook.com/share/1AezGeWWhd/" target="_blank" rel="noopener" class="social-link"><i class="bi bi-facebook"></i></a>
+          <a href="https://www.instagram.com/spahyb?igsh=c2ttcnhuY2k1N2F3" target="_blank" rel="noopener" class="social-link"><i class="bi bi-instagram"></i></a>
         </div>
         <h6 class="fw-bold mt-4 mb-2">Horarios</h6>
         <ul class="list-unstyled text-muted mb-0">
@@ -315,83 +313,119 @@
   <i class="bi bi-question-circle-fill"></i>
 </button>
 
-<!-- 🟣 SCRIPTS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-<!-- Sistema centralizado de FAQs y Modals -->
-<script src="./scripts/faq-data.js"></script>
-<script src="./scripts/modal-manager-fixed.js"></script>
-<script>
-document.addEventListener("DOMContentLoaded", () => {
+  <!-- 🟣 SCRIPTS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Sistema centralizado de FAQs y Modals -->
+  <script src="./scripts/faq-data.js"></script>
+  <script src="./scripts/modal-manager-fixed.js"></script>
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+
+    // --- Navbar Scroll ---
+    window.addEventListener("scroll", () => {
+      const n = document.querySelector(".navbar-overlay");
+      window.scrollY > 50 ? n.classList.add("scrolled") : n.classList.remove("scrolled");
+    });
 
 
-  // Carrusel 3D
-  const cards = document.querySelectorAll(".carousel-3d .team-card");
-  let current = 0;
+    // --- Carrusel 3D ---
+    const cards = document.querySelectorAll(".carousel-3d .team-card");
+    let current = 0;
 
-  function updateCarousel() {
-    cards.forEach((c, i) => {
-      const o = (i - current + cards.length) % cards.length;
-      if (o === 0) {
-        c.style.transform = "translateZ(0) scale(1)";
-        c.style.opacity = "1";
-        c.style.zIndex = "3";
-      } else if (o === 1 || o === -cards.length + 1) {
-        c.style.transform = "translateX(240px) translateZ(-250px) rotateY(-30deg)";
-        c.style.opacity = "0.75";
-        c.style.zIndex = "2";
-      } else if (o === cards.length - 1 || o === -1) {
-        c.style.transform = "translateX(-240px) translateZ(-250px) rotateY(30deg)";
-        c.style.opacity = "0.75";
-        c.style.zIndex = "2";
-      } else {
-        c.style.transform = "translateZ(-500px)";
-        c.style.opacity = "0";
-        c.style.zIndex = "1";
+    function updateCarousel() {
+      cards.forEach((c, i) => {
+        const o = (i - current + cards.length) % cards.length;
+        if (o === 0) {
+          c.style.transform = "translateZ(0) scale(1)";
+          c.style.opacity = "1";
+          c.style.zIndex = "3";
+        } else if (o === 1 || o === -cards.length + 1) {
+          c.style.transform = "translateX(240px) translateZ(-250px) rotateY(-30deg)";
+          c.style.opacity = "0.75";
+          c.style.zIndex = "2";
+        } else if (o === cards.length - 1 || o === -1) {
+          c.style.transform = "translateX(-240px) translateZ(-250px) rotateY(30deg)";
+          c.style.opacity = "0.75";
+          c.style.zIndex = "2";
+        } else {
+          c.style.transform = "translateZ(-500px)";
+          c.style.opacity = "0";
+          c.style.zIndex = "1";
+        }
+      });
+    }
+    
+    // Solo agregar listeners si los botones existen (más robusto)
+    const prevButton = document.getElementById("prev");
+    const nextButton = document.getElementById("next");
+
+    if (prevButton && nextButton && cards.length > 0) {
+      prevButton.addEventListener("click", () => {
+        current = (current - 1 + cards.length) % cards.length;
+        updateCarousel();
+      });
+
+      nextButton.addEventListener("click", () => {
+        current = (current + 1) % cards.length;
+        updateCarousel();
+      });
+      
+      updateCarousel();
+    }
+
+
+    // --- Galería Lightbox ---
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    const modal = document.getElementById('lightboxModal');
+    const modalImg = document.getElementById('lightboxImg');
+    const modalTitle = document.getElementById('lightboxTitle');
+    const closeModal = document.querySelector('.close-lightbox');
+
+    if (modal && modalImg && modalTitle && closeModal && galleryItems.length > 0) {
+      galleryItems.forEach(item => {
+        item.addEventListener('click', () => {
+          const imgUrl = item.getAttribute('data-img');
+          const title = item.getAttribute('data-title');
+          modalImg.src = imgUrl;
+          modalTitle.textContent = title;
+          modal.style.display = 'block';
+        });
+      });
+
+      function closeLightbox() {
+        modal.style.display = 'none';
+        modalImg.src = "";
       }
+
+      closeModal.addEventListener('click', closeLightbox);
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeLightbox();
+      });
+    }
+    
+    const observerOptions = {
+      root: null, // 
+      rootMargin: '0px',
+      threshold: 0.1 
+    };
+    
+    const observerCallback = (entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible'); 
+          observer.unobserve(entry.target); 
+        }
+      });
+    };
+    
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+    const targets = document.querySelectorAll('.animate-on-scroll');
+    
+    targets.forEach(target => {
+      observer.observe(target);
     });
-  }
 
-  document.getElementById("prev").addEventListener("click", () => {
-    current = (current - 1 + cards.length) % cards.length;
-    updateCarousel();
-  });
-
-  document.getElementById("next").addEventListener("click", () => {
-    current = (current + 1) % cards.length;
-    updateCarousel();
-  });
-
-  updateCarousel();
-
-  // Galería Lightbox
-  const galleryItems = document.querySelectorAll('.gallery-item');
-  const modal = document.getElementById('lightboxModal');
-  const modalImg = document.getElementById('lightboxImg');
-  const modalTitle = document.getElementById('lightboxTitle');
-  const closeModal = document.querySelector('.close-lightbox');
-
-  galleryItems.forEach(item => {
-    item.addEventListener('click', () => {
-      const imgUrl = item.getAttribute('data-img');
-      const title = item.getAttribute('data-title');
-      modalImg.src = imgUrl;
-      modalTitle.textContent = title;
-      modal.style.display = 'block';
-    });
-  });
-
-  function closeLightbox() {
-    modal.style.display = 'none';
-    modalImg.src = "";
-  }
-
-  closeModal.addEventListener('click', closeLightbox);
-  modal.addEventListener('click', (e) => {
-    if (e.target === modal) closeLightbox();
-  });
-
-  // Los modals FAQ y Cart ahora se manejan automáticamente con modal-manager.js
-});
-</script>
+  }); 
+  </script>
 </body>
 </html>

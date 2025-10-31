@@ -1,0 +1,166 @@
+/* Card vertical flip con hover dinámico */
+.service-card-vertical {
+  perspective: 1000px;
+  margin: 0 auto;
+}
+
+.service-card-inner-vertical {
+  position: relative;
+  width: 100%;
+  height: 320px;
+  transition: transform 0.8s ease;
+  transform-style: preserve-3d;
+  border-radius: var(--radius, 15px);
+}
+
+/* Estado volteado */
+.service-card-inner-vertical.flipped {
+  transform: rotateY(180deg);
+}
+
+/* FRONT & BACK */
+.service-card-front-vertical,
+.service-card-back-vertical {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: var(--radius, 15px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  transition: all 0.4s ease;
+}
+
+.service-card-front-vertical {
+  background: #fff;
+  color: #555;
+}
+
+.service-card-back-vertical {
+  background: var(--sal-marina, #6ebfc3);
+  color: #fff;
+  transform: rotateY(180deg);
+  text-align: center;
+}
+
+/* Efecto hover solo visible cuando no está volteada */
+.service-card-vertical:hover .service-card-inner-vertical:not(.flipped) {
+  transform: translateY(-10px);
+}
+
+/* Animación sutil de luz */
+.service-card-front-vertical:hover,
+.service-card-back-vertical:hover {
+  box-shadow: 0 10px 25px rgba(110,191,195,0.3),
+              0 0 20px rgba(249,214,226,0.2);
+}
+
+/* Botón */
+.flip-btn {
+  margin-top: 15px;
+  padding: 8px 20px;
+  border: none;
+  background: linear-gradient(45deg, var(--rosa-petalo, #f9d6e2), var(--turquesa-pastel, #6ebfc3));
+  color: #fff;
+  font-weight: 600;
+  border-radius: var(--radius, 10px);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 2;
+  position: relative;
+}
+
+.flip-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(110,191,195,0.4);
+}
+
+.service-icon {
+  font-size: 3rem;
+  color: var(--rosa-petalo, #f9d6e2);
+  margin-bottom: 10px;
+}
+
+<!-- Servicios Destacados -->
+ <section class="services-section py-5 bg-sal-marina">
+  <div class="container text-center">
+    <h2 class="mb-5">Servicios Destacados</h2>
+    <div class="row g-4 justify-content-center">
+
+      <!-- Card 1 -->
+      <div class="col-md-4">
+        <div class="service-card-vertical">
+          <div class="service-card-inner-vertical">
+            <div class="service-card-front-vertical">
+              <i class="bi bi-basket3-fill service-icon"></i>
+              <h5>Masajes Relajantes</h5>
+              <p>Disfruta de técnicas de masaje profesional para relajarte y desconectar.</p>
+              <button class="flip-btn">Más Información</button>
+            </div>
+            <div class="service-card-back-vertical">
+              <h5>Detalles del Masaje</h5>
+              <p>Duración: 60 min<br>
+                 Incluye aromaterapia y técnicas de relajación profunda.</p>
+              <button class="flip-btn">Volver</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="col-md-4">
+        <div class="service-card-vertical">
+          <div class="service-card-inner-vertical">
+            <div class="service-card-front-vertical">
+              <i class="bi bi-droplet service-icon"></i>
+              <h5>Tratamientos Faciales</h5>
+              <p>Cuidado completo de la piel con productos naturales y especializados.</p>
+              <button class="flip-btn">Más Información</button>
+            </div>
+            <div class="service-card-back-vertical">
+              <h5>Detalles Faciales</h5>
+              <p>Incluye limpieza profunda, exfoliación y mascarilla personalizada.</p>
+              <button class="flip-btn">Volver</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="col-md-4">
+        <div class="service-card-vertical">
+          <div class="service-card-inner-vertical">
+            <div class="service-card-front-vertical">
+              <i class="bi bi-stars service-icon"></i>
+              <h5>Wellness Integral</h5>
+              <p>Combinamos belleza, relajación y bienestar en una experiencia única.</p>
+              <button class="flip-btn">Más Información</button>
+            </div>
+            <div class="service-card-back-vertical">
+              <h5>Detalles Wellness</h5>
+              <p>Programas personalizados que integran spa, meditación y cuidado corporal.</p>
+              <button class="flip-btn">Volver</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+ <!-- JS para flip cards -->
+  <script>
+    const buttons = document.querySelectorAll('.flip-btn');
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const cardInner = btn.closest('.service-card-inner-vertical');
+        cardInner.style.transform = cardInner.style.transform === 'rotateX(180deg)' ? 'rotateX(0deg)' : 'rotateX(180deg)';
+      });
+    });
+  </script>

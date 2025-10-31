@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="../styles/common.css" />
     <link rel="stylesheet" href="../styles/about.css" />
+    
 </head>
 <body>
 <nav class="navbar navbar-expand-lg fixed-top navbar-dark navbar-overlay py-3">
@@ -18,18 +19,36 @@
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
         </button>
+
         <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
             <ul class="navbar-nav gap-3">
                 <li class="nav-item"><a class="nav-link" href="../index.html">Inicio</a></li>
-                <li class="nav-item"><a class="nav-link"  href="Products.html">Productos</a></li>
-                <li class="nav-item"><a class="nav-link" href="Reserve.html">Reserva</a></li>
-                <li class="nav-item"><a class="nav-link active" aria-current="page" href="About.html">Acerca de Nosotros</a></li>
-                <li class="nav-item"><a class="nav-link" href="Contact.html">Contacto</a></li>
+                <li class="nav-item"><a class="nav-link" href="./Products.html">Productos</a></li>
+                <li class="nav-item"><a class="nav-link" href="./Reserve.html">Reserva</a></li>
+                <li class="nav-item"><a class="nav-link active" aria-current="page" href="./About.html">Acerca de Nosotros</a></li>
+                <li class="nav-item"><a class="nav-link" href="./Contact.html">Contacto</a></li>
             </ul>
+
+            <!-- Botones móviles -->
+            <div class="d-lg-none mt-3 d-flex gap-3 justify-content-center">
+                <a href="#" class="nav-icon-btn-mobile" id="openFaqBtnMobile">
+                    <i class="bi bi-question-circle me-2"></i>FAQ
+                </a>
+                <a href="#" class="nav-icon-btn-mobile position-relative" id="openCartBtnMobile">
+                    <i class="bi bi-cart3 me-2"></i>Carrito
+                    <span class="cart-badge-mobile">0</span>
+                </a>
+            </div>
         </div>
-        <div class="d-none d-lg-flex ms-3">
-            <a href="Register.html" class="btn btn-outline-light rounded-pill me-2">Registro</a>
-            <a href="Login.html" class="btn btn-light rounded-pill text-turquesa">Log In</a>
+
+        <!-- Botones desktop -->
+        <div class="d-none d-lg-flex ms-3 align-items-center gap-2">
+            <a href="#" class="nav-icon-btn" id="openCartBtn" title="Carrito de Compras">
+                <i class="bi bi-cart3"></i>
+                <span class="cart-badge">0</span>
+            </a>
+            <a href="./Register.html" class="btn btn-outline-light rounded-pill me-2">Registro</a>
+            <a href="./Login.html" class="btn btn-light rounded-pill text-turquesa">Acceder</a>
         </div>
     </div>
 </nav>
@@ -99,49 +118,95 @@
             </div>
         </section>
 
-           <section class="mb-5">
+        <section class="mb-5">
           <h2 class="text-center fw-bold mb-5">Nuestros Valores</h2>
-          <div class="d-flex overflow-auto gap-4">
-            <div class="col">
-              <div class="card h-100 border-0 shadow-sm text-center p-4 tarjeta-hover">
-                <i class="bi bi-people-fill fs-1 text-turquesa-pastel mb-3"></i>
-                <h5 class="fw-bold mb-3">Inclusión</h5>
-                <p class="text-muted">Relajación para todas las identidades.</p>
+          <div class="valores-scroll-container" id="valoresContainer">
+            <div class="valores-scroll-track">
+              <!-- Set original de tarjetas -->
+              <div class="valor-card">
+                <div class="card h-100 border-0 shadow-sm text-center p-4 tarjeta-hover">
+                  <i class="bi bi-people-fill fs-1 text-turquesa-pastel mb-3"></i>
+                  <h5 class="fw-bold mb-3">Inclusión</h5>
+                  <p class="text-muted">Relajación para todas las identidades.</p>
+                </div>
               </div>
-            </div>
-            <div class="col">
-              <div class="card h-100 border-0 shadow-sm text-center p-4 tarjeta-hover">
-                <i class="bi bi-heart-fill fs-1 text-turquesa-pastel mb-3"></i>
-                <h5 class="fw-bold mb-3">Profesionalismo</h5>
-                <p class="text-muted">Brindamos atención experta y personalizada.</p>
+              <div class="valor-card">
+                <div class="card h-100 border-0 shadow-sm text-center p-4 tarjeta-hover">
+                  <i class="bi bi-heart-fill fs-1 text-turquesa-pastel mb-3"></i>
+                  <h5 class="fw-bold mb-3">Profesionalismo</h5>
+                  <p class="text-muted">Brindamos atención experta y personalizada.</p>
+                </div>
               </div>
-            </div>
-            <div class="col">
-              <div class="card h-100 border-0 shadow-sm text-center p-4 tarjeta-hover">
-                <i class="bi bi-yin-yang fs-1 text-turquesa-pastel mb-3"></i>
-                <h5 class="fw-bold mb-3">Bienestar integral</h5>
-                <p class="text-muted">Equilibrio entre cuerpo, mente y emociones.</p>
+              <div class="valor-card">
+                <div class="card h-100 border-0 shadow-sm text-center p-4 tarjeta-hover">
+                  <i class="bi bi-yin-yang fs-1 text-turquesa-pastel mb-3"></i>
+                  <h5 class="fw-bold mb-3">Bienestar integral</h5>
+                  <p class="text-muted">Equilibrio entre cuerpo, mente y emociones.</p>
+                </div>
               </div>
-            </div>
-            <div class="col">
-              <div class="card h-100 border-0 shadow-sm text-center p-4 tarjeta-hover">
-                <i class="bi bi-shield-check fs-1 text-turquesa-pastel mb-3"></i>
-                <h5 class="fw-bold mb-3">Confianza</h5>
-                <p class="text-muted">Transparencia, ética y cercanía en cada servicio.</p>
+              <div class="valor-card">
+                <div class="card h-100 border-0 shadow-sm text-center p-4 tarjeta-hover">
+                  <i class="bi bi-shield-check fs-1 text-turquesa-pastel mb-3"></i>
+                  <h5 class="fw-bold mb-3">Confianza</h5>
+                  <p class="text-muted">Transparencia, ética y cercanía en cada servicio.</p>
+                </div>
               </div>
-            </div>
-            <div class="col">
-              <div class="card h-100 border-0 shadow-sm text-center p-4 tarjeta-hover">
-                <i class="bi bi-lightbulb-fill fs-1 text-turquesa-pastel mb-3"></i>
-                <h5 class="fw-bold mb-3">Innovación</h5>
-                <p class="text-muted">Siempre en actualización constante.</p>
+              <div class="valor-card">
+                <div class="card h-100 border-0 shadow-sm text-center p-4 tarjeta-hover">
+                  <i class="bi bi-lightbulb-fill fs-1 text-turquesa-pastel mb-3"></i>
+                  <h5 class="fw-bold mb-3">Innovación</h5>
+                  <p class="text-muted">Siempre en actualización constante.</p>
+                </div>
               </div>
-            </div>
-            <div class="col">
-              <div class="card h-100 border-0 shadow-sm text-center p-4 tarjeta-hover">
-                <i class="bi bi-person-heart fs-1 text-turquesa-pastel mb-3"></i>
-                <h5 class="fw-bold mb-3">Empatía</h5>
-                <p class="text-muted">Escuchar y cuidar a cada persona como única.</p>
+              <div class="valor-card">
+                <div class="card h-100 border-0 shadow-sm text-center p-4 tarjeta-hover">
+                  <i class="bi bi-person-heart fs-1 text-turquesa-pastel mb-3"></i>
+                  <h5 class="fw-bold mb-3">Empatía</h5>
+                  <p class="text-muted">Escuchar y cuidar a cada persona como única.</p>
+                </div>
+              </div>
+              <!-- Set duplicado para loop infinito -->
+              <div class="valor-card">
+                <div class="card h-100 border-0 shadow-sm text-center p-4 tarjeta-hover">
+                  <i class="bi bi-people-fill fs-1 text-turquesa-pastel mb-3"></i>
+                  <h5 class="fw-bold mb-3">Inclusión</h5>
+                  <p class="text-muted">Relajación para todas las identidades.</p>
+                </div>
+              </div>
+              <div class="valor-card">
+                <div class="card h-100 border-0 shadow-sm text-center p-4 tarjeta-hover">
+                  <i class="bi bi-heart-fill fs-1 text-turquesa-pastel mb-3"></i>
+                  <h5 class="fw-bold mb-3">Profesionalismo</h5>
+                  <p class="text-muted">Brindamos atención experta y personalizada.</p>
+                </div>
+              </div>
+              <div class="valor-card">
+                <div class="card h-100 border-0 shadow-sm text-center p-4 tarjeta-hover">
+                  <i class="bi bi-yin-yang fs-1 text-turquesa-pastel mb-3"></i>
+                  <h5 class="fw-bold mb-3">Bienestar integral</h5>
+                  <p class="text-muted">Equilibrio entre cuerpo, mente y emociones.</p>
+                </div>
+              </div>
+              <div class="valor-card">
+                <div class="card h-100 border-0 shadow-sm text-center p-4 tarjeta-hover">
+                  <i class="bi bi-shield-check fs-1 text-turquesa-pastel mb-3"></i>
+                  <h5 class="fw-bold mb-3">Confianza</h5>
+                  <p class="text-muted">Transparencia, ética y cercanía en cada servicio.</p>
+                </div>
+              </div>
+              <div class="valor-card">
+                <div class="card h-100 border-0 shadow-sm text-center p-4 tarjeta-hover">
+                  <i class="bi bi-lightbulb-fill fs-1 text-turquesa-pastel mb-3"></i>
+                  <h5 class="fw-bold mb-3">Innovación</h5>
+                  <p class="text-muted">Siempre en actualización constante.</p>
+                </div>
+              </div>
+              <div class="valor-card">
+                <div class="card h-100 border-0 shadow-sm text-center p-4 tarjeta-hover">
+                  <i class="bi bi-person-heart fs-1 text-turquesa-pastel mb-3"></i>
+                  <h5 class="fw-bold mb-3">Empatía</h5>
+                  <p class="text-muted">Escuchar y cuidar a cada persona como única.</p>
+                </div>
               </div>
             </div>
           </div>
@@ -227,12 +292,6 @@
     </div>
 </div>
 
-<!-- Cart preview bar (pages) -->
-<div id="cart-preview" class="cart-preview-bar" role="region" aria-live="polite">
-  <div class="bag" aria-hidden="true"><i class="bi bi-bag-check-fill"></i></div>
-  <div class="summary"><span id="cart-count">0</span> productos en el carrito</div>
-  <a href="ShoppingCart.html" class="btn btn-primary btn-review">Revisar Carrito</a>
-</div>
 
 <!-- FOOTER -->
 <footer class="bg-light pt-5 pb-3 mt-5">
@@ -263,9 +322,9 @@
       <div class="mb-4">
         <h5 class="fw-bold mb-3">Síguenos</h5>
         <div class="d-flex justify-content-start gap-3 mb-3">
-          <a href="https://wa.me/5562316302" target="_blank" rel="noopener" class="text-muted fs-4 text-decoration-none" aria-label="Facebook"><i class="bi bi-whatsapp"></i></a>
-          <a href="https://www.facebook.com/share/1AezGeWWhd/" target="_blank" rel="noopener" class="text-muted fs-4 text-decoration-none" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
-          <a href="https://www.instagram.com/spahyb?igsh=c2ttcnhuY2k1N2F3" target="_blank" rel="noopener" class="text-muted fs-4 text-decoration-none" aria-label="Facebook"><i class="bi bi-instagram"></i></a>
+          <a href="https://wa.me/5562316302" target="_blank" rel="noopener" class="social-link" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+          <a href="https://www.facebook.com/share/1AezGeWWhd/" target="_blank" rel="noopener" class="social-link" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+          <a href="https://www.instagram.com/spahyb?igsh=c2ttcnhuY2k1N2F3" target="_blank" rel="noopener" class="social-link" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
         </div>
         <h6 class="fw-bold mt-4 mb-2">Horarios</h6>
         <ul class="list-unstyled text-muted mb-0">
@@ -276,7 +335,7 @@
       </div>
     </div>
 
-    <!-- Divider y copyright-->
+    <!-- Divider y copyright -->
     <hr class="my-4">
     <div class="row">
       <div class="col-12 text-center">
@@ -289,46 +348,63 @@
     </div>
   </div>
 </footer>
-<script src="../scripts/app.js"></script>
-<script src="../scripts/carousel3d.js"></script>
-<script src="../scripts/cart-preview.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-<!-- Botón Flotante -->
-<button id="faq-button" class="faq-floating-btn" aria-label="Preguntas Frecuentes">
-  <i class="bi bi-question-circle-fill"></i>
-</button>
-
-<!-- Modal de Preguntas Frecuentes -->
-<div id="faq-modal" class="faq-modal">
-  <div class="faq-modal-content">
-    <div class="faq-modal-header">
-      <h3 class="mb-0">Preguntas Frecuentes</h3>
-      <button id="close-faq" class="faq-close-btn" aria-label="Cerrar">
-        <i class="bi bi-x-lg"></i>
-      </button>
+<!-- MODAL FAQ -->
+<div id="faqModal" class="side-modal">
+  <div class="side-modal-content">
+    <div class="side-modal-header">
+      <h3><i class="bi bi-question-circle-fill"></i>Preguntas Frecuentes</h3>
+      <button class="close-modal" id="closeFaqModal">&times;</button>
     </div>
-    <div class="faq-modal-body">
-      <div class="accordion" id="faqAccordion">
-        <div id="faq-container">
+    <div class="side-modal-body">
+      <p class="modal-intro">
+        <i class="bi bi-info-circle me-2" style="color: var(--turquesa-pastel);"></i>
+        Encuentra respuestas rápidas a las preguntas más comunes sobre nuestros servicios.
+      </p>
+      <div data-faq="true" data-accordion-id="faqAccordionModal" data-id-prefix="faqModal"></div>
+    </div>
+  </div>
+</div>
 
+<!-- MODAL CARRITO -->
+<div id="cartModal" class="side-modal">
+  <div class="side-modal-content">
+    <div class="side-modal-header">
+      <h3><i class="bi bi-cart3-fill"></i>Mi Carrito</h3>
+      <button class="close-modal" id="closeCartModal">&times;</button>
+    </div>
+    <div class="side-modal-body">
+      <div id="cartItems" class="cart-items-container">
+        <div class="empty-cart">
+          <i class="bi bi-cart-x" style="font-size: 5rem; color: var(--turquesa-pastel);"></i>
+          <p class="mt-3 mb-2">Tu carrito está vacío</p>
+          <p class="text-muted small mb-3">Agrega productos para comenzar tu compra</p>
+          <a href="./Products.html" class="btn btn-turquesa">
+            <i class="bi bi-shop me-2"></i>Explorar Productos
+          </a>
         </div>
+      </div>
+      <div class="cart-footer">
+        <div class="cart-total">
+          <span><i class="bi bi-calculator me-2"></i>Total:</span>
+          <span class="total-amount">$0.00</span>
+        </div>
+        <a href="./ShoppingCart.html" class="btn btn-turquesa w-100">
+          <i class="bi bi-credit-card me-2"></i>Proceder al Pago
+        </a>
       </div>
     </div>
   </div>
 </div>
 
-<script>
-  fetch('/pages/faq.html')
-    .then(response => response.text())
-    .then(data => {
-      document.getElementById('faq-container').innerHTML = data;
-      const collapses = document.querySelectorAll('#faq-container .accordion-collapse');
-      collapses.forEach(collapse => {
-        new bootstrap.Collapse(collapse, { toggle: false });
-      });
-    })
-    .catch(error => console.error('Error al cargar FAQ:', error));
-</script>
+<!-- BOTÓN FLOTANTE FAQ -->
+<button id="floatingFaqBtn" class="floating-faq-btn" title="Preguntas Frecuentes">
+  <i class="bi bi-question-circle-fill"></i>
+</button>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../scripts/faq-data.js"></script>
+<script src="../scripts/modal-manager-fixed.js"></script>
 </body>
 </html>

@@ -1,3 +1,49 @@
-/* Estilos específicos de la página de registro */
+/* =====================================================
+   🎨 ESTILOS PÁGINA REGISTRO
+   Variables, navbar, footer y botones en common.css
+   ===================================================== */
 
+/* Animación de entrada */
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
+.animate-login {
+  animation: fadeSlideUp 0.8s ease-out forwards;
+}
+
+.animate-login {
+  animation: fadeSlideUp 0.8s ease-out forwards;
+}
+.glass-card {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 0px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+}
+.btn-spa {
+  background-color: var(--turquesa-pastel);
+  color: #fff;
+  font-weight: 600;
+  padding: 0.5rem 1.2rem;       /* ⬅️ Menos alto y ancho */
+  font-size: 1rem; 
+ 
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(110, 191, 195, 0.3);
+}
+
+.btn-spa:hover {
+  background-color: #4aa7ab;
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 8px 25px rgba(110, 191, 195, 0.5);
+}
