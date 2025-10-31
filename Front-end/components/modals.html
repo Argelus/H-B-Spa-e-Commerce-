@@ -1,0 +1,62 @@
+<!--
+  COMPONENTES MODALES REUTILIZABLES
+  Incluir este archivo en páginas que necesiten los modals
+  Uso: Agregar <script src="../scripts/faq-data.js"></script>
+       Agregar <script src="../scripts/modal-manager.js"></script>
+-->
+
+<!-- MODAL FAQ -->
+<div id="faqModal" class="side-modal">
+  <div class="side-modal-content">
+    <div class="side-modal-header">
+      <h3><i class="bi bi-question-circle-fill"></i>Preguntas Frecuentes</h3>
+      <button class="close-modal" id="closeFaqModal">&times;</button>
+    </div>
+    <div class="side-modal-body">
+      <p class="modal-intro">
+        <i class="bi bi-info-circle me-2" style="color: var(--turquesa-pastel);"></i>
+        Encuentra respuestas rápidas a las preguntas más comunes sobre nuestros servicios.
+      </p>
+      <!-- FAQ se carga dinámicamente -->
+      <div data-faq="true" data-accordion-id="faqAccordion" data-id-prefix="faq"></div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL CARRITO -->
+<div id="cartModal" class="side-modal">
+  <div class="side-modal-content">
+    <div class="side-modal-header">
+      <h3><i class="bi bi-cart3-fill"></i>Mi Carrito</h3>
+      <button class="close-modal" id="closeCartModal">&times;</button>
+    </div>
+    <div class="side-modal-body">
+      <div id="cartItems" class="cart-items-container">
+        <!-- Los items se agregarán dinámicamente -->
+        <div class="empty-cart">
+          <i class="bi bi-cart-x" style="font-size: 5rem; color: var(--turquesa-pastel);"></i>
+          <p class="mt-3 mb-2">Tu carrito está vacío</p>
+          <p class="text-muted small mb-3">Agrega productos para comenzar tu compra</p>
+          <a href="./pages/Products.html" class="btn btn-turquesa">
+            <i class="bi bi-shop me-2"></i>Explorar Productos
+          </a>
+        </div>
+      </div>
+      <div class="cart-footer">
+        <div class="cart-total">
+          <span><i class="bi bi-calculator me-2"></i>Total:</span>
+          <span class="total-amount">$0.00</span>
+        </div>
+        <a href="./pages/ShoppingCart.html" class="btn btn-turquesa w-100">
+          <i class="bi bi-credit-card me-2"></i>Proceder al Pago
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BOTÓN FLOTANTE FAQ -->
+<button id="floatingFaqBtn" class="floating-faq-btn" title="Preguntas Frecuentes">
+  <i class="bi bi-question-circle-fill"></i>
+</button>
+
