@@ -315,7 +315,7 @@ h1, h2, h3, h4, h5, h6 {
    ======================================== */
 footer {
   background: linear-gradient(135deg, var(--arena-suave), var(--lila-rosa));
-  margin-top: 4rem;
+ 
   padding: 3rem 0 1.5rem;
   color: var(--gris-humo);
 }
