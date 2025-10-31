@@ -1,14 +1,13 @@
 package com.spa.service;
 
 import com.spa.dto.UsuarioHistorialDTO;
-import com.spa.model.Order;
-import com.spa.model.Reserva;
 import com.spa.security.model.Usuario;
 import com.spa.repository.OrderRepository;
 import com.spa.repository.ReservaRepository;
 import com.spa.security.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.stream.Collectors;
 
@@ -24,30 +23,51 @@ public class UsuarioService {
     @Autowired
     private ReservaRepository reservaRepository;
 
-    // ✅ Método existente: guardar usuario (registro)
+    // ✅ Guardar usuario (registro)
+    @Transactional
     public Usuario guardarUsuario(Usuario usuario) {
+        // Normaliza email a minúsculas por consistencia
+        if (usuario.getEmail() != null) {
+            usuario.setEmail(usuario.getEmail().trim().toLowerCase());
+        }
+        if (usuario.getUsername() != null) {
+            usuario.setUsername(usuario.getUsername().trim());
+        }
         return usuarioRepository.save(usuario);
     }
 
-    // ✅ Método existente: verificar si username ya existe
+    // ✅ Verificar si username ya existe (normalizado)
+    @Transactional(readOnly = true)
     public boolean existePorUsername(String username) {
-        return usuarioRepository.existsByUsername(username);
+        if (username == null) return false;
+        return usuarioRepository.existsByUsername(username.trim());
     }
 
-    // ✅ Método existente: verificar si email ya existe
+    // ✅ Verificar si email ya existe (normalizado)
+    @Transactional(readOnly = true)
     public boolean existePorEmail(String email) {
-        return usuarioRepository.existsByEmail(email);
+        if (email == null) return false;
+        return usuarioRepository.existsByEmail(email.trim().toLowerCase());
     }
 
-    // ✅ NUEVO: buscar por username (para /me)
+    // ✅ Buscar por username (para /me y otros)
+    @Transactional(readOnly = true)
     public Usuario buscarPorUsername(String username) {
-        return usuarioRepository.findByUsername(username)
+        return usuarioRepository.findByUsername(username.trim())
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado: " + username));
     }
 
-    // ✅ Existente: historial completo del usuario por ID
+    // ✅ (Opcional) Buscar por email
+    @Transactional(readOnly = true)
+    public Usuario buscarPorEmail(String email) {
+        return usuarioRepository.findByEmail(email.trim().toLowerCase())
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado con email: " + email));
+    }
+
+    // ✅ Historial completo del usuario por ID
+    @Transactional(readOnly = true)
     public UsuarioHistorialDTO obtenerHistorial(Long usuarioId) {
-        Usuario usuario = usuarioRepository.findById(usuarioId)
+        var usuario = usuarioRepository.findById(usuarioId)
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
 
         // 🛒 Órdenes del usuario
@@ -79,7 +99,7 @@ public class UsuarioService {
                         .build())
                 .collect(Collectors.toList());
 
-        // 📦 Armar el DTO de respuesta final
+        // 📦 Respuesta final
         return UsuarioHistorialDTO.builder()
                 .id(usuario.getId())
                 .username(usuario.getUsername())

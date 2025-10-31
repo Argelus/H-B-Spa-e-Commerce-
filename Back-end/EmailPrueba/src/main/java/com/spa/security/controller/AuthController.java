@@ -1,18 +1,18 @@
 package com.spa.security.controller;
 
-// 📦 DTOs: objetos que viajan entre el front y el back
+// 📦 DTOs
 import com.spa.dto.LoginRequest;
 import com.spa.dto.RegisterRequest;
 
-// 🔐 Utilidad para generar y validar tokens JWT
+// 🔐 JWT
 import com.spa.security.jwt.JwtUtil;
 
-// 🧩 Clases del modelo y lógica de usuario
+// 🧩 Modelo/repos y servicio
 import com.spa.security.model.Usuario;
 import com.spa.security.repository.UsuarioRepository;
 import com.spa.service.UsuarioService;
 
-// ⚙️ Dependencias de Spring Security
+// ⚙️ Spring Security
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -20,6 +20,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+// Utils
 import java.util.Map;
 
 @RestController
@@ -48,33 +49,45 @@ public class AuthController {
     }
 
     // ============================================================
-    // 🟢 LOGIN: Autentica credenciales y devuelve un token JWT
+    // 🟢 LOGIN: Acepta username O email y devuelve token JWT
     // ============================================================
     @PostMapping("/login")
     public Map<String, String> login(@RequestBody LoginRequest loginRequest) {
 
-        // 1️⃣ Autenticar al usuario con Spring Security
+        String input = loginRequest.getUsername(); // puede ser username o email
+        String rawPassword = loginRequest.getPassword();
+
+        if (input == null || input.isBlank() || rawPassword == null || rawPassword.isBlank()) {
+            throw new RuntimeException("Credenciales incompletas.");
+        }
+
+        // Si el input parece email, resolvemos el username real
+        String loginUsername = input;
+        if (input.contains("@")) {
+            Usuario byEmail = usuarioRepository.findByEmail(input.trim().toLowerCase())
+                    .orElseThrow(() -> new RuntimeException("No existe un usuario con ese correo."));
+            loginUsername = byEmail.getUsername();
+        }
+
+        // 1) Autenticar
         Authentication authentication = authManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        loginRequest.getUsername(),
-                        loginRequest.getPassword()
-                )
+                new UsernamePasswordAuthenticationToken(loginUsername, rawPassword)
         );
 
-        // 2️⃣ Buscar el usuario en la base de datos
+        // 2) Buscar entidad usuario
         Usuario user = usuarioRepository.findByUsername(authentication.getName())
-                .orElseThrow(() -> new RuntimeException("Usuario no encontrado después de autenticar"));
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado después de autenticar."));
 
-        // 3️⃣ Normalizar el rol
+        // 3) Normalizar rol
         String role = user.getRole();
         if (role == null || !role.startsWith("ROLE_")) {
             role = "ROLE_" + (role != null ? role.toUpperCase() : "USER");
         }
 
-        // 4️⃣ Generar token JWT con username y rol
+        // 4) Token
         String token = jwtUtil.generateToken(user.getUsername(), role);
 
-        // 5️⃣ Devolver respuesta al frontend
+        // 5) Respuesta
         return Map.of(
                 "message", "Login exitoso",
                 "token", token,
@@ -84,20 +97,28 @@ public class AuthController {
     }
 
     // ============================================================
-    // 🟣 REGISTER: Crea un nuevo usuario y devuelve token
+    // 🟣 REGISTER: Crea usuario y devuelve token
     // ============================================================
     @PostMapping("/register")
     public Map<String, String> register(@RequestBody RegisterRequest registerRequest) {
 
-        // 1️⃣ Validaciones: evitar duplicados
-        if (usuarioService.existePorUsername(registerRequest.getUsername())) {
+        String username = registerRequest.getUsername() != null ? registerRequest.getUsername().trim() : null;
+        String email    = registerRequest.getEmail()    != null ? registerRequest.getEmail().trim().toLowerCase() : null;
+        String password = registerRequest.getPassword();
+
+        if (username == null || username.isBlank() ||
+                email == null || email.isBlank() ||
+                password == null || password.isBlank()) {
+            throw new RuntimeException("Todos los campos son obligatorios.");
+        }
+
+        if (usuarioService.existePorUsername(username)) {
             throw new RuntimeException("Error: El nombre de usuario ya existe.");
         }
-        if (usuarioService.existePorEmail(registerRequest.getEmail())) {
+        if (usuarioService.existePorEmail(email)) {
             throw new RuntimeException("Error: El email ya está en uso.");
         }
 
-        // 2️⃣ Normalizar el rol
         String role = registerRequest.getRole();
         if (role == null || role.isBlank()) {
             role = "ROLE_USER";
@@ -105,20 +126,16 @@ public class AuthController {
             role = "ROLE_" + role.toUpperCase();
         }
 
-        // 3️⃣ Crear la entidad Usuario y encriptar la contraseña
         Usuario usuario = new Usuario();
-        usuario.setUsername(registerRequest.getUsername());
-        usuario.setEmail(registerRequest.getEmail());
-        usuario.setPassword(passwordEncoder.encode(registerRequest.getPassword()));
+        usuario.setUsername(username);
+        usuario.setEmail(email);
+        usuario.setPassword(passwordEncoder.encode(password));
         usuario.setRole(role);
 
-        // 4️⃣ Guardar el usuario en la base de datos
         usuarioService.guardarUsuario(usuario);
 
-        // 5️⃣ Generar token automático (útil para login inmediato tras registro)
         String token = jwtUtil.generateToken(usuario.getUsername(), usuario.getRole());
 
-        // 6️⃣ Respuesta al frontend
         return Map.of(
                 "message", "Usuario registrado correctamente",
                 "username", usuario.getUsername(),
