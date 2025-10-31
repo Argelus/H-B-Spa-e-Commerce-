@@ -75,6 +75,10 @@
   border-radius: 0px;
   border: 1px solid rgba(255, 255, 255, 0.3);
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+   height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .btn-spa {
   background-color: var(--turquesa-pastel);
@@ -92,4 +96,197 @@
   background-color: #4aa7ab;
   transform: translateY(-2px) scale(1.03);
   box-shadow: 0 8px 25px rgba(110, 191, 195, 0.5);
+}
+/* Fondo general del perfil */
+.perfil-section {
+  background: linear-gradient(to bottom, var(--sal-marina), var(--lila-rosa));
+  min-height: 100vh;
+  padding-top: 80px;
+}
+
+/* Panel izquierdo */
+.glass-card {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+}
+
+/* Botones del panel izquierdo */
+.btn-outline-light {
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.9);
+  transition: all 0.3s ease;
+}
+
+.btn-outline-light:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+/* Botón principal */
+.btn-spa {
+  background-color: var(--rosa-claro);
+  color: var(--gris-humo);
+  border: none;
+  border-radius: 50px;
+  padding: 0.5rem 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.btn-spa:hover {
+  background-color: var(--rosa-fuerte);
+  color: #fff;
+}
+
+/* Animación de entrada */
+.animate-login {
+  animation: fadeInUp 0.6s ease;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .glass-card {
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .btn-outline-light {
+    width: 100%;
+  }
+
+  .btn-spa {
+    width: 100%;
+  }
+}
+
+.btn-panel {
+    border-color: rgb(110, 103, 103);
+    color:rgb(110, 103, 103);
+  width: 100% !important;        /* Cambia el ancho del botón */
+  padding: 0.6rem 1.2rem;  /* Ajusta el alto y el espacio interno */
+  font-size: 1rem;         /* Tamaño del texto */
+  margin: 0 auto;          /* Centra el botón dentro del panel */
+}
+.btn-panel:hover {
+    border-color: var(--turquesa-pastel);
+    color:var(--turquesa-pastel);
+  width: 100%;              /* Cambia el ancho del botón */
+  padding: 0.6rem 1.2rem;  /* Ajusta el alto y el espacio interno */
+  font-size: 1rem;         /* Tamaño del texto */
+  margin: 0 auto;          /* Centra el botón dentro del panel */
+}
+/* Igualar altura entre panel izquierdo y derecho */
+.perfil-section .row {
+  min-height: 100%;
+}
+
+.perfil-sidebar,
+.perfil-contenido {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Responsivo: en móviles se apilan sin forzar altura */
+@media (max-width: 768px) {
+  .perfil-sidebar,
+  .perfil-contenido {
+    height: auto;
+  }
+}
+@media (max-width: 768px) {
+  .glass-card {
+    height: auto !important;
+  }
+}
+/* Fondo general */
+.perfil-section {
+  background: linear-gradient(to bottom, var(--sal-marina), var(--lila-rosa));
+  min-height: 100vh;
+  padding-top: 80px;
+  padding-bottom: 40px;
+}
+
+/* Cápsula que encierra todo */
+.perfil-capsula {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(14px) saturate(180%);
+  -webkit-backdrop-filter: blur(14px) saturate(180%);
+  border-radius: 25px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+}
+
+/* Panel izquierdo */
+.perfil-sidebar {
+  padding: 1rem;
+}
+
+/* Panel derecho */
+.perfil-contenido {
+  padding: 1rem;
+}
+
+/* Nombre del usuario */
+.nombre-usuario {
+  color: var(--gris-humo);
+}
+
+/* Botones del panel izquierdo */
+.btn-panel {
+  width: 80%;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  margin: 0 auto;
+}
+
+/* Botón principal */
+.btn-spa {
+  background-color: var(--rosa-claro);
+  color: var(--gris-humo);
+  border: none;
+  border-radius: 50px;
+  padding: 0.5rem 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.btn-spa:hover {
+  background-color: var(--rosa-fuerte);
+  color: #fff;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .btn-panel {
+    width: 100%;
+  }
+
+  .perfil-capsula {
+    padding: 1rem;
+    border-radius: 15px;
+  }
+
+  .perfil-sidebar,
+  .perfil-contenido {
+    padding: 0.5rem;
+  }
+}
+.perfil-section .container-fluid {
+  padding-left: 10rem;
+  padding-right: 10rem;
 }
