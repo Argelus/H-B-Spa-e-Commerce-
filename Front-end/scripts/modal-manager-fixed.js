@@ -67,6 +67,7 @@
       window.closeFaqModalFunc = closeFaqModalFunc;
     }
 
+    /*
     // Cart Modal
     const cartModal = document.getElementById('cartModal');
     const openCartBtn = document.getElementById('openCartBtn');
@@ -111,12 +112,13 @@
       // Guardar para usar con ESC
       window.closeCartModalFunc = closeCartModalFunc;
     }
+      */
 
     // ESC key para cerrar todos los modals
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape') {
         if (window.closeFaqModalFunc) window.closeFaqModalFunc();
-        if (window.closeCartModalFunc) window.closeCartModalFunc();
+        //if (window.closeCartModalFunc) window.closeCartModalFunc();
       }
     });
   }

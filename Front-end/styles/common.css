@@ -1,5 +1,4 @@
 /* ========================================
-   /* ========================================
    VARIABLES GLOBALES - H&B SPA
    ======================================== */
 :root {
@@ -841,3 +840,146 @@ footer a:hover {
   }
 }
 
+/* ========================================
+   ESTILOS POPOVER CARRITO (Versión 4 - Carga de Fuente)
+   ======================================== */
+
+/* * CORRECCIÓN 1: Cargar la fuente de íconos.
+ * El archivo CSS de Bootstrap Icons no se está cargando en tu página.
+ * Esta regla @font-face lo carga manualmente desde el CDN.
+ */
+@font-face {
+  font-family: "bootstrap-icons";
+  src: url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/fonts/bootstrap-icons.woff2") format("woff2");
+}
+
+#cart-popover .cart-item {
+  display: flex;
+  flex-direction: column; /* Apila los elementos verticalmente */
+  align-items: center; /* Centra horizontalmente TODOS los bloques hijos */
+  text-align: center; /* Centra el texto (nombre y precio) */
+
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.5rem;
+  gap: 0.5px;
+  border-bottom: 1px solid #eee;
+  
+}
+#cart-popover .cart-item:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+#cart-popover .cart-item-thumb { 
+grid-row: 1 / 3; /* Ocupa 2 filas */
+  
+  /* AJUSTE 1: El ancho debe coincidir con tu grid-template-column (72px) */
+  width: 72px;
+  height: 72px;
+  
+  border-radius: 12px;
+  background: #f6f6f6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+
+#cart-popover .cart-item-info { 
+  grid-column: 2;
+  min-width: 0; 
+}
+
+#cart-popover .cart-item-name { 
+  font-weight: 700; 
+  color: var(--gris-humo); 
+  white-space: nowrap; 
+  overflow: hidden; 
+  text-overflow: ellipsis; 
+  margin-bottom: 4px;
+  font-size: 0.95rem;
+}
+#cart-popover .cart-item-meta { color: #6b7280; font-size: .9rem; }
+#cart-popover .price { font-weight: 700; color: var(--gris-humo); }
+
+#cart-popover .cart-item-actions { 
+  grid-column: 2; /* Debajo de la info */
+  display: flex; /* Horizontal */
+  align-items: center;
+  gap: 1.5rem; /* Espacio entre stepper y basurero */
+}
+
+/* Selector de cantidad (stepper) */
+#cart-popover .qty-stepper { 
+  display: inline-flex !important; 
+  align-items: center; 
+  gap: 8px; 
+  border: 1px solid rgba(0,0,0,0.08) !important; 
+  border-radius: 999px !important; 
+  padding: 3px 8px; 
+  background: #fff !important; 
+}
+
+/* * CORRECCIÓN 2: Arreglar fuente de botones '+' y '-'.
+ * Forzamos la fuente de texto regular.
+ */
+#cart-popover .qty-btn { 
+  width: 26px; 
+  height: 26px; 
+  display: inline-flex; 
+  align-items: center; 
+  justify-content: center; 
+  border-radius: 50% !important; 
+  border: 1px solid rgba(0,0,0,0.12) !important; 
+  background: #fff !important; 
+  color: var(--gris-humo) !important; 
+  cursor: pointer; 
+  padding: 0;
+  line-height: 1;
+  font-size: 1.1rem; 
+  font-weight: 600;
+  /* Esta línea arregla el '+' y '-' */
+  font-family: 'Lato', 'Segoe UI', Tahoma, sans-serif !important;
+}
+#cart-popover .qty-btn:hover { 
+  transform: scale(1.06); 
+  background: var(--sal-marina) !important; 
+}
+
+#cart-popover .qty-value { 
+  min-width: 20px; 
+  text-align: center; 
+  font-weight: 700; 
+  font-size: 0.9rem;
+  color: #333 !important; 
+}
+
+/* Botón de eliminar */
+#cart-popover .btn-remove { 
+  border: none !important; 
+  background: transparent !important; 
+  color: #9ca3af !important; 
+  padding: 4px; 
+  cursor: pointer; 
+  font-size: 1.1rem; 
+}
+#cart-popover .btn-remove:hover { 
+  color: #c53030 !important; 
+}
+
+/* * CORRECCIÓN 3: Aplicar la fuente de íconos.
+ * Ahora que @font-face la ha cargado (Corrección 1), 
+ * esta regla funcionará y arreglará el ícono de basura.
+ */
+#cart-popover .btn-remove [class^="bi-"]::before,
+#cart-popover .btn-remove [class*=" bi-"]::before {
+    font-family: 'bootstrap-icons' !important;
+    font-style: normal;
+    font-weight: normal !important;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
