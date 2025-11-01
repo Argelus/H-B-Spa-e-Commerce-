@@ -1,7 +1,9 @@
 package com.spa.controller;
 
 import com.spa.model.Order;
+import com.spa.security.model.Usuario;
 import com.spa.service.OrderService;
+import com.spa.service.UsuarioService;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -11,9 +13,11 @@ import java.util.List;
 public class OrderController {
 
     private final OrderService orderService;
+    private final UsuarioService usuarioService; // 👈 NUEVO: para resolver el usuario desde el token
 
-    public OrderController(OrderService orderService) {
+    public OrderController(OrderService orderService, UsuarioService usuarioService) {
         this.orderService = orderService;
+        this.usuarioService = usuarioService; // 👈 inyectado
     }
 
     // 🟢 Crear una nueva orden (requiere token)
@@ -28,10 +32,17 @@ public class OrderController {
         return orderService.listarTodas();
     }
 
-    // 🟣 Obtener órdenes de un usuario específico
+    // 🟣 Obtener órdenes de un usuario específico (por ID)
     @GetMapping("/usuario/{usuarioId}")
     public List<Order> listarPorUsuario(@PathVariable Long usuarioId) {
         return orderService.listarPorUsuario(usuarioId);
+    }
+
+    // ✅ NUEVO: Obtener órdenes del usuario autenticado (por token)
+    @GetMapping("/mine")
+    public List<Order> listarMias(org.springframework.security.core.Authentication auth) {
+        Usuario u = usuarioService.buscarPorUsername(auth.getName());
+        return orderService.listarPorUsuario(u.getId());
     }
 
     // 🟡 Filtrar por estado
