@@ -3,12 +3,12 @@ const API_URL = "http://localhost:8080/api";
 // 🔹 Cargar categorías y productos
 async function loadProducts() {
   try {
-    // --- Obtener categorías ---
+    // --- 1️⃣ Obtener categorías ---
     const catResponse = await fetch(`${API_URL}/categories`);
     const categories = await catResponse.json();
     renderCategories(categories);
 
-    // --- Obtener productos ---
+    // --- 2️⃣ Obtener productos ---
     const prodResponse = await fetch(`${API_URL}/products`);
     const products = await prodResponse.json();
 
@@ -174,41 +174,12 @@ function initScrollAnimations() {
 // ============================================
 
 /**
- * Agrega un div con información adicional a cada card
- * que se mostrará al hacer hover
+ * Ya no necesitamos esta función porque la información
+ * se muestra directamente desde el HTML renderizado
  */
 function addExtraInfoToCards() {
-  const cards = document.querySelectorAll('#product-list .card');
-  
-  cards.forEach(card => {
-    // Verifica si ya tiene la info extra para no duplicar
-    if (card.querySelector('.card-extra-info')) return;
-    
-    // Obtiene información de la card
-    const title = card.querySelector('.card-title')?.textContent || 'Producto';
-    const description = card.querySelector('.card-text')?.textContent || 'Descripción no disponible';
-    const price = card.querySelector('.text-success')?.textContent || 'Precio no disponible';
-    const stock = card.querySelector('.text-muted small')?.textContent || 'Stock: No disponible';
-    
-    // Crea el div de información extra
-    const extraInfo = document.createElement('div');
-    extraInfo.className = 'card-extra-info';
-    extraInfo.innerHTML = `
-      <h5>${title}</h5>
-      <p>${description}</p>
-      <div class="extra-detail">${price}</div>
-      <div class="extra-detail">${stock}</div>
-      <div class="extra-detail">Disponible ahora</div>
-      <div class="extra-detail">Incluye consulta personalizada</div>
-    `;
-    
-    // Busca el card-body y le agrega la información extra
-    const cardBody = card.querySelector('.card-body');
-    if (cardBody) {
-      cardBody.style.position = 'relative';
-      cardBody.appendChild(extraInfo);
-    }
-  });
+  // Función vacía - la información ya está en el HTML
+  return;
 }
 
 // ============================================

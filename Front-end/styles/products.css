@@ -1,210 +1,491 @@
-/* === 🧴 Products page styles === */
+/* ===================================
+   CURSOR PERSONALIZADO (MANDALA)
+   =================================== */
+body {/* ===================================
+   CURSOR PERSONALIZADO (MANDALA)
+   =================================== */
+body {
+  cursor: url("/images/Cursor/Mandala1.cur"), auto;
+}
+
+button, a, .card {
+  cursor: url("/images/Cursor/Mandala1.cur"), pointer;
+}
+
+/* ===================================
+   CARDS - ESTILO CODEPEN CON SCROLL
+   =================================== */
+
+/* Contenedor principal */
+#product-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  padding: 2rem 0;
+}
 
 #product-list .col-md-4 {
-  perspective: 1000px; /* Permite el efecto 3D */
-}
-
-/* === Estructura general de las cards === */
-#product-list .card {
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100%;
-  margin-bottom: 1rem;
-  border-radius: var(--radius);
-  background: linear-gradient(135deg, #F5EDE4 0%, #E8F5F7 20%, #D7ECEB 40%, #B8E3E8 70%, #6EBFC3 100%);
-  border: 1px solid rgba(110, 191, 195, 0.2);
-  box-shadow: 0 4px 15px rgba(110, 191, 195, 0.15);
-  transition: all 0.4s ease;
-  position: relative;
-  opacity: 0;
-  transform: translateY(30px);
+  justify-content: center;
+  padding: 1rem;
 }
 
+/* Card principal */
+#product-list .card {
+  position: relative;
+  width: 100%;
+  max-width: 350px;
+  height: 450px;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(110, 191, 195, 0.2);
+  cursor: pointer;
+  transition: transform 0.4s ease, box-shadow 0.4s ease, opacity 0.8s ease;
+  background: #fff;
+  
+  /* Estado inicial para animación de scroll */
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+/* Animación de aparición al hacer scroll */
 #product-list .card.visible {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* 🔹 Efecto hover - Voltea la card */
+/* Hover de la card */
 #product-list .card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 12px 30px rgba(110, 191, 195, 0.3);
-  border-color: rgba(110, 191, 195, 0.4);
+  box-shadow: 0 12px 30px rgba(110, 191, 195, 0.35);
 }
 
-/* === Imagen fija y ajustada === */
+/* ===================================
+   IMAGEN DE LA CARD
+   =================================== */
 #product-list .card img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  height: 200px;
-  border-radius: var(--radius) var(--radius) 0 0;
-  transition: filter 0.3s ease;
-}
-
-
-/* === Cuerpo flexible para empujar el botón al fondo === */
-#product-list .card-body {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-radius: 0 0 var(--radius) var(--radius);
-  transition: all 0.3s ease;
-  position: relative;
-}
-
-/* INFORMACIÓN ADICIONAL (REVERSO DE LA CARD) */
-/* Contenedor de información extra - Reverso de la tarjeta */
-.card-extra-info {
   position: absolute;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 85px;
-  background: linear-gradient(135deg, rgba(110, 191, 195, 0.95) 0%, rgba(90, 173, 178, 0.95) 100%);
-  backdrop-filter: blur(10px);
+  transition: transform 0.4s ease, filter 0.4s ease;
+  filter: brightness(1);
+}
+
+/* Oscurecer imagen en hover */
+#product-list .card:hover img {
+  transform: scale(1.08);
+  filter: brightness(50%);
+}
+
+/* ===================================
+   INFORMACIÓN DE LA CARD (HOVER)
+   =================================== */
+#product-list .card-body {
+  position: absolute;
+  inset: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 1.5rem;
-  border-radius: 0;
+  /* 🔹 Degradado más claro y suave */
+  background: linear-gradient(135deg, rgba(215, 236, 235, 0.95) 0%, rgba(184, 227, 232, 0.95) 50%, rgba(110, 191, 195, 0.95) 100%);
+  /* Explicación: Sal Marina → Intermedio → Turquesa Pastel */
+  color: #4A4A4A; /* Gris Humo para mejor contraste */
   opacity: 0;
-  transform: translateY(-10px);
-  transition: all 0.4s ease;
-  pointer-events: none;
-  z-index: 5;
+  transition: opacity 0.4s ease;
+  text-align: center;
+  padding: 1.5rem;
+  z-index: 10;
+  overflow-y: auto; /* Permite scroll si el contenido es largo */
 }
 
-/* 🔹 Muestra la información extra al hacer hover en la card */
-#product-list .card:hover .card-extra-info {
+/* Muestra la información al hacer hover */
+#product-list .card:hover .card-body {
   opacity: 1;
-  transform: translateY(0);
-  pointer-events: auto;
 }
 
-/* Estilos del texto de información extra */
-.card-extra-info h5 {
-  color: white;
-  font-size: 1.2rem;
-  margin-bottom: 1rem;
-  text-align: center;
+/* ===================================
+   TEXTOS DE LA CARD
+   =================================== */
+.card-title {
+  font-size: 1.4rem;
   font-weight: 700;
+  margin-bottom: 0.8rem;
+  color: #4A4A4A; /* Gris Humo */
+  text-shadow: 0 1px 2px rgba(255,255,255,0.5);
+  line-height: 1.3;
 }
 
-.card-extra-info p {
-  color: white;
-   font-size: 0.95rem;
-  line-height: 1.5;
-  text-align: center;
-  margin-bottom: 1rem;
-  max-height: 80px;
+.card-text {
+  font-size: 0.9rem;
+  margin-bottom: 0.8rem;
+  line-height: 1.6;
+  color: #4A4A4A; /* Gris Humo */
+  max-height: 120px;
   overflow-y: auto;
+  padding: 0 0.5rem;
 }
 
-.card-extra-info .extra-detail {
-  background: rgba(255, 255, 255, 0.25);
-  padding: 0.4rem 1rem;
-  border-radius: 8px;
-  margin: 0.3rem 0;
-  font-weight: 600;
-  color: white;
-  font-size: 0.95rem;
+/* Scrollbar personalizado para la descripción */
+.card-text::-webkit-scrollbar {
+  width: 5px;
 }
 
-/* Mantener separación visual pero no romper el flex */
-#product-list .card-body > div:first-child {
-  flex-grow: 1;
+.card-text::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
 }
 
-/* === Contenedor del botón (fijo y centrado) === */
+.card-text::-webkit-scrollbar-thumb {
+  background: rgba(110, 191, 195, 0.6);
+  border-radius: 10px;
+}
+
+.text-success {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 0.8rem;
+  color: #6EBFC3 !important; /* Turquesa Pastel */
+  text-shadow: none;
+}
+
+.text-muted {
+  font-size: 0.85rem;
+  color: #666 !important;
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+/* ===================================
+   BOTÓN "AGREGAR AL CARRITO"
+   =================================== */
 .card-actions {
-  min-height: 85px; /* fija la altura total (botón + mensaje) */
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  margin-top: auto;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  position: relative;
 }
 
-/* === Botón carrito === */
 .card-actions button {
-  width: 90%;
-  margin-bottom: 6px;
-  /* 🔹 Botón con Turquesa Pastel sólido */
   background: #6EBFC3;
-  border: none;
   color: white;
-  font-weight: 700;
-  padding: 0.7rem;
+  border: none;
+  padding: 0.8rem 2rem;
   border-radius: 10px;
+  font-weight: 700;
+  font-size: 1rem;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 10px rgba(110, 191, 195, 0.3);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
-/* 🔹 Hover del botón - Cambia a morado */
 .card-actions button:hover {
-  background: #EBD2EC; /* Lila-Rosa de tu paleta */
-  color: #4A4A4A; /* Gris Humo */
-  transform: translateY(-2px);
+  background: #EBD2EC;
+  color: #4A4A4A;
+  transform: translateY(-3px);
   box-shadow: 0 6px 15px rgba(235, 210, 236, 0.4);
 }
 
-/* 🔹 Estado activo del botón (cuando se hace clic) */
 .card-actions button:active {
-  transform: scale(0.98);
+  transform: translateY(0);
 }
 
-/* === Mensaje de éxito === */
+/* ===================================
+   MENSAJE "AGREGADO AL CARRITO"
+   =================================== */
 .added-msg {
-  color: #198754;
-  font-size: 0.95rem;
+  position: absolute;
+  bottom: -35px;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  color: #fff;
+  background: rgba(25, 135, 84, 0.95);
+  padding: 0.5rem 1.2rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
   font-weight: 600;
   opacity: 0;
-  transform: translateY(5px);
-  transition: opacity 0.25s ease, transform 0.25s ease;
   pointer-events: none;
-  line-height: 1; /* evita empujar nada */
-  min-height: 1em; /* mantiene altura estable incluso oculta */
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
+/* Muestra el mensaje cuando se agrega */
 .added-msg.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ===================================
+   RESPONSIVIDAD
+   =================================== */
+@media (max-width: 768px) {
+  #product-list .card {
+    height: 400px;
+    max-width: 300px;
+  }
+
+  .card-title {
+    font-size: 1.3rem;
+  }
+
+  .text-success {
+    font-size: 1.1rem;
+  }
+
+  .card-actions button {
+    padding: 0.7rem 1.5rem;
+    font-size: 0.9rem;
+  }
+
+  #product-list {
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 576px) {
+  #product-list .card {
+    height: 380px;
+  }
+
+  #product-list .card-body {
+    padding: 1.5rem;
+  }
+}
+  cursor: url("/images/Cursor/Mandala1.cur"), auto;
+}
+
+button, a, .card {
+  cursor: url("/images/Cursor/Mandala1.cur"), pointer;
+}
+
+/* ===================================
+   CARDS - ESTILO CODEPEN CON SCROLL
+   =================================== */
+
+/* Contenedor principal */
+#product-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  padding: 2rem 0;
+}
+
+#product-list .col-md-4 {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+}
+
+/* Card principal */
+#product-list .card {
+  position: relative;
+  width: 100%;
+  max-width: 350px;
+  height: 450px;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(110, 191, 195, 0.2);
+  cursor: pointer;
+  transition: transform 0.4s ease, box-shadow 0.4s ease, opacity 0.8s ease;
+  background: #fff;
+  
+  /* Estado inicial para animación de scroll */
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+/* Animación de aparición al hacer scroll */
+#product-list .card.visible {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* === Texto del stock === */
-#product-list .card-body .text-muted {
-  margin-top: 0.5rem;
+/* Hover de la card */
+#product-list .card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(110, 191, 195, 0.35);
+}
+
+/* ===================================
+   IMAGEN DE LA CARD
+   =================================== */
+#product-list .card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: transform 0.4s ease, filter 0.4s ease;
+  filter: brightness(1);
+}
+
+/* Oscurecer imagen en hover */
+#product-list .card:hover img {
+  transform: scale(1.08);
+  filter: brightness(50%);
+}
+
+/* ===================================
+   INFORMACIÓN DE LA CARD (HOVER)
+   =================================== */
+#product-list .card-body {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, rgba(110, 191, 195, 0.85) 0%, rgba(90, 173, 178, 0.85) 100%);
+  color: white;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  text-align: center;
+  padding: 2rem;
+  z-index: 10;
+}
+
+/* Muestra la información al hacer hover */
+#product-list .card:hover .card-body {
+  opacity: 1;
+}
+
+/* ===================================
+   TEXTOS DE LA CARD
+   =================================== */
+.card-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.card-text {
+  font-size: 0.95rem;
+  margin-bottom: 0.8rem;
+  line-height: 1.5;
+  max-height: 100px;
+  overflow-y: auto;
+}
+
+.text-success {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: white !important;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.text-muted {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.9) !important;
+  margin-bottom: 1rem;
+}
+
+/* ===================================
+   BOTÓN "AGREGAR AL CARRITO"
+   =================================== */
+.card-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  position: relative;
+}
+
+.card-actions button {
+  background: #6EBFC3;
+  color: white;
+  border: none;
+  padding: 0.8rem 2rem;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.card-actions button:hover {
+  background: #EBD2EC;
+  color: #4A4A4A;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(235, 210, 236, 0.4);
+}
+
+.card-actions button:active {
+  transform: translateY(0);
+}
+
+/* ===================================
+   MENSAJE "AGREGADO AL CARRITO"
+   =================================== */
+.added-msg {
+  position: absolute;
+  bottom: -35px;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  color: #fff;
+  background: rgba(25, 135, 84, 0.95);
+  padding: 0.5rem 1.2rem;
+  border-radius: 8px;
   font-size: 0.9rem;
-  color: #666;
+  font-weight: 600;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
-/* === Espaciado entre las cards (horizontal y vertical) === */
-#product-list > .col-md-4 {
-  padding: 1.2rem; /* Aumenta el espacio general entre cards */
+/* Muestra el mensaje cuando se agrega */
+.added-msg.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
 }
 
-/* Margen inferior extra entre filas */
-#product-list .card {
-  margin-bottom: 2rem; /* Aumenta el espacio entre las filas */
-}
-
-
-/* === Responsividad === */
+/* ===================================
+   RESPONSIVIDAD
+   =================================== */
 @media (max-width: 768px) {
-  #product-list .card img {
-    height: 160px;
+  #product-list .card {
+    height: 400px;
+    max-width: 300px;
+  }
+
+  .card-title {
+    font-size: 1.3rem;
+  }
+
+  .text-success {
+    font-size: 1.1rem;
+  }
+
+  .card-actions button {
+    padding: 0.7rem 1.5rem;
+    font-size: 0.9rem;
+  }
+
+  #product-list {
+    gap: 1.5rem;
   }
 }
 
- /* 🔹 En móvil, reduce ligeramente el espaciado */
-  #product-list > .col-md-4 {
-    padding: 0.8rem;
-  }
-  
+@media (max-width: 576px) {
   #product-list .card {
-    margin-bottom: 1.5rem;
+    height: 380px;
   }
+
+  #product-list .card-body {
+    padding: 1.5rem;
+  }
+}
