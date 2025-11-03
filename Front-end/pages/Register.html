@@ -63,7 +63,7 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-lg-11">
-        <div class="d-lg-flex shadow rounded overflow-hidden" style="height: 600px;">
+        <div class="d-lg-flex shadow rounded overflow-hidden flex-wrap">
 
           <!-- 🧊 Formulario -->
           <div class="col-lg-5 p-4 d-flex flex-column justify-content-center glass-card animate-login">
@@ -77,9 +77,16 @@
               </div>
 
               <div class="mb-3">
-                <label for="telefono" class="form-label">Número de teléfono</label>
-                <input type="tel" class="form-control" id="telefono" pattern="\\d{10}" inputmode="numeric" placeholder="10 dígitos" required>
-                <div class="invalid-feedback">Ingrese un teléfono válido (10 dígitos).</div>
+                    <label for="telefono" class="form-label">Número de teléfono</label>
+                    <input 
+                      type="tel" 
+                      class="form-control" 
+                      id="telefono" 
+                      pattern="[0-9]{10}" 
+                      inputmode="numeric" 
+                      placeholder="10 dígitos" 
+                      required>
+                    <div class="invalid-feedback">Ingrese un teléfono válido (10 dígitos).</div>
               </div>
 
               <div class="mb-3">
@@ -160,7 +167,38 @@
 <!-- FOOTER (igual que lo tenías) -->
 <footer class="pt-5 pb-3" id="contacto" style="margin-top: 0;">
   <div class="container">
-    <!-- ...contenido del footer idéntico... -->
+    <div class="d-flex justify-content-evenly flex-wrap text-center text-md-start">
+      <div class="mb-4">
+        <h5 class="fw-bold mb-3">H&B SPA Jardín Balbuena</h5>
+        <p class="text-muted">Tu refugio de belleza y bienestar desde 2015.</p>
+        <p class="text-muted mb-1"><i class="bi bi-geo-alt-fill me-2"></i>Jardín Balbuena, CDMX</p>
+        <p class="text-muted mb-1"><i class="bi bi-telephone-fill me-2"></i>(55) 1234-5678</p>
+        <p class="text-muted"><i class="bi bi-envelope-fill me-2"></i>contacto@hbspa.com</p>
+      </div>
+
+      <div class="mb-4">
+        <h5 class="fw-bold mb-3">Enlaces Rápidos</h5>
+        <ul class="list-unstyled">
+          <li class="mb-2"><a href="../index.html" class="text-muted text-decoration-none">Inicio</a></li>
+          <li class="mb-2"><a href="./Products.html" class="text-muted text-decoration-none">Productos</a></li>
+          <li class="mb-2"><a href="./Reserve.html" class="text-muted text-decoration-none">Reserva</a></li>
+          <li class="mb-2"><a href="./About.html" class="text-muted text-decoration-none">Acerca de Nosotros</a></li>
+          <li class="mb-2"><a href="./Contact.html" class="text-muted text-decoration-none">Contacto</a></li>
+        </ul>
+      </div>
+
+      <div class="mb-4">
+        <h5 class="fw-bold mb-3">Síguenos</h5>
+        <div class="d-flex justify-content-center justify-content-md-start gap-3 mb-3">
+          <a href="https://wa.me/5562316302" target="_blank" rel="noopener" class="social-link" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+          <a href="https://www.facebook.com/share/1AezGeWWhd/" target="_blank" rel="noopener" class="social-link" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+          <a href="https://www.instagram.com/spahyb?igsh=c2ttcnhuY2k1N2F3" target="_blank" rel="noopener" class="social-link" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <hr class="my-4"/>
+
     <div class="text-center">
       <p class="text-muted mb-0">&copy; 2025 H&B SPA Jardín Balbuena. Todos los derechos reservados.</p>
       <p class="text-muted small mb-0 mt-2">
