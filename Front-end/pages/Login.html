@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Iniciar Sesión - H&B SPA</title>
+
   <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
-  <!-- Estilos globales PRIMERO -->
-  <link rel="stylesheet" href="../styles/common.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet"/>
+
+  <!-- Estilos globales -->
+  <link rel="stylesheet" href="../styles/common.css"/>
   <!-- Estilos específicos -->
-  <link rel="stylesheet" href="../styles/register.css">
+  <link rel="stylesheet" href="../styles/register.css"/>
 </head>
 <body>
 
+<!-- NAVBAR -->
 <nav class="navbar navbar-expand-lg fixed-top navbar-dark navbar-overlay py-3">
   <div class="container">
     <a class="navbar-brand fw-bold" href="../index.html">H&B SPA</a>
@@ -38,12 +41,14 @@
   </div>
 </nav>
 
+<!-- HERO + FORM -->
 <section class="py-5" style="background: linear-gradient(to bottom, var(--sal-marina) 0%, var(--lila-rosa) 100%); margin-top: 60px;">
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-lg-11">
-        <div class="d-lg-flex shadow rounded overflow-hidden" style="height: 600px;">
+        <div class="d-lg-flex shadow rounded overflow-hidden" style="min-height: 560px;">
 
+          <!-- Carrusel -->
           <div class="col-lg-7 p-0">
             <div id="loginCarousel" class="carousel slide h-100" data-bs-ride="carousel">
               <div class="carousel-inner h-100">
@@ -78,28 +83,34 @@
             </div>
           </div>
 
-          <!-- 🔐 Formulario -->
+          <!-- Formulario -->
           <div class="col-lg-5 p-4 d-flex flex-column justify-content-center animate-login glass-card">
             <h2 class="text-center mb-4" style="color: var(--gris-humo); font-weight: 700;">Iniciar Sesión</h2>
+
             <form id="loginForm" class="needs-validation" novalidate>
               <div class="mb-3">
-                <label for="email" class="form-label">Usuario o correo:</label>
-                <input type="text" class="form-control" id="email" required>
+                <label for="email" class="form-label">Usuario o correo</label>
+                <input type="text" class="form-control" id="email" required />
                 <div class="invalid-feedback">Ingresa tu usuario o correo.</div>
               </div>
+
               <div class="mb-3">
-                <label for="password" class="form-label">Contraseña:</label>
-                <input type="password" class="form-control" id="password" required minlength="6">
+                <label for="password" class="form-label">Contraseña</label>
+                <input type="password" class="form-control" id="password" required minlength="6" />
                 <div class="invalid-feedback">La contraseña debe tener al menos 6 caracteres.</div>
               </div>
+
               <div class="text-center mb-3">
                 <p class="mb-2">¿Aún no tienes una cuenta? <a href="./Register.html" class="text-decoration-none fw-bold" style="color: var(--turquesa-pastel);">Regístrate</a></p>
+                <p class="mb-0">¿Olvidaste tu contraseña? <a href="./recuperarContraseña.html" class="text-decoration-none fw-bold" style="color: var(--turquesa-pastel);">Recupérala aquí</a></p>
               </div>
+
               <div class="text-center">
                 <button type="submit" class="btn btn-turquesa w-100">
                   <i class="bi bi-box-arrow-in-right me-2"></i>Ingresar
                 </button>
               </div>
+
               <div id="successMsg" class="alert alert-success mt-3 d-none">Inicio de sesión exitoso.</div>
               <div id="errorMsg" class="alert alert-danger mt-3 d-none">Usuario o contraseña incorrectos.</div>
             </form>
@@ -111,11 +122,54 @@
   </div>
 </section>
 
+<!-- FOOTER -->
 <footer class="pt-5 pb-3" id="contacto" style="margin-top: 0;">
-  <!-- ... (tu mismo footer) ... -->
+  <div class="container">
+    <div class="d-flex justify-content-evenly flex-wrap text-center text-md-start">
+      <div class="mb-4">
+        <h5 class="fw-bold mb-3">H&B SPA Jardín Balbuena</h5>
+        <p class="text-muted">Tu refugio de belleza y bienestar desde 2015.</p>
+        <p class="text-muted mb-1"><i class="bi bi-geo-alt-fill me-2"></i>Jardín Balbuena, CDMX</p>
+        <p class="text-muted mb-1"><i class="bi bi-telephone-fill me-2"></i>(55) 1234-5678</p>
+        <p class="text-muted"><i class="bi bi-envelope-fill me-2"></i>contacto@hbspa.com</p>
+      </div>
+
+      <div class="mb-4">
+        <h5 class="fw-bold mb-3">Enlaces Rápidos</h5>
+        <ul class="list-unstyled">
+          <li class="mb-2"><a href="../index.html" class="text-muted text-decoration-none">Inicio</a></li>
+          <li class="mb-2"><a href="./Products.html" class="text-muted text-decoration-none">Productos</a></li>
+          <li class="mb-2"><a href="./Reserve.html" class="text-muted text-decoration-none">Reserva</a></li>
+          <li class="mb-2"><a href="./About.html" class="text-muted text-decoration-none">Acerca de Nosotros</a></li>
+          <li class="mb-2"><a href="./Contact.html" class="text-muted text-decoration-none">Contacto</a></li>
+        </ul>
+      </div>
+
+      <div class="mb-4">
+        <h5 class="fw-bold mb-3">Síguenos</h5>
+        <div class="d-flex justify-content-center justify-content-md-start gap-3 mb-3">
+          <a href="https://wa.me/5562316302" target="_blank" rel="noopener" class="social-link" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+          <a href="https://www.facebook.com/share/1AezGeWWhd/" target="_blank" rel="noopener" class="social-link" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+          <a href="https://www.instagram.com/spahyb?igsh=c2ttcnhuY2k1N2F3" target="_blank" rel="noopener" class="social-link" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <hr class="my-4"/>
+
+    <div class="text-center">
+      <p class="text-muted mb-0">&copy; 2025 H&B SPA Jardín Balbuena. Todos los derechos reservados.</p>
+      <p class="text-muted small mb-0 mt-2">
+        <a href="#" class="text-muted text-decoration-none">Política de Privacidad</a> |
+        <a href="#" class="text-muted text-decoration-none">Términos y Condiciones</a>
+      </p>
+    </div>
+  </div>
 </footer>
 
+<!-- Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Tu lógica de login (llama /api/auth/login y redirige a profile.html) -->
 <script defer src="../scripts/login.js"></script>
 </body>
 </html>

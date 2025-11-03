@@ -28,31 +28,40 @@ public class SecurityConfig {
     }
 
     @Bean
-    public SecurityFilterChain securityFilterChain(org.springframework.security.config.annotation.web.builders.HttpSecurity http) throws Exception {
+    public SecurityFilterChain securityFilterChain(
+            org.springframework.security.config.annotation.web.builders.HttpSecurity http) throws Exception {
+
         http
                 .csrf(AbstractHttpConfigurer::disable)
-                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        // 🔓 Públicos
+                        // CORS preflight
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+
+                        // 🔓 HAZ PÚBLICO TODO auth (login/register/forgot/reset y variantes)
                         .requestMatchers("/api/auth/**").permitAll()
+
+                        // Catálogo público (GET)
                         .requestMatchers(HttpMethod.GET,
                                 "/api/products", "/api/products/**",
                                 "/api/categories", "/api/categories/**",
                                 "/api/spa-services", "/api/spa-services/**",
                                 "/api/service-categories", "/api/service-categories/**"
                         ).permitAll()
+
+                        // Envío de contacto/email
                         .requestMatchers(HttpMethod.POST, "/api/email/enviar").permitAll()
 
-                        // ✅ Reservas
+                        // ✅ Reservas (crear/consultar → autenticado)
                         .requestMatchers(HttpMethod.POST, "/api/reservas/**").hasAnyAuthority("ROLE_USER","ROLE_ADMIN")
                         .requestMatchers(HttpMethod.GET,  "/api/reservas/**").hasAnyAuthority("ROLE_USER","ROLE_ADMIN")
 
                         // ✅ Órdenes
                         .requestMatchers("/api/orders/**").hasAnyAuthority("ROLE_USER","ROLE_ADMIN")
 
-                        // ✅ Usuarios (perfil/historial)
+                        // ✅ Usuarios (perfil/historial y cambio de contraseña propio)
                         .requestMatchers(HttpMethod.GET, "/api/usuarios/**").hasAnyAuthority("ROLE_USER","ROLE_ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/api/usuarios/me/password").hasAnyAuthority("ROLE_USER","ROLE_ADMIN")
 
                         // 🧠 Admin
                         .requestMatchers(HttpMethod.POST, "/api/images/upload").hasAuthority("ROLE_ADMIN")
@@ -69,7 +78,7 @@ public class SecurityConfig {
                                 "/api/services/**","/api/service-categories/**"
                         ).hasAuthority("ROLE_ADMIN")
 
-                        // ⚠️ Resto autenticado
+                        // Resto autenticado
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
