@@ -322,9 +322,3 @@ Este proyecto es de uso académico, desarrollado con fines educativos y demostra
 Cualquier uso comercial debe contar con autorización expresa del equipo desarrollador.
 
 ---
-
-## 💬 Contacto  
-
-📧 **arturoramztejeda1@gmail.com**  
-💼 [LinkedIn - Arturo Ramírez Tejeda](https://www.linkedin.com/in/arturoramztejeda)  
-🚀 Proyecto desarrollado con dedicación por el equipo de **Generation México**.
