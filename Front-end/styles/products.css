@@ -1,9 +1,6 @@
 /* ===================================
    CURSOR PERSONALIZADO (MANDALA)
    =================================== */
-body {/* ===================================
-   CURSOR PERSONALIZADO (MANDALA)
-   =================================== */
 body {
   cursor: url("/images/Cursor/Mandala1.cur"), auto;
 }
@@ -18,17 +15,20 @@ button, a, .card {
 
 /* Contenedor principal */
 #product-list {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 350px));
   gap: 2rem;
   justify-content: center;
   padding: 2rem 0;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 #product-list .col-md-4 {
   display: flex;
   justify-content: center;
-  padding: 1rem;
+  padding: 0;
+  width: 100%;
 }
 
 /* Card principal */
@@ -223,234 +223,124 @@ button, a, .card {
 }
 
 /* ===================================
-   RESPONSIVIDAD
-   =================================== */
-@media (max-width: 768px) {
-  #product-list .card {
-    height: 400px;
-    max-width: 300px;
-  }
-
-  .card-title {
-    font-size: 1.3rem;
-  }
-
-  .text-success {
-    font-size: 1.1rem;
-  }
-
-  .card-actions button {
-    padding: 0.7rem 1.5rem;
-    font-size: 0.9rem;
-  }
-
-  #product-list {
-    gap: 1.5rem;
-  }
-}
-
-@media (max-width: 576px) {
-  #product-list .card {
-    height: 380px;
-  }
-
-  #product-list .card-body {
-    padding: 1.5rem;
-  }
-}
-  cursor: url("/images/Cursor/Mandala1.cur"), auto;
-}
-
-button, a, .card {
-  cursor: url("/images/Cursor/Mandala1.cur"), pointer;
-}
-
-/* ===================================
-   CARDS - ESTILO CODEPEN CON SCROLL
+   LOADING SPINNER
    =================================== */
 
-/* Contenedor principal */
-#product-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-  justify-content: center;
-  padding: 2rem 0;
-}
-
-#product-list .col-md-4 {
-  display: flex;
-  justify-content: center;
-  padding: 1rem;
-}
-
-/* Card principal */
-#product-list .card {
-  position: relative;
+.loading-container {
   width: 100%;
-  max-width: 350px;
-  height: 450px;
-  border-radius: 15px;
-  overflow: hidden;
-  box-shadow: 0 8px 20px rgba(110, 191, 195, 0.2);
-  cursor: pointer;
-  transition: transform 0.4s ease, box-shadow 0.4s ease, opacity 0.8s ease;
-  background: #fff;
-  
-  /* Estado inicial para animación de scroll */
-  opacity: 0;
-  transform: translateY(40px);
-}
-
-/* Animación de aparición al hacer scroll */
-#product-list .card.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Hover de la card */
-#product-list .card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 12px 30px rgba(110, 191, 195, 0.35);
-}
-
-/* ===================================
-   IMAGEN DE LA CARD
-   =================================== */
-#product-list .card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  position: absolute;
-  top: 0;
-  left: 0;
-  transition: transform 0.4s ease, filter 0.4s ease;
-  filter: brightness(1);
-}
-
-/* Oscurecer imagen en hover */
-#product-list .card:hover img {
-  transform: scale(1.08);
-  filter: brightness(50%);
-}
-
-/* ===================================
-   INFORMACIÓN DE LA CARD (HOVER)
-   =================================== */
-#product-list .card-body {
-  position: absolute;
-  inset: 0;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(135deg, rgba(110, 191, 195, 0.85) 0%, rgba(90, 173, 178, 0.85) 100%);
-  color: white;
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  text-align: center;
-  padding: 2rem;
-  z-index: 10;
+  min-height: 400px;
+  padding: 3rem 0;
 }
 
-/* Muestra la información al hacer hover */
-#product-list .card:hover .card-body {
-  opacity: 1;
-}
-
-/* ===================================
-   TEXTOS DE LA CARD
-   =================================== */
-.card-title {
-  font-size: 1.5rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-  color: white;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.2);
-}
-
-.card-text {
-  font-size: 0.95rem;
-  margin-bottom: 0.8rem;
-  line-height: 1.5;
-  max-height: 100px;
-  overflow-y: auto;
-}
-
-.text-success {
-  font-size: 1.3rem;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
-  color: white !important;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.2);
-}
-
-.text-muted {
-  font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.9) !important;
-  margin-bottom: 1rem;
-}
-
-/* ===================================
-   BOTÓN "AGREGAR AL CARRITO"
-   =================================== */
-.card-actions {
+.loading-spinner {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+/* Spinner animado */
+.spinner {
+  width: 60px;
+  height: 60px;
+  border: 5px solid #D7ECEB; /* Sal Marina */
+  border-top: 5px solid #6EBFC3; /* Turquesa Pastel */
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-text {
+  font-size: 1.1rem;
+  color: #4A4A4A; /* Gris Humo */
+  font-weight: 600;
+  margin: 0;
+  display: flex;
   align-items: center;
   gap: 0.5rem;
-  margin-top: 1rem;
-  position: relative;
 }
 
-.card-actions button {
-  background: #6EBFC3;
-  color: white;
-  border: none;
-  padding: 0.8rem 2rem;
-  border-radius: 10px;
+.loading-text i {
+  color: #6EBFC3; /* Turquesa Pastel */
+  font-size: 1.3rem;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* ===================================
+   ERROR MESSAGE
+   =================================== */
+
+.error-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  padding: 3rem 2rem;
+  text-align: center;
+}
+
+.error-icon {
+  font-size: 5rem;
+  color: #EBD2EC; /* Lila Pastel */
+  margin-bottom: 1.5rem;
+  animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-10px); }
+  75% { transform: translateX(10px); }
+}
+
+.error-title {
+  font-size: 1.8rem;
+  color: #4A4A4A; /* Gris Humo */
   font-weight: 700;
-  font-size: 1rem;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  margin-bottom: 1rem;
 }
 
-.card-actions button:hover {
-  background: #EBD2EC;
-  color: #4A4A4A;
+.error-text {
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 2rem;
+  max-width: 500px;
+}
+
+.retry-btn {
+  background: #6EBFC3 !important;
+  border: none !important;
+  padding: 0.8rem 2.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(110, 191, 195, 0.3);
+}
+
+.retry-btn:hover {
+  background: #EBD2EC !important;
+  color: #4A4A4A !important;
   transform: translateY(-3px);
   box-shadow: 0 6px 15px rgba(235, 210, 236, 0.4);
 }
 
-.card-actions button:active {
+.retry-btn:active {
   transform: translateY(0);
-}
-
-/* ===================================
-   MENSAJE "AGREGADO AL CARRITO"
-   =================================== */
-.added-msg {
-  position: absolute;
-  bottom: -35px;
-  left: 50%;
-  transform: translateX(-50%) translateY(10px);
-  color: #fff;
-  background: rgba(25, 135, 84, 0.95);
-  padding: 0.5rem 1.2rem;
-  border-radius: 8px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  opacity: 0;
-  pointer-events: none;
-  transition: all 0.3s ease;
-  white-space: nowrap;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-}
-
-/* Muestra el mensaje cuando se agrega */
-.added-msg.show {
-  opacity: 1;
-  transform: translateX(-50%) translateY(0);
 }
 
 /* ===================================
@@ -477,6 +367,40 @@ button, a, .card {
 
   #product-list {
     gap: 1.5rem;
+  }
+
+  /* Loading responsive */
+  .loading-container,
+  .error-container {
+    min-height: 300px;
+    padding: 2rem 1rem;
+  }
+
+  .spinner {
+    width: 50px;
+    height: 50px;
+    border-width: 4px;
+  }
+
+  .loading-text {
+    font-size: 1rem;
+  }
+
+  .error-icon {
+    font-size: 4rem;
+  }
+
+  .error-title {
+    font-size: 1.5rem;
+  }
+
+  .error-text {
+    font-size: 1rem;
+  }
+
+  .retry-btn {
+    padding: 0.7rem 2rem;
+    font-size: 0.95rem;
   }
 }
 

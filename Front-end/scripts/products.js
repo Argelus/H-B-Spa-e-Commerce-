@@ -2,6 +2,11 @@ const API_URL = "http://localhost:8080/api";
 
 // 🔹 Cargar categorías y productos
 async function loadProducts() {
+  const container = document.getElementById("product-list");
+  
+  // 🔹 Mostrar loading spinner
+  showLoadingSpinner(container);
+  
   try {
     // --- 1️⃣ Obtener categorías ---
     const catResponse = await fetch(`${API_URL}/categories`);
@@ -25,6 +30,8 @@ async function loadProducts() {
     });
     localStorage.setItem("hbspa_products", JSON.stringify(map));
 
+    // 🔹 Ocultar loading y renderizar productos
+    hideLoadingSpinner(container);
     renderProducts(products);
     
     // 🔹 Inicializar efectos después de renderizar productos
@@ -35,7 +42,51 @@ async function loadProducts() {
     
   } catch (error) {
     console.error("Error cargando productos:", error);
+    // 🔹 Mostrar mensaje de error
+    showErrorMessage(container);
   }
+}
+
+// 🔹 Mostrar spinner de carga
+function showLoadingSpinner(container) {
+  if (!container) return;
+  
+  container.innerHTML = `
+    <div class="loading-container">
+      <div class="loading-spinner">
+        <div class="spinner"></div>
+        <p class="loading-text">
+          <i class="bi bi-hourglass-split me-2"></i>
+          Cargando productos...
+        </p>
+      </div>
+    </div>
+  `;
+}
+
+// 🔹 Ocultar spinner de carga
+function hideLoadingSpinner(container) {
+  if (!container) return;
+  const loadingEl = container.querySelector('.loading-container');
+  if (loadingEl) {
+    loadingEl.remove();
+  }
+}
+
+// 🔹 Mostrar mensaje de error
+function showErrorMessage(container) {
+  if (!container) return;
+  
+  container.innerHTML = `
+    <div class="error-container">
+      <i class="bi bi-exclamation-triangle error-icon"></i>
+      <h3 class="error-title">No pudimos cargar los productos</h3>
+      <p class="error-text">Por favor, verifica tu conexión e inténtalo de nuevo.</p>
+      <button class="btn btn-primary retry-btn" onclick="loadProducts()">
+        <i class="bi bi-arrow-clockwise me-2"></i>Reintentar
+      </button>
+    </div>
+  `;
 }
 
 // 🔹 Renderizar categorías
@@ -61,23 +112,36 @@ function renderCategories(categories) {
 
 // 🔹 Filtrar productos por categoría
 async function filterByCategory(categoryId) {
+  const container = document.getElementById("product-list");
+  
+  // 🔹 Mostrar loading al filtrar
+  showLoadingSpinner(container);
+  
   const allBtns = document.querySelectorAll("#category-list button");
   allBtns.forEach(b => b.classList.remove("active"));
   const activeBtn = document.querySelector(`#category-list button[data-category="${categoryId}"]`);
   if (activeBtn) activeBtn.classList.add("active");
 
-  const response = categoryId === "all"
-    ? await fetch(`${API_URL}/products`)
-    : await fetch(`${API_URL}/products/category/${categoryId}`);
+  try {
+    const response = categoryId === "all"
+      ? await fetch(`${API_URL}/products`)
+      : await fetch(`${API_URL}/products/category/${categoryId}`);
 
-  const products = await response.json();
-  renderProducts(products);
-  
-  // 🔹 Re-inicializar efectos después de filtrar
-  setTimeout(() => {
-    initScrollAnimations();
-    addExtraInfoToCards();
-  }, 100);
+    const products = await response.json();
+    
+    // 🔹 Ocultar loading y renderizar
+    hideLoadingSpinner(container);
+    renderProducts(products);
+    
+    // 🔹 Re-inicializar efectos después de filtrar
+    setTimeout(() => {
+      initScrollAnimations();
+      addExtraInfoToCards();
+    }, 100);
+  } catch (error) {
+    console.error("Error filtrando productos:", error);
+    showErrorMessage(container);
+  }
 }
 
 // 🔹 Renderizar productos
@@ -90,6 +154,11 @@ function renderProducts(products) {
     const card = document.createElement("div");
     card.classList.add("col-md-4", "d-flex");
 
+    // 🔹 Formatear precio con signo de pesos
+    const precioFormateado = product.price.toString().startsWith('$') 
+      ? `${product.price} MXN` 
+      : `$${product.price} MXN`;
+
     card.innerHTML = `
       <div class="card mb-4 shadow-sm flex-fill">
         <img src="${product.imageUrl || 'https://via.placeholder.com/350x150'}"
@@ -98,7 +167,7 @@ function renderProducts(products) {
           <div>
             <h5 class="card-title">${product.name}</h5>
             <p class="card-text">${product.description || 'Sin descripción disponible.'}</p>
-            <p class="fw-bold text-success">${product.price}</p>
+            <p class="fw-bold text-success">${precioFormateado}</p>
           </div>
 
           <!-- 🔹 Contenedor fijo del botón -->
