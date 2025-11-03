@@ -63,7 +63,7 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-lg-11">
-        <div class="d-lg-flex shadow rounded overflow-hidden" style="height: 600px;">
+        <div class="d-lg-flex shadow rounded overflow-hidden flex-wrap">
 
           <!-- 🧊 Formulario -->
           <div class="col-lg-5 p-4 d-flex flex-column justify-content-center glass-card animate-login">
@@ -77,9 +77,16 @@
               </div>
 
               <div class="mb-3">
-                <label for="telefono" class="form-label">Número de teléfono</label>
-                <input type="tel" class="form-control" id="telefono" pattern="\\d{10}" inputmode="numeric" placeholder="10 dígitos" required>
-                <div class="invalid-feedback">Ingrese un teléfono válido (10 dígitos).</div>
+                    <label for="telefono" class="form-label">Número de teléfono</label>
+                    <input 
+                      type="tel" 
+                      class="form-control" 
+                      id="telefono" 
+                      pattern="[0-9]{10}" 
+                      inputmode="numeric" 
+                      placeholder="10 dígitos" 
+                      required>
+                    <div class="invalid-feedback">Ingrese un teléfono válido (10 dígitos).</div>
               </div>
 
               <div class="mb-3">
