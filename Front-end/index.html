@@ -41,13 +41,16 @@
     </div>
 
     <div class="d-none d-lg-flex ms-3 align-items-center gap-2">
-      <a href="#" class="nav-icon-btn" id="openCartBtn" title="Carrito de Compras">
-        <i class="bi bi-cart3"></i>
-        <span class="cart-badge">0</span>
-      </a>
-      <a href="./pages/Register.html" class="btn btn-outline-light rounded-pill me-2">Registro</a>
-      <a href="./pages/Login.html" class="btn btn-light rounded-pill text-turquesa">Acceder</a>
-    </div>
+  <div id="auth-group" class="d-flex gap-2">
+    <a href="./Register.html" class="btn btn-outline-light rounded-pill me-2">Registro</a>
+    <a href="./Login.html" class="btn btn-light rounded-pill text-turquesa">Acceder</a>
+  </div>
+  
+  <div id="logout-group" class="d-flex gap-2 d-none">
+    <a href="./profile.html" class="btn btn-outline-light rounded-pill me-2" id="profile-btn">Mi Cuenta</a>
+    <button id="logout-btn" class="btn btn-danger rounded-pill">Salir</button>
+  </div>
+</div>
   </div>
 </nav>
 
@@ -318,6 +321,8 @@
   <!-- Sistema centralizado de FAQs y Modals -->
   <script src="./scripts/faq-data.js"></script>
   <script src="./scripts/modal-manager-fixed.js"></script>
+  <script defer src="/Front-end/scripts/auth-ui.js"></script>
+
   <script>
   document.addEventListener("DOMContentLoaded", () => {
 
