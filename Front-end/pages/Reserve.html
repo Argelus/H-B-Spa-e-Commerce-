@@ -55,88 +55,32 @@
 
 <main>
   <div class="container">
-    <!-- 📝 Sección del formulario -->
-    <section class="formulario-section mb-5">
-      <div class="form-wrapper full-width-form">
-        <div class="reservas-header">
-          <h1>Reserva tu cita</h1>
-          <p>Agenda tu servicio de spa y bienestar fácilmente.</p>
-        </div>
-
-        <!-- Alertas -->
-        <div id="alertSuccess" class="alert alert-success" role="alert"></div>
-        <div id="alertError" class="alert alert-error" role="alert"></div>
-
-        <!-- Formulario -->
-        <form id="reservaForm" class="fade-in hidden">
-          <!-- Servicio seleccionado -->
-          <section class="form-section">
-            <h2 class="section-title"><span class="icon">✨</span>Selecciona tu Servicio</h2>
-            <select id="selectedServiceId" required>
-              <option value="">-- Cargando servicios... --</option>
-            </select>
-          </section>
-
-          <!-- Datos del usuario -->
-          <section class="form-section">
-            <h2 class="section-title"><span class="icon">👤</span>Tus Datos</h2>
-            <div class="form-row">
-              <div class="form-group">
-                <label for="correo">Correo electrónico <span class="required">*</span></label>
-                <input type="email" id="correo" required placeholder="Ingresa tu correo" />
-                <div class="form-hint">Usaremos este correo para confirmar tu cita</div>
-              </div>
-              <div class="form-group">
-                <label for="telefono">Teléfono (WhatsApp) <span class="required">*</span></label>
-                <input type="tel" id="telefono" required pattern="[0-9]{10}" placeholder="5512345678" />
-                <div class="form-hint">10 dígitos, recibirás confirmación</div>
-              </div>
-            </div>
-          </section>
-
-          <!-- Fecha y hora -->
-          <section class="form-section">
-            <h2 class="section-title"><span class="icon">📅</span>Agenda tu Cita</h2>
-            <div class="form-row">
-              <div class="form-group">
-                <label for="fechaReserva">Fecha <span class="required">*</span></label>
-                <input type="date" id="fechaReserva" required />
-              </div>
-              <div class="form-group">
-                <label for="horaReserva">Hora <span class="required">*</span></label>
-                <input type="time" id="horaReserva" required />
-              </div>
-            </div>
-          </section>
-
-          <!-- Notas -->
-          <section class="form-section">
-            <h2 class="section-title"><span class="icon">📝</span>Información Adicional (Opcional)</h2>
-            <div class="form-group">
-              <label for="nota">Notas o Comentarios</label>
-              <textarea id="nota" placeholder="Preferencias, alergias, indicaciones especiales..."></textarea>
-            </div>
-          </section>
-
-          <!-- Botón de envío -->
-          <button type="submit" class="btn-submit" id="submitBtn">📅 Confirmar mi Reserva</button>
-        </form>
-      </div>
-    </section>
-
-    <!-- 🧊 Sección de servicios (solo para mostrar cards si lo deseas) -->
     <section class="servicios-section">
-      <h2 class="text-center mb-4 fw-bold text-turquesa">Servicios disponibles</h2>
+      <h1 class="text-center mb-4 fw-bold text-turquesa">Servicios</h1>
+
+      <!-- Filtro por categoría -->
+      <div class="filtro-categorias">
+        <label for="categoriaSelect">Filtrar por categoría:</label>
+        <select id="categoriaSelect">
+          <option value="todos">Todos</option>
+          <!-- Las categorías se llenan dinámicamente -->
+        </select>
+      </div>
+
+      <!-- Estado de carga -->
       <div id="loadingServices" class="loading-container">
         <div class="spinner"></div>
         <p class="loading-text">Cargando servicios disponibles...</p>
       </div>
+
+      <!-- Cards de servicios -->
       <div id="servicesGrid" class="services-grid placeholder">
-        <!-- Cards generadas dinámicamente (opcional si usas solo el select) -->
+        <!-- Cards generadas dinámicamente -->
       </div>
     </section>
   </div>
 </main>
+
 
 
 
