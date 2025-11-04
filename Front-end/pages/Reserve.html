@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Reserva - H&B SPA Jardín Balbuena</title>
+    <title>Servicios - H&B SPA Jardín Balbuena</title>
     <!-- Preload critical fonts -->
     <link rel="preload" href="../styles/fonts/Lato/Lato-Regular.ttf" as="font" type="font/ttf" crossorigin>
     <link rel="preload" href="../styles/fonts/Lora/Lora-VariableFont_wght.ttf" as="font" type="font/ttf" crossorigin>
@@ -23,7 +23,7 @@
             <ul class="navbar-nav gap-3">
                 <li class="nav-item"><a class="nav-link" href="../index.html">Inicio</a></li>
                 <li class="nav-item"><a class="nav-link" href="./Products.html">Productos</a></li>
-                <li class="nav-item"><a class="nav-link active" aria-current="page" href="./Reserve.html">Reserva</a></li>
+                <li class="nav-item"><a class="nav-link active" aria-current="page" href="./Reserve.html">Servicios</a></li>
                 <li class="nav-item"><a class="nav-link" href="./About.html">Acerca de Nosotros</a></li>
                 <li class="nav-item"><a class="nav-link" href="./Contact.html">Contacto</a></li>
             </ul>
@@ -52,117 +52,97 @@
     </div>
 </nav>
 
-<div class="py-5">
-    <div class="container">
-        <div class="text-center mb-5">
-            <h1 class="display-4 fw-bold mb-3">Reserva tu cita</h1>
-            <p class="lead text-muted">Agenda tu servicio de spa y bienestar fácilmente.</p>
+
+<main>
+  <div class="container">
+    <!-- 📝 Sección del formulario -->
+    <section class="formulario-section mb-5">
+      <div class="form-wrapper full-width-form">
+        <div class="reservas-header">
+          <h1>Reserva tu cita</h1>
+          <p>Agenda tu servicio de spa y bienestar fácilmente.</p>
         </div>
-        <!-- Aquí iría el formulario de reserva -->
-        <div class="reservas-card fade-in">
-            <div id="alertSuccess" class="alert alert-success"></div>
-            <div id="alertError" class="alert alert-error"></div>
 
-          <div id="loadingServices" class="loading-container">
-            <div class="spinner"></div>
-            <p class="loading-text">Cargando servicios disponibles...</p>
-          </div> 
-          <form id="reservaForm" class="hidden fade-in">
-            <section class="form-section">
-                <h2 class="section-title">
-                  <span class="icon">✨</span>
-                  <span>Selecciona tu Servicio</span>
-                </h2>
-                <div id="servicesGrid" class="services-grid placeholder">
-                  Cargando servicios...
-                </div>
-                <input type="hidden" id="selectedServiceId" required />
-            </section>
+        <!-- Alertas -->
+        <div id="alertSuccess" class="alert alert-success" role="alert"></div>
+        <div id="alertError" class="alert alert-error" role="alert"></div>
 
-            <section class="form-section">
-              <h2 class="section-title">
-                <span class="icon">👤</span>
-                <span>Tus Datos</span>
-              </h2>
+        <!-- Formulario -->
+        <form id="reservaForm" class="fade-in hidden">
+          <!-- Servicio seleccionado -->
+          <section class="form-section">
+            <h2 class="section-title"><span class="icon">✨</span>Selecciona tu Servicio</h2>
+            <select id="selectedServiceId" required>
+              <option value="">-- Cargando servicios... --</option>
+            </select>
+          </section>
 
-              <div class="form-row">
-                <div class="form-group">
-                  <label for="usuarioId">
-                    ID de Usuario <span class="required">*</span>
-                  </label>
-                  <input
-                    type="number"
-                    id="usuarioId"
-                    required
-                    min="1"
-                    placeholder="Ingresa tu ID"
-                  />
-                  <div class="form-hint">Tu número de usuario registrado</div>
-                </div>
-
-                <div class="form-group">
-                  <label for="telefono">
-                    Teléfono (WhatsApp) <span class="required">*</span>
-                  </label>
-                  <input
-                    type="tel"
-                    id="telefono"
-                    required
-                    placeholder="5512345678"
-                    pattern="[0-9]{10}"
-                  />
-                  <div class="form-hint">10 dígitos, recibirás confirmación</div>
-                </div>
+          <!-- Datos del usuario -->
+          <section class="form-section">
+            <h2 class="section-title"><span class="icon">👤</span>Tus Datos</h2>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="correo">Correo electrónico <span class="required">*</span></label>
+                <input type="email" id="correo" required placeholder="Ingresa tu correo" />
+                <div class="form-hint">Usaremos este correo para confirmar tu cita</div>
               </div>
-            </section>
-
-            <section class="form-section">
-              <h2 class="section-title">
-                <span class="icon">📅</span>
-                <span>Agenda tu Cita</span>
-              </h2>
-
-              <div class="form-row">
-                <div class="form-group">
-                  <label for="fechaReserva">
-                    Fecha <span class="required">*</span>
-                  </label>
-                  <input type="date" id="fechaReserva" required />
-                </div>
-
-                <div class="form-group">
-                  <label for="horaReserva">
-                    Hora <span class="required">*</span>
-                  </label>
-                  <input type="time" id="horaReserva" required />
-                </div>
+              <div class="form-group">
+                <label for="telefono">Teléfono (WhatsApp) <span class="required">*</span></label>
+                <input type="tel" id="telefono" required pattern="[0-9]{10}" placeholder="5512345678" />
+                <div class="form-hint">10 dígitos, recibirás confirmación</div>
               </div>
-            </section>
+            </div>
+          </section>
 
-            <section class="form-section">
-                <h2 class="section-title">
-                  <span class="icon">📝</span>
-                  <span>Información Adicional (Opcional)</span>
-                </h2>
+          <!-- Fecha y hora -->
+          <section class="form-section">
+            <h2 class="section-title"><span class="icon">📅</span>Agenda tu Cita</h2>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="fechaReserva">Fecha <span class="required">*</span></label>
+                <input type="date" id="fechaReserva" required />
+              </div>
+              <div class="form-group">
+                <label for="horaReserva">Hora <span class="required">*</span></label>
+                <input type="time" id="horaReserva" required />
+              </div>
+            </div>
+          </section>
 
-                <div class="form-group">
-                  <label for="nota">Notas o Comentarios</label>
-                  <textarea
-                    id="nota"
-                    placeholder="Preferencias, alergias, indicaciones especiales..."
-                  ></textarea>
-                </div>
-            </section>
+          <!-- Notas -->
+          <section class="form-section">
+            <h2 class="section-title"><span class="icon">📝</span>Información Adicional (Opcional)</h2>
+            <div class="form-group">
+              <label for="nota">Notas o Comentarios</label>
+              <textarea id="nota" placeholder="Preferencias, alergias, indicaciones especiales..."></textarea>
+            </div>
+          </section>
 
-            <button type="submit" class="btn-submit" id="submitBtn">
-                📅 Confirmar mi Reserva
-            </button>
-          </form>
-        </div>
-    </div>
-</div>
+          <!-- Botón de envío -->
+          <button type="submit" class="btn-submit" id="submitBtn">📅 Confirmar mi Reserva</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- 🧊 Sección de servicios (solo para mostrar cards si lo deseas) -->
+    <section class="servicios-section">
+      <h2 class="text-center mb-4 fw-bold text-turquesa">Servicios disponibles</h2>
+      <div id="loadingServices" class="loading-container">
+        <div class="spinner"></div>
+        <p class="loading-text">Cargando servicios disponibles...</p>
+      </div>
+      <div id="servicesGrid" class="services-grid placeholder">
+        <!-- Cards generadas dinámicamente (opcional si usas solo el select) -->
+      </div>
+    </section>
+  </div>
+</main>
+
+
+
+
 <!-- FOOTER -->
-<footer class="bg-light pt-5 pb-3 mt-5">
+<footer class="pt-5 pb-3" id="contacto" style="margin-top: 0;">
   <div class="container">
     <div class="d-flex justify-content-evenly flex-wrap text-center text-md-start">
       <!-- Columna 1 -->
@@ -265,164 +245,15 @@
   </div>
 </div>
 
-<script>
-  fetch('/pages/faq.html')
-    .then(response => response.text())
-    .then(data => {
-      document.getElementById('faq-container').innerHTML = data;
-      const collapses = document.querySelectorAll('#faq-container .accordion-collapse');
-      collapses.forEach(collapse => {
-        new bootstrap.Collapse(collapse, { toggle: false });
-      });
-    })
-    .catch(error => console.error('Error al cargar FAQ:', error));
-    const API_URL = "http://localhost:8080/api"; // <-- **Asegúrate que tu Backend usa el puerto 8081**
-    let servicios = [];
-    let servicioSeleccionado = null;
-    function mostrarAlerta(tipo, mensaje) {
-      const alertas = document.querySelectorAll(".alert");
-      alertas.forEach((a) => a.classList.remove("show"));
 
-      const alerta = document.getElementById(
-        tipo === "success" ? "alertSuccess" : "alertError"
-      );
-      alerta.textContent = mensaje;
-      alerta.classList.add("show");
 
-      window.scrollTo({ top: 0, behavior: "smooth" });
-      setTimeout(() => alerta.classList.remove("show"), 6000);
-    }
-
-    async function cargarServicios() {
-      try {
-        const response = await fetch(`${API_URL}/spa-services`);
-        if (!response.ok)
-          throw new Error(`Error ${response.status}: No se pueden obtener los servicios`);
-
-        servicios = await response.json();
-        mostrarServicios();
-
-        document.getElementById("loadingServices").classList.add("hidden");
-        document.getElementById("reservaForm").classList.remove("hidden");
-      } catch (error) {
-        console.error("Error:", error);
-        document.getElementById("loadingServices").innerHTML = `
-          <p class="server-error">
-            ⚠️ No se pudo conectar con el servidor<br>
-          </p>`;
-      }
-    }
-
-    function mostrarServicios() {
-      const grid = document.getElementById("servicesGrid");
-
-      if (servicios.length === 0) {
-        grid.innerHTML = `<p class="placeholder">No hay servicios disponibles</p>`;
-        return;
-      }
-
-      grid.classList.remove("placeholder");
-      grid.innerHTML = servicios
-        .map(
-          (servicio) => `
-        <div class="service-card" onclick="seleccionarServicio(${servicio.id}, event)">
-          <h3>${servicio.name}</h3>
-          <p>${servicio.description || "Servicio profesional de spa"}</p>
-          <div class="service-info">
-            <span class="service-price">$${servicio.price.toFixed(2)}</span>
-            <span class="service-duration">⏱️ ${
-              servicio.duration || "60 min"
-            }</span>
-          </div>
-        </div>`
-        )
-        .join("");
-    }
-
-    function seleccionarServicio(serviceId, event) {
-      document.querySelectorAll(".service-card").forEach((card) => {
-        card.classList.remove("selected");
-      });
-
-      event.currentTarget.classList.add("selected");
-      servicioSeleccionado = servicios.find((s) => s.id === serviceId);
-      document.getElementById("selectedServiceId").value = serviceId;
-      document.getElementById("usuarioId").focus();
-    }
-
-    async function enviarReserva(event) {
-      event.preventDefault();
-
-      if (!servicioSeleccionado) {
-        mostrarAlerta("error", "❌ Por favor selecciona un servicio");
-        return;
-      }
-
-      const datos = {
-        usuario: { id: parseInt(document.getElementById("usuarioId").value) },
-        spaService: { id: servicioSeleccionado.id },
-        fechaReserva: document.getElementById("fechaReserva").value,
-        horaReserva: document.getElementById("horaReserva").value,
-        telefono: document.getElementById("telefono").value,
-        nota: document.getElementById("nota").value || null,
-        estado: "PENDIENTE",
-      };
-
-      const btnSubmit = document.getElementById("submitBtn");
-      btnSubmit.disabled = true;
-      btnSubmit.textContent = "⏳ Procesando reserva...";
-
-      try {
-        const response = await fetch(`${API_URL}/reservas`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(datos),
-        });
-
-        if (!response.ok) {
-          const errorText = await response.text();
-          throw new Error(errorText || "Error al crear la reserva");
-        }
-
-        const reserva = await response.json();
-        mostrarAlerta(
-          "success",
-          `✅ ¡Reserva confirmada!
-           Tu cita para ${servicioSeleccionado.name}
-           el ${datos.fechaReserva} a las ${datos.horaReserva}
-           ha sido registrada.`
-        );
-
-        document.getElementById("reservaForm").reset();
-        document
-          .querySelectorAll(".service-card")
-          .forEach((c) => c.classList.remove("selected"));
-        servicioSeleccionado = null;
-      } catch (error) {
-        console.error("Error:", error);
-        mostrarAlerta("error", "❌ Error al crear la reserva: " + error.message);
-      } finally {
-        btnSubmit.disabled = false;
-        btnSubmit.textContent = "📅 Confirmar mi Reserva";
-      }
-    }
-
-    document.addEventListener("DOMContentLoaded", () => {
-      const hoy = new Date().toISOString().split("T")[0];
-      document.getElementById("fechaReserva").min = hoy;
-
-      cargarServicios();
-      document
-        .getElementById("reservaForm")
-        .addEventListener("submit", enviarReserva);
-    });
-</script>
 <!-- BOTÓN FLOTANTE FAQ -->
 <button id="floatingFaqBtn" class="floating-faq-btn" title="Preguntas Frecuentes">
   <i class="bi bi-question-circle-fill"></i>
 </button>
 
 <!-- Scripts -->
+ <script src="../scripts/servicios.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="../scripts/faq-data.js"></script>
 <script src="../scripts/modal-manager-fixed.js"></script>
