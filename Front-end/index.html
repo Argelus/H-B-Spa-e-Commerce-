@@ -11,7 +11,7 @@
 </head>
 <body>
 
-<!-- 🟢 NAVBAR -->
+<!--  NAVBAR -->
 <nav class="navbar navbar-expand-lg fixed-top navbar-dark navbar-overlay py-3">
   <div class="container">
     <a class="navbar-brand fw-bold" href="#">H&B SPA</a>
@@ -41,22 +41,25 @@
     </div>
 
     <div class="d-none d-lg-flex ms-3 align-items-center gap-2">
-      <a href="#" class="nav-icon-btn" id="openCartBtn" title="Carrito de Compras">
-        <i class="bi bi-cart3"></i>
-        <span class="cart-badge">0</span>
-      </a>
-      <a href="./pages/Register.html" class="btn btn-outline-light rounded-pill me-2">Registro</a>
-      <a href="./pages/Login.html" class="btn btn-light rounded-pill text-turquesa">Acceder</a>
-    </div>
+  <div id="auth-group" class="d-flex gap-2">
+    <a href="./Register.html" class="btn btn-outline-light rounded-pill me-2">Registro</a>
+    <a href="./Login.html" class="btn btn-light rounded-pill text-turquesa">Acceder</a>
+  </div>
+  
+  <div id="logout-group" class="d-flex gap-2 d-none">
+    <a href="./profile.html" class="btn btn-outline-light rounded-pill me-2" id="profile-btn">Mi Cuenta</a>
+    <button id="logout-btn" class="btn btn-danger rounded-pill">Salir</button>
+  </div>
+</div>
   </div>
 </nav>
 
 
-<!-- 🟣 HERO / CARRUSEL -->
+<!--  HERO / CARRUSEL -->
 <header id="hero" class="animate-on-scroll" >
   <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
     <div class="carousel-inner">
-      <div class="carousel-item active" style="background-image:url('/images/seleccionadas/1000484060.jpg')">
+      <div class="carousel-item active" style="background-image:url('/Front-end/images/Nuevas/1000484060.jpg')">
         <div class="hero-overlay"></div>
         <div class="carousel-caption d-flex flex-column justify-content-center align-items-center text-center">
           <h1 class="display-3 fw-bold mb-3">Bienestar & Belleza</h1>
@@ -64,14 +67,14 @@
           <a href="#servicios" class="btn btn-light rounded-pill px-5 py-3 text-turquesa fw-bold">Explorar Servicios</a>
         </div>
       </div>
-      <div class="carousel-item" style="background-image:url('/images/seleccionadas/1000484075.jpg')">
+      <div class="carousel-item" style="background-image:url('/Front-end/images/Nuevas/1000484075.jpg ')">
         <div class="hero-overlay"></div>
         <div class="carousel-caption d-flex flex-column justify-content-center align-items-center text-center">
           <h1 class="display-3 fw-bold mb-3">Cuidado Profesional</h1>
           <p class="lead mb-4">Tratamientos especializados en bienestar integral</p>
         </div>
       </div>
-      <div class="carousel-item" style="background-image:url('/images/seleccionadas/1000484087.jpg')">
+      <div class="carousel-item" style="background-image:url('/Front-end/images/Nuevas/1000484102.jpg')">
         <div class="hero-overlay"></div>
         <div class="carousel-caption d-flex flex-column justify-content-center align-items-center text-center">
           <h1 class="display-3 fw-bold mb-3">Relajación Pura</h1>
@@ -90,27 +93,27 @@
   </div>
 </header>
 
-<!-- 🟢 GALERÍA -->
+<!--  GALERÍA -->
 <section id="servicios" class="animate-on-scroll">
   <div class="container">
     <h2 class="display-5 fw-bold text-gris-humo mb-3 text-center">Nuestros Servicios</h2>
     <p class="text-muted mb-5 text-center">Explora la calidad y el detalle de nuestros tratamientos y espacios.</p>
 
     <div class="gallery-masonry">
-      <div class="gallery-item" data-title="Masajes Relajantes" data-img="https://images.unsplash.com/photo-1519824145371-296894a0daa9?w=800&q=80">
-        <img src="https://images.unsplash.com/photo-1519824145371-296894a0daa9?w=600&q=80" alt="Masajes">
+      <div class="gallery-item" data-title="Masajes Relajantes" data-img="1000483770">
+        <img src="/Front-end/images/Nuevas/1000483770.jpg" alt="Masajes">
         <div class="gallery-overlay"><h5 class="gallery-title">Masajes Relajantes</h5></div>
         <div class="gallery-icon"><i class="bi bi-zoom-in"></i></div>
       </div>
 
-      <div class="gallery-item" data-title="Facial Premium" data-img="/images/seleccionadas/1000484126.jpg">
-        <img src="/images/seleccionadas/1000484126.jpg" alt="Facial">
+      <div class="gallery-item" data-title="Facial Premium" data-img="1000483699">
+        <img src="/Front-end/images/Nuevas/1000483699.jpg" alt="Facial">
         <div class="gallery-overlay"><h5 class="gallery-title">Facial Premium</h5></div>
         <div class="gallery-icon"><i class="bi bi-zoom-in"></i></div>
       </div>
 
-      <div class="gallery-item" data-title="Aromaterapia" data-img="https://images.unsplash.com/photo-1600334129128-685c5582fd35?w=800&q=80">
-        <img src="https://images.unsplash.com/photo-1600334129128-685c5582fd35?w=600&q=80" alt="Aromaterapia">
+      <div class="gallery-item" data-title="Aromaterapia" data-img="1000483809">
+        <img src="/Front-end/images/Nuevas/1000483809.jpg" alt="Aromaterapia">
         <div class="gallery-overlay"><h5 class="gallery-title">Aromaterapia</h5></div>
         <div class="gallery-icon"><i class="bi bi-zoom-in"></i></div>
       </div>
@@ -276,37 +279,6 @@
   </div>
 </div>
 
-<!-- 🟢 MODAL CARRITO -->
-<div id="cartModal" class="side-modal">
-  <div class="side-modal-content">
-    <div class="side-modal-header">
-      <h3><i class="bi bi-cart3-fill"></i>Mi Carrito</h3>
-      <button class="close-modal" id="closeCartModal">&times;</button>
-    </div>
-    <div class="side-modal-body">
-      <div id="cartItems" class="cart-items-container">
-        <!-- Los items se agregarán dinámicamente -->
-        <div class="empty-cart">
-          <i class="bi bi-cart-x" style="font-size: 5rem; color: var(--turquesa-pastel);"></i>
-          <p class="mt-3 mb-2">Tu carrito está vacío</p>
-          <p class="text-muted small mb-3">Agrega productos para comenzar tu compra</p>
-          <a href="./pages/Products.html" class="btn btn-turquesa">
-            <i class="bi bi-shop me-2"></i>Explorar Productos
-          </a>
-        </div>
-      </div>
-      <div class="cart-footer">
-        <div class="cart-total">
-          <span><i class="bi bi-calculator me-2"></i>Total:</span>
-          <span class="total-amount">$0.00</span>
-        </div>
-        <a href="./pages/ShoppingCart.html" class="btn btn-turquesa w-100">
-          <i class="bi bi-credit-card me-2"></i>Proceder al Pago
-        </a>
-      </div>
-    </div>
-  </div>
-</div>
 
 <!-- 🟢 BOTÓN FLOTANTE FAQ -->
 <button id="floatingFaqBtn" class="floating-faq-btn" title="Preguntas Frecuentes">
@@ -318,6 +290,9 @@
   <!-- Sistema centralizado de FAQs y Modals -->
   <script src="./scripts/faq-data.js"></script>
   <script src="./scripts/modal-manager-fixed.js"></script>
+  <script defer src="/Front-end/scripts/auth-ui.js"></script>
+
+  <script src="../scripts/cart-preview.js"></script>
   <script>
   document.addEventListener("DOMContentLoaded", () => {
 
