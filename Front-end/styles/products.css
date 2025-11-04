@@ -66,9 +66,7 @@
   filter: brightness(50%);
 }
 
-/* ===================================
-   INFORMACIÓN DE LA CARD (HOVER)
-   =================================== */
+/*  INFORMACIÓN DE LA CARD (HOVER)*/
 #product-list .card-body {
   position: absolute;
   inset: 0;
@@ -93,9 +91,7 @@
   opacity: 1;
 }
 
-/* ===================================
-   TEXTOS DE LA CARD
-   =================================== */
+/* TEXTOS DE LA CARD*/
 .card-title {
   font-size: 1.4rem;
   font-weight: 700;
@@ -145,9 +141,7 @@
   font-weight: 500;
 }
 
-/* ===================================
-   BOTÓN "AGREGAR AL CARRITO"
-   =================================== */
+/* BOTÓN "AGREGAR AL CARRITO" */
 .card-actions {
   display: flex;
   flex-direction: column;
@@ -180,9 +174,7 @@
   transform: translateY(0);
 }
 
-/* ===================================
-   MENSAJE "AGREGADO AL CARRITO"
-   =================================== */
+/* MENSAJE "AGREGADO AL CARRITO" */
 .added-msg {
   position: absolute;
   bottom: -35px;
@@ -207,9 +199,7 @@
   transform: translateX(-50%) translateY(0);
 }
 
-/* ===================================
-   LOADING SPINNER
-   =================================== */
+/*LOADING SPINNER*/
 
 .loading-container {
   width: 100%;
@@ -264,9 +254,7 @@
   50% { opacity: 0.5; }
 }
 
-/* ===================================
-   ERROR MESSAGE
-   =================================== */
+/*Mensaje de error*/
 
 .error-container {
   width: 100%;
@@ -328,9 +316,7 @@
   transform: translateY(0);
 }
 
-/* ===================================
-   RESPONSIVIDAD
-   =================================== */
+/* RESPONSIVIDAD */
 @media (max-width: 768px) {
   #product-list .card {
     height: 400px;
