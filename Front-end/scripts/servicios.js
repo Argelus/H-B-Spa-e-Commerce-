@@ -54,9 +54,35 @@ function mostrarServicios(filtro) {
           <span class="service-price">$${servicio.price.toFixed(2)}</span>
           <span class="service-duration">⏱️ ${servicio.duration || "60 min"}</span>
         </div>
-      </div>
+        
+        <button class="btn btn-spa w-100 mt-3 btn-reservar-perfil" data-service-id="${servicio.id}">
+           <i class="bi bi-calendar-plus me-2"></i>
+           Reservar
+        </button>
+        </div>
     </div>
   `).join("");
 }
+document.addEventListener("DOMContentLoaded", cargarServicios);
 
 document.addEventListener("DOMContentLoaded", cargarServicios);
+
+document.getElementById("servicesGrid").addEventListener("click", function(event) {
+  
+    const botonReservar = event.target.closest(".btn-reservar-perfil");
+    
+    if (botonReservar) {
+ 
+        const token = localStorage.getItem("token");
+
+        if (token) {
+
+            window.location.href = "profile.html#reservas";
+        } else {
+          
+            localStorage.setItem("redirectAfterLogin", "profile.html#reservas");
+            
+            window.location.href = "Login.html";
+        }
+    }
+});
