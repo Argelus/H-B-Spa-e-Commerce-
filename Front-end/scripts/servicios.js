@@ -63,7 +63,6 @@ function mostrarServicios(filtro) {
     </div>
   `).join("");
 }
-document.addEventListener("DOMContentLoaded", cargarServicios);
 
 document.addEventListener("DOMContentLoaded", cargarServicios);
 
