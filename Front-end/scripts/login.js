@@ -49,6 +49,16 @@ document.addEventListener("DOMContentLoaded", () => {
           successMsg.classList.remove("d-none");
         }
 
+        const redirectUrl = localStorage.getItem("redirectAfterLogin");
+        setTimeout(() => {
+          if (redirectUrl) {
+            localStorage.removeItem("redirectAfterLogin");
+            window.location.href = redirectUrl;
+          } else {
+            window.location.href = "./profile.html";
+          }
+        }, 600); 
+
         // redirigir a perfil
         setTimeout(() => { window.location.href = "./profile.html"; }, 600);
       } else {
