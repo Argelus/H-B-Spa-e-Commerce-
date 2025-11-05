@@ -42,12 +42,20 @@
 
         <!-- Botones desktop -->
         <div class="d-none d-lg-flex ms-3 align-items-center gap-2">
-            <a href="#" class="nav-icon-btn" id="openCartBtn" title="Carrito de Compras">
-                <i class="bi bi-cart3"></i>
-                <span class="cart-badge">0</span>
-            </a>
+          <a href="#" class="nav-icon-btn" id="openCartBtn" title="Carrito de Compras">
+            <i class="bi bi-cart3"></i>
+            <span class="cart-badge">0</span>
+          </a>
+          
+          <div id="auth-group" class="d-flex gap-2">
             <a href="./Register.html" class="btn btn-outline-light rounded-pill me-2">Registro</a>
             <a href="./Login.html" class="btn btn-light rounded-pill text-turquesa">Acceder</a>
+          </div>
+          
+          <div id="logout-group" class="d-flex gap-2 d-none">
+            <a href="./profile.html" class="btn btn-outline-light rounded-pill me-2" id="profile-btn">Mi Cuenta</a>
+            <button id="logout-btn" class="btn btn-danger rounded-pill">Salir</button>
+          </div>
         </div>
     </div>
 </nav>
@@ -171,5 +179,6 @@
 <script src="../scripts/faq-data.js"></script>
 <script src="../scripts/modal-manager-fixed.js"></script>
 <script src="../scripts/cart-preview.js"></script>
+<script defer src="../scripts/auth-ui.js"></script>
 </body>
 </html>
