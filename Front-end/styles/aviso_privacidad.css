@@ -1,0 +1,138 @@
+main {
+  display: block;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  margin-top: 50px;
+  padding: 4rem 1rem;
+  background: linear-gradient(135deg, var(--arena-suave), var(--sal-marina));
+  animation: fadeIn 0.8s ease;
+}
+
+:root {
+  --arena-suave: #fdfcfb;
+  --sal-marina: #e0f7fa;
+  --blanco: rgba(255, 255, 255, 0.6);
+  --turquesa-pastel: #6ebfc3;
+  --gris-humo: #666;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, var(--arena-suave), var(--sal-marina));
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: auto;
+  padding: 3rem 1rem;
+  animation: fadeIn 0.8s ease;
+}
+
+.privacy-card {
+  width: 100%;
+  max-width: 800px;
+  background: var(--blanco);
+  backdrop-filter: blur(12px);
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  padding: 2rem;
+  color: #333;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: slideInUp 0.8s ease;
+}
+
+.privacy-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(110, 191, 195, 0.25);
+}
+
+h1 {
+  color: var(--turquesa-pastel);
+  text-align: center;
+  margin-top: 0;
+}
+
+h4 {
+  color: #8d1d91;
+  text-align: center;
+  margin-top: 0;
+}
+
+
+h5 {
+  color: var(--gris-humo);
+  margin-bottom: 0.5rem;
+}
+
+ul {
+  padding-left: 1.2rem;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+a {
+  color: var(--turquesa-pastel);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+section {
+  margin-bottom: 1.5rem;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+/* Responsividad */
+@media (max-width: 576px) {
+
+   main {
+    min-height: auto;
+    margin-top: 70px;
+    padding: 2rem 1rem;
+  }  
+  .privacy-card {
+    padding: 1.5rem 1rem;
+    border-radius: 12px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  h5 {
+    font-size: 1rem;
+  }
+
+  p, li {
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  section {
+    margin-bottom: 1.2rem;
+  }
+
+}
+
+
+
