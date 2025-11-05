@@ -67,53 +67,6 @@
       window.closeFaqModalFunc = closeFaqModalFunc;
     }
 
-    /*
-    // Cart Modal
-    const cartModal = document.getElementById('cartModal');
-    const openCartBtn = document.getElementById('openCartBtn');
-    const openCartBtnMobile = document.getElementById('openCartBtnMobile');
-    const closeCartModal = document.getElementById('closeCartModal');
-
-    if (cartModal) {
-      function openCartModalFunc() {
-        cartModal.classList.add('active');
-        document.body.style.overflow = 'hidden';
-      }
-
-      function closeCartModalFunc() {
-        cartModal.classList.remove('active');
-        document.body.style.overflow = '';
-      }
-
-      if (openCartBtn) {
-        openCartBtn.addEventListener('click', function(e) {
-          e.preventDefault();
-          openCartModalFunc();
-        });
-      }
-
-      if (openCartBtnMobile) {
-        openCartBtnMobile.addEventListener('click', function(e) {
-          e.preventDefault();
-          openCartModalFunc();
-        });
-      }
-
-      if (closeCartModal) {
-        closeCartModal.addEventListener('click', closeCartModalFunc);
-      }
-
-      cartModal.addEventListener('click', function(e) {
-        if (e.target === cartModal) {
-          closeCartModalFunc();
-        }
-      });
-
-      // Guardar para usar con ESC
-      window.closeCartModalFunc = closeCartModalFunc;
-    }
-      */
-
     // ESC key para cerrar todos los modals
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape') {
