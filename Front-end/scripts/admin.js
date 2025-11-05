@@ -32,10 +32,10 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   // 🚪 Cerrar sesión
-  document.getElementById("logout-btn").addEventListener("click", () => {
-    localStorage.removeItem("hbspa_token");
-    window.location.href = "admin-login.html";
-  });
+document.getElementById("logout-btn").addEventListener("click", () => {
+  localStorage.removeItem("hbspa_token");
+  window.location.href = "admin-login.html";
+});
 
   // 📦 Cargar datos iniciales
   await loadProducts();
