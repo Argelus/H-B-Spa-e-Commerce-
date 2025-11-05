@@ -28,22 +28,27 @@
       <ul class="navbar-nav gap-3">
         <li class="nav-item"><a class="nav-link" href="../index.html">Inicio</a></li>
         <li class="nav-item"><a class="nav-link" href="./Products.html">Productos</a></li>
-        <li class="nav-item"><a class="nav-link" href="./Reserve.html">Reserva</a></li>
+        <li class="nav-item"><a class="nav-link" href="./Reserve.html">Servicios</a></li>
         <li class="nav-item"><a class="nav-link" href="./About.html">Acerca de Nosotros</a></li>
         <li class="nav-item"><a class="nav-link" href="./Contact.html">Contacto</a></li>
       </ul>
 
-  <div class="d-none d-lg-flex ms-3 align-items-center gap-2">
-  <div id="auth-group" class="d-flex gap-2">
-    <a href="./Register.html" class="btn btn-outline-light rounded-pill me-2">Registro</a>
-    <a href="./Login.html" class="btn btn-light rounded-pill text-turquesa">Acceder</a>
-  </div>
-  
-  <div id="logout-group" class="d-flex gap-2 d-none">
-    <a href="./profile.html" class="btn btn-outline-light rounded-pill me-2" id="profile-btn">Mi Cuenta</a>
-    <button id="logout-btn" class="btn btn-danger rounded-pill">Salir</button>
-  </div>
-</div>
+        <div class="d-none d-lg-flex ms-3 align-items-center gap-2">
+          <a href="#" class="nav-icon-btn" id="openCartBtn" title="Carrito de Compras">
+            <i class="bi bi-cart3"></i>
+            <span class="cart-badge">0</span>
+          </a>
+          
+          <div id="auth-group" class="d-flex gap-2">
+            <a href="./Register.html" class="btn btn-outline-light rounded-pill me-2">Registro</a>
+            <a href="./Login.html" class="btn btn-light rounded-pill text-turquesa">Acceder</a>
+          </div>
+          
+          <div id="logout-group" class="d-flex gap-2 d-none">
+            <a href="./profile.html" class="btn btn-outline-light rounded-pill me-2" id="profile-btn">Mi Cuenta</a>
+            <button id="logout-btn" class="btn btn-danger rounded-pill">Salir</button>
+          </div>
+        </div>
 </nav>
 
 <!-- HERO + FORM -->
@@ -99,11 +104,17 @@
                 <div class="invalid-feedback">Ingresa tu usuario o correo.</div>
               </div>
 
-              <div class="mb-3">
-                <label for="password" class="form-label">Contraseña</label>
-                <input type="password" class="form-control" id="password" required minlength="6" />
-                <div class="invalid-feedback">La contraseña debe tener al menos 6 caracteres.</div>
-              </div>
+<div class="mb-3">
+  <label for="password" class="form-label">Contraseña</label>
+  <div class="input-group">
+    <input type="password" class="form-control" id="password" required minlength="6" placeholder="Ingresa tu contraseña" />
+    <button type="button" class="btn btn-outline-secondary" id="togglePassword">
+      <i class="bi bi-eye"></i>
+    </button>
+  </div>
+  <div class="invalid-feedback">La contraseña debe tener al menos 6 caracteres.</div>
+</div>
+
 
               <div class="text-center mb-3">
                 <p class="mb-2">¿Aún no tienes una cuenta? <a href="./Register.html" class="text-decoration-none fw-bold" style="color: var(--turquesa-pastel);">Regístrate</a></p>
@@ -177,5 +188,23 @@
 <!-- Tu lógica de login (llama /api/auth/login y redirige a profile.html) -->
 <script defer src="../scripts/login.js"></script>
 <script defer src="/Front-end/scripts/auth-ui.js"></script>
+<script defer src="../scripts/auth-ui.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const togglePassword = document.querySelector('#togglePassword');
+    const password = document.querySelector('#password');
+
+    if (togglePassword && password) {
+      togglePassword.addEventListener('click', () => {
+        const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+        password.setAttribute('type', type);
+
+        const icon = togglePassword.querySelector('i');
+        icon.classList.toggle('bi-eye');
+        icon.classList.toggle('bi-eye-slash');
+      });
+    }
+  });
+</script>
 </body>
 </html>

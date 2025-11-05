@@ -30,7 +30,7 @@
       <ul class="navbar-nav gap-3">
         <li class="nav-item"><a class="nav-link" href="../index.html">Inicio</a></li>
         <li class="nav-item"><a class="nav-link" href="./Products.html">Productos</a></li>
-        <li class="nav-item"><a class="nav-link" href="./Reserve.html">Reserva</a></li>
+        <li class="nav-item"><a class="nav-link" href="./Reserve.html">Servicios</a></li>
         <li class="nav-item"><a class="nav-link" href="./About.html">Acerca de Nosotros</a></li>
         <li class="nav-item"><a class="nav-link" href="./Contact.html">Contacto</a></li>
       </ul>
@@ -48,17 +48,22 @@
     </div>
 
     <!-- Botones desktop -->
-   <div class="d-none d-lg-flex ms-3 align-items-center gap-2">
-  <div id="auth-group" class="d-flex gap-2">
-    <a href="./Register.html" class="btn btn-outline-light rounded-pill me-2">Registro</a>
-    <a href="./Login.html" class="btn btn-light rounded-pill text-turquesa">Acceder</a>
-  </div>
-  
-  <div id="logout-group" class="d-flex gap-2 d-none">
-    <a href="./profile.html" class="btn btn-outline-light rounded-pill me-2" id="profile-btn">Mi Cuenta</a>
-    <button id="logout-btn" class="btn btn-danger rounded-pill">Salir</button>
-  </div>
-</div>
+           <div class="d-none d-lg-flex ms-3 align-items-center gap-2">
+          <a href="#" class="nav-icon-btn" id="openCartBtn" title="Carrito de Compras">
+            <i class="bi bi-cart3"></i>
+            <span class="cart-badge">0</span>
+          </a>
+          
+          <div id="auth-group" class="d-flex gap-2">
+            <a href="./Register.html" class="btn btn-outline-light rounded-pill me-2">Registro</a>
+            <a href="./Login.html" class="btn btn-light rounded-pill text-turquesa">Acceder</a>
+          </div>
+          
+          <div id="logout-group" class="d-flex gap-2 d-none">
+            <a href="./profile.html" class="btn btn-outline-light rounded-pill me-2" id="profile-btn">Mi Cuenta</a>
+            <button id="logout-btn" class="btn btn-danger rounded-pill">Salir</button>
+          </div>
+        </div>
 </nav>
 
 <section class="py-5" style="background: linear-gradient(to bottom, var(--sal-marina) 0%, var(--lila-rosa) 100%); margin-top: 80px;">
@@ -96,16 +101,27 @@
                 <input type="email" class="form-control" id="email" required>
                 <div class="invalid-feedback">Ingrese un correo electrónico válido.</div>
               </div>
-
-              <div class="mb-3">
+<!-- Campo: Contraseña-->
+ <div class="mb-3">
                 <label for="password" class="form-label">Contraseña</label>
-                <input type="password" class="form-control" id="password" required minlength="6">
+                <div class="input-group">
+                  <input type="password" class="form-control" id="password" required minlength="6" placeholder="Crea tu contraseña">
+                  <button type="button" class="btn btn-outline-secondary" id="togglePassword">
+                    <i class="bi bi-eye"></i>
+                  </button>
+                </div>
                 <div class="invalid-feedback">La contraseña debe tener al menos 6 caracteres.</div>
               </div>
 
+              <!-- Campo: Confirmar contraseña -->
               <div class="mb-3">
                 <label for="confirmPassword" class="form-label">Confirmar contraseña</label>
-                <input type="password" class="form-control" id="confirmPassword" required>
+                <div class="input-group">
+                  <input type="password" class="form-control" id="confirmPassword" required placeholder="Confirma tu contraseña">
+                  <button type="button" class="btn btn-outline-secondary" id="toggleConfirmPassword">
+                    <i class="bi bi-eye"></i>
+                  </button>
+                </div>
                 <div class="invalid-feedback">Las contraseñas no coinciden.</div>
               </div>
 
@@ -124,7 +140,6 @@
 
             <div id="mensaje" class="mt-3 text-center fw-bold"></div>
           </div>
-
           <!-- Carrusel -->
           <div class="col-lg-7 p-0">
             <div id="registroCarousel" class="carousel slide h-100" data-bs-ride="carousel">
@@ -229,8 +244,29 @@
 <script src="../scripts/modal-manager-fixed.js"></script>
 <script defer src="../scripts/login.js"></script>
 <script defer src="../scripts/auth-ui.js"></script>
-<!-- Carga del JS de registro (separado) -->
 <script defer src="../scripts/register.js"></script>
 <script src="../scripts/cart-preview.js"></script>
+<script defer src="../scripts/auth-ui.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const togglePassword = document.querySelector('#togglePassword');
+    const password = document.querySelector('#password');
+    const toggleConfirmPassword = document.querySelector('#toggleConfirmPassword');
+    const confirmPassword = document.querySelector('#confirmPassword');
+
+    function toggleVisibility(button, input) {
+      button.addEventListener('click', () => {
+        const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
+        input.setAttribute('type', type);
+        const icon = button.querySelector('i');
+        icon.classList.toggle('bi-eye');
+        icon.classList.toggle('bi-eye-slash');
+      });
+    }
+
+    if (togglePassword && password) toggleVisibility(togglePassword, password);
+    if (toggleConfirmPassword && confirmPassword) toggleVisibility(toggleConfirmPassword, confirmPassword);
+  });
+</script>
 </body>
 </html>
