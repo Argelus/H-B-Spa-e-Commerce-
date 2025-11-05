@@ -6,11 +6,465 @@
 /* Ajustes específicos de About */
 body {
   padding-top: 90px; /* evita que el navbar tape el título */
+   background: linear-gradient(160deg, var(--arena-suave) 0%, #ffffff 40%, var(--lila-rosa) 80%, var(--turquesa-pastel) 100%);
+  background-attachment: fixed;
 }
 
-/* ==============================
-   💠 TARJETAS EQUIPO Y CARRUSEL
-   ============================== */
+/* Utilidades locales (por si no están en common.css) */
+.text-gris-humo {
+  color: var(--gris-humo) !important;
+}
+
+.bg-turquesa-pastel {
+  /* 🎨 Degradado más sutil con profundidad */
+  background: linear-gradient(135deg, #8fd1d4 0%, #bce3e5 50%, #e9d8ec 100%);
+
+  /* 💨 Añade un toque de luz desde el centro */
+  background-blend-mode: soft-light;
+
+  /* 🌫️ Sombra muy difusa para dar profundidad */
+  box-shadow: 0 10px 40px rgba(110, 191, 195, 0.25);
+
+  /* 🔘 Bordes suaves */
+  border-radius: 20px;
+
+  /* 🧘 Suaviza el contraste del texto */
+  color: #3a3a3a;
+}
+
+
+.bg-lila-rosa-gradient {
+  background: linear-gradient(135deg, var(--arena-suave), var(--lila-rosa));
+}
+
+/* ====================================
+   🧭 SECCIONES BASE
+   ==================================== */
+.about-main {
+  position: relative;
+}
+
+.about-section {
+  position: relative;
+}
+
+/* Kicker / subtítulo pequeño */
+.section-kicker {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-weight: 700;
+  color: var(--turquesa-pastel);
+  display: inline-block;
+  margin-bottom: 0.5rem;
+}
+
+/* Encabezados de sección reutilizables */
+.section-heading h2 {
+  letter-spacing: 0.02em;
+}
+
+/* ====================================
+   🌟 HERO ACERCA DE
+   ==================================== */
+.about-hero {
+  position: relative;
+  padding: 3rem 2rem;
+  border-radius: 24px;
+  background: radial-gradient(circle at top left, var(--sal-marina) 0%, #ffffff 50%, #ffffff 100%);
+  overflow: hidden;
+  box-shadow: 0 18px 45px rgba(110, 191, 195, 0.15);
+}
+
+/* Decoraciones soft */
+.about-hero::before,
+.about-hero::after {
+  content: "";
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(18px);
+  opacity: 0.6;
+}
+
+.about-hero::before {
+  width: 220px;
+  height: 220px;
+  background: rgba(110, 191, 195, 0.25);
+  top: -60px;
+  right: -50px;
+}
+
+.about-hero::after {
+  width: 180px;
+  height: 180px;
+  background: rgba(235, 210, 236, 0.28);
+  bottom: -40px;
+  left: -30px;
+}
+
+/* Badge superior */
+.badge-soft-turquesa {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.9rem;
+  border-radius: 999px;
+  background: rgba(110, 191, 195, 0.12);
+  color: var(--turquesa-pastel);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+/* Pills bajo el título */
+.about-tagline {
+  margin-top: 0.25rem;
+}
+
+.about-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.35rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid rgba(110, 191, 195, 0.3);
+  background: rgba(255, 255, 255, 0.9);
+  font-size: 0.9rem;
+  color: var(--gris-humo);
+  box-shadow: 0 4px 18px rgba(110, 191, 195, 0.15);
+}
+
+/* Tarjeta de métricas */
+.about-metrics {
+  border-radius: 20px;
+  background: #ffffff;
+  position: relative;
+  overflow: hidden;
+}
+
+.about-metrics::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top right, rgba(110, 191, 195, 0.18), transparent 55%);
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+.about-metrics .card-body {
+  position: relative;
+  z-index: 1;
+}
+
+.about-metric-number {
+  font-size: 1.7rem;
+  font-weight: 800;
+  color: var(--turquesa-pastel);
+  margin-bottom: 0.1rem;
+}
+
+.about-metric-label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #6b7280;
+  margin-bottom: 0;
+}
+
+.about-metric-note {
+  display: flex;
+  align-items: flex-start;
+  font-size: 0.88rem;
+  color: #4b5563;
+  background: rgba(215, 236, 235, 0.35);
+  border-radius: 14px;
+  padding: 0.7rem 0.8rem;
+}
+
+/* ====================================
+   📖 HISTORIA
+   ==================================== */
+.about-history {
+  margin-top: 1rem;
+}
+
+.about-image-wrapper {
+  position: relative;
+}
+
+.about-image {
+  display: block;
+}
+
+/* Badge flotante sobre la foto */
+.about-image-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--gris-humo);
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+/* Lista elegante */
+.about-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.about-list li {
+  position: relative;
+  padding-left: 1.6rem;
+  margin-bottom: 0.45rem;
+  color: #4b5563;
+}
+
+.about-list li::before {
+  content: "";
+  position: absolute;
+  left: 0.35rem;
+  top: 0.5rem;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--turquesa-pastel);
+}
+
+/* ====================================
+   🎯 MISIÓN Y VISIÓN
+   ==================================== */
+.about-mision-vision {
+  padding: 2.5rem 0 0;
+}
+
+.about-card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 1.9rem 1.6rem 1.7rem;
+  box-shadow: 0 16px 35px rgba(110, 191, 195, 0.2);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(110, 191, 195, 0.12);
+  transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+}
+
+.about-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(215, 236, 235, 0.25), rgba(235, 210, 236, 0.15));
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+
+.about-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(110, 191, 195, 0.32);
+  border-color: rgba(110, 191, 195, 0.4);
+}
+
+.about-card:hover::before {
+  opacity: 1;
+}
+
+/* Ícono circular de las tarjetas */
+.about-card-icon {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: rgba(110, 191, 195, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  color: var(--turquesa-pastel);
+  font-size: 1.6rem;
+}
+
+.about-card-icon-alt {
+  background: rgba(235, 210, 236, 0.16);
+}
+
+/* ====================================
+   🌈 NUESTROS VALORES — SCROLL
+   ==================================== */
+@keyframes pulsoPastel {
+  0%, 100% { box-shadow: 0 0 15px rgba(110, 191, 195, 0.3); }
+  50% { box-shadow: 0 0 25px rgba(235, 210, 236, 0.4); }
+}
+
+.tarjeta-hover {
+  position: relative;
+  background: linear-gradient(145deg, var(--sal-marina), var(--lila-rosa));
+  border-radius: 20px;
+  padding: 2rem 1.8rem;
+  min-height: 280px;
+  color: var(--gris-humo);
+  transition: all 0.5s ease;
+  animation: pulsoPastel 5s ease-in-out infinite;
+  overflow: visible;
+}
+
+.tarjeta-hover::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  padding: 2px;
+  background: linear-gradient(135deg, var(--lila-rosa), var(--turquesa-pastel));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.tarjeta-hover:hover::before {
+  opacity: 1;
+}
+
+.tarjeta-hover:hover {
+  background: linear-gradient(145deg, var(--turquesa-pastel), var(--lila-rosa));
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 14px 40px rgba(110, 191, 195, 0.3);
+}
+
+/* Scroll infinito */
+.valores-scroll-container {
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+  padding: 10px 0;
+}
+
+.valores-scroll-track {
+  display: flex;
+  gap: 1.5rem;
+  animation: scrollInfinito 40s linear infinite;
+  width: fit-content;
+}
+
+.valores-scroll-track:hover {
+  animation-play-state: paused;
+}
+
+.valor-card {
+  min-width: 280px;
+  flex-shrink: 0;
+}
+
+@keyframes scrollInfinito {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Gradientes en los bordes para efecto de desvanecimiento */
+.valores-scroll-container::before,
+.valores-scroll-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.valores-scroll-container::before {
+  left: 0;
+  background: linear-gradient(to right, var(--arena-suave), transparent);
+}
+
+.valores-scroll-container::after {
+  right: 0;
+  background: linear-gradient(to left, var(--arena-suave), transparent);
+}
+
+/* Responsive valores */
+@media (max-width: 768px) {
+  .valores-scroll-track {
+    animation-duration: 30s;
+  }
+
+  .valor-card {
+    min-width: 260px;
+  }
+
+  .valores-scroll-container::before,
+  .valores-scroll-container::after {
+    width: 50px;
+  }
+}
+
+/* ====================================
+   🌿 FILOSOFÍA DEL SPA
+   ==================================== */
+.about-philosophy-card {
+  padding: 2.5rem 2.1rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+}
+
+/* efecto suave dentro */
+.about-philosophy-card::before {
+  content: "";
+  position: absolute;
+  inset: -40px;
+  background: radial-gradient(circle at bottom right, rgba(255, 255, 255, 0.4), transparent 55%);
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+.about-philosophy-card > .row {
+  position: relative;
+  z-index: 1;
+}
+
+/* Pills de filosofía */
+.about-philosophy-badges {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.philosophy-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--gris-humo);
+  font-size: 0.9rem;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+}
+
+/* ====================================
+   👥 EQUIPO – CARRUSEL 3D
+   ==================================== */
+.equipo-card {
+  border-radius: 22px;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.equipo-card .card-img-top {
+  border-top-left-radius: 22px;
+  border-top-right-radius: 22px;
+}
+
+.equipo-card .card-body {
+  padding-bottom: 0.7rem;
+}
+
 .equipo-card .card-footer {
   background-color: transparent;
   border-top: none;
@@ -23,7 +477,12 @@ body {
   color: var(--gris-humo);
   margin: 0 0.75rem;
   font-size: 1.5rem;
-  transition: color 0.3s ease;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.equipo-card .card-footer a:hover {
+  color: var(--turquesa-pastel);
+  transform: translateY(-2px);
 }
 
 /* 🌸 Carrusel 3D */
@@ -95,6 +554,11 @@ body {
   pointer-events: none;
 }
 
+/* Pequeño blur en transición (clase que activa el JS) */
+.carousel-card.transitioning {
+  filter: blur(4px);
+}
+
 .carousel-controls {
   position: absolute;
   width: 100%;
@@ -124,11 +588,12 @@ body {
 
 .carousel-btn:hover {
   background: var(--lila-rosa);
-  border-color: var(--rosa-petalo);
+  border-color: var(--turquesa-pastel);
   transform: scale(1.12);
   box-shadow: 0 6px 25px rgba(235, 210, 236, 0.4);
 }
 
+/* Indicadores */
 .carousel-indicator {
   position: absolute;
   bottom: 20px;
@@ -160,8 +625,16 @@ body {
   transform: scale(1.3);
 }
 
-/* 📱 Responsividad */
+/* 📱 Responsividad carrusel */
 @media (max-width: 768px) {
+  .about-hero {
+    padding: 2.2rem 1.4rem;
+  }
+
+  .about-metrics {
+    margin-top: 1.5rem;
+  }
+
   .carousel-3d-container {
     height: 550px;
     padding: 40px 0;
@@ -175,6 +648,10 @@ body {
   }
   .carousel-controls {
     padding: 0 15px;
+  }
+
+  .about-philosophy-card {
+    padding: 2rem 1.4rem;
   }
 }
 
@@ -192,9 +669,9 @@ body {
   }
 }
 
-/* ===============================
+/* ====================================
    💬 BOTONES FLOTANTES (FAQ/WS)
-   =============================== */
+   ==================================== */
 .faq-floating-btn,
 .whatsapp-floating-btn {
   position: fixed;
@@ -251,46 +728,9 @@ body {
   }
 }
 
-/* ===============================
-   ❓ SECCIÓN DE PREGUNTAS (FAQ)
-   =============================== */
-.faq-item {
-  background: var(--blanco);
-  border-radius: 15px;
-  padding: 1.5rem;
-  margin-bottom: 1rem;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-  transition: all 0.3s ease;
-}
-
-.faq-item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(110, 191, 195, 0.2);
-}
-
-.faq-item h5 {
-  color: var(--gris-humo);
-  font-weight: 700;
-  margin-bottom: 0.8rem;
-  display: flex;
-  align-items: center;
-}
-
-.faq-item h5 i {
-  color: var(--turquesa-pastel);
-  margin-right: 0.8rem;
-  font-size: 1.3rem;
-}
-
-.faq-item p {
-  color: var(--gris-humo);
-  margin: 0;
-  line-height: 1.7;
-}
-
-/* =====================================================
-   💬 PANEL FAQ SOBRE EL CONTENIDO
-   ===================================================== */
+/* ====================================
+   ❓ PANEL FAQ SOBRE EL CONTENIDO
+   ==================================== */
 .faq-overlay {
   position: fixed;
   top: 0;
@@ -350,120 +790,79 @@ body {
   transform: scale(1.1);
 }
 
-/* ==========================================================
-   🌟 NUESTROS VALORES — EFECTO COMBINADO (borde + fondo)
-   ========================================================== */
-@keyframes pulsoPastel {
-  0%, 100% { box-shadow: 0 0 15px rgba(110, 191, 195, 0.3); }
-  50% { box-shadow: 0 0 25px rgba(235, 210, 236, 0.4); }
+/* Elementos FAQ individuales */
+.faq-item {
+  background: var(--blanco);
+  border-radius: 15px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
 }
 
-.tarjeta-hover {
-  position: relative;
-  background: linear-gradient(145deg, var(--sal-marina), var(--lila-rosa));
-  border-radius: 20px;
-  padding: 2rem 1.8rem;
-  min-height: 320px;
+.faq-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(110, 191, 195, 0.2);
+}
+
+.faq-item h5 {
   color: var(--gris-humo);
-  transition: all 0.5s ease;
-  animation: pulsoPastel 5s ease-in-out infinite;
-  overflow: visible;
+  font-weight: 700;
+  margin-bottom: 0.8rem;
+  display: flex;
+  align-items: center;
 }
 
-.tarjeta-hover::before {
+.faq-item h5 i {
+  color: var(--turquesa-pastel);
+  margin-right: 0.8rem;
+  font-size: 1.3rem;
+}
+
+.faq-item p {
+  color: var(--gris-humo);
+  margin: 0;
+  line-height: 1.7;
+}
+
+/* ====================================
+   🎖 CERTIFICACIONES
+   ==================================== */
+.about-certifications-card {
+  position: relative;
+  padding: 2.5rem 2rem;
+  box-shadow: 0 16px 35px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+.about-certifications-card::before {
   content: "";
   position: absolute;
-  inset: 0;
-  border-radius: 20px;
-  padding: 2px;
-  background: linear-gradient(135deg, var(--lila-rosa), var(--turquesa-pastel));
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  opacity: 0;
-  transition: opacity 0.4s ease;
+  inset: -40px;
+  background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.55), transparent 55%);
+  opacity: 0.9;
   pointer-events: none;
 }
 
-.tarjeta-hover:hover::before {
-  opacity: 1;
-}
-
-.tarjeta-hover:hover {
-  background: linear-gradient(145deg, var(--turquesa-pastel), var(--lila-rosa));
-  transform: translateY(-8px) scale(1.03);
-  box-shadow: 0 14px 40px rgba(110, 191, 195, 0.3);
-}
-
-/* ===============================
-   🎠 AUTO-SCROLL VALORES (sin scrollbar)
-   =============================== */
-.valores-scroll-container {
-  overflow: hidden;
-  width: 100%;
-  position: relative;
-  padding: 10px 0;
-}
-
-.valores-scroll-track {
+.cert-icon-wrapper {
+  width: 70px;
+  height: 70px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.9);
   display: flex;
-  gap: 1.5rem;
-  animation: scrollInfinito 40s linear infinite;
-  width: fit-content;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
 }
 
-.valores-scroll-track:hover {
-  animation-play-state: paused;
-}
-
-.valor-card {
-  min-width: 280px;
-  flex-shrink: 0;
-}
-
-@keyframes scrollInfinito {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-}
-
-/* Gradientes en los bordes para efecto de desvanecimiento */
-.valores-scroll-container::before,
-.valores-scroll-container::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 100px;
-  z-index: 2;
-  pointer-events: none;
-}
-
-.valores-scroll-container::before {
-  left: 0;
-  background: linear-gradient(to right, var(--arena-suave), transparent);
-}
-
-.valores-scroll-container::after {
-  right: 0;
-  background: linear-gradient(to left, var(--arena-suave), transparent);
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .valores-scroll-track {
-    animation-duration: 30s;
+/* Ajustes responsive generales para About */
+@media (max-width: 992px) {
+  .about-hero {
+    margin-bottom: 2.5rem;
   }
 
-  .valor-card {
-    min-width: 260px;
-  }
-
-  .valores-scroll-container::before,
-  .valores-scroll-container::after {
-    width: 50px;
+  .about-certifications-card {
+    padding: 2rem 1.5rem;
   }
 }

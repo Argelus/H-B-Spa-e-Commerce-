@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="../styles/common.css" />
     <link rel="stylesheet" href="../styles/about.css" />
-    
 </head>
 <body>
 <nav class="navbar navbar-expand-lg fixed-top navbar-dark navbar-overlay py-3">
@@ -53,245 +52,363 @@
     </div>
 </nav>
 
-
-
-<div class="py-5">
+<main class="about-main">
+  <div class="py-5">
     <div class="container">
-        <div class="text-center mb-5">
+
+      <!-- HERO ACERCA DE -->
+      <section class="about-hero mb-5">
+        <div class="row align-items-center g-4">
+          <div class="col-lg-7">
+            <span class="badge-soft-turquesa mb-3">
+              <i class="bi bi-geo-alt me-1"></i> Jardín Balbuena · CDMX
+            </span>
             <h1 class="display-4 fw-bold mb-3">Acerca de Nosotros</h1>
-            <p class="lead text-muted">Conoce nuestra historia, misión y equipo profesional</p>
-        </div>
+            <p class="lead text-muted mb-4">
+              Conoce la historia, filosofía y al equipo detrás de tu refugio de belleza y bienestar.
+            </p>
 
-        <section class="mb-5">
-            <div class="row align-items-center g-5">
-                <div class="col-lg-6">
-                    <img
-                            src="../images/Picture2.png"
-                            alt="H&B SPA"
-                            class="img-fluid rounded shadow"
-                    />
-                </div>
-                <div class="col-lg-6">
-                    <h2 class="fw-bold mb-4">Nuestra Historia</h2>
-                    <p class="mb-3">
-                        Desde 2015, H&B SPA Jardín Balbuena ha sido el refugio de belleza y bienestar
-                        favorito de la comunidad. Nacimos con la visión de crear un espacio donde cada
-                        persona pueda encontrar paz, renovación y cuidado profesional.
-                    </p>
-                    <p class="mb-3">
-                        A lo largo de los años, hemos crecido gracias a la confianza de nuestros clientes,
-                        expandiendo nuestros servicios y productos, siempre manteniendo nuestro compromiso
-                        con la excelencia y la atención personalizada.
-                    </p>
-                    <p>
-                        Hoy, somos un equipo de profesionales apasionados por ayudar a cada persona a
-                        verse y sentirse mejor, utilizando las mejores técnicas y productos del mercado.
-                    </p>
-                </div>
+            <div class="about-tagline d-flex flex-wrap gap-3">
+              <div class="about-pill">
+                <i class="bi bi-heart-pulse me-2"></i> Enfoque clínico y holístico
+              </div>
+              <div class="about-pill">
+                <i class="bi bi-emoji-smile me-2"></i> Experiencias personalizadas
+              </div>
+              <div class="about-pill">
+                <i class="bi bi-stars me-2"></i> Detalles que marcan la diferencia
+              </div>
             </div>
-        </section>
+          </div>
 
-        <section class="mb-5 py-5 bg-sal-marina rounded">
-            <div class="container">
-                <div class="row g-4">
-                    <div class="col-md-6">
-                        <div class="text-center p-4">
-                            <i class="bi bi-compass fs-1 text-turquesa-pastel mb-3"></i>
-                            <h3 class="fw-bold mb-3">Nuestra Misión</h3>
-                            <p class="text-gris-humo">
-                            Brindar experiencias de bienestar y renovación integral a través de terapias especializadas,
-                            tratamientos estéticos y masajes que combinen lo clínico y lo holístico, en un ambiente cálido y profesional.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="text-center p-4">
-                            <i class="bi bi-eye fs-1 text-turquesa-pastel mb-3"></i>
-                            <h3 class="fw-bold mb-3">Nuestra Visión</h3>
-                            <p class="text-gris-humo">
-                            Consolidarnos como un spa de referencia en la ciudad, reconocido por la excelencia en el trato humano, 
-                            la innovación en tratamientos y la capacidad de transformar la rutina de nuestras clientas en momentos de autocuidado y equilibrio.
-                            </p>
-                        </div>
-                    </div>
+          <div class="col-lg-5">
+            <div class="about-metrics card border-0 shadow-sm">
+              <div class="card-body">
+                <div class="row text-center g-3">
+                  <div class="col-4">
+                    <p class="about-metric-number">10+</p>
+                    <p class="about-metric-label">Años de experiencia</p>
+                  </div>
+                  <div class="col-4">
+                    <p class="about-metric-number">3K+</p>
+                    <p class="about-metric-label">Clientes felices</p>
+                  </div>
+                  <div class="col-4">
+                    <p class="about-metric-number">30+</p>
+                    <p class="about-metric-label">Servicios activos</p>
+                  </div>
                 </div>
-            </div>
-        </section>
-
-        <section class="mb-5">
-          <h2 class="text-center fw-bold mb-5">Nuestros Valores</h2>
-          <div class="valores-scroll-container" id="valoresContainer">
-            <div class="valores-scroll-track">
-              <!-- Set original de tarjetas -->
-              <div class="valor-card">
-                <div class="card h-100 border-0 shadow-sm text-center p-4 tarjeta-hover">
-                  <i class="bi bi-people-fill fs-1 text-turquesa-pastel mb-3"></i>
-                  <h5 class="fw-bold mb-3">Inclusión</h5>
-                  <p class="text-muted">Relajación para todas las identidades.</p>
-                </div>
-              </div>
-              <div class="valor-card">
-                <div class="card h-100 border-0 shadow-sm text-center p-4 tarjeta-hover">
-                  <i class="bi bi-heart-fill fs-1 text-turquesa-pastel mb-3"></i>
-                  <h5 class="fw-bold mb-3">Profesionalismo</h5>
-                  <p class="text-muted">Brindamos atención experta y personalizada.</p>
-                </div>
-              </div>
-              <div class="valor-card">
-                <div class="card h-100 border-0 shadow-sm text-center p-4 tarjeta-hover">
-                  <i class="bi bi-yin-yang fs-1 text-turquesa-pastel mb-3"></i>
-                  <h5 class="fw-bold mb-3">Bienestar integral</h5>
-                  <p class="text-muted">Equilibrio entre cuerpo, mente y emociones.</p>
-                </div>
-              </div>
-              <div class="valor-card">
-                <div class="card h-100 border-0 shadow-sm text-center p-4 tarjeta-hover">
-                  <i class="bi bi-shield-check fs-1 text-turquesa-pastel mb-3"></i>
-                  <h5 class="fw-bold mb-3">Confianza</h5>
-                  <p class="text-muted">Transparencia, ética y cercanía en cada servicio.</p>
-                </div>
-              </div>
-              <div class="valor-card">
-                <div class="card h-100 border-0 shadow-sm text-center p-4 tarjeta-hover">
-                  <i class="bi bi-lightbulb-fill fs-1 text-turquesa-pastel mb-3"></i>
-                  <h5 class="fw-bold mb-3">Innovación</h5>
-                  <p class="text-muted">Siempre en actualización constante.</p>
-                </div>
-              </div>
-              <div class="valor-card">
-                <div class="card h-100 border-0 shadow-sm text-center p-4 tarjeta-hover">
-                  <i class="bi bi-person-heart fs-1 text-turquesa-pastel mb-3"></i>
-                  <h5 class="fw-bold mb-3">Empatía</h5>
-                  <p class="text-muted">Escuchar y cuidar a cada persona como única.</p>
-                </div>
-              </div>
-              <!-- Set duplicado para loop infinito -->
-              <div class="valor-card">
-                <div class="card h-100 border-0 shadow-sm text-center p-4 tarjeta-hover">
-                  <i class="bi bi-people-fill fs-1 text-turquesa-pastel mb-3"></i>
-                  <h5 class="fw-bold mb-3">Inclusión</h5>
-                  <p class="text-muted">Relajación para todas las identidades.</p>
-                </div>
-              </div>
-              <div class="valor-card">
-                <div class="card h-100 border-0 shadow-sm text-center p-4 tarjeta-hover">
-                  <i class="bi bi-heart-fill fs-1 text-turquesa-pastel mb-3"></i>
-                  <h5 class="fw-bold mb-3">Profesionalismo</h5>
-                  <p class="text-muted">Brindamos atención experta y personalizada.</p>
-                </div>
-              </div>
-              <div class="valor-card">
-                <div class="card h-100 border-0 shadow-sm text-center p-4 tarjeta-hover">
-                  <i class="bi bi-yin-yang fs-1 text-turquesa-pastel mb-3"></i>
-                  <h5 class="fw-bold mb-3">Bienestar integral</h5>
-                  <p class="text-muted">Equilibrio entre cuerpo, mente y emociones.</p>
-                </div>
-              </div>
-              <div class="valor-card">
-                <div class="card h-100 border-0 shadow-sm text-center p-4 tarjeta-hover">
-                  <i class="bi bi-shield-check fs-1 text-turquesa-pastel mb-3"></i>
-                  <h5 class="fw-bold mb-3">Confianza</h5>
-                  <p class="text-muted">Transparencia, ética y cercanía en cada servicio.</p>
-                </div>
-              </div>
-              <div class="valor-card">
-                <div class="card h-100 border-0 shadow-sm text-center p-4 tarjeta-hover">
-                  <i class="bi bi-lightbulb-fill fs-1 text-turquesa-pastel mb-3"></i>
-                  <h5 class="fw-bold mb-3">Innovación</h5>
-                  <p class="text-muted">Siempre en actualización constante.</p>
-                </div>
-              </div>
-              <div class="valor-card">
-                <div class="card h-100 border-0 shadow-sm text-center p-4 tarjeta-hover">
-                  <i class="bi bi-person-heart fs-1 text-turquesa-pastel mb-3"></i>
-                  <h5 class="fw-bold mb-3">Empatía</h5>
-                  <p class="text-muted">Escuchar y cuidar a cada persona como única.</p>
+                <div class="about-metric-note mt-3">
+                  <i class="bi bi-info-circle me-2"></i>
+                  Cuidamos cada detalle: higiene, seguridad y un trato humano y cercano.
                 </div>
               </div>
             </div>
           </div>
-        </section>
-        <section class="mb-5 py-5 bg-turquesa-pastel rounded">
-            <div class="container">
-                <div class="text-center">
-                    <h2 class="fw-bold mb-4 text-gris-humo">Nuestra Filosofía del Spa</h2>
-                    <div class="row justify-content-center">
-                        <div class="col-lg-8">
-                            <p class="lead text-gris-humo mb-3">
-                                Creemos que la belleza exterior es el reflejo del bienestar interior.
-                            </p>
-                            <p class="text-gris-humo mb-3">
-                                En H&B SPA, no solo nos enfocamos en tratamientos estéticos; buscamos crear
-                                una experiencia holística que nutra cuerpo, mente y espíritu. Cada servicio
-                                está diseñado para promover la relajación profunda, el rejuvenecimiento y
-                                la conexión con uno mismo.
-                            </p>
-                            <p class="text-gris-humo">
-                                Utilizamos técnicas ancestrales combinadas con tecnología moderna, productos
-                                naturales y orgánicos, y creamos un ambiente de tranquilidad que te permitirá
-                                escapar del estrés diario y reconectar con tu esencia.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-         <!-- Cards del Equipo-->
-       <section class="mb-5">
-    <h2 class="text-center fw-bold mb-5">Nuestro Equipo</h2>
-    
-    <div class="carousel-3d-container">
-        <div class="carousel-3d" id="carousel3d">
-        
         </div>
-        
-        <div class="carousel-controls">
+      </section>
+
+      <!-- HISTORIA -->
+      <section class="about-section about-history mb-5">
+        <div class="row align-items-center g-5">
+          <div class="col-lg-6">
+            <div class="about-image-wrapper">
+              <span class="about-image-badge">
+                <i class="bi bi-heart-pulse me-1"></i> Spa de autor
+              </span>
+              <img
+                src="../images/Picture2.png"
+                alt="H&B SPA"
+                class="img-fluid rounded-4 shadow-lg about-image"
+              />
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <span class="section-kicker">Nuestra Historia</span>
+            <h2 class="fw-bold mb-3">Un refugio de bienestar desde 2015</h2>
+            <p class="mb-3 text-muted">
+              Desde 2015, H&B SPA Jardín Balbuena ha sido el refugio de belleza y bienestar
+              favorito de la comunidad. Nacimos con la visión de crear un espacio donde cada
+              persona pueda encontrar paz, renovación y cuidado profesional.
+            </p>
+            <p class="mb-3 text-muted">
+              A lo largo de los años, hemos crecido gracias a la confianza de nuestros clientes,
+              expandiendo nuestros servicios y productos, siempre manteniendo nuestro compromiso
+              con la excelencia y la atención personalizada.
+            </p>
+            <p class="text-muted mb-3">
+              Hoy, somos un equipo de profesionales apasionados por ayudar a cada persona a
+              verse y sentirse mejor, utilizando las mejores técnicas y productos del mercado.
+            </p>
+
+            <ul class="about-list">
+              <li>Atención cálida y cercana en cada visita.</li>
+              <li>Protocolos claros de higiene y seguridad.</li>
+              <li>Tratamientos pensados para distintos estilos de vida.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- MISIÓN Y VISIÓN -->
+      <section class="about-section about-mision-vision mb-5">
+        <div class="row g-4 align-items-stretch">
+          <div class="col-md-6">
+            <div class="about-card h-100">
+              <div class="about-card-icon">
+                <i class="bi bi-compass"></i>
+              </div>
+              <h3 class="fw-bold mb-3">Nuestra Misión</h3>
+              <p class="text-muted mb-3">
+                Brindar experiencias de bienestar y renovación integral a través de terapias especializadas,
+                tratamientos estéticos y masajes que combinen lo clínico y lo holístico, en un ambiente cálido y profesional.
+              </p>
+              <ul class="about-list small mb-0">
+                <li>Escucha activa de necesidades y expectativas.</li>
+                <li>Protocolos personalizados para cada persona.</li>
+                <li>Uso de productos y técnicas con respaldo profesional.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="about-card h-100">
+              <div class="about-card-icon about-card-icon-alt">
+                <i class="bi bi-eye"></i>
+              </div>
+              <h3 class="fw-bold mb-3">Nuestra Visión</h3>
+              <p class="text-muted mb-3">
+                Consolidarnos como un spa de referencia en la ciudad, reconocido por la excelencia en el trato humano,
+                la innovación en tratamientos y la capacidad de transformar la rutina de nuestras clientas en momentos
+                de autocuidado y equilibrio.
+              </p>
+              <ul class="about-list small mb-0">
+                <li>Ser símbolo de confianza y resultados visibles.</li>
+                <li>Integrar nuevas tecnologías sin perder lo humano.</li>
+                <li>Convertir el autocuidado en un hábito alcanzable.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- VALORES -->
+      <section class="about-section about-values mb-5">
+        <div class="section-heading text-center mb-4">
+          <span class="badge-soft-turquesa mb-2">Valores que guían cada servicio</span>
+          <h2 class="fw-bold mb-2">Nuestros Valores</h2>
+          <p class="text-muted mb-0">
+            Desliza para conocer la esencia de H&B SPA. Al pasar el cursor, cada tarjeta cobra vida.
+          </p>
+        </div>
+
+        <div class="valores-scroll-container" id="valoresContainer">
+          <div class="valores-scroll-track">
+            <!-- Set original de tarjetas -->
+            <div class="valor-card">
+              <div class="card h-100 border-0 shadow-sm text-center p-4 tarjeta-hover">
+                <i class="bi bi-people-fill fs-1 text-turquesa-pastel mb-3"></i>
+                <h5 class="fw-bold mb-3">Inclusión</h5>
+                <p class="text-muted">Relajación para todas las identidades.</p>
+              </div>
+            </div>
+            <div class="valor-card">
+              <div class="card h-100 border-0 shadow-sm text-center p-4 tarjeta-hover">
+                <i class="bi bi-heart-fill fs-1 text-turquesa-pastel mb-3"></i>
+                <h5 class="fw-bold mb-3">Profesionalismo</h5>
+                <p class="text-muted">Brindamos atención experta y personalizada.</p>
+              </div>
+            </div>
+            <div class="valor-card">
+              <div class="card h-100 border-0 shadow-sm text-center p-4 tarjeta-hover">
+                <i class="bi bi-yin-yang fs-1 text-turquesa-pastel mb-3"></i>
+                <h5 class="fw-bold mb-3">Bienestar integral</h5>
+                <p class="text-muted">Equilibrio entre cuerpo, mente y emociones.</p>
+              </div>
+            </div>
+            <div class="valor-card">
+              <div class="card h-100 border-0 shadow-sm text-center p-4 tarjeta-hover">
+                <i class="bi bi-shield-check fs-1 text-turquesa-pastel mb-3"></i>
+                <h5 class="fw-bold mb-3">Confianza</h5>
+                <p class="text-muted">Transparencia, ética y cercanía en cada servicio.</p>
+              </div>
+            </div>
+            <div class="valor-card">
+              <div class="card h-100 border-0 shadow-sm text-center p-4 tarjeta-hover">
+                <i class="bi bi-lightbulb-fill fs-1 text-turquesa-pastel mb-3"></i>
+                <h5 class="fw-bold mb-3">Innovación</h5>
+                <p class="text-muted">Siempre en actualización constante.</p>
+              </div>
+            </div>
+            <div class="valor-card">
+              <div class="card h-100 border-0 shadow-sm text-center p-4 tarjeta-hover">
+                <i class="bi bi-person-heart fs-1 text-turquesa-pastel mb-3"></i>
+                <h5 class="fw-bold mb-3">Empatía</h5>
+                <p class="text-muted">Escuchar y cuidar a cada persona como única.</p>
+              </div>
+            </div>
+            <!-- Set duplicado para loop infinito -->
+            <div class="valor-card">
+              <div class="card h-100 border-0 shadow-sm text-center p-4 tarjeta-hover">
+                <i class="bi bi-people-fill fs-1 text-turquesa-pastel mb-3"></i>
+                <h5 class="fw-bold mb-3">Inclusión</h5>
+                <p class="text-muted">Relajación para todas las identidades.</p>
+              </div>
+            </div>
+            <div class="valor-card">
+              <div class="card h-100 border-0 shadow-sm text-center p-4 tarjeta-hover">
+                <i class="bi bi-heart-fill fs-1 text-turquesa-pastel mb-3"></i>
+                <h5 class="fw-bold mb-3">Profesionalismo</h5>
+                <p class="text-muted">Brindamos atención experta y personalizada.</p>
+              </div>
+            </div>
+            <div class="valor-card">
+              <div class="card h-100 border-0 shadow-sm text-center p-4 tarjeta-hover">
+                <i class="bi bi-yin-yang fs-1 text-turquesa-pastel mb-3"></i>
+                <h5 class="fw-bold mb-3">Bienestar integral</h5>
+                <p class="text-muted">Equilibrio entre cuerpo, mente y emociones.</p>
+              </div>
+            </div>
+            <div class="valor-card">
+              <div class="card h-100 border-0 shadow-sm text-center p-4 tarjeta-hover">
+                <i class="bi bi-shield-check fs-1 text-turquesa-pastel mb-3"></i>
+                <h5 class="fw-bold mb-3">Confianza</h5>
+                <p class="text-muted">Transparencia, ética y cercanía en cada servicio.</p>
+              </div>
+            </div>
+            <div class="valor-card">
+              <div class="card h-100 border-0 shadow-sm text-center p-4 tarjeta-hover">
+                <i class="bi bi-lightbulb-fill fs-1 text-turquesa-pastel mb-3"></i>
+                <h5 class="fw-bold mb-3">Innovación</h5>
+                <p class="text-muted">Siempre en actualización constante.</p>
+              </div>
+            </div>
+            <div class="valor-card">
+              <div class="card h-100 border-0 shadow-sm text-center p-4 tarjeta-hover">
+                <i class="bi bi-person-heart fs-1 text-turquesa-pastel mb-3"></i>
+                <h5 class="fw-bold mb-3">Empatía</h5>
+                <p class="text-muted">Escuchar y cuidar a cada persona como única.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FILOSOFÍA DEL SPA -->
+      <section class="about-section about-philosophy mb-5">
+        <div class="about-philosophy-card bg-turquesa-pastel rounded-4">
+          <div class="row justify-content-center align-items-center g-4">
+            <div class="col-lg-7">
+              <h2 class="fw-bold mb-3 text-gris-humo">Nuestra Filosofía del Spa</h2>
+              <p class="lead text-gris-humo mb-3">
+                Creemos que la belleza exterior es el reflejo del bienestar interior.
+              </p>
+              <p class="text-gris-humo mb-3">
+                En H&B SPA, no solo nos enfocamos en tratamientos estéticos; buscamos crear
+                una experiencia holística que nutra cuerpo, mente y espíritu. Cada servicio
+                está diseñado para promover la relajación profunda, el rejuvenecimiento y
+                la conexión con uno mismo.
+              </p>
+              <p class="text-gris-humo mb-0">
+                Utilizamos técnicas ancestrales combinadas con tecnología moderna, productos
+                naturales y orgánicos, y creamos un ambiente de tranquilidad que te permite
+                escapar del estrés diario y reconectar con tu esencia.
+              </p>
+            </div>
+            <div class="col-lg-5">
+              <div class="about-philosophy-badges">
+                <div class="philosophy-pill">
+                  <i class="bi bi-droplet-half me-2"></i> Productos naturales y orgánicos
+                </div>
+                <div class="philosophy-pill">
+                  <i class="bi bi-leaf me-2"></i> Técnicas ancestrales y modernas
+                </div>
+                <div class="philosophy-pill">
+                  <i class="bi bi-moon-stars me-2"></i> Espacios pensados para relajarte
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- EQUIPO -->
+      <section class="about-section about-team mb-5">
+        <div class="section-heading text-center mb-4">
+          <span class="badge-soft-turquesa mb-2">Personas detrás de la experiencia</span>
+          <h2 class="fw-bold mb-2">Nuestro Equipo</h2>
+          <p class="text-muted mb-0">
+            Desarrolladores, profesionales y especialistas que hicieron posible esta plataforma.
+          </p>
+        </div>
+
+        <div class="carousel-3d-container">
+          <div class="carousel-3d" id="carousel3d"></div>
+
+          <div class="carousel-controls">
             <button class="carousel-btn prev" id="prevBtn" aria-label="Anterior">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <polyline points="15 18 9 12 15 6"></polyline>
-                </svg>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="15 18 9 12 15 6"></polyline>
+              </svg>
             </button>
             <button class="carousel-btn next" id="nextBtn" aria-label="Siguiente">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <polyline points="9 18 15 12 9 6"></polyline>
-                </svg>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
             </button>
+          </div>
         </div>
-    </div>
-</section>
-      <!-- Apartado de certificaciones -->
-        <section class="py-5 bg-lila-rosa-gradient rounded">
-            <div class="container">
-                <div class="text-center">
-                    <h2 class="fw-bold mb-4 text-gris-humo">Certificaciones y Reconocimientos</h2>
-                    <div class="row justify-content-center">
-                        <div class="col-lg-8">
-                            <div class="d-flex flex-wrap justify-content-center gap-4">
-                                <div class="p-3">
-                                    <i class="bi bi-award-fill fs-1 text-gris-humo"></i>
-                                    <p class="mt-2 text-gris-humo fw-bold">ISO 9001</p>
-                                </div>
-                                <div class="p-3">
-                                    <i class="bi bi-check-circle-fill fs-1 text-gris-humo"></i>
-                                    <p class="mt-2 text-gris-humo fw-bold">COFEPRIS</p>
-                                </div>
-                                <div class="p-3">
-                                    <i class="bi bi-star-fill fs-1 text-gris-humo"></i>
-                                    <p class="mt-2 text-gris-humo fw-bold">5 Estrellas</p>
-                                </div>
-                                <div class="p-3">
-                                    <i class="bi bi-shield-check fs-1 text-gris-humo"></i>
-                                    <p class="mt-2 text-gris-humo fw-bold">Certificación Orgánica</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
-</div>
+      </section>
 
+      <!-- CERTIFICACIONES -->
+      <section class="about-section about-certifications py-5">
+        <div class="about-certifications-card bg-lila-rosa-gradient rounded-4">
+          <div class="text-center">
+            <h2 class="fw-bold mb-4 text-gris-humo">Certificaciones y Reconocimientos</h2>
+            <p class="text-muted mb-4">
+              Respaldos que refuerzan nuestro compromiso con la calidad, la seguridad y el bienestar de cada persona.
+            </p>
+            <div class="row justify-content-center">
+              <div class="col-lg-8">
+                <div class="d-flex flex-wrap justify-content-center gap-4">
+                  <div class="p-3 text-center">
+                    <div class="cert-icon-wrapper mb-2">
+                      <i class="bi bi-award-fill fs-1 text-gris-humo"></i>
+                    </div>
+                    <p class="mt-2 text-gris-humo fw-bold mb-0">ISO 9001</p>
+                    <p class="text-muted small mb-0">Gestión de calidad en procesos.</p>
+                  </div>
+                  <div class="p-3 text-center">
+                    <div class="cert-icon-wrapper mb-2">
+                      <i class="bi bi-check-circle-fill fs-1 text-gris-humo"></i>
+                    </div>
+                    <p class="mt-2 text-gris-humo fw-bold mb-0">COFEPRIS</p>
+                    <p class="text-muted small mb-0">Cumplimiento normativo sanitario.</p>
+                  </div>
+                  <div class="p-3 text-center">
+                    <div class="cert-icon-wrapper mb-2">
+                      <i class="bi bi-star-fill fs-1 text-gris-humo"></i>
+                    </div>
+                    <p class="mt-2 text-gris-humo fw-bold mb-0">5 Estrellas</p>
+                    <p class="text-muted small mb-0">Experiencia destacada por clientas.</p>
+                  </div>
+                  <div class="p-3 text-center">
+                    <div class="cert-icon-wrapper mb-2">
+                      <i class="bi bi-shield-check fs-1 text-gris-humo"></i>
+                    </div>
+                    <p class="mt-2 text-gris-humo fw-bold mb-0">Certificación Orgánica</p>
+                    <p class="text-muted small mb-0">Uso de ingredientes seleccionados.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</main>
 
 <!-- FOOTER -->
 <footer class="bg-light pt-5 pb-3 mt-5">
@@ -365,7 +482,6 @@
     </div>
   </div>
 </div>
-
 
 <!-- BOTÓN FLOTANTE FAQ -->
 <button id="floatingFaqBtn" class="floating-faq-btn" title="Preguntas Frecuentes">
