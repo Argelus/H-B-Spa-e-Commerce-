@@ -33,22 +33,44 @@
         <li class="nav-item"><a class="nav-link" href="./Contact.html">Contacto</a></li>
       </ul>
 
-        <div class="d-none d-lg-flex ms-3 align-items-center gap-2">
-          <a href="#" class="nav-icon-btn" id="openCartBtn" title="Carrito de Compras">
-            <i class="bi bi-cart3"></i>
-            <span class="cart-badge">0</span>
-          </a>
-          
-          <div id="auth-group" class="d-flex gap-2">
-            <a href="./Register.html" class="btn btn-outline-light rounded-pill me-2">Registro</a>
-            <a href="./Login.html" class="btn btn-light rounded-pill text-turquesa">Acceder</a>
-          </div>
-          
-          <div id="logout-group" class="d-flex gap-2 d-none">
-            <a href="./profile.html" class="btn btn-outline-light rounded-pill me-2" id="profile-btn">Mi Cuenta</a>
-            <button id="logout-btn" class="btn btn-danger rounded-pill">Salir</button>
-          </div>
-        </div>
+      <div class="nav-mobile-actions d-lg-none mt-3 d-flex gap-3 justify-content-center">
+        <a href="#" class="nav-icon-btn-mobile" id="openFaqBtnMobile">
+          <i class="bi bi-question-circle me-2"></i>FAQ
+        </a>
+        <a href="#" class="nav-icon-btn-mobile position-relative" id="openCartBtnMobile">
+          <i class="bi bi-cart3 me-2"></i>Carrito
+          <span class="cart-badge-mobile">0</span>
+        </a>
+      </div>
+
+      <div class="navbar-auth-mobile d-lg-none mt-3" data-auth-group="login">
+        <a href="./Register.html" class="btn btn-outline-light rounded-pill">Registro</a>
+        <a href="./Login.html" class="btn btn-light rounded-pill text-turquesa">Acceder</a>
+      </div>
+
+      <div class="navbar-auth-mobile d-lg-none mt-3 d-none" data-auth-group="logout">
+        <a href="./profile.html" class="btn btn-outline-light rounded-pill">Mi Cuenta</a>
+        <button type="button" class="btn btn-danger rounded-pill" data-logout-btn>Salir</button>
+      </div>
+    </div>
+
+    <div class="d-none d-lg-flex ms-3 align-items-center gap-2">
+      <a href="#" class="nav-icon-btn" id="openCartBtn" title="Carrito de Compras">
+        <i class="bi bi-cart3"></i>
+        <span class="cart-badge">0</span>
+      </a>
+
+      <div class="d-flex gap-2" data-auth-group="login">
+        <a href="./Register.html" class="btn btn-outline-light rounded-pill me-2">Registro</a>
+        <a href="./Login.html" class="btn btn-light rounded-pill text-turquesa">Acceder</a>
+      </div>
+
+      <div class="d-flex gap-2 d-none" data-auth-group="logout">
+        <a href="./profile.html" class="btn btn-outline-light rounded-pill me-2">Mi Cuenta</a>
+        <button type="button" class="btn btn-danger rounded-pill" data-logout-btn>Salir</button>
+      </div>
+    </div>
+  </div>
 </nav>
 
 <!-- HERO + FORM -->
