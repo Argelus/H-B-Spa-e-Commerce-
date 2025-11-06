@@ -31,11 +31,24 @@
         <li class="nav-item"><a class="nav-link" href="./About.html">Acerca de Nosotros</a></li>
         <li class="nav-item"><a class="nav-link" href="./Contact.html">Contacto</a></li>
       </ul>
+
+      <div class="nav-mobile-actions d-lg-none mt-3 d-flex gap-3 justify-content-center">
+        <a href="#" class="nav-icon-btn-mobile" id="openFaqBtnMobile">
+          <i class="bi bi-question-circle me-2"></i>FAQ
+        </a>
+        <a href="#" class="nav-icon-btn-mobile position-relative" id="openCartBtnMobile">
+          <i class="bi bi-cart3 me-2"></i>Carrito
+          <span class="cart-badge-mobile">0</span>
+        </a>
+      </div>
+
+      <div class="navbar-auth-mobile d-lg-none mt-3">
+        <button type="button" class="btn btn-danger rounded-pill" data-profile-logout>Salir</button>
+      </div>
     </div>
 
     <div class="d-none d-lg-flex ms-3 align-items-center gap-2">
-
-      <button id="logoutBtn" class="btn btn-outline-light rounded-pill">Salir</button>
+      <button id="logoutBtn" class="btn btn-outline-light rounded-pill" data-profile-logout>Salir</button>
     </div>
   </div>
 </nav>

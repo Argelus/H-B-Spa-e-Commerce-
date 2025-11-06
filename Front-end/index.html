@@ -14,8 +14,8 @@
 <!--  NAVBAR -->
 <nav class="navbar navbar-expand-lg fixed-top navbar-dark navbar-overlay py-3">
   <div class="container">
-    <a class="navbar-brand fw-bold" href="#">H&B SPA</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+    <a class="navbar-brand fw-bold" href="./index.html">H&B SPA</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Alternar navegación">
       <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -29,7 +29,7 @@
       </ul>
 
       <!-- Botones móviles -->
-      <div class="d-lg-none mt-3 d-flex gap-3 justify-content-center">
+      <div class="nav-mobile-actions d-lg-none mt-3 d-flex gap-3 justify-content-center">
         <a href="#" class="nav-icon-btn-mobile" id="openFaqBtnMobile">
           <i class="bi bi-question-circle me-2"></i>FAQ
         </a>
@@ -38,30 +38,35 @@
           <span class="cart-badge-mobile">0</span>
         </a>
       </div>
+
+      <div class="navbar-auth-mobile d-lg-none mt-3" data-auth-group="login">
+        <a href="./pages/Register.html" class="btn btn-outline-light rounded-pill">Registro</a>
+        <a href="./pages/Login.html" class="btn btn-light rounded-pill text-turquesa">Acceder</a>
+      </div>
+
+      <div class="navbar-auth-mobile d-lg-none mt-3 d-none" data-auth-group="logout">
+        <a href="./pages/profile.html" class="btn btn-outline-light rounded-pill" id="profile-btn-mobile">Mi Cuenta</a>
+        <button type="button" class="btn btn-danger rounded-pill" data-logout-btn>Salir</button>
+      </div>
     </div>
 
-          <div class="d-none d-lg-flex ms-3 align-items-center gap-2">
-          <a href="#" class="nav-icon-btn" id="openCartBtn" title="Carrito de Compras">
-            <i class="bi bi-cart3"></i>
-            <span class="cart-badge">0</span>
-          </a>
-          
-          <div id="auth-group" class="d-flex gap-2">
-            <a href="./pages/Register.html" class="btn btn-outline-light rounded-pill me-2">Registro</a>
-            <a href="./pages/Login.html" class="btn btn-light rounded-pill text-turquesa">Acceder</a>
-          </div>
-          
-          <div id="logout-group" class="d-flex gap-2 d-none">
-            <a href="./pages/profile.html" class="btn btn-outline-light rounded-pill me-2" id="profile-btn">Mi Cuenta</a>
-            <button id="logout-btn" class="btn btn-danger rounded-pill">Salir</button>
-          </div>
-        </div>
-  
-  <div id="logout-group" class="d-flex gap-2 d-none">
-    <a href="./pages/profile.html" class="btn btn-outline-light rounded-pill me-2" id="profile-btn">Mi Cuenta</a>
-    <button id="logout-btn" class="btn btn-danger rounded-pill">Salir</button>
+    <div class="d-none d-lg-flex ms-3 align-items-center gap-2">
+      <a href="#" class="nav-icon-btn" id="openCartBtn" title="Carrito de Compras">
+        <i class="bi bi-cart3"></i>
+        <span class="cart-badge">0</span>
+      </a>
+
+      <div class="d-flex gap-2" data-auth-group="login">
+        <a href="./pages/Register.html" class="btn btn-outline-light rounded-pill me-2">Registro</a>
+        <a href="./pages/Login.html" class="btn btn-light rounded-pill text-turquesa">Acceder</a>
+      </div>
+
+      <div class="d-flex gap-2 d-none" data-auth-group="logout">
+        <a href="./pages/profile.html" class="btn btn-outline-light rounded-pill me-2" id="profile-btn">Mi Cuenta</a>
+        <button type="button" class="btn btn-danger rounded-pill" data-logout-btn>Salir</button>
+      </div>
+    </div>
   </div>
-</div>
 </nav>
 
 <!--  HERO / CARRUSEL -->
@@ -299,15 +304,64 @@
   <script src="./scripts/faq-data.js"></script>
   <script src="./scripts/modal-manager-fixed.js"></script>
   <script defer src="./scripts/auth-ui.js"></script>
-  <script src="../scripts/cart-preview.js"></script>
+  <script src="./scripts/cart-preview.js"></script>
   <script>
   document.addEventListener("DOMContentLoaded", () => {
 
     // --- Navbar Scroll ---
+    const navbarOverlay = document.querySelector(".navbar-overlay");
+
     window.addEventListener("scroll", () => {
-      const n = document.querySelector(".navbar-overlay");
-      window.scrollY > 50 ? n.classList.add("scrolled") : n.classList.remove("scrolled");
+      const n = navbarOverlay;
+      if (!n) return;
+      if (window.scrollY > 50) {
+        n.classList.add("scrolled");
+      } else if (!n.classList.contains("is-open")) {
+        n.classList.remove("scrolled");
+      }
     });
+
+    if (navbarOverlay && window.scrollY > 50) {
+      navbarOverlay.classList.add("scrolled");
+    }
+
+    const navBar = navbarOverlay;
+    const navCollapse = document.getElementById("navbarNav");
+
+    if (navBar && navCollapse) {
+      navCollapse.addEventListener("show.bs.collapse", () => {
+        navBar.classList.add("is-open");
+        navBar.classList.add("scrolled");
+      });
+
+      navCollapse.addEventListener("hidden.bs.collapse", () => {
+        navBar.classList.remove("is-open");
+        if (window.scrollY <= 50) {
+          navBar.classList.remove("scrolled");
+        }
+      });
+
+      if (window.bootstrap?.Collapse) {
+        const collapseInstance = bootstrap.Collapse.getOrCreateInstance(navCollapse, { toggle: false });
+        navCollapse.querySelectorAll(".nav-link, [data-logout-btn]").forEach(link => {
+          link.addEventListener("click", () => {
+            if (window.innerWidth < 992) {
+              collapseInstance.hide();
+            }
+          });
+        });
+
+        window.addEventListener("resize", () => {
+          if (window.innerWidth >= 992) {
+            collapseInstance.hide();
+            navBar.classList.remove("is-open");
+            if (window.scrollY <= 50) {
+              navBar.classList.remove("scrolled");
+            }
+          }
+        });
+      }
+    }
 
 
     // --- Carrusel 3D ---

@@ -35,18 +35,19 @@ document.addEventListener("DOMContentLoaded", () => {
   const emailEl  = document.querySelector(".perfil-email");
   const listaReservas = document.getElementById("listaReservas");
   const listaOrdenes  = document.getElementById("listaOrdenes");
-  const logoutBtn = document.getElementById("logoutBtn");
+  const logoutButtons = document.querySelectorAll('[data-profile-logout]');
 
-  // Cerrar sesión
-  if (logoutBtn) {
-    logoutBtn.addEventListener("click", () => {
-      localStorage.removeItem("token");
-      localStorage.removeItem("username");
-      localStorage.removeItem("role");
-      localStorage.removeItem("userId");
-      window.location.href = "./Login.html";
-    });
-  }
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("username");
+    localStorage.removeItem("role");
+    localStorage.removeItem("userId");
+    window.location.href = "./Login.html";
+  };
+
+  logoutButtons.forEach(btn => {
+    btn.addEventListener("click", handleLogout);
+  });
 
   // 1) Perfil /me
   (async () => {
