@@ -17,6 +17,7 @@ header#hero {
     height: 100vh;
     background-size: cover;
     background-position: center center;
+
 }
 
 @supports (height: 100svh) {
@@ -51,11 +52,24 @@ section#servicios {
     scroll-margin-top: 80px;
 }
 
+/* === AJUSTE: Galería en 3 columnas en escritorio, 2 en tablet, 1 en móvil === */
 .gallery-masonry {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 1.5rem;
-    padding: 2rem 0;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr); /* Móvil por defecto */
+  gap: 1.5rem;
+  padding: 2rem 0;
+}
+
+@media (min-width: 576px) {
+  .gallery-masonry {
+    grid-template-columns: repeat(2, 1fr); /* Tablet */
+  }
+}
+
+@media (min-width: 992px) {
+  .gallery-masonry {
+    grid-template-columns: repeat(3, 1fr); /* Escritorio */
+  }
 }
 
 .gallery-item {
@@ -277,8 +291,8 @@ section#servicios {
 
 .team-card {
     position: absolute;
-    width: 220px;
-    height: 300px;
+    width: 260px;
+    height: 340px;
     background: #fff;
     border-radius: 25px;
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
@@ -290,9 +304,26 @@ section#servicios {
     overflow: hidden;
 }
 
+/*Responsividad*/
+@media (max-width: 992px) {
+  .team-card {
+    width: 280px;
+    min-height: 340px;
+    height: auto;
+  }
+}
+
+@media (max-width: 576px) {
+  .team-card {
+    width: 240px;
+    min-height: 320px;
+  }
+}
+
+
 .team-card img {
     width: 100%;
-    height: 65%;
+    height: 70%;
     object-fit: cover;
     border-radius: 25px 25px 0 0;
     transition: transform 0.3s ease;
@@ -342,17 +373,13 @@ section#servicios {
     box-shadow: 0 10px 30px rgba(110, 191, 195, 0.4);
 }
 
-/* =================================
-   Sección de Reseñas
-==================================== */
+/* Sección de Reseñas */
 #resenas {
     background: linear-gradient(180deg, var(--sal-marina) 0%, var(--arena-suave) 100%);
     padding: 5rem 0;
 }
 
-/* =================================
-   Media Queries (Responsive)
-==================================== */
+/* Media Queries (Responsive) */
 @media (max-width: 991.98px) {
     section#servicios {
         scroll-margin-top: 68px;
@@ -448,9 +475,7 @@ section#servicios {
     }
 }
 
-/* =================================
-   Estilos para el botón del Lightbox
-==================================== */
+/* Estilos para el botón del Lightbox*/
 
 #lightbox-action-button {
   position: absolute;
@@ -490,4 +515,28 @@ section#servicios {
 
   opacity: 1;
   transform: translateY(0);
+}
+
+/* primer imagen del carrusel */
+.carousel-item:first-child {
+  background-position: center 12%; 
+}
+
+/* segunda imagen del carrusel === */
+.carousel-item:nth-child(2) {
+  background-position: center 70%; 
+}
+
+
+/* === AJUSTE: Separar el botón del texto en el primer slide === */
+.carousel-item:first-child .btn-explorar {
+  margin-top: 0rem;
+  margin-bottom: 4rem;
+}
+
+/* Responsivo para móviles */
+@media (max-width: 768px) {
+  .carousel-item:first-child .btn-explorar {
+    margin-bottom: 2rem;
+  }
 }
