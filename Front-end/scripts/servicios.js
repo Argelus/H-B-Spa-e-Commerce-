@@ -1,87 +1,126 @@
-const API_URL = "http://localhost:8080/api";
+const categoriaButtonsContainer = document.getElementById("categoriaButtons");
+const servicesGrid = document.getElementById("servicesGrid");
+const loadingServices = document.getElementById("loadingServices");
+
 let servicios = [];
-let categorias = [];
+let categorias = new Set();
 
-async function cargarServicios() {
+async function cargarServiciosDesdeServidor() {
   try {
-    const response = await fetch(`${API_URL}/spa-services`);
-    if (!response.ok) throw new Error("No se pueden obtener los servicios");
+    // Mostrar spinner de carga
+    loadingServices.classList.remove("hidden");
 
-    servicios = await response.json();
-    categorias = [...new Set(servicios.map(s => s.categoria))]; // Extrae categorías únicas
+    // Reemplaza esta URL con la ruta real de tu backend
+    const response = await fetch("http://localhost:8080/api/service-categories"); // ← Ajusta si tu endpoint es diferente
+    if (!response.ok) throw new Error("Error al cargar los servicios");
 
-    llenarFiltroCategorias();
+    const data = await response.json();
+
+    // Transformar la estructura: extraer servicios y asignarles su categoría
+    servicios = [];
+
+    data.forEach(categoria => {
+      if (Array.isArray(categoria.services)) {
+        categoria.services.forEach(servicio => {
+          servicios.push({
+            nombre: servicio.name,
+            descripcion: servicio.description,
+            imagen: servicio.imageUrl,
+            precio: servicio.price,
+            duracion: servicio.duration,
+            categoria: categoria.name
+          });
+        });
+        categorias.add(categoria.name);
+      }
+    });
+
+    renderBotonesCategorias();
     mostrarServicios("todos");
 
-    document.getElementById("loadingServices").classList.add("hidden");
   } catch (error) {
-    console.error("Error:", error);
-    document.getElementById("loadingServices").innerHTML = `<p class="server-error">⚠️ No se pudo conectar con el servidor</p>`;
+    servicesGrid.innerHTML = `<p class="server-error">No se pudieron cargar los servicios. Intenta más tarde.</p>`;
+    console.error("Error al obtener servicios:", error);
+  } finally {
+    loadingServices.classList.add("hidden");
   }
 }
 
-function llenarFiltroCategorias() {
-  const select = document.getElementById("categoriaSelect");
-  categorias.forEach(cat => {
-    const option = document.createElement("option");
-    option.value = cat;
-    option.textContent = cat;
-    select.appendChild(option);
-  });
+function renderBotonesCategorias() {
+  categoriaButtonsContainer.innerHTML = "";
 
-  select.addEventListener("change", (e) => {
-    mostrarServicios(e.target.value);
+  const todasBtn = crearBotonCategoria("Todos", "todos");
+  todasBtn.classList.add("active");
+  categoriaButtonsContainer.appendChild(todasBtn);
+
+  categorias.forEach(cat => {
+    const btn = crearBotonCategoria(cat, cat);
+    categoriaButtonsContainer.appendChild(btn);
   });
 }
 
-function mostrarServicios(filtro) {
-  const grid = document.getElementById("servicesGrid");
-  const filtrados = filtro === "todos" ? servicios : servicios.filter(s => s.categoria === filtro);
+function crearBotonCategoria(texto, valor) {
+  const btn = document.createElement("button");
+  btn.textContent = texto;
+  btn.className = "btn btn-outline-secondary rounded-pill";
+  btn.dataset.categoria = valor;
+  btn.onclick = () => {
+    marcarActivo(btn);
+    mostrarServicios(valor);
+  };
+  return btn;
+}
+
+function marcarActivo(botonSeleccionado) {
+  const botones = categoriaButtonsContainer.querySelectorAll("button");
+  botones.forEach(btn => btn.classList.remove("active"));
+  botonSeleccionado.classList.add("active");
+}
+
+function mostrarServicios(categoria) {
+  servicesGrid.innerHTML = "";
+
+  const filtrados = categoria === "todos"
+    ? servicios
+    : servicios.filter(s => s.categoria === categoria);
 
   if (filtrados.length === 0) {
-    grid.innerHTML = `<p class="placeholder">No hay servicios en esta categoría</p>`;
+    servicesGrid.innerHTML = "<p class='placeholder'>No hay servicios en esta categoría.</p>";
     return;
   }
 
-  grid.classList.remove("placeholder");
-  grid.innerHTML = filtrados.map(servicio => `
-    <div class="service-card">
-      <div class="service-image" style="background-image: url('${servicio.imageUrl || 'https://via.placeholder.com/300x200'}');"></div>
+  filtrados.forEach(s => {
+    const imagenUrl = s.imagen?.startsWith("http") ? s.imagen : `../images/${s.imagen}`;
+    const card = document.createElement("div");
+    card.className = "service-card fade-in";
+
+    card.innerHTML = `
+      <div class="service-image" style="background-image: url('${imagenUrl}')"></div>
       <div class="service-overlay">
-        <h3>${servicio.name}</h3>
-        <p>${servicio.description || "Servicio profesional de spa"}</p>
-        <div class="service-info">
-          <span class="service-price">$${servicio.price.toFixed(2)}</span>
-          <span class="service-duration">⏱️ ${servicio.duration || "60 min"}</span>
-        </div>
-        
-        <button class="btn btn-spa w-100 mt-3 btn-reservar-perfil" data-service-id="${servicio.id}">
-           <i class="bi bi-calendar-plus me-2"></i>
-           Reservar
-        </button>
-        </div>
-    </div>
-  `).join("");
+        <h3>${s.nombre}</h3>
+        <p>${s.descripcion}</p>
+        <p class="service-info"> $${s.precio} MXN · ⏱️ ${s.duracion}</p>
+        <button class="btn-agendar" onclick="redirigirAReserva('${s.nombre}')">Agendar</button>
+      </div>
+    `;
+
+    servicesGrid.appendChild(card);
+  });
+}
+function redirigirAReserva(servicioNombre) {
+  const usuarioLogueado = localStorage.getItem("token"); 
+
+  if (usuarioLogueado) {
+    
+    localStorage.setItem("servicioSeleccionado", servicioNombre);
+
+  
+    window.location.href = "../pages/profile.html#reservas";
+  } else {
+    
+    window.location.href = "../pages/Login.html";
+  }
 }
 
-document.addEventListener("DOMContentLoaded", cargarServicios);
+document.addEventListener("DOMContentLoaded", cargarServiciosDesdeServidor);
 
-document.getElementById("servicesGrid").addEventListener("click", function(event) {
-  
-    const botonReservar = event.target.closest(".btn-reservar-perfil");
-    
-    if (botonReservar) {
- 
-        const token = localStorage.getItem("token");
-
-        if (token) {
-
-            window.location.href = "profile.html#reservas";
-        } else {
-          
-            localStorage.setItem("redirectAfterLogin", "profile.html#reservas");
-            
-            window.location.href = "Login.html";
-        }
-    }
-});

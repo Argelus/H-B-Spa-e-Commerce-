@@ -12,7 +12,7 @@ main {
 /* Contenedor principal */
 .form-wrapper {
   width: 100%;
-  max-width: autos;
+  max-width: 100%;
   margin: 0 auto;
   background: var(--blanco);
   border-radius: 16px;
@@ -87,9 +87,11 @@ main {
 }
 /* css para las cards de servicios: */
 .services-grid {
+  background: transparent;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 2rem;
+  cursor: default;
 }
 
 .service-card {
@@ -121,7 +123,7 @@ main {
 .service-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(255, 255, 255, 0.6);
+  background:white;
   backdrop-filter: blur(8px);
   color: #333;
   padding: 1rem;
