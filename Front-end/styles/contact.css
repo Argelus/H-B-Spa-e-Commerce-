@@ -4,6 +4,14 @@
    ======================================== */
 
 /* ========================================
+   FONDO DE LA PÁGINA
+   ======================================== */
+body {
+  background: linear-gradient(135deg, var(--arena-suave), var(--sal-marina));
+  min-height: 100vh;
+}
+
+/* ========================================
    HERO / ENCABEZADO DE CONTACTO
    ======================================== */
 .pt-5 {
@@ -16,38 +24,6 @@
 
 .pb-5 {
   padding-bottom: 4rem !important;
-}
-
-/* Mejorar espaciado entre secciones */
-.container > .row {
-  margin-bottom: 2rem;
-}
-
-/* Asegurar que todas las columnas tengan el mismo comportamiento */
-.container .row .col-lg-6 {
-  display: flex;
-  flex-direction: column;
-}
-
-/* Hacer que las tarjetas llenen completamente el espacio disponible */
-.col-lg-6 .card {
-  width: 100%;
-  flex: 1;
-}
-
-/* Alinear todas las filas con align-items-stretch */
-.row.g-5,
-.row.align-items-stretch {
-  align-items: stretch !important;
-  display: flex;
-  flex-wrap: wrap;
-}
-
-/* Asegurar que h-100 y d-flex funcionen correctamente */
-.h-100.d-flex {
-  display: flex !important;
-  height: 100% !important;
-  flex: 1;
 }
 
 /* Título principal de la página */
@@ -77,8 +53,7 @@
 /* ========================================
    ANIMACIONES
    ======================================== */
-.contact-card,
-.embed-card {
+.contact-card {
   animation: fadeInUp 0.6s ease-out;
 }
 
@@ -88,14 +63,6 @@
 
 .contact-card:nth-child(2) {
   animation-delay: 0.2s;
-}
-
-.embed-card:nth-child(1) {
-  animation-delay: 0.3s;
-}
-
-.embed-card:nth-child(2) {
-  animation-delay: 0.4s;
 }
 
 @keyframes fadeInUp {
@@ -122,7 +89,7 @@
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08) !important;
   display: flex;
   flex-direction: column;
-  min-height: 100%;
+  height: 100%;
 }
 
 .contact-card::before {
@@ -214,8 +181,8 @@
 }
 
 #contactForm textarea.form-control {
-  min-height: 150px;
-  resize: none; /* Eliminar la posibilidad de redimensionar */
+  min-height: 120px;
+  resize: vertical;
 }
 
 #contactForm .invalid-feedback {
@@ -281,66 +248,63 @@
    INFORMACIÓN DE CONTACTO
    ======================================== */
 .contact-details-wrapper {
-  margin-bottom: 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
 }
 
-.contact-info-item,
-.d-flex.align-items-start {
+.contact-info-item {
   display: flex;
-  align-items: start;
-  margin-bottom: 1.5rem;
-  padding: 1.2rem;
+  align-items: flex-start;
+  padding: 1rem;
   border-radius: 15px;
   transition: all 0.3s ease;
   background: rgba(245, 237, 228, 0.3);
   border: 1px solid transparent;
 }
 
-.contact-info-item:hover,
-.d-flex.align-items-start:hover {
+.contact-info-item:hover {
   background: var(--arena-suave);
   transform: translateX(5px);
   border-color: rgba(110, 191, 195, 0.2);
   box-shadow: 0 5px 15px rgba(110, 191, 195, 0.1);
 }
 
-.contact-info-item i,
-.d-flex.align-items-start i {
-  font-size: 1.8rem;
+.contact-info-item i {
+  font-size: 1.5rem;
   color: var(--turquesa-pastel);
-  margin-right: 1.2rem;
   min-width: 45px;
   text-align: center;
   transition: transform 0.3s ease;
   background: rgba(110, 191, 195, 0.1);
-  width: 50px;
-  height: 50px;
+  width: 45px;
+  height: 45px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-right: 1rem;
+  flex-shrink: 0;
 }
 
-.contact-info-item:hover i,
-.d-flex.align-items-start:hover i {
+.contact-info-item:hover i {
   transform: scale(1.1) rotate(5deg);
   background: rgba(110, 191, 195, 0.2);
 }
 
-.contact-info-item h5,
-.d-flex.align-items-start h5 {
+.contact-info-item h5 {
   color: var(--gris-humo);
   font-weight: 700;
-  margin-bottom: 0.4rem;
-  font-size: 1.1rem;
+  margin-bottom: 0.3rem;
+  font-size: 1rem;
 }
 
-.contact-info-item p,
-.d-flex.align-items-start p {
+.contact-info-item p {
   color: var(--gris-humo);
   margin: 0;
-  font-size: 0.95rem;
-  line-height: 1.7;
+  font-size: 0.9rem;
+  line-height: 1.6;
 }
 
 .contact-info-item a {
@@ -356,96 +320,11 @@
 }
 
 /* ========================================
-   MAPA (si se incluye)
-   ======================================== */
-.map-container {
-  border-radius: 25px;
-  overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  height: 400px;
-  margin-top: 2rem;
-}
-
-.map-container iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
-}
-
-/* ========================================
-   TARJETAS DE RESEÑAS Y MAPA
-   ======================================== */
-.embed-card {
-  border-radius: 25px;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  background: var(--blanco);
-  overflow: hidden;
-  position: relative;
-  border: 1px solid rgba(110, 191, 195, 0.1);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08) !important;
-  display: flex;
-  flex-direction: column;
-  min-height: 100%;
-  height: 100%;
-}
-
-.embed-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, var(--turquesa-pastel), var(--lila-rosa));
-  z-index: 10;
-  transition: all 0.4s ease;
-}
-
-.embed-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 45px rgba(110, 191, 195, 0.25) !important;
-  border-color: rgba(110, 191, 195, 0.3);
-}
-
-.embed-card:hover::before {
-  height: 6px;
-}
-
-.embed-card .card-body {
-  padding: 0 !important;
-  min-height: 420px;
-  height: 100%;
-  display: flex;
-  align-items: stretch;
-  justify-content: center;
-  flex: 1;
-}
-
-/* Widget de Elfsight (reseñas de Google) */
-.elfsight-app-fe189f22-bf26-437b-aed6-dda28d5e9e47,
-.embed-card .card-body > div {
-  width: 100%;
-  min-height: 420px;
-  height: 100%;
-  display: flex;
-}
-
-/* Asegurar que el iframe y el widget ocupen todo el espacio */
-.mapa-redondeado,
-.embed-card .card-body iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
-  min-height: 420px;
-  flex: 1;
-}
-
-/* ========================================
    BLOQUE DE REDES SOCIALES
    ======================================== */
 .social-media-block {
   padding: 1.5rem;
-  margin-top: 1.5rem;
+  margin-top: auto;
   border-top: 2px solid rgba(110, 191, 195, 0.15);
   background: rgba(245, 237, 228, 0.3);
   border-radius: 15px;
@@ -455,93 +334,43 @@
   color: var(--gris-humo);
   font-weight: 700;
   margin-bottom: 1rem;
-  font-size: 1.1rem;
-}
-
-.social-media-block .d-flex {
-  justify-content: center;
-}
-
-/* Ajustar la información de contacto */
-.contact-info-item i {
-  color: var(--turquesa-pastel);
-}
-
-.text-accent-teal {
-  color: var(--turquesa-pastel) !important;
+  font-size: 1rem;
+  text-align: center;
 }
 
 /* ========================================
-   SECCIÓN DE HORARIOS
+   TARJETA DE MAPA
    ======================================== */
-.schedule-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+.map-card {
+  border-radius: 25px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  height: 450px;
+  border: 1px solid rgba(110, 191, 195, 0.1);
+  position: relative;
+  transition: all 0.4s ease;
 }
 
-.schedule-list li {
-  display: flex;
-  justify-content: space-between;
-  padding: 0.8rem 1rem;
-  border-bottom: 1px solid #e0e0e0;
-  transition: all 0.3s ease;
+.map-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--turquesa-pastel), var(--lila-rosa));
+  z-index: 10;
 }
 
-.schedule-list li:last-child {
-  border-bottom: none;
-}
-
-.schedule-list li:hover {
-  background: var(--arena-suave);
-  padding-left: 1.5rem;
-}
-
-.schedule-list .day {
-  font-weight: 600;
-  color: var(--gris-humo);
-}
-
-.schedule-list .time {
-  color: var(--turquesa-pastel);
-  font-weight: 500;
-}
-
-/* ========================================
-   FAQ / PREGUNTAS FRECUENTES
-   ======================================== */
-.faq-item {
-  background: var(--blanco);
-  border-radius: 15px;
-  padding: 1.5rem;
-  margin-bottom: 1rem;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-  transition: all 0.3s ease;
-}
-
-.faq-item:hover {
+.map-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(110, 191, 195, 0.2);
+  box-shadow: 0 15px 40px rgba(110, 191, 195, 0.2);
 }
 
-.faq-item h5 {
-  color: var(--gris-humo);
-  font-weight: 700;
-  margin-bottom: 0.8rem;
-  display: flex;
-  align-items: center;
-}
-
-.faq-item h5 i {
-  color: var(--turquesa-pastel);
-  margin-right: 0.8rem;
-  font-size: 1.3rem;
-}
-
-.faq-item p {
-  color: var(--gris-humo);
-  margin: 0;
-  line-height: 1.7;
+.mapa-redondeado {
+  width: 100%;
+  height: 100%;
+  border: none;
 }
 
 /* ========================================
@@ -550,10 +379,6 @@
 @media (max-width: 992px) {
   .contact-card .card-body {
     padding: 2rem !important;
-  }
-
-  .contact-info-item {
-    margin-bottom: 1.5rem;
   }
 
   .pt-5 {
@@ -580,24 +405,17 @@
   }
 
   .contact-info-item {
-    padding: 0.8rem;
+    padding: 1rem;
   }
 
   .contact-info-item i {
-    font-size: 1.5rem;
-    margin-right: 1rem;
+    font-size: 1.3rem;
+    width: 40px;
+    height: 40px;
   }
 
-  .map-container {
-    height: 320px;
-  }
-
-  .embed-card .card-body,
-  .elfsight-app-fe189f22-bf26-437b-aed6-dda28d5e9e47,
-  .embed-card .card-body > div,
-  .mapa-redondeado,
-  .embed-card .card-body iframe {
-    min-height: 360px;
+  .map-card {
+    height: 350px;
   }
 }
 
@@ -626,15 +444,7 @@
     margin-bottom: 0.8rem;
   }
 
-  .map-container {
-    height: 280px;
-  }
-
-  .embed-card .card-body,
-  .elfsight-app-fe189f22-bf26-437b-aed6-dda28d5e9e47,
-  .embed-card .card-body > div,
-  .mapa-redondeado,
-  .embed-card .card-body iframe {
-    min-height: 300px;
+  .map-card {
+    height: 300px;
   }
 }
