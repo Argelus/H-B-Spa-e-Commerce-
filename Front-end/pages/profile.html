@@ -273,11 +273,15 @@
 
 <script>
   // Navegación de secciones
-  function mostrarSeccion(id) {
-    const secciones = ['datos', 'password', 'reservas', 'historial'];
-    secciones.forEach(sec => document.getElementById(sec).classList.add('d-none'));
-    document.getElementById(id).classList.remove('d-none');
-  }
+function mostrarSeccion(id) {
+  const secciones = ['datos', 'password', 'reservas', 'historial'];
+  secciones.forEach(sec => {
+    const el = document.getElementById(sec);
+    if (el) el.classList.add('d-none');
+  });
+  const activa = document.getElementById(id);
+  if (activa) activa.classList.remove('d-none');
+}
 </script>
 
 <!-- Lógica del perfil -->
