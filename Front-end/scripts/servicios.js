@@ -92,7 +92,7 @@ function mostrarServicios(categoria) {
   filtrados.forEach(s => {
     const imagenUrl = s.imagen?.startsWith("http") ? s.imagen : `../images/${s.imagen}`;
     const card = document.createElement("div");
-    card.className = "service-card fade-in";
+    card.className = "service-card";
 
     card.innerHTML = `
       <div class="service-image" style="background-image: url('${imagenUrl}')"></div>
