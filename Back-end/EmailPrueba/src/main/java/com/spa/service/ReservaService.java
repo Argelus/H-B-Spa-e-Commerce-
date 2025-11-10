@@ -16,7 +16,7 @@ public class ReservaService {
         this.reservaRepository = reservaRepository;
     }
 
-    // 🟢 Crear nueva reserva (solo si no existe otra igual en la misma fecha/hora)
+    // Crear nueva reserva (solo si no existe otra igual en la misma fecha/hora)
     public Reserva crearReserva(Reserva reserva) {
         boolean existe = reservaRepository.existsByFechaReservaAndHoraReservaAndSpaServiceId(
                 reserva.getFechaReserva(),
@@ -32,27 +32,27 @@ public class ReservaService {
         return reservaRepository.save(reserva);
     }
 
-    // 🟣 Listar todas las reservas
+    //  Listar todas las reservas
     public List<Reserva> listarTodas() {
         return reservaRepository.findAll();
     }
 
-    // 🔵 Listar reservas por usuario
+    //  Listar reservas por usuario
     public List<Reserva> listarPorUsuario(Long usuarioId) {
         return reservaRepository.findByUsuarioId(usuarioId);
     }
 
-    // 🟡 Listar reservas por estado
+    // Listar reservas por estado
     public List<Reserva> listarPorEstado(String estado) {
         return reservaRepository.findByEstado(estado);
     }
 
-    // 🔶 Buscar reserva por ID
+    //  Buscar reserva por ID
     public Optional<Reserva> buscarPorId(Long id) {
         return reservaRepository.findById(id);
     }
 
-    // 🟠 Actualizar estado de una reserva (ej. CONFIRMADA, CANCELADA)
+    //  Actualizar estado de una reserva (ej. CONFIRMADA, CANCELADA)
     public Reserva actualizarEstado(Long id, String nuevoEstado) {
         Reserva reserva = reservaRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Reserva no encontrada"));
@@ -60,7 +60,7 @@ public class ReservaService {
         return reservaRepository.save(reserva);
     }
 
-    // 🔴 Eliminar una reserva
+    // Eliminar una reserva
     public void eliminarReserva(Long id) {
         reservaRepository.deleteById(id);
     }

@@ -1,4 +1,4 @@
-// 📦 Paquete donde se encuentra esta clase
+// Paquete donde se encuentra esta clase
 package com.spa.model;
 
 import jakarta.persistence.*;
@@ -25,17 +25,17 @@ public class Product {
     @Column(nullable = false)
     private Integer stock;
 
-    // ⚗️ Contenido del producto (ej. "250 ml", "100 mg", etc.)
+    //  Contenido del producto (ej. "250 ml", "100 mg", etc.)
     @Column(length = 50)
     private String contenido;
 
-    // 🏷️ Relación con Categoría
+    // Relación con Categoría
     @ManyToOne
     @JoinColumn(name = "category_id")
     @JsonBackReference
     private Category category;
 
-    // 🖼️ URL de la imagen del producto
+    // URL de la imagen del producto
     @Column(length = 500)
     private String imageUrl;
 

@@ -19,7 +19,7 @@ public class ImageController {
             String imageUrl = imageService.uploadImage(file);
             return ResponseEntity.ok(imageUrl);
         } catch (Exception e) {
-            return ResponseEntity.status(500).body("❌ Error al subir la imagen: " + e.getMessage());
+            return ResponseEntity.status(500).body("Error al subir la imagen: " + e.getMessage());
         }
     }
 }

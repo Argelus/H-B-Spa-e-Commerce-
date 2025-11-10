@@ -28,7 +28,7 @@ public class ReservaController {
         this.usuarioService = usuarioService;
     }
 
-    // 🟢 Crear una nueva reserva: EL USUARIO VIENE DEL TOKEN
+    // Crear una nueva reserva: EL USUARIO VIENE DEL TOKEN
     @PostMapping
     public ResponseEntity<Reserva> crearReserva(@RequestBody Reserva reserva, Authentication auth) {
         if (reserva.getSpaService() == null || reserva.getSpaService().getId() == null) {
@@ -37,7 +37,7 @@ public class ReservaController {
 
         // 1) Resolver usuario autenticado por username (del JWT)
         Usuario u = usuarioService.buscarPorUsername(auth.getName());
-        reserva.setUsuario(u); // 👈 ignoramos cualquier 'usuario' que venga en el body
+        reserva.setUsuario(u); //  ignoramos cualquier 'usuario' que venga en el body
 
         // 2) Crear reserva
         Reserva nuevaReserva = reservaService.crearReserva(reserva);
@@ -60,38 +60,38 @@ public class ReservaController {
         return ResponseEntity.ok(nuevaReserva);
     }
 
-    // 🔵 Todas (según permisos en SecurityConfig)
+    // Todas (según permisos en SecurityConfig)
     @GetMapping
     public ResponseEntity<List<Reserva>> listarTodas() {
         return ResponseEntity.ok(reservaService.listarTodas());
     }
 
-    // 🟣 Por usuario (ID explícito)
+    // Por usuario (ID explícito)
     @GetMapping("/usuario/{usuarioId}")
     public ResponseEntity<List<Reserva>> listarPorUsuario(@PathVariable Long usuarioId) {
         return ResponseEntity.ok(reservaService.listarPorUsuario(usuarioId));
     }
 
-    // ✅ Mis reservas (usuario autenticado)
+    // Mis reservas (usuario autenticado)
     @GetMapping("/mias")
     public ResponseEntity<List<Reserva>> listarMias(Authentication auth) {
         Usuario u = usuarioService.buscarPorUsername(auth.getName());
         return ResponseEntity.ok(reservaService.listarPorUsuario(u.getId()));
     }
 
-    // 🟡 Por estado
+    // Por estado
     @GetMapping("/estado/{estado}")
     public ResponseEntity<List<Reserva>> listarPorEstado(@PathVariable String estado) {
         return ResponseEntity.ok(reservaService.listarPorEstado(estado));
     }
 
-    // 🟠 Actualizar estado
+    // Actualizar estado
     @PutMapping("/{id}/estado")
     public ResponseEntity<Reserva> actualizarEstado(@PathVariable Long id, @RequestParam String estado) {
         return ResponseEntity.ok(reservaService.actualizarEstado(id, estado));
     }
 
-    // 🔴 Eliminar
+    // Eliminar
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> eliminarReserva(@PathVariable Long id) {
         reservaService.eliminarReserva(id);

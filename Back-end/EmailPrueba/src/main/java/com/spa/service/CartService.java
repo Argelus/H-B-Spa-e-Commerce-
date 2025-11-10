@@ -15,18 +15,18 @@ public class CartService {
     private final CartRepository cartRepository;
     private final ProductRepository productRepository;
 
-    // ✅ Inyección por constructor (mejor práctica que @Autowired en campos)
+    // Inyección por constructor
     public CartService(CartRepository cartRepository, ProductRepository productRepository) {
         this.cartRepository = cartRepository;
         this.productRepository = productRepository;
     }
 
-    // 🟢 Obtener todos los ítems del carrito
+    // Obtener todos los ítems del carrito
     public List<CartItem> getAllItems() {
         return cartRepository.findAll();
     }
 
-    // 🟣 Agregar producto al carrito
+    // Agregar producto al carrito
     public CartItem addItem(Long productId, int quantity) {
         Product product = productRepository.findById(productId)
                 .orElseThrow(() -> new RuntimeException("Producto no encontrado"));
@@ -52,7 +52,7 @@ public class CartService {
         return cartRepository.save(newItem);
     }
 
-    // 🟠 Actualizar cantidad de un producto específico
+    // Actualizar cantidad de un producto específico
     public CartItem updateQuantity(Long id, int quantity) {
         CartItem item = cartRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Elemento no encontrado"));
@@ -62,7 +62,7 @@ public class CartService {
         return cartRepository.save(item);
     }
 
-    // 🔴 Eliminar un ítem del carrito
+    // Eliminar un ítem del carrito
     public void removeItem(Long id) {
         if (!cartRepository.existsById(id)) {
             throw new RuntimeException("El elemento no existe en el carrito");
@@ -70,12 +70,12 @@ public class CartService {
         cartRepository.deleteById(id);
     }
 
-    // 🧹 Vaciar carrito
+    // Vaciar carrito
     public void clearCart() {
         cartRepository.deleteAll();
     }
 
-    // 💰 Calcular total del carrito
+    // Calcular total del carrito
     public BigDecimal calculateTotal() {
         return cartRepository.findAll().stream()
                 .map(CartItem::getTotalPrice)

@@ -1,4 +1,4 @@
-// 📦 Paquete donde estará el seeder
+//Paquete donde estará el seeder
 package com.spa.seeders;
 
 import com.spa.model.Product;
@@ -21,7 +21,7 @@ public class ProductSeeder implements CommandLineRunner {
     public void run(String... args) {
         if (productRepository.count() == 0) {
 
-            System.out.println("🌱 Cargando productos iniciales en la base de datos...");
+            System.out.println("Cargando productos iniciales en la base de datos...");
 
 //            Product p1 = new Product(
 //                    "Masaje Relajante",
@@ -69,9 +69,9 @@ public class ProductSeeder implements CommandLineRunner {
 //            productRepository.save(p4);
 //            productRepository.save(p5);
 
-            System.out.println("✅ Productos iniciales insertados correctamente.");
+            System.out.println("Productos iniciales insertados correctamente.");
         } else {
-            System.out.println("✅ Productos ya existentes, no se inserta nada nuevo.");
+            System.out.println("Productos ya existentes, no se inserta nada nuevo.");
         }
     }
 }

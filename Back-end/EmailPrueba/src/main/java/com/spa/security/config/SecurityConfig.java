@@ -38,7 +38,7 @@ public class SecurityConfig {
                         // CORS preflight
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
 
-                        // 🔓 HAZ PÚBLICO TODO auth (login/register/forgot/reset y variantes)
+                        //  HAZ PÚBLICO TODO auth (login/register/forgot/reset y variantes)
                         .requestMatchers("/api/auth/**").permitAll()
 
                         // Catálogo público (GET)
@@ -52,18 +52,18 @@ public class SecurityConfig {
                         // Envío de contacto/email
                         .requestMatchers(HttpMethod.POST, "/api/email/enviar").permitAll()
 
-                        // ✅ Reservas (crear/consultar → autenticado)
+                        //  Reservas (crear/consultar → autenticado)
                         .requestMatchers(HttpMethod.POST, "/api/reservas/**").hasAnyAuthority("ROLE_USER","ROLE_ADMIN")
                         .requestMatchers(HttpMethod.GET,  "/api/reservas/**").hasAnyAuthority("ROLE_USER","ROLE_ADMIN")
 
-                        // ✅ Órdenes
+                        // Órdenes
                         .requestMatchers("/api/orders/**").hasAnyAuthority("ROLE_USER","ROLE_ADMIN")
 
-                        // ✅ Usuarios (perfil/historial y cambio de contraseña propio)
+                        // Usuarios (perfil/historial y cambio de contraseña propio)
                         .requestMatchers(HttpMethod.GET, "/api/usuarios/**").hasAnyAuthority("ROLE_USER","ROLE_ADMIN")
                         .requestMatchers(HttpMethod.PUT, "/api/usuarios/me/password").hasAnyAuthority("ROLE_USER","ROLE_ADMIN")
 
-                        // 🧠 Admin
+                        // Admin
                         .requestMatchers(HttpMethod.POST, "/api/images/upload").hasAuthority("ROLE_ADMIN")
                         .requestMatchers(HttpMethod.POST,
                                 "/api/products/**","/api/categories/**",

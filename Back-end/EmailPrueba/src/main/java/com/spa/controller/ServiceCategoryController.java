@@ -18,21 +18,21 @@ public class ServiceCategoryController {
         this.serviceCategoryService = serviceCategoryService;
     }
 
-    // 🟢 Crear una nueva categoría
+    //Crear una nueva categoría
     @PostMapping
     public ResponseEntity<ServiceCategory> create(@RequestBody ServiceCategory category) {
         ServiceCategory nuevaCategoria = serviceCategoryService.create(category);
         return ResponseEntity.ok(nuevaCategoria);
     }
 
-    // 🔵 Listar todas las categorías
+    // Listar todas las categorías
     @GetMapping
     public ResponseEntity<List<ServiceCategory>> findAll() {
         List<ServiceCategory> categorias = serviceCategoryService.findAll();
         return ResponseEntity.ok(categorias);
     }
 
-    // 🟣 Buscar por ID
+    //Buscar por ID
     @GetMapping("/{id}")
     public ResponseEntity<ServiceCategory> findById(@PathVariable Long id) {
         return serviceCategoryService.findById(id)
@@ -40,14 +40,14 @@ public class ServiceCategoryController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    // 🟠 Actualizar una categoría existente
+    // Actualizar una categoría existente
     @PutMapping("/{id}")
     public ResponseEntity<ServiceCategory> update(@PathVariable Long id, @RequestBody ServiceCategory category) {
         ServiceCategory actualizada = serviceCategoryService.update(id, category);
         return ResponseEntity.ok(actualizada);
     }
 
-    // 🔴 Eliminar una categoría
+    //  Eliminar una categoría
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         serviceCategoryService.delete(id);
