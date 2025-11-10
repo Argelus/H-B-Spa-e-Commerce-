@@ -67,9 +67,6 @@ h1, h2, h3, h4, h5, h6 {
     margin-top: 0;
     margin-bottom: 0.7em;
     font-weight: 800;
-    /* transform: scale(1); */
-    /* transform-origin: left-top; */
-    /* display: inline-block; */
     letter-spacing: 0.02em;
     line-height: 1.2;
     text-shadow: 0 1px 2px rgba(245,237,228,0.15);
@@ -105,7 +102,6 @@ nav a:hover, nav a:focus {
     color: var(--turquesa-pastel);
 }
 
-/* ===== ESTILOS PARA NAVBAR BOOTSTRAP ===== */
 
 .no-transition * {
     transition: none !important;
@@ -186,7 +182,6 @@ nav a:hover, nav a:focus {
     width: 80%;
 }
 
-/* Estilos para el botón hamburguesa */
 .navbar-toggler {
     border: 2px solid var(--turquesa-pastel);
     padding: 0.5rem 0.75rem;
@@ -221,7 +216,6 @@ nav a:hover, nav a:focus {
     box-shadow: 0 0 0 0.2rem rgba(110, 191, 195, 0.25);
 }
 
-/* Rotación del botón cuando el menú está abierto */
 .navbar-toggler[aria-expanded="true"] {
     transform: rotate(90deg);
 }
@@ -241,7 +235,7 @@ nav a:hover, nav a:focus {
     transform: scale(1.1);
 }
 
-/* Estilos para el menú colapsado en móvil */
+
 @media (max-width: 991.98px) {
     .navbar-collapse {
         background: linear-gradient(135deg, #ffffff 0%, var(--arena-suave) 100%);
@@ -301,7 +295,6 @@ nav a:hover, nav a:focus {
     }
 }
 
-/* ===== FIN ESTILOS NAVBAR ===== */
 
 .section-wide {
     background-color: var(--arena-suave);
@@ -313,7 +306,6 @@ nav a:hover, nav a:focus {
     border-radius: var(--radius);
     box-shadow: var(--shadow-card);
     padding: 1.5em;
-    /* ⚠️ Este es el margin que estamos anulando con la regla superior ⚠️ */
     margin-bottom: 2em; 
 }
 
@@ -388,8 +380,6 @@ nav a:hover, nav a:focus {
     perspective: 1000px; 
 }
 
-/* Estilo de cards */
-
 .equipo-card .card-footer {
     background-color: transparent; 
     border-top: none; 
@@ -406,7 +396,6 @@ nav a:hover, nav a:focus {
     transition: color 0.3s ease;
 }
 
-/* Botones redes sociales pag contacto */
 
 .social-icon{
     color: var(--gris-humo);
@@ -423,30 +412,29 @@ nav a:hover, nav a:focus {
     background-color: var(--rosa-petalo);
     border-color: var(--rosa-petalo);
 }
-/* Scroll de la caja de texto de contacto*/
+
 .form-control{
     overflow-y: scroll;
     resize: vertical;
 }
 .mapa-redondeado {
-    border-radius: var(--radius); /* usa tu variable global (12px) */
+    border-radius: var(--radius); 
     overflow: hidden;
 }
 
-/* ===== CARRUSEL 3D ===== */
 
 .carousel-3d-container {
     position: relative;
     width: 100%;
-    max-width: 1400px; /* Ancho máximo para contener las 3 cards */
+    max-width: 1400px; 
     height: 700px;
     perspective: 1500px;
-    overflow: hidden; /* oculta todo lo que salga del contenedor */
+    overflow: hidden; 
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 60px 0;
-    margin: 0 auto 3rem auto; /* Centrado horizontal */
+    margin: 0 auto 3rem auto; 
 }
 
 .carousel-3d {
@@ -456,7 +444,7 @@ nav a:hover, nav a:focus {
     transform-style: preserve-3d;
 }
 
-/* Centrado usando transform */
+
 .carousel-card {
     position: absolute;
     left: 50%;
@@ -464,10 +452,10 @@ nav a:hover, nav a:focus {
     transform-origin: center center;
     transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
     width: 320px;
-    will-change: transform, opacity; /* Optimización de rendering */
+    will-change: transform, opacity; 
 }
 
-/* Estados del carrusel */
+
 .carousel-card.active {
     transform: translate(-50%, -50%) translateX(0) translateZ(0) rotateY(0deg) scale(1);
     opacity: 1;
@@ -505,13 +493,11 @@ nav a:hover, nav a:focus {
     pointer-events: none;
 }
 
-/* Efecto de blur en transición */
 .carousel-card.transitioning {
     filter: blur(6px) !important;
     opacity: 0.4;
 }
 
-/* Controles del carrusel */
 .carousel-controls {
     position: absolute;
     width: 100%;
@@ -554,14 +540,13 @@ nav a:hover, nav a:focus {
     color: var(--gris-humo);
 }
 
-/* Estilos específicos para las cards en el carrusel */
+
 .carousel-card .equipo-card {
     height: 100%;
     background-color: var(--sal-marina);
     box-shadow: 0 12px 45px rgba(74, 74, 74, 0.15);
     transition: all 0.4s ease;
     border-radius: var(--radius);
-    /* Backface oculto para mejor rendering 3D */
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
 }
@@ -576,9 +561,9 @@ nav a:hover, nav a:focus {
     border-top-right-radius: var(--radius);
 }
 
-/* Mejora en el footer de las cards */
+
 .carousel-card .equipo-card .card-footer a {
-    transition: all 0.3s ease; /* Transición suave */
+    transition: all 0.3s ease; 
 }
 
 .carousel-card .equipo-card .card-footer a:hover {
@@ -587,7 +572,6 @@ nav a:hover, nav a:focus {
     display: inline-block;
 }
 
-/* Indicador de posición */
 .carousel-indicator {
     position: absolute;
     bottom: 20px;
@@ -619,7 +603,7 @@ nav a:hover, nav a:focus {
     transform: scale(1.3);
 }
 
-/* Responsive */
+
 @media (max-width: 768px) {
     .carousel-3d-container {
         height: 550px;
@@ -663,7 +647,6 @@ nav a:hover, nav a:focus {
         filter: blur(3px);
     }
     
-    /* En móvil, ocultar cards laterales completamente */
     .carousel-card.next {
         transform: translate(-50%, -50%) translateX(300px) translateZ(-250px) rotateY(-25deg) scale(0.7);
     }
@@ -677,25 +660,22 @@ nav a:hover, nav a:focus {
 .form-control.is-valid {
   background-image: none !important;
 }
-/* ===== ESTILOS PARA FLEXBOX & IGUALAR ALTURAS ===== */
-/* Anula el margin-bottom para las cards dentro de un contenedor flex */
+
 .row.g-5.d-flex .card {
-    margin-bottom: 0; /* Elimina el margen inferior cuando las cards están alineadas */
+    margin-bottom: 0; 
 }
-/* Asegura que el contenedor de los detalles y redes sociales se expanda al máximo */
+
 .contact-details-wrapper {
-    flex-grow: 1; /* Esto hace que el div ocupe todo el espacio libre */
+    flex-grow: 1; 
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Distribuye el espacio entre detalles y redes */
+    justify-content: space-between; 
 }
 
-
-/* Boton preg. frecuentes */
 
 .faq-floating-btn {
     position: fixed;
-    right: 30px; /* mover a la esquina inferior derecha */
+    right: 30px; 
     bottom: 30px;
     width: 60px;
     height: 60px;
@@ -706,8 +686,7 @@ nav a:hover, nav a:focus {
     font-size: 28px;
     cursor: pointer;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    z-index: 900; /* debe quedar debajo del cart-preview (que usa z-index:1000 en common.css)
-                   aseguramos coherencia con common.css */
+    z-index: 900; 
     transition: all 0.3s ease;
     display: flex;
     align-items: center;
@@ -723,12 +702,6 @@ nav a:hover, nav a:focus {
 .faq-floating-btn:active {
     transform: scale(0.95);
 }
-
-/*  MODAL */
-
-/* Nota: la definición del overlay/modal de FAQ se mantiene en `common.css`.
-   Se eliminó la versión comentada aquí porque contenía comentarios anidados
-   que rompían el parsing del CSS y provocaban pérdida de estilos. */
 
 .accordion-item {
     background-color: var(--sal-marina);

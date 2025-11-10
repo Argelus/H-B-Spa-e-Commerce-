@@ -15,7 +15,6 @@
 </head>
 <body>
 
-<!-- 🟢 NAVBAR -->
 <nav class="navbar navbar-expand-lg fixed-top navbar-dark navbar-overlay py-3">
   <div class="container">
     <a class="navbar-brand fw-bold" href="../index.html">H&B SPA</a>
@@ -53,12 +52,10 @@
   </div>
 </nav>
 
-<!-- 🧑 Perfil -->
 <section class="py-5 perfil-section" style="background: linear-gradient(to bottom, var(--sal-marina), var(--lila-rosa)); margin-top: 80px;">
   <div class="container-fluid">
     <div class="row d-flex align-items-stretch">
 
-      <!-- Panel izquierdo -->
       <div class="col-lg-3 mb-4 h-100">
         <div class="glass-card p-4 shadow rounded text-center h-100 d-flex flex-column align-items-center">
           <img src="https://images.icon-icons.com/2483/PNG/512/user_icon_149851.png" alt="Foto de perfil" class="rounded-circle mb-3" width="120" height="120">
@@ -66,8 +63,6 @@
           <h4 class="fw-bold perfil-nombre" style="color: var(--gris-humo);">—</h4>
           <p class="text-muted mb-1 perfil-email">—</p>
          
-
-          <!-- Navegación interna -->
           <div class="d-grid gap-3 mt-4 w-100">
             <button class="btn btn-outline-light btn-panel rounded-pill" onclick="mostrarSeccion('datos')">
               <i class="bi bi-person-lines-fill me-2"></i>Modificar datos personales
@@ -85,9 +80,7 @@
         </div>
       </div>
 
-      <!-- Panel derecho -->
       <div class="col-lg-9 h-100">
-        <!-- Datos -->
         <div id="datos" class="glass-card p-4 shadow rounded animate-login mb-5">
           <h4 class="fw-bold mb-3">Modificar datos personales</h4>
           <form id="formDatos" class="row g-3">
@@ -110,7 +103,6 @@
           </form>
         </div>
 
-        <!-- Password -->
         <div id="password" class="glass-card p-4 shadow rounded animate-login mb-5 d-none">
           <h4 class="fw-bold mb-3">Cambiar contraseña</h4>
           <form id="formPassword" class="row g-3">
@@ -132,8 +124,6 @@
           </form>
         </div>
 
-        <!-- Reservas -->
-
         <div id="reservas" class="glass-card p-4 shadow rounded animate-login mb-5 d-none">
           <h4 class="fw-bold mb-3">Mis reservas</h4>
           <ul id="listaReservas" class="list-group"></ul>
@@ -145,19 +135,15 @@
           <p>Agenda tu servicio de spa y bienestar fácilmente.</p>
         </div>
 
-        <!-- Alertas -->
         <div id="alertSuccess" class="alert alert-success" role="alert"></div>
         <div id="alertError" class="alert alert-error" role="alert"></div>
 
-        <!-- Formulario -->
         <form id="reservaForm" class="fade-in hidden">
-          <!-- Servicio seleccionado -->
           <section class="form-section">
             <h2 class="section-title"><span class="icon"></span>Servicio Seleccionado:</h2>
             <h3 id="servicioSeleccionadoTexto" class="fw-bold text-turquesa">Cargando servicio...</h3>
           </section>
 
-          <!-- Datos del usuario -->
           <section class="form-section">
             <h2 class="section-title"><span class="icon">👤</span>Tus Datos</h2>
             <div class="form-row">
@@ -174,7 +160,6 @@
             </div>
           </section>
 
-          <!-- Fecha y hora -->
           <section class="form-section">
             <h2 class="section-title"><span class="icon">📅</span>Agenda tu Cita</h2>
             <div class="form-row">
@@ -189,7 +174,6 @@
             </div>
           </section>
 
-          <!-- Notas -->
           <section class="form-section">
             <h2 class="section-title"><span class="icon">📝</span>Información Adicional (Opcional)</h2>
             <div class="form-group">
@@ -198,14 +182,12 @@
             </div>
           </section>
 
-          <!-- Botón de envío -->
           <button type="submit" class="btn-submit" id="submitBtn">📅 Confirmar mi Reserva</button>
         </form>
       </div>
     </section>
         </div>
 
-        <!-- Historial -->
         <div id="historial" class="glass-card p-4 shadow rounded animate-login mb-5 d-none">
           <h4 class="fw-bold mb-3">Historial de compras</h4>
           <ul id="listaOrdenes" class="list-group"></ul>
@@ -216,7 +198,7 @@
   </div>
 </section>
 
-<!-- 🟢 FOOTER -->
+
 <footer class="pt-5 pb-3" id="contacto" style="margin-top: 0;">
   <div class="container">
     <div class="d-flex justify-content-evenly flex-wrap text-center text-md-start">
@@ -266,11 +248,9 @@
   </div>
 </footer>
 
-<!-- Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
-  // Navegación de secciones
 function mostrarSeccion(id) {
   const secciones = ['datos', 'password', 'reservas', 'historial'];
   secciones.forEach(sec => {
@@ -282,7 +262,6 @@ function mostrarSeccion(id) {
 }
 </script>
 
-<!-- Lógica del perfil -->
 <script defer src="../scripts/profile.js"></script>
 </body>
 </html>

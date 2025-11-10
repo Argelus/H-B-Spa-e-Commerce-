@@ -92,7 +92,6 @@ function renderFAQ(containerId, accordionId = 'faqAccordion', idPrefix = 'faq') 
     return;
   }
 
-  // Crear el accordion completo
   const accordionHTML = `
     <div class="accordion" id="${accordionId}">
       ${generateFAQHTML(accordionId, idPrefix)}
@@ -115,7 +114,6 @@ function initAutoFAQ() {
   });
 }
 
-// Auto-inicializar cuando el DOM esté listo
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', initAutoFAQ);
 } else {

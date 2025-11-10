@@ -1,23 +1,20 @@
 // scripts/recuperacion.js
 document.addEventListener("DOMContentLoaded", () => {
-  // Fija tu API base (puedes setearlo globalmente en index.html)
   const API_BASE = localStorage.getItem("API_BASE") || "http://localhost:8080/api";
 
-  // Paso 1
+  // 1
   const formEmail = document.getElementById("recuperarForm");
   const emailInput = document.getElementById("email");
   const mensaje = document.getElementById("mensaje");
 
-  // Paso 2
+  // 2
   const formReset = document.getElementById("resetForm");
   const codeInput = document.getElementById("otpCode");
   const newPassInput = document.getElementById("newPassword");
   const mensajeReset = document.getElementById("mensajeReset");
 
-  // Guardamos el email para el paso 2
   let lastEmail = "";
 
-  // --- Paso 1: Solicitar el código (OTP) ---
   if (formEmail) {
     formEmail.addEventListener("submit", async (e) => {
       e.preventDefault();
@@ -33,17 +30,14 @@ document.addEventListener("DOMContentLoaded", () => {
       const prev = lockBtn(btn, "Enviando...");
 
       try {
-        // IMPORTANTE: estas rutas deben coincidir con tu PasswordResetController
         const resp = await fetch(`${API_BASE}/auth/password/forgot`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ email }) // ForgotRequest{ email }
         });
 
-        // Respuesta neutra (no filtramos si el correo existe o no)
         setMsg(mensaje, "Si el correo existe, te enviamos un código de verificación. Revisa tu bandeja.", "success");
 
-        // Guardamos el correo para el paso 2 y mostramos el form de reset
         lastEmail = email;
         if (formReset) formReset.classList.remove("d-none");
 
@@ -56,7 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // --- Paso 2: Enviar código + nueva contraseña ---
+  // -código + nueva contraseña 
   if (formReset) {
     formReset.addEventListener("submit", async (e) => {
       e.preventDefault();
@@ -93,7 +87,6 @@ document.addEventListener("DOMContentLoaded", () => {
           setMsg(mensajeReset, "¡Contraseña actualizada! Ya puedes iniciar sesión.", "success");
           formReset.reset();
 
-          // (Opcional) Redirige al login después de unos segundos:
           setTimeout(() => {
             window.location.href = "./Login.html";
           }, 1500);

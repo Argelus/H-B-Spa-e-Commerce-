@@ -1,9 +1,4 @@
-/* =====================================================
-   🎨 ESTILOS PÁGINA REGISTRO
-   Variables, navbar, footer y botones en common.css
-   ===================================================== */
 
-/* Animación de entrada */
 @keyframes fadeSlideUp {
   from {
     opacity: 0;

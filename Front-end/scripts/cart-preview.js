@@ -82,7 +82,6 @@
     }
   });
 
-  // Asegura que el CTA navegue de forma fiable.
   const ctaEl = pop.querySelector('#cart-popover-cta');
   if (ctaEl) {
     ctaEl.addEventListener('click', () => {
@@ -92,7 +91,6 @@
     });
   }
 
-  // Delegación de eventos 
   pop.addEventListener('click', (e) => {
     const actionBtn = e.target.closest('[data-action]');
     if(!actionBtn) return;
@@ -297,7 +295,7 @@ function bindHeaderButtons() {
     bar.innerHTML = `
       <div class="bag" aria-hidden="true"><i class="bi bi-bag-check-fill"></i></div>
       <div class="summary"><span id="cart-count">0</span> productos en el carrito</div>
-    `; // Se omite el CTA en la barra; el popover ya tiene uno.
+    `; 
     document.body.appendChild(bar);
     return bar;
   }
@@ -307,18 +305,15 @@ function bindHeaderButtons() {
 function updateHeaderBadges() {
  const cart = getCart();
  const count = getCount(cart);
-
-  // Selecciona los contadores del header (desktop y móvil)
  const badges = document.querySelectorAll('.cart-badge, .cart-badge-mobile');
  
   badges.forEach(badge => {
     badge.textContent = String(count);
- // Muestra u oculta el badge si es cero
     if (count > 0) {
-      badge.style.display = ''; // Quita el 'none'
+      badge.style.display = '';
       badge.classList.remove('d-none');
     } else {
-      badge.style.display = 'none'; // Oculta si es 0
+      badge.style.display = 'none'; 
     }
   });
 }
@@ -333,7 +328,6 @@ window.addEventListener('cart:updated', (e) => {
   const detail = e.detail || {};
   const cart = getCart();
 
-  // 🔹 Evitar doble incremento
   if (typeof detail.items === 'object' && detail.items) {
     cart.items = detail.items;
     setCart(cart);
@@ -341,7 +335,6 @@ window.addEventListener('cart:updated', (e) => {
   
   updateHeaderBadges(); 
 
-  // Corregido para usar .active
   const pop = document.getElementById('cart-popover');
   if (pop && pop.classList.contains('active')) { 
     renderPopover();
@@ -350,7 +343,6 @@ window.addEventListener('cart:updated', (e) => {
 
 function togglePopover(){
   const pop = ensurePopover();
-  // Usamos .active, que coincide con tu CSS
   if(pop.classList.contains('active')) {
     hidePopover();
   } else {

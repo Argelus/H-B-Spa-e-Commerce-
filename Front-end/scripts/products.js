@@ -1,23 +1,18 @@
 const API_URL = "http://localhost:8080/api";
 
-// 🔹 Cargar categorías y productos
 async function loadProducts() {
   const container = document.getElementById("product-list");
   
-  // 🔹 Mostrar loading spinner
   showLoadingSpinner(container);
   
   try {
-    // --- 1️⃣ Obtener categorías ---
     const catResponse = await fetch(`${API_URL}/categories`);
     const categories = await catResponse.json();
     renderCategories(categories);
 
-    // --- 2️⃣ Obtener productos ---
     const prodResponse = await fetch(`${API_URL}/products`);
     const products = await prodResponse.json();
 
-    // Cachear metadatos (para carrito y resumen)
     const map = {};
     products.forEach(p => {
       if (!p || typeof p.id === "undefined") return;
@@ -30,11 +25,9 @@ async function loadProducts() {
     });
     localStorage.setItem("hbspa_products", JSON.stringify(map));
 
-    // 🔹 Ocultar loading y renderizar productos
     hideLoadingSpinner(container);
     renderProducts(products);
-    
-    // 🔹 Inicializar efectos después de renderizar productos
+
     setTimeout(() => {
       initScrollAnimations();
       addExtraInfoToCards();
@@ -42,12 +35,10 @@ async function loadProducts() {
     
   } catch (error) {
     console.error("Error cargando productos:", error);
-    // 🔹 Mostrar mensaje de error
     showErrorMessage(container);
   }
 }
 
-// 🔹 Mostrar spinner de carga
 function showLoadingSpinner(container) {
   if (!container) return;
   
@@ -64,7 +55,6 @@ function showLoadingSpinner(container) {
   `;
 }
 
-// 🔹 Ocultar spinner de carga
 function hideLoadingSpinner(container) {
   if (!container) return;
   const loadingEl = container.querySelector('.loading-container');
@@ -73,7 +63,6 @@ function hideLoadingSpinner(container) {
   }
 }
 
-// 🔹 Mostrar mensaje de error
 function showErrorMessage(container) {
   if (!container) return;
   
@@ -89,7 +78,6 @@ function showErrorMessage(container) {
   `;
 }
 
-// 🔹 Renderizar categorías
 function renderCategories(categories) {
   const container = document.getElementById("category-list");
   if (!container) return;
@@ -110,11 +98,8 @@ function renderCategories(categories) {
   });
 }
 
-// 🔹 Filtrar productos por categoría
 async function filterByCategory(categoryId) {
   const container = document.getElementById("product-list");
-  
-  // 🔹 Mostrar loading al filtrar
   showLoadingSpinner(container);
   
   const allBtns = document.querySelectorAll("#category-list button");
@@ -128,12 +113,8 @@ async function filterByCategory(categoryId) {
       : await fetch(`${API_URL}/products/category/${categoryId}`);
 
     const products = await response.json();
-    
-    // 🔹 Ocultar loading y renderizar
     hideLoadingSpinner(container);
     renderProducts(products);
-    
-    // 🔹 Re-inicializar efectos después de filtrar
     setTimeout(() => {
       initScrollAnimations();
       addExtraInfoToCards();
@@ -144,7 +125,6 @@ async function filterByCategory(categoryId) {
   }
 }
 
-// 🔹 Renderizar productos
 function renderProducts(products) {
   const container = document.getElementById("product-list");
   if (!container) return;
@@ -153,8 +133,6 @@ function renderProducts(products) {
   products.forEach(product => {
     const card = document.createElement("div");
     card.classList.add("col-md-4", "d-flex");
-
-    // 🔹 Formatear precio con signo de pesos
     const precioFormateado = product.price.toString().startsWith('$') 
       ? `${product.price} MXN` 
       : `$${product.price} MXN`;
@@ -188,7 +166,6 @@ function renderProducts(products) {
     container.appendChild(card);
   });
 
-  // Reasignar eventos después de renderizar
   document.querySelectorAll(".add-to-cart-btn").forEach(btn => {
     btn.addEventListener("click", () => {
       const productId = btn.dataset.id;
@@ -197,63 +174,36 @@ function renderProducts(products) {
   });
 }
 
-// ============================================
-// 🔹 EFECTO DE APARICIÓN AL HACER SCROLL
-// ============================================
-
-/**
- * Observa cuando las cards entran en el viewport y les agrega
- * la clase 'visible' para activar la animación
- */
 function initScrollAnimations() {
-  // Configuración del Intersection Observer
   const observerOptions = {
-    root: null, // usa el viewport del navegador
+    root: null, 
     rootMargin: '0px',
-    threshold: 0.1 // Se activa cuando el 10% del elemento es visible
+    threshold: 0.1 
   };
 
-  // Callback que se ejecuta cuando un elemento entra/sale del viewport
   const observerCallback = (entries, observer) => {
     entries.forEach((entry, index) => {
       if (entry.isIntersecting) {
-        // Añade un pequeño delay escalonado para efecto cascada
         setTimeout(() => {
           entry.target.classList.add('visible');
-        }, index * 100); // 100ms de delay entre cada card
-        
-        // Deja de observar este elemento una vez que ya apareció
+        }, index * 100); 
         observer.unobserve(entry.target);
       }
     });
   };
 
-  // Crea el observer
   const observer = new IntersectionObserver(observerCallback, observerOptions);
 
-  // Observa todas las cards de productos
   const cards = document.querySelectorAll('#product-list .card');
   cards.forEach(card => {
     observer.observe(card);
   });
 }
 
-// ============================================
-// 🔹 AGREGAR INFORMACIÓN EXTRA EN HOVER
-// ============================================
-
-/**
- * Ya no necesitamos esta función porque la información
- * se muestra directamente desde el HTML renderizado
- */
 function addExtraInfoToCards() {
-  // Función vacía - la información ya está en el HTML
+  
   return;
 }
-
-// ============================================
-// 🔹 CARRITO LOCAL
-// ============================================
 
 const STORAGE_KEY = "hbspa_cart";
 
@@ -285,19 +235,15 @@ function updateLocalCart(productId, qty) {
   window.dispatchEvent(new CustomEvent("cart:updated", { detail: { productId, qty } }));
 }
 
-// 🔹 Agregar producto al carrito
 async function addToCart(productId, btn) {
   try {
     updateLocalCart(productId, 1);
-
-    // Mostrar mensaje sin mover el botón
     const msg = btn.parentElement.querySelector(".added-msg");
     if (msg) {
       msg.classList.add("show");
       setTimeout(() => msg.classList.remove("show"), 1800);
     }
 
-    // Enviar al backend (no bloqueante)
     await fetch(`${API_URL}/cart/add`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -309,5 +255,4 @@ async function addToCart(productId, btn) {
   }
 }
 
-// 🔹 Inicializar
 document.addEventListener("DOMContentLoaded", loadProducts);

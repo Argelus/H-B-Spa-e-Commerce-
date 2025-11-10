@@ -1,5 +1,3 @@
-/* ==== Carrusel 3D del Equipo - VERSIÓN MEJORADA ==== */
-
 class Carousel3D {
     constructor(containerId, teamMembers) {
         this.container = document.getElementById(containerId);
@@ -68,7 +66,6 @@ class Carousel3D {
             
             const position = (index - this.currentIndex + total) % total;
             
-            // Asigna clases según la posición relativa a la tarjeta activa.
             if (position === 0) {
                 card.classList.add('active');
                 card.style.visibility = 'visible';
@@ -145,7 +142,6 @@ class Carousel3D {
     
     addBlurTransition() {
         const cards = this.container.querySelectorAll('.carousel-card');
-        // Aplica un efecto de desenfoque a las tarjetas visibles (active, next, prev) durante la transición.
         cards.forEach(card => {
             if (!card.classList.contains('hidden-left') && !card.classList.contains('hidden-right')) {
                 card.classList.add('transitioning');
@@ -184,8 +180,7 @@ class Carousel3D {
             }
         });
     }
-    
-    // Efectos de hover con colores integrados.
+
     attachCardHoverEffects() {
         const coloresHover = ['#D7ECEB', '#6EBFC3', '#EBD2EC', '#F9D6E2'];
         const colorOriginal = '#D7ECEB';
@@ -344,10 +339,8 @@ const Team = [
     }
 ];
 
-// Inicializa el carrusel cuando el DOM esté listo.
 document.addEventListener('DOMContentLoaded', function() {
     const carousel = new Carousel3D('carousel3d', Team);
     
-    // Mensaje de confirmación en la consola.
     console.log('🎠 Carrusel 3D inicializado correctamente.');
 });

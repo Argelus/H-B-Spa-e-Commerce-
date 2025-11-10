@@ -2,7 +2,6 @@ const API_URL = "http://localhost:8080/api";
 
 let editingProductId = null;
 
-// ✅ Al cargar la página
 document.addEventListener("DOMContentLoaded", async () => {
   const token = localStorage.getItem("hbspa_token");
 
@@ -11,7 +10,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     return;
   }
 
-  // 🔐 Verificar rol admin
   try {
     const payload = JSON.parse(atob(token.split(".")[1]));
     const userRole = payload.role || payload.authorities || null;
@@ -31,17 +29,14 @@ document.addEventListener("DOMContentLoaded", async () => {
     return;
   }
 
-  // 🚪 Cerrar sesión
 document.getElementById("logout-btn").addEventListener("click", () => {
   localStorage.removeItem("hbspa_token");
   window.location.href = "admin-login.html";
 });
 
-  // 📦 Cargar datos iniciales
   await loadProducts();
   await loadCategories();
 
-  // ☁️ Evento de subida de imagen
   const imageInput = document.getElementById("imageUpload");
   imageInput.addEventListener("change", async (event) => {
     const file = event.target.files[0];
@@ -62,14 +57,12 @@ document.getElementById("logout-btn").addEventListener("click", () => {
     }
   });
 
-  // ➕ Evento de formulario
   document.getElementById("product-form").addEventListener("submit", async (e) => {
     e.preventDefault();
     await addProduct();
   });
 });
 
-// 🧾 Cargar productos
 async function loadProducts() {
   const tableBody = document.querySelector("#product-table tbody");
   tableBody.innerHTML = `<tr><td colspan="7" class="text-center text-muted">Cargando...</td></tr>`;
@@ -87,7 +80,6 @@ async function loadProducts() {
   }
 }
 
-// 🧱 Renderizar productos
 function renderProducts(products) {
   const tableBody = document.querySelector("#product-table tbody");
   tableBody.innerHTML = "";
@@ -120,7 +112,6 @@ function renderProducts(products) {
   });
 }
 
-// 🧭 Cargar categorías
 async function loadCategories() {
   const select = document.getElementById("categoryId");
   select.innerHTML = `<option value="">Cargando categorías...</option>`;
@@ -142,10 +133,9 @@ async function loadCategories() {
   }
 }
 
-// ☁️ Subir imagen a Cloudinary
 async function uploadImageToCloudinary(file) {
-const CLOUD_NAME = "do7kza5l3";  // 👈 este es tu Cloud Name (arriba a la izquierda)
-const UPLOAD_PRESET = "hbspa_upload";  // 👈 el nombre del preset que creaste
+const CLOUD_NAME = "do7kza5l3";  // Cloud Name 
+const UPLOAD_PRESET = "hbspa_upload";  //preset
 
   const url = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`;
   const formData = new FormData();
@@ -163,7 +153,6 @@ const UPLOAD_PRESET = "hbspa_upload";  // 👈 el nombre del preset que creaste
   }
 }
 
-// ➕ Agregar producto
 async function addProduct() {
   const token = localStorage.getItem("hbspa_token");
   const formMsg = document.getElementById("form-message");
@@ -214,8 +203,6 @@ setTimeout(() => {
   formMsg.style.display = "none";
 }, 4000);
 
-
-    // Reset
     document.getElementById("product-form").reset();
     editingProductId = null;
     const btn = document.querySelector("#product-form button[type='submit']");
@@ -232,8 +219,6 @@ setTimeout(() => {
   }
 }
 
-
-// 🗑️ Eliminar producto
 async function deleteProduct(id) {
   const token = localStorage.getItem("hbspa_token");
   if (!confirm("¿Seguro que deseas eliminar este producto?")) return;
@@ -260,7 +245,6 @@ async function editProduct(id) {
     });
     const product = await response.json();
 
-    // Llenar campos
     document.getElementById("name").value = product.name;
     document.getElementById("price").value = product.price;
     document.getElementById("stock").value = product.stock;
@@ -272,22 +256,16 @@ async function editProduct(id) {
     document.getElementById("categorySelect").value = product.category.id;
 }
 
-    // Guardar el ID que se está editando
     editingProductId = id;
-
-    // Cambiar texto del botón
     const btn = document.querySelector("#product-form button[type='submit']");
     btn.innerHTML = `<i class="bi bi-save"></i> Actualizar producto`;
     btn.classList.remove("btn-primary");
     btn.classList.add("btn-success");
-
-    // Mostrar mensaje
     const msg = document.getElementById("form-message");
     msg.textContent = "✏️ Editando producto ID " + id;
     msg.className = "text-warning text-center fw-semibold";
     msg.style.display = "block";
 
-    // 🔝 Subir al formulario suavemente
 window.scrollTo({
   top: 0,
   behavior: "smooth"

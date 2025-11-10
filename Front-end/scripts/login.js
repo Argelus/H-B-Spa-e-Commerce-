@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const username = (document.getElementById("email")?.value || "").trim(); // usamos el campo como username
+    const username = (document.getElementById("email")?.value || "").trim(); 
     const password = (document.getElementById("password")?.value || "").trim();
 
     if (successMsg) successMsg.classList.add("d-none");

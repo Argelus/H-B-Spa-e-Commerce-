@@ -176,20 +176,20 @@
 .btn-panel {
     border-color: rgb(110, 103, 103);
     color:rgb(110, 103, 103);
-  width: 100% !important;        /* Cambia el ancho del botón */
-  padding: 0.6rem 1.2rem;  /* Ajusta el alto y el espacio interno */
-  font-size: 1rem;         /* Tamaño del texto */
-  margin: 0 auto;          /* Centra el botón dentro del panel */
+  width: 100% !important;        
+  padding: 0.6rem 1.2rem;  
+  font-size: 1rem;         
+  margin: 0 auto;          
 }
 .btn-panel:hover {
     border-color: var(--turquesa-pastel);
     color:var(--turquesa-pastel);
-  width: 100%;              /* Cambia el ancho del botón */
-  padding: 0.6rem 1.2rem;  /* Ajusta el alto y el espacio interno */
-  font-size: 1rem;         /* Tamaño del texto */
-  margin: 0 auto;          /* Centra el botón dentro del panel */
+  width: 100%;              
+  padding: 0.6rem 1.2rem;  
+  font-size: 1rem;         
+  margin: 0 auto;          
 }
-/* Igualar altura entre panel izquierdo y derecho */
+
 .perfil-section .row {
   min-height: 100%;
 }
@@ -202,7 +202,7 @@
   justify-content: space-between;
 }
 
-/* Responsivo: en móviles se apilan sin forzar altura */
+
 @media (max-width: 768px) {
   .perfil-sidebar,
   .perfil-contenido {
@@ -214,7 +214,7 @@
     height: auto !important;
   }
 }
-/* Fondo general */
+
 .perfil-section {
   background: linear-gradient(to bottom, var(--sal-marina), var(--lila-rosa));
   min-height: 100vh;
@@ -222,7 +222,6 @@
   padding-bottom: 40px;
 }
 
-/* Cápsula que encierra todo */
 .perfil-capsula {
   background: rgba(255, 255, 255, 0.25);
   backdrop-filter: blur(14px) saturate(180%);
@@ -232,22 +231,18 @@
   padding: 2rem;
 }
 
-/* Panel izquierdo */
 .perfil-sidebar {
   padding: 1rem;
 }
 
-/* Panel derecho */
 .perfil-contenido {
   padding: 1rem;
 }
 
-/* Nombre del usuario */
 .nombre-usuario {
   color: var(--gris-humo);
 }
 
-/* Botones del panel izquierdo */
 .btn-panel {
   width: 80%;
   padding: 0.6rem 1.2rem;
@@ -255,7 +250,6 @@
   margin: 0 auto;
 }
 
-/* Botón principal */
 .btn-spa {
   background-color: var(--rosa-claro);
   color: var(--gris-humo);
@@ -270,7 +264,6 @@
   color: #fff;
 }
 
-/* Responsivo */
 @media (max-width: 768px) {
   .btn-panel {
     width: 100%;
@@ -290,8 +283,7 @@
   padding-left: 10rem;
   padding-right: 10rem;
 }
-/*Formulario*/
-/* Campos del formulario */
+
 .form-row {
   display: flex;
   flex-wrap: wrap;
@@ -345,7 +337,6 @@ textarea {
   color: #dc3545;
 }
 
-/* Botón principal */
 .btn-submit {
   width: 100%;
   border: none;
@@ -389,7 +380,6 @@ textarea {
   box-shadow: 0 4px 12px rgba(110, 191, 195, 0.3);
 }
 
-/* Alertas */
 .alert {
   display: none;
   padding: 1rem;
@@ -414,7 +404,7 @@ textarea {
   color: #b54747;
   border: 1px solid rgba(181, 71, 71, 0.3);
 }
-/* Encabezado */
+
 .reservas-header {
   text-align: center;
   margin-bottom: 2.5rem;
@@ -434,7 +424,6 @@ textarea {
   opacity: 0.8;
 }
 
-/* Secciones del formulario */
 .form-section {
   margin-bottom: 2rem;
   border-bottom: 1px solid rgba(110, 191, 195, 0.15);

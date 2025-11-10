@@ -1,15 +1,10 @@
-// ============================================
-// VALIDACIÓN DEL FORMULARIO DE CONTACTO
-// ============================================
 
-// Espera a que el DOM cargue antes de conectar los eventos.
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('contactForm');
     if (!form) return;
 
-    // Agrega la clase de validación de Bootstrap al intentar enviar el formulario.
     form.addEventListener('submit', function(event) {
-        // Previene el envío si la validación falla.
+
         if (!validateForm()) {
             event.preventDefault();
             event.stopPropagation();
@@ -21,14 +16,10 @@ document.addEventListener('DOMContentLoaded', function() {
     }, false);
 });
 
-// ============================================
-// FUNCIÓN GLOBAL DE VALIDACIÓN
-// ============================================
-// Se declara fuera de DOMContentLoaded para que pueda ser llamada desde otros scripts.
+
 function validateForm() {
     let isFormValid = true;
 
-    // Función auxiliar para validar un campo individual.
     const validateField = (input, feedbackElement, validationFn, requiredMsg, invalidMsg) => {
         input.classList.remove('is-valid', 'is-invalid');
         const value = input.value.trim();
@@ -47,7 +38,6 @@ function validateForm() {
         }
     };
 
-    // === Validación del nombre ===
     const nameInput = document.getElementById('name');
     const nameFeedback = document.getElementById('nameFeedback');
     const namePattern = /^[A-Za-zÑñáéíóúÁÉÍÓÚ\s]+$/;
@@ -55,7 +45,6 @@ function validateForm() {
         isFormValid = false;
     }
 
-    // === Validación del correo electrónico ===
     const emailInput = document.getElementById('email');
     const emailFeedback = document.getElementById('emailFeedback');
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -63,7 +52,6 @@ function validateForm() {
         isFormValid = false;
     }
 
-    // === Validación del asunto ===
     const subjectSelect = document.getElementById('subject');
     subjectSelect.classList.remove('is-valid', 'is-invalid');
     if (subjectSelect.value === '' || subjectSelect.value === null) {
@@ -73,7 +61,6 @@ function validateForm() {
         subjectSelect.classList.add('is-valid');
     }
 
-    // === Validación del mensaje ===
     const messageTextarea = document.getElementById('message');
     const messageFeedback = document.getElementById('messageFeedback');
     const minLength = 10;
@@ -81,7 +68,6 @@ function validateForm() {
         isFormValid = false;
     }
 
-    // === Teléfono (opcional, pero se valida si tiene contenido) ===
     const phoneInput = document.getElementById('phone');
     const phoneFeedback = document.getElementById('phoneFeedback');
     phoneInput.classList.remove('is-valid', 'is-invalid');

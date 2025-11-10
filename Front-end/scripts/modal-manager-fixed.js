@@ -1,12 +1,6 @@
-/**
- * Modal Manager - Sistema centralizado para manejo de modals
- * Evita duplicación de código y facilita mantenimiento
- */
 
 (function() {
   'use strict';
-
-  // Navbar scroll
   function initNavbarScroll() {
     window.addEventListener("scroll", function() {
       const navbar = document.querySelector(".navbar-overlay");
@@ -20,9 +14,7 @@
     });
   }
 
-  // Inicializar modals
   function initModals() {
-    // FAQ Modal
     const faqModal = document.getElementById('faqModal');
     const floatingFaqBtn = document.getElementById('floatingFaqBtn');
     const openFaqBtnMobile = document.getElementById('openFaqBtnMobile');
@@ -63,11 +55,9 @@
         }
       });
 
-      // Guardar para usar con ESC
       window.closeFaqModalFunc = closeFaqModalFunc;
     }
 
-    // ESC key para cerrar todos los modals
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape') {
         if (window.closeFaqModalFunc) window.closeFaqModalFunc();
@@ -76,7 +66,6 @@
     });
   }
 
-  // Inicializar cuando el DOM esté listo
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', function() {
       initNavbarScroll();

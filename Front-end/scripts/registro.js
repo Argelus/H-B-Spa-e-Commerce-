@@ -41,15 +41,12 @@ document.addEventListener("DOMContentLoaded", () => {
         mensaje.innerText = data.message || "Usuario registrado correctamente 🎉";
         mensaje.className = "text-success";
 
-        // 🧹 Limpiar los campos del formulario
         form.reset();
 
-        // 🕐 Quitar el mensaje después de unos segundos (opcional)
         setTimeout(() => {
           mensaje.innerText = "";
         }, 4000);
 
-        // Guardar token (si lo devuelve el backend)
         if (data.token) localStorage.setItem("token", data.token);
 
       } else {

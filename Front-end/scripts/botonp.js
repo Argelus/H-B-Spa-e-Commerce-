@@ -8,11 +8,9 @@
 
     if (!faqButton || !faqModal) return false;
 
-    // guard to avoid duplicate bindings
     if (faqButton.dataset.faqBound) return true;
 
     function applyModalFallbackStyles() {
-      // Apply minimal overlay styles if the CSS is missing or overridden
       try {
         faqModal.style.display = 'flex';
         faqModal.style.position = 'fixed';
@@ -42,7 +40,6 @@
 
     function clearModalFallbackStyles() {
       try {
-        // remove only the inline styles we set
         faqModal.style.display = '';
         faqModal.style.position = '';
         faqModal.style.left = '';
@@ -68,13 +65,10 @@
     }
 
     function openFaq() {
-      // First ensure content exists (fetch might load it asynchronously)
       const container = faqModal.querySelector('#faq-container');
-      // apply fallback display so user sees overlay even if content pending
       faqModal.classList.add('active');
       applyModalFallbackStyles();
       document.body.style.overflow = 'hidden';
-      // move focus into modal for accessibility
       const firstFocusable = faqModal.querySelector('button, a, [href], input, textarea, select');
       if (firstFocusable) firstFocusable.focus();
     }
@@ -118,15 +112,12 @@
 
   document.addEventListener('DOMContentLoaded', function(){
     if (bindFaqHandlers()) return;
-    // If elements not present yet, observe DOM until they appear
     const mo = new MutationObserver((mutations, obs) => {
       if (bindFaqHandlers()) {
         obs.disconnect();
       }
     });
     mo.observe(document.body, { childList: true, subtree: true });
-
-    // safety timeout to disconnect after a while
     setTimeout(() => mo.disconnect(), 5000);
   });
 })();

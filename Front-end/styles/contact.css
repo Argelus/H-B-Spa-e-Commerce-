@@ -1,19 +1,9 @@
-/* ========================================
-   ESTILOS ESPECÍFICOS - PÁGINA DE CONTACTO
-   H&B SPA - Diseño coherente con index
-   ======================================== */
 
-/* ========================================
-   FONDO DE LA PÁGINA
-   ======================================== */
 body {
   background: linear-gradient(135deg, var(--arena-suave), var(--sal-marina));
   min-height: 100vh;
 }
 
-/* ========================================
-   HERO / ENCABEZADO DE CONTACTO
-   ======================================== */
 .pt-5 {
   padding-top: 6rem !important;
 }
@@ -26,7 +16,6 @@ body {
   padding-bottom: 4rem !important;
 }
 
-/* Título principal de la página */
 .display-4,
 .display-6 {
   color: var(--gris-humo);
@@ -50,9 +39,6 @@ body {
   border-radius: 2px;
 }
 
-/* ========================================
-   ANIMACIONES
-   ======================================== */
 .contact-card {
   animation: fadeInUp 0.6s ease-out;
 }
@@ -76,9 +62,6 @@ body {
   }
 }
 
-/* ========================================
-   TARJETAS DE CONTACTO
-   ======================================== */
 .contact-card {
   border-radius: 25px;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -141,9 +124,6 @@ body {
   border-radius: 3px;
 }
 
-/* ========================================
-   FORMULARIO DE CONTACTO
-   ======================================== */
 #contactForm .form-label {
   color: var(--gris-humo);
   font-weight: 600;
@@ -190,7 +170,6 @@ body {
   margin-top: 0.5rem;
 }
 
-/* Botón de envío del formulario */
 #contactForm button[type="submit"],
 .btn-primary {
   background: var(--turquesa-pastel);
@@ -216,9 +195,6 @@ body {
   transform: translateY(-1px);
 }
 
-/* ========================================
-   ALERTAS DE ÉXITO/ERROR
-   ======================================== */
 .alert {
   border-radius: 15px;
   border: none;
@@ -244,9 +220,6 @@ body {
   vertical-align: middle;
 }
 
-/* ========================================
-   INFORMACIÓN DE CONTACTO
-   ======================================== */
 .contact-details-wrapper {
   flex: 1;
   display: flex;
@@ -319,9 +292,6 @@ body {
   text-decoration: underline;
 }
 
-/* ========================================
-   BLOQUE DE REDES SOCIALES
-   ======================================== */
 .social-media-block {
   padding: 1.5rem;
   margin-top: auto;
@@ -338,9 +308,6 @@ body {
   text-align: center;
 }
 
-/* ========================================
-   TARJETA DE MAPA
-   ======================================== */
 .map-card {
   border-radius: 25px;
   overflow: hidden;
@@ -373,9 +340,6 @@ body {
   border: none;
 }
 
-/* ========================================
-   MEDIA QUERIES - RESPONSIVE
-   ======================================== */
 @media (max-width: 992px) {
   .contact-card .card-body {
     padding: 2rem !important;

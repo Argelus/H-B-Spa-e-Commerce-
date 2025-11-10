@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Acerca de Nosotros - H&B SPA</title>
-    <!-- Preload critical fonts -->
     <link rel="preload" href="../styles/fonts/Lato/Lato-Regular.ttf" as="font" type="font/ttf" crossorigin>
     <link rel="preload" href="../styles/fonts/Lora/Lora-VariableFont_wght.ttf" as="font" type="font/ttf" crossorigin>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -28,7 +27,6 @@
                 <li class="nav-item"><a class="nav-link" href="./Contact.html">Contacto</a></li>
             </ul>
 
-            <!-- Botones móviles -->
             <div class="nav-mobile-actions d-lg-none mt-3 d-flex gap-3 justify-content-center">
                 <a href="#" class="nav-icon-btn-mobile" id="openFaqBtnMobile">
                     <i class="bi bi-question-circle me-2"></i>FAQ
@@ -49,8 +47,6 @@
                 <button type="button" class="btn btn-danger rounded-pill" data-logout-btn>Salir</button>
             </div>
         </div>
-
-        <!-- Botones desktop -->
 
         <div class="d-none d-lg-flex ms-3 align-items-center gap-2">
           <a href="#" class="nav-icon-btn" id="openCartBtn" title="Carrito de Compras">
@@ -75,7 +71,6 @@
   <div class="py-5">
     <div class="container">
 
-      <!-- HERO ACERCA DE -->
       <section class="about-hero mb-5">
         <div class="row align-items-center g-4">
           <div class="col-lg-7">
@@ -127,7 +122,6 @@
         </div>
       </section>
 
-      <!-- HISTORIA -->
       <section class="about-section about-history mb-5">
         <div class="row align-items-center g-5">
           <div class="col-lg-6">
@@ -169,7 +163,6 @@
         </div>
       </section>
 
-      <!-- MISIÓN Y VISIÓN -->
       <section class="about-section about-mision-vision mb-5">
         <div class="row g-4 align-items-stretch">
           <div class="col-md-6">
@@ -211,7 +204,6 @@
         </div>
       </section>
 
-      <!-- VALORES -->
       <section class="about-section about-values mb-5">
         <div class="section-heading text-center mb-4">
           <span class="badge-soft-turquesa mb-2">Valores que guían cada servicio</span>
@@ -223,7 +215,6 @@
 
         <div class="valores-scroll-container" id="valoresContainer">
           <div class="valores-scroll-track">
-            <!-- Set original de tarjetas -->
             <div class="valor-card">
               <div class="card h-100 border-0 shadow-sm text-center p-4 tarjeta-hover">
                 <i class="bi bi-people-fill fs-1 text-turquesa-pastel mb-3"></i>
@@ -266,7 +257,6 @@
                 <p class="text-muted">Escuchar y cuidar a cada persona como única.</p>
               </div>
             </div>
-            <!-- Set duplicado para loop infinito -->
             <div class="valor-card">
               <div class="card h-100 border-0 shadow-sm text-center p-4 tarjeta-hover">
                 <i class="bi bi-people-fill fs-1 text-turquesa-pastel mb-3"></i>
@@ -313,7 +303,6 @@
         </div>
       </section>
 
-      <!-- FILOSOFÍA DEL SPA -->
       <section class="about-section about-philosophy mb-5">
         <div class="about-philosophy-card bg-turquesa-pastel rounded-4">
           <div class="row justify-content-center align-items-center g-4">
@@ -351,7 +340,6 @@
         </div>
       </section>
 
-      <!-- EQUIPO -->
       <section class="about-section about-team mb-5">
         <div class="section-heading text-center mb-4">
           <span class="badge-soft-turquesa mb-2">Personas detrás de la experiencia digital</span>
@@ -379,7 +367,6 @@
         </div>
       </section>
 
-      <!-- CERTIFICACIONES -->
       <section class="about-section about-certifications py-5">
         <div class="about-certifications-card bg-lila-rosa-gradient rounded-4">
           <div class="text-center">
@@ -429,11 +416,9 @@
   </div>
 </main>
 
-<!-- FOOTER -->
 <footer class="bg-light pt-5 pb-3 mt-5">
   <div class="container">
     <div class="d-flex justify-content-evenly flex-wrap text-center text-md-start">
-      <!-- Columna 1 -->
       <div class="mb-4">
         <h5 class="fw-bold mb-3">H&B SPA Jardín Balbuena</h5>
         <p class="text-muted">Tu refugio de belleza y bienestar desde 2015.</p>
@@ -442,7 +427,6 @@
         <p class="text-muted"><i class="bi bi-envelope-fill"></i> contacto@hbspa.com</p>
       </div>
 
-      <!-- Columna 2 -->
       <div class="mb-4">
         <h5 class="fw-bold mb-3">Enlaces Rápidos</h5>
         <ul class="list-unstyled">
@@ -454,7 +438,6 @@
         </ul>
       </div>
 
-      <!-- Columna 3 -->
       <div class="mb-4">
         <h5 class="fw-bold mb-3">Síguenos</h5>
         <div class="d-flex justify-content-start gap-3 mb-3">
@@ -471,7 +454,6 @@
       </div>
     </div>
 
-    <!-- Divider y copyright -->
     <hr class="my-4">
     <div class="row">
       <div class="col-12 text-center">
@@ -484,7 +466,6 @@
   </div>
 </footer>
 
-<!-- MODAL FAQ -->
 <div id="faqModal" class="side-modal">
   <div class="side-modal-content">
     <div class="side-modal-header">
@@ -501,12 +482,10 @@
   </div>
 </div>
 
-<!-- BOTÓN FLOTANTE FAQ -->
 <button id="floatingFaqBtn" class="floating-faq-btn" title="Preguntas Frecuentes">
   <i class="bi bi-question-circle-fill"></i>
 </button>
 
-<!-- Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="../scripts/faq-data.js"></script>
 <script src="../scripts/modal-manager-fixed.js"></script>

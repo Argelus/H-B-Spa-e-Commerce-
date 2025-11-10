@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <title>Registro de usuario - H&B SPA</title>
 
-  <!-- Preload critical fonts -->
   <link rel="preload" href="../styles/fonts/Lato/Lato-Regular.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="preload" href="../styles/fonts/Lora/Lora-VariableFont_wght.ttf" as="font" type="font/ttf" crossorigin>
 
@@ -12,13 +11,12 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 
-  <!-- Estilos globales primero -->
+  <!-- Estilos globales  -->
   <link rel="stylesheet" href="../styles/common.css">
   <!-- Estilos específicos -->
   <link rel="stylesheet" href="../styles/register.css">
 </head>
 <body>
-<!-- 🟢 NAVBAR -->
 <nav class="navbar navbar-expand-lg fixed-top navbar-dark navbar-overlay py-3">
   <div class="container">
     <a class="navbar-brand fw-bold" href="../index.html">H&B SPA</a>
@@ -110,7 +108,7 @@
                 <input type="email" class="form-control" id="email" required>
                 <div class="invalid-feedback">Ingrese un correo electrónico válido.</div>
               </div>
-<!-- Campo: Contraseña-->
+
  <div class="mb-3">
                 <label for="password" class="form-label">Contraseña</label>
                 <div class="input-group">
@@ -122,7 +120,6 @@
                 <div class="invalid-feedback">La contraseña debe tener al menos 6 caracteres.</div>
               </div>
 
-              <!-- Campo: Confirmar contraseña -->
               <div class="mb-3">
                 <label for="confirmPassword" class="form-label">Confirmar contraseña</label>
                 <div class="input-group">
@@ -149,7 +146,6 @@
 
             <div id="mensaje" class="mt-3 text-center fw-bold"></div>
           </div>
-          <!-- Carrusel -->
           <div class="col-lg-7 p-0">
             <div id="registroCarousel" class="carousel slide h-100" data-bs-ride="carousel">
               <div class="carousel-inner h-100">
@@ -190,7 +186,6 @@
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer class="pt-5 pb-3" id="contacto" style="margin-top: 0;">
   <div class="container">
     <div class="d-flex justify-content-evenly flex-wrap text-center text-md-start">
@@ -235,18 +230,15 @@
   </div>
 </footer>
 
-<!-- MODALES / BOTÓN FLOTANTE -->
+
 <div id="faqModal" class="side-modal">
-  <!-- ...modal FAQ igual... -->
 </div>
 <div id="cartModal" class="side-modal">
-  <!-- ...modal carrito igual... -->
 </div>
 <button id="floatingFaqBtn" class="floating-faq-btn" title="Preguntas Frecuentes">
   <i class="bi bi-question-circle-fill"></i>
 </button>
 
-<!-- Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="../scripts/validation.js"></script>
 <script src="../scripts/faq-data.js"></script>

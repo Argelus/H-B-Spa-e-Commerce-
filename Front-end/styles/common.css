@@ -139,7 +139,6 @@ h1, h2, h3, h4, h5, h6 {
   width: 60%;
 }
 
-/* Botones de Login/Registro en Navbar */
 .boton-login-registro {
   border-radius: 25px;
   padding: 0.4rem 1.2rem;
@@ -166,7 +165,6 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--blanco) !important;
 }
 
-/* Estilos para botones de Bootstrap en navbar */
 .navbar-overlay .btn-outline-light,
 .navbar-transparent .btn-outline-light {
   color: var(--blanco) !important;
@@ -182,7 +180,6 @@ h1, h2, h3, h4, h5, h6 {
   transition: all 0.3s ease;
 }
 
-/* Cuando se hace scroll - cambiar a colores oscuros */
 .navbar-overlay.scrolled .btn-outline-light,
 .navbar-transparent.scrolled .btn-outline-light,
 .navbar.scrolled .btn-outline-light {
@@ -198,7 +195,6 @@ h1, h2, h3, h4, h5, h6 {
   border-color: var(--negro) !important;
 }
 
-/* Hover de los botones cuando está scrolled */
 .navbar-overlay.scrolled .btn-outline-light:hover,
 .navbar-transparent.scrolled .btn-outline-light:hover,
 .navbar.scrolled .btn-outline-light:hover {
@@ -213,9 +209,6 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--blanco) !important;
 }
 
-/* ========================================
-   BOTONES DE ÍCONOS (FAQ y Carrito)
-   ======================================== */
 .nav-icon-btn {
   display: inline-flex;
   align-items: center;
@@ -237,7 +230,6 @@ h1, h2, h3, h4, h5, h6 {
   transform: scale(1.1);
 }
 
-/* Cuando se hace scroll */
 .navbar-overlay.scrolled .nav-icon-btn,
 .navbar-transparent.scrolled .nav-icon-btn,
 .navbar.scrolled .nav-icon-btn {
@@ -251,7 +243,6 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--negro);
 }
 
-/* Badge del carrito */
 .cart-badge {
   position: absolute;
   top: -5px;
@@ -277,7 +268,7 @@ h1, h2, h3, h4, h5, h6 {
   background: var(--turquesa-pastel);
 }
 
-/* Botones móviles de FAQ y Carrito */
+
 .nav-icon-btn-mobile {
   display: inline-flex;
   align-items: center;
@@ -369,9 +360,6 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-/* ========================================
-   FOOTER - ESTILO UNIFICADO
-   ======================================== */
 footer {
   background: linear-gradient(135deg, var(--arena-suave), var(--lila-rosa));
  
@@ -423,9 +411,7 @@ footer a:hover {
   box-shadow: 0 15px 30px rgba(110, 191, 195, 0.4);
 }
 
-/* ========================================
-   UTILIDADES GENERALES
-   ======================================== */
+
 .text-turquesa {
   color: var(--turquesa-pastel) !important;
 }
@@ -442,7 +428,6 @@ footer a:hover {
   background: linear-gradient(135deg, var(--arena-suave), var(--sal-marina));
 }
 
-/* Botones personalizados */
 .btn-turquesa {
   background: linear-gradient(135deg, var(--turquesa-pastel) 0%, #5aa9ad 100%);
   color: var(--blanco);
@@ -502,9 +487,7 @@ footer a:hover {
   box-shadow: 0 10px 25px rgba(110, 191, 195, 0.4);
 }
 
-/* ========================================
-   ANIMACIONES GLOBALES
-   ======================================== */
+
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
@@ -540,9 +523,6 @@ footer a:hover {
   animation: slideInUp 0.8s ease;
 }
 
-/* ========================================
-   MODALS LATERALES (FAQ y Carrito) - UX/UI Mejorado
-   ======================================== */
 .side-modal {
   position: fixed;
   top: 0;
@@ -656,7 +636,6 @@ footer a:hover {
   background: var(--blanco);
 }
 
-/* Texto introductorio en modals */
 .modal-intro {
   background: linear-gradient(135deg, rgba(110, 191, 195, 0.08), rgba(215, 236, 235, 0.12));
   padding: 1rem 1.25rem;
@@ -669,7 +648,6 @@ footer a:hover {
   box-shadow: 0 2px 8px rgba(0,0,0,0.03);
 }
 
-/* Scrollbar personalizado */
 .side-modal-body::-webkit-scrollbar {
   width: 8px;
 }
@@ -690,7 +668,7 @@ footer a:hover {
   background: linear-gradient(180deg, #5aa9ad, var(--turquesa-pastel));
 }
 
-/* Estilos del accordion FAQ - Mejorado */
+
 .side-modal .accordion {
   --bs-accordion-border-color: transparent;
   --bs-accordion-bg: transparent;
@@ -754,7 +732,6 @@ footer a:hover {
   background: var(--blanco);
 }
 
-/* Estilos del carrito - Mejorado */
 .cart-items-container {
   min-height: 300px;
 }
@@ -821,9 +798,6 @@ footer a:hover {
   letter-spacing: -0.5px;
 }
 
-/* ========================================
-   BOTÓN FLOTANTE FAQ
-   ======================================== */
 .floating-faq-btn {
   position: fixed;
   bottom: 30px;
@@ -864,9 +838,6 @@ footer a:hover {
   }
 }
 
-/* ========================================
-   MEDIA QUERIES
-   ======================================== */
 @media (max-width: 992px) {
   .navbar-nav {
     text-align: center;
@@ -900,14 +871,6 @@ footer a:hover {
   }
 }
 
-/* ========================================
-   ESTILOS POPOVER CARRITO (Versión 4 - Carga de Fuente)
-   ======================================== */
-
-/* * CORRECCIÓN 1: Cargar la fuente de íconos.
- * El archivo CSS de Bootstrap Icons no se está cargando en tu página.
- * Esta regla @font-face lo carga manualmente desde el CDN.
- */
 @font-face {
   font-family: "bootstrap-icons";
   src: url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/fonts/bootstrap-icons.woff2") format("woff2");
@@ -915,9 +878,9 @@ footer a:hover {
 
 #cart-popover .cart-item {
   display: flex;
-  flex-direction: column; /* Apila los elementos verticalmente */
-  align-items: center; /* Centra horizontalmente TODOS los bloques hijos */
-  text-align: center; /* Centra el texto (nombre y precio) */
+  flex-direction: column; 
+  align-items: center; 
+  text-align: center; 
 
   padding-bottom: 0.5rem;
   margin-bottom: 0.5rem;
@@ -931,9 +894,7 @@ footer a:hover {
 }
 
 #cart-popover .cart-item-thumb { 
-grid-row: 1 / 3; /* Ocupa 2 filas */
-  
-  /* AJUSTE 1: El ancho debe coincidir con tu grid-template-column (72px) */
+grid-row: 1 / 3; 
   width: 72px;
   height: 72px;
   
@@ -964,13 +925,13 @@ grid-row: 1 / 3; /* Ocupa 2 filas */
 #cart-popover .price { font-weight: 700; color: var(--gris-humo); }
 
 #cart-popover .cart-item-actions { 
-  grid-column: 2; /* Debajo de la info */
-  display: flex; /* Horizontal */
+  grid-column: 2; 
+  display: flex; 
   align-items: center;
-  gap: 1.5rem; /* Espacio entre stepper y basurero */
+  gap: 1.5rem; 
 }
 
-/* Selector de cantidad (stepper) */
+
 #cart-popover .qty-stepper { 
   display: inline-flex !important; 
   align-items: center; 
@@ -981,9 +942,6 @@ grid-row: 1 / 3; /* Ocupa 2 filas */
   background: #fff !important; 
 }
 
-/* * CORRECCIÓN 2: Arreglar fuente de botones '+' y '-'.
- * Forzamos la fuente de texto regular.
- */
 #cart-popover .qty-btn { 
   width: 26px; 
   height: 26px; 
@@ -999,7 +957,6 @@ grid-row: 1 / 3; /* Ocupa 2 filas */
   line-height: 1;
   font-size: 1.1rem; 
   font-weight: 600;
-  /* Esta línea arregla el '+' y '-' */
   font-family: 'Lato', 'Segoe UI', Tahoma, sans-serif !important;
 }
 #cart-popover .qty-btn:hover { 
@@ -1015,7 +972,7 @@ grid-row: 1 / 3; /* Ocupa 2 filas */
   color: #333 !important; 
 }
 
-/* Botón de eliminar */
+
 #cart-popover .btn-remove { 
   border: none !important; 
   background: transparent !important; 
@@ -1028,10 +985,6 @@ grid-row: 1 / 3; /* Ocupa 2 filas */
   color: #c53030 !important; 
 }
 
-/* * CORRECCIÓN 3: Aplicar la fuente de íconos.
- * Ahora que @font-face la ha cargado (Corrección 1), 
- * esta regla funcionará y arreglará el ícono de basura.
- */
 #cart-popover .btn-remove [class^="bi-"]::before,
 #cart-popover .btn-remove [class*=" bi-"]::before {
     font-family: 'bootstrap-icons' !important;

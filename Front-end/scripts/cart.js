@@ -1,12 +1,7 @@
-// =====================================
-//  Carrito de Compras - H&B SPA (v2)
-//  Combina hbspa_cart + hbspa_products
-// =====================================
-
 const CART_KEY = "hbspa_cart";
 const PRODUCTS_KEY = "hbspa_products";
 
-// Obtener carrito
+
 function getCart() {
   try {
     return JSON.parse(localStorage.getItem(CART_KEY)) || { items: {} };
@@ -15,7 +10,6 @@ function getCart() {
   }
 }
 
-// Obtener lista de productos completa
 function getProductsData() {
   try {
     return JSON.parse(localStorage.getItem(PRODUCTS_KEY)) || {};
@@ -24,12 +18,10 @@ function getProductsData() {
   }
 }
 
-// Guardar carrito
 function saveCart(cart) {
   localStorage.setItem(CART_KEY, JSON.stringify(cart));
 }
 
-// Renderizar carrito
 function renderCart() {
     
 
@@ -103,7 +95,6 @@ function renderCart() {
   if (totalEl) totalEl.textContent = `$${total.toFixed(2)}`;
 }
 
-// Manejar botones (+, -, eliminar)
 document.addEventListener("click", (e) => {
   const cart = getCart();
   const btn = e.target.closest(".plus, .minus, .remove");
@@ -120,5 +111,4 @@ document.addEventListener("click", (e) => {
   renderCart();
 });
 
-// Inicializar
 document.addEventListener("DOMContentLoaded", renderCart);

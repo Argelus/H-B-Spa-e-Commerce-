@@ -1,12 +1,4 @@
-/* ========================================
-   ESTILOS ESPECÍFICOS DE INDEX.HTML
-   Las variables globales, navbar y footer están definidos en common.css
-   Este archivo solo contiene estilos únicos de la página principal
-   ======================================== */
 
-/* =================================
-   Hero Carousel
-==================================== */
 header#hero {
     position: relative;
     height: 100vh;
@@ -42,7 +34,6 @@ header#hero {
     letter-spacing: 2px;
 }
 
-/* 1. Define el estado INICIAL (oculto) para el texto */
 #heroCarousel .carousel-item .carousel-caption h1,
 #heroCarousel .carousel-item .carousel-caption p {
   opacity: 0;
@@ -51,46 +42,38 @@ header#hero {
  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
-/* 2. Define el estado FINAL (visible) cuando el slide está activo */
 #heroCarousel .carousel-item.active .carousel-caption h1,
 #heroCarousel .carousel-item.active .carousel-caption p {
  opacity: 1;
   transform: translateY(0);
 }
 
-/* 3. (Opcional) Retraso para que el párrafo aparezca después del título */
 #heroCarousel .carousel-item.active .carousel-caption p {
   transition-delay: 0.2s;
 }
 
-
-/* =================================
-   Sección Servicios (Galería)
-   ANIMACIONES CORREGIDAS
-==================================== */
 section#servicios {
     background: linear-gradient(180deg, #fff 0%, var(--arena-suave) 100%);
     padding: 5rem 0;
     scroll-margin-top: 80px;
 }
 
-/* === AJUSTE: Galería en 3 columnas en escritorio, 2 en tablet, 1 en móvil === */
 .gallery-masonry {
   display: grid;
-  grid-template-columns: repeat(1, 1fr); /* Móvil por defecto */
+  grid-template-columns: repeat(1, 1fr); 
   gap: 1.5rem;
   padding: 2rem 0;
 }
 
 @media (min-width: 576px) {
   .gallery-masonry {
-    grid-template-columns: repeat(2, 1fr); /* Tablet */
+    grid-template-columns: repeat(2, 1fr); 
   }
 }
 
 @media (min-width: 992px) {
   .gallery-masonry {
-    grid-template-columns: repeat(3, 1fr); /* Escritorio */
+    grid-template-columns: repeat(3, 1fr); 
   }
 }
 
@@ -107,13 +90,12 @@ section#servicios {
     display: block;
 }
 
-/* Estado hover - simplificado y sin bugs */
+
 .gallery-item:hover {
     transform: translateY(-10px);
     box-shadow: 0 15px 35px rgba(110, 191, 195, 0.25);
 }
 
-/* Overlay gradient en hover - simplificado */
 .gallery-item::before {
     content: '';
     position: absolute;
@@ -129,7 +111,7 @@ section#servicios {
     opacity: 1;
 }
 
-/* Imagen dentro del item - altura fija y object-fit */
+
 .gallery-item img {
     width: 100%;
     height: 100%;
@@ -143,7 +125,6 @@ section#servicios {
     transform: scale(1.05);
 }
 
-/* Overlay de texto */
 .gallery-overlay {
     position: absolute;
     bottom: 0;
@@ -169,7 +150,7 @@ section#servicios {
     letter-spacing: 0.5px;
 }
 
-/* Ícono de zoom */
+
 .gallery-icon {
     position: absolute;
     top: 50%;
@@ -197,9 +178,6 @@ section#servicios {
     color: var(--turquesa-pastel);
 }
 
-/* =================================
-   Modal Lightbox (para Galería)
-==================================== */
 .modal-lightbox {
     display: none;
     position: fixed;
@@ -277,7 +255,6 @@ section#servicios {
 
 .lightbox-title {
   position: absolute;
-  /* 1. Cambiamos su posición para que esté más arriba */
   bottom: 140px; 
   left: 50%;
   transform: translateX(-50%);
@@ -292,9 +269,6 @@ section#servicios {
   border: 2px solid rgba(110, 191, 195, .3);
 }
 
-/* =================================
-   Sección de Equipo (Carrusel 3D)
-==================================== */
 #equipo {
     background: linear-gradient(180deg, var(--arena-suave) 0%, var(--sal-marina) 100%);
     padding: 5rem 0;
@@ -326,7 +300,6 @@ section#servicios {
     overflow: hidden;
 }
 
-/*Responsividad*/
 @media (max-width: 992px) {
   .team-card {
     width: 280px;
@@ -395,13 +368,12 @@ section#servicios {
     box-shadow: 0 10px 30px rgba(110, 191, 195, 0.4);
 }
 
-/* Sección de Reseñas */
+
 #resenas {
     background: linear-gradient(180deg, var(--sal-marina) 0%, var(--arena-suave) 100%);
     padding: 5rem 0;
 }
 
-/* Media Queries (Responsive) */
 @media (max-width: 991.98px) {
     section#servicios {
         scroll-margin-top: 68px;
@@ -497,7 +469,6 @@ section#servicios {
     }
 }
 
-/* Estilos para el botón del Lightbox*/
 #lightbox-action-button {
   position: absolute;
   bottom: 50px; 
@@ -523,9 +494,6 @@ section#servicios {
     bottom: 20px;
   }
 }
-/* =================================
-   Efecto de Aparición (Animate on Scroll)
-==================================== */
 
 .animate-on-scroll {
   opacity: 0;
@@ -538,24 +506,20 @@ section#servicios {
   transform: translateY(0);
 }
 
-/* primer imagen del carrusel */
 .carousel-item:first-child {
   background-position: center 12%; 
 }
 
-/* segunda imagen del carrusel === */
+
 .carousel-item:nth-child(2) {
   background-position: center 70%; 
 }
 
-
-/* === AJUSTE: Separar el botón del texto en el primer slide === */
 .carousel-item:first-child .btn-explorar {
   margin-top: 0rem;
   margin-bottom: 4rem;
 }
 
-/* Responsivo para móviles */
 @media (max-width: 768px) {
   .carousel-item:first-child .btn-explorar {
     margin-bottom: 2rem;
