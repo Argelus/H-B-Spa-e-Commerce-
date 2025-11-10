@@ -13,11 +13,11 @@ import java.util.List;
 public class OrderController {
 
     private final OrderService orderService;
-    private final UsuarioService usuarioService; //  para resolver el usuario desde el token
+    private final UsuarioService usuarioService;
 
     public OrderController(OrderService orderService, UsuarioService usuarioService) {
         this.orderService = orderService;
-        this.usuarioService = usuarioService; // inyectado
+        this.usuarioService = usuarioService;
     }
 
     // Crear una nueva orden (requiere token)
@@ -38,7 +38,7 @@ public class OrderController {
         return orderService.listarPorUsuario(usuarioId);
     }
 
-    // NUEVO: Obtener órdenes del usuario autenticado (por token)
+    // 🟤 Obtener órdenes del usuario autenticado (por token)
     @GetMapping("/mine")
     public List<Order> listarMias(org.springframework.security.core.Authentication auth) {
         Usuario u = usuarioService.buscarPorUsername(auth.getName());
@@ -52,7 +52,7 @@ public class OrderController {
     }
 
     // Actualizar estado (solo admin)
-    @PutMapping("/{id}/estado")
+    @PutMapping("/{ id}/estado")
     public Order actualizarEstado(@PathVariable Long id, @RequestParam String estado) {
         return orderService.actualizarEstado(id, estado);
     }

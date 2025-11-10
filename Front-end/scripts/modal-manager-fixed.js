@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> f208f194d747f2834788bebe7cd738162a433b95
 
 (function() {
   'use strict';
@@ -14,6 +18,10 @@
     });
   }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> f208f194d747f2834788bebe7cd738162a433b95
   function initModals() {
     const faqModal = document.getElementById('faqModal');
     const floatingFaqBtn = document.getElementById('floatingFaqBtn');
@@ -61,7 +69,7 @@
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape') {
         if (window.closeFaqModalFunc) window.closeFaqModalFunc();
-        //if (window.closeCartModalFunc) window.closeCartModalFunc();
+       
       }
     });
   }
