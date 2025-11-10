@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.removeItem('role');
 
             // Redirige al usuario al inicio para aplicar el cambio de navbar
-            window.location.href = '../index.html';
+            window.location.href = '/Front-end/index.html';
         });
     });
 });
