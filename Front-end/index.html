@@ -14,7 +14,6 @@
 </head>
 <body>
 
-<!--  NAVBAR -->
 <nav class="navbar navbar-expand-lg fixed-top navbar-dark navbar-overlay py-3">
   <div class="container">
     <a class="navbar-brand fw-bold" href="./index.html">H&B SPA</a>
@@ -72,7 +71,6 @@
   </div>
 </nav>
 
-<!--  HERO / CARRUSEL -->
 <header id="hero" >
   <div id="heroCarousel" class="carousel carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
     <div class="carousel-inner">
@@ -111,7 +109,6 @@
   </div>
 </header>
 
-<!--  GALERÍA -->
 <section id="servicios" class="animate-on-scroll">
   <div class="container">
     <h2 class="display-5 fw-bold text-gris-humo mb-3 text-center">Nuestros Servicios</h2>
@@ -175,7 +172,6 @@
   </div>
 </section>
 
-<!-- Modal Lightbox -->
 <div id="lightboxModal" class="modal-lightbox">
   <span class="close-lightbox">&times;</span>
   <div class="modal-content-lightbox">
@@ -185,7 +181,6 @@
   </div>
 </div>
 
-<!-- EQUIPO -->
 <section id="equipo" class="text-center">
   <div class="container">
     <h2 class="display-5 fw-bold text-gris-humo mb-3">Conoce a Nuestro Equipo</h2>
@@ -203,13 +198,12 @@
   </div>
 </section>
 
-<!-- SECCIÓN DE RESEÑAS -->
 <section id="reseñas" class="animate-on-scroll py-5" style="background: linear-gradient(180deg, var(--sal-marina) 0%, var(--arena-suave) 100%);">
   <div class="container text-center">
     <h2 class="display-5 fw-bold text-gris-humo mb-3">Opiniones de Nuestros Clientes</h2>
     <p class="text-muted mb-5">Conoce las experiencias reales de quienes disfrutan H&B Spa Jardín Balbuena.</p>
 
-    <!--  Widget de Reseñas de Google (Elfsight) -->
+
     <script src="https://elfsightcdn.com/platform.js" async></script>
     <div class="elfsight-app-8d109ec9-038c-4db3-9255-64949513cb10" data-elfsight-app-lazy></div>
     <div class="mt-5">
@@ -218,13 +212,10 @@
   </div>
 </section>
 
-
-<!-- FOOTER -->
 <footer class="pt-5 pb-3"  id="contacto">
   <div class="container">
     <div class="d-flex justify-content-evenly flex-wrap text-center text-md-start">
       
-      <!-- Columna 1: Información -->
       <div class="mb-4">
         <h5 class="fw-bold mb-3">H&B SPA Jardín Balbuena</h5>
         <p class="text-muted">Tu refugio de belleza y bienestar desde 2015.</p>
@@ -233,7 +224,6 @@
         <p class="text-muted"><i class="bi bi-envelope-fill me-2"></i>contacto@hbspa.com</p>
       </div>
 
-      <!-- Columna 2: Enlaces -->
       <div class="mb-4">
         <h5 class="fw-bold mb-3">Enlaces Rápidos</h5>
         <ul class="list-unstyled">
@@ -245,7 +235,6 @@
         </ul>
       </div>
 
-      <!-- Columna 3: Redes y Horarios -->
       <div class="mb-4">
         <h5 class="fw-bold mb-3">Síguenos</h5>
         <div class="d-flex justify-content-center justify-content-md-start gap-3 mb-3">
@@ -275,8 +264,6 @@
   </div>
 </footer>
 
-
-<!-- MODAL FAQ -->
 <div id="faqModal" class="side-modal">
   <div class="side-modal-content">
     <div class="side-modal-header">
@@ -293,13 +280,10 @@
   </div>
 </div>
 
-
-<!-- BOTÓN FLOTANTE FAQ -->
 <button id="floatingFaqBtn" class="floating-faq-btn" title="Preguntas Frecuentes">
   <i class="bi bi-question-circle-fill"></i>
 </button>
 
-  <!-- SCRIPTS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <script src="./scripts/faq-data.js"></script>
   <script src="./scripts/modal-manager-fixed.js"></script>
@@ -308,7 +292,6 @@
   <script>
   document.addEventListener("DOMContentLoaded", () => {
 
-    // --- Navbar Scroll ---
     const navbarOverlay = document.querySelector(".navbar-overlay");
 
     window.addEventListener("scroll", () => {
@@ -364,7 +347,6 @@
     }
 
 
-    // --- Carrusel 3D ---
     const cards = document.querySelectorAll(".carousel-3d .team-card");
     let current = 0;
 
@@ -409,7 +391,6 @@
     }
 
 
-    // --- Galería Lightbox ---
     const galleryItems = document.querySelectorAll('.gallery-item');
     const modal = document.getElementById('lightboxModal');
     const modalImg = document.getElementById('lightboxImg');
