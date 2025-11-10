@@ -14,15 +14,15 @@ import java.util.List;
 @Builder
 public class UsuarioHistorialDTO {
 
-    // 🧍 Datos básicos del usuario
+    // Datos básicos del usuario
     private Long id;
     private String username;
     private String email;
 
-    // 🛒 Historial de órdenes
+    // Historial de órdenes
     private List<OrdenDTO> orders;
 
-    // 💆 Historial de reservas
+    //  Historial de reservas
     private List<ReservaDTO> reservas;
 
     // === Clases internas DTO simples ===

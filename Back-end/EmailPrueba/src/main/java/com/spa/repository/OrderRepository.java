@@ -8,9 +8,9 @@ import java.util.List;
 @Repository
 public interface OrderRepository extends JpaRepository<Order, Long> {
 
-    // 🔹 Buscar órdenes por usuario
+    //  Buscar órdenes por usuario
     List<Order> findByUsuarioId(Long usuarioId);
 
-    // 🔹 Buscar órdenes por estado
+    // Buscar órdenes por estado
     List<Order> findByEstado(String estado);
 }
