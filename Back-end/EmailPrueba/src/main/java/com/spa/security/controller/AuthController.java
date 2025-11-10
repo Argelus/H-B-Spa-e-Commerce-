@@ -1,6 +1,6 @@
 package com.spa.security.controller;
 
-// 📦 DTOs
+// DTOs
 import com.spa.dto.LoginRequest;
 import com.spa.dto.RegisterRequest;
 
@@ -50,7 +50,7 @@ public class AuthController {
     }
 
     // ============================================================
-    // 🟢 LOGIN: Acepta username O email y devuelve token JWT
+    // LOGIN: Acepta username O email y devuelve token JWT
     // ============================================================
     @PostMapping("/login")
     public Map<String, String> login(@RequestBody LoginRequest loginRequest) {
@@ -98,7 +98,7 @@ public class AuthController {
     }
 
     // ============================================================
-    // 🟣 REGISTER: Crea usuario y devuelve token
+    // REGISTER: Crea usuario y devuelve token
     // ============================================================
     @PostMapping("/register")
     public Map<String, String> register(@RequestBody RegisterRequest registerRequest) {

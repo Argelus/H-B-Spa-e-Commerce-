@@ -10,7 +10,7 @@ public class WebConfig {
 
     @Bean
     public WebMvcConfigurer corsConfigurer() {
-        System.out.println("✅ CORS configurado correctamente por WebConfig");
+        System.out.println("CORS configurado correctamente por WebConfig");
 
         return new WebMvcConfigurer() {
             @Override
@@ -21,12 +21,12 @@ public class WebConfig {
                                 "http://127.0.0.1:5500",
                                 "http://localhost:5501",
                                 "http://127.0.0.1:5501",
-                                "*" // 👈 Agregado solo para Postman
+                                "*" //Agregado solo para Postman
                         )
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*")
                         .exposedHeaders("Authorization")
-                        .allowCredentials(false); // 👈 Importante: cámbialo a false cuando usas "*"
+                        .allowCredentials(false); // Importante: cámbialo a false cuando usas "*"
             }
         };
     }

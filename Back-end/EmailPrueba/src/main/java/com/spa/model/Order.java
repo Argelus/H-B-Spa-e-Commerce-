@@ -65,7 +65,7 @@ public class Order {
     @Column(length = 500)
     private String nota;
 
-    // 🔹 Métodos auxiliares
+    // Métodos auxiliares
     public void calcularTotal() {
         if (items == null || items.isEmpty()) {
             this.total = BigDecimal.ZERO;

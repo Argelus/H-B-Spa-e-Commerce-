@@ -17,7 +17,7 @@ public class OrderService {
         this.orderRepository = orderRepository;
     }
 
-    // 🟢 Crear una nueva orden
+    // Crear una nueva orden
     public Order crearOrden(Order order) {
         if (order.getItems() != null && !order.getItems().isEmpty()) {
             for (CartItem item : order.getItems()) {
@@ -33,22 +33,22 @@ public class OrderService {
     }
 
 
-    // 🔵 Obtener todas las órdenes
+    //  Obtener todas las órdenes
     public List<Order> listarTodas() {
         return orderRepository.findAll();
     }
 
-    // 🟣 Obtener órdenes por usuario
+    // Obtener órdenes por usuario
     public List<Order> listarPorUsuario(Long usuarioId) {
         return orderRepository.findByUsuarioId(usuarioId);
     }
 
-    // 🟡 Obtener órdenes por estado
+    // Obtener órdenes por estado
     public List<Order> listarPorEstado(String estado) {
         return orderRepository.findByEstado(estado);
     }
 
-    // 🟠 Actualizar estado de una orden
+    //  Actualizar estado de una orden
     public Order actualizarEstado(Long id, String nuevoEstado) {
         Order order = orderRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Orden no encontrada"));
@@ -56,7 +56,7 @@ public class OrderService {
         return orderRepository.save(order);
     }
 
-    // 🔴 Eliminar una orden
+    //  Eliminar una orden
     public void eliminarOrden(Long id) {
         orderRepository.deleteById(id);
     }

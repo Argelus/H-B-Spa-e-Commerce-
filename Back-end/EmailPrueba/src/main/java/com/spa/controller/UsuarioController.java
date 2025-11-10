@@ -17,14 +17,14 @@ public class UsuarioController {
         this.usuarioService = usuarioService;
     }
 
-    // ✅ NUEVO: Perfil del usuario autenticado (lee el username del token)
+    //  Perfil del usuario autenticado (lee el username del token)
     @GetMapping("/me")
     public PerfilDTO me(org.springframework.security.core.Authentication auth) {
         Usuario u = usuarioService.buscarPorUsername(auth.getName());
         return new PerfilDTO(u.getId(), u.getUsername(), u.getEmail(), u.getRole());
     }
 
-    // EXISTENTE: Historial por ID (lo dejamos tal cual)
+    //  Historial por ID (lo dejamos tal cual)
     @GetMapping("/{id}/historial")
     public ResponseEntity<UsuarioHistorialDTO> obtenerHistorial(@PathVariable Long id) {
         UsuarioHistorialDTO historial = usuarioService.obtenerHistorial(id);

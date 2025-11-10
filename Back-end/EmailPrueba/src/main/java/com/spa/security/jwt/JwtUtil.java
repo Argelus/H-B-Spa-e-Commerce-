@@ -17,12 +17,12 @@ public class JwtUtil {
     @Value("${jwt.expiration}")
     private long expiration;
 
-    // 🔑 Genera la clave de firma segura
+    // Genera la clave de firma segura
     private Key getSigningKey() {
         return Keys.hmacShaKeyFor(secretKey.getBytes());
     }
 
-    // 🪪 Genera un token con username y rol
+    //Genera un token con username y rol
     public String generateToken(String username, String role) {
         return Jwts.builder()
                 .setSubject(username)
@@ -33,28 +33,28 @@ public class JwtUtil {
                 .compact();
     }
 
-    // 🧩 Extrae el nombre de usuario desde el token
+    // Extrae el nombre de usuario desde el token
     public String extractUsername(String token) {
         try {
             return getAllClaims(token).getSubject();
         } catch (JwtException e) {
-            System.out.println("⚠️ Error al extraer username: " + e.getMessage());
+            System.out.println("Error al extraer username: " + e.getMessage());
             return null;
         }
     }
 
-    // 🧩 Extrae el rol del token (ej: ROLE_ADMIN o ROLE_CLIENTE)
+    // Extrae el rol del token (ej: ROLE_ADMIN o ROLE_CLIENTE)
     public String extractRole(String token) {
         try {
             String role = getAllClaims(token).get("role", String.class);
             return role != null ? role : "ROLE_CLIENTE"; // por defecto si no existe
         } catch (JwtException e) {
-            System.out.println("⚠️ Error al extraer rol: " + e.getMessage());
+            System.out.println("Error al extraer rol: " + e.getMessage());
             return "ROLE_CLIENTE";
         }
     }
 
-    // 🔍 Verifica si el token es válido
+    //  Verifica si el token es válido
     public boolean isTokenValid(String token, String username) {
         try {
             String extractedUsername = extractUsername(token);
@@ -67,7 +67,7 @@ public class JwtUtil {
         }
     }
 
-    // ⏰ Comprueba si expiró
+    //  Comprueba si expiró
     private boolean isTokenExpired(String token) {
         try {
             return getAllClaims(token).getExpiration().before(new Date());
@@ -76,7 +76,7 @@ public class JwtUtil {
         }
     }
 
-    // 📦 Obtiene todos los claims del token
+    // Obtiene todos los claims del token
     private Claims getAllClaims(String token) {
         return Jwts.parserBuilder()
                 .setSigningKey(getSigningKey())

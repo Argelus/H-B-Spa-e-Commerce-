@@ -23,7 +23,7 @@ public class UsuarioService {
     @Autowired
     private ReservaRepository reservaRepository;
 
-    // ✅ Guardar usuario (registro)
+    // Guardar usuario (registro)
     @Transactional
     public Usuario guardarUsuario(Usuario usuario) {
         // Normaliza email a minúsculas por consistencia
@@ -36,41 +36,41 @@ public class UsuarioService {
         return usuarioRepository.save(usuario);
     }
 
-    // ✅ Verificar si username ya existe (normalizado)
+    // Verificar si username ya existe (normalizado)
     @Transactional(readOnly = true)
     public boolean existePorUsername(String username) {
         if (username == null) return false;
         return usuarioRepository.existsByUsername(username.trim());
     }
 
-    // ✅ Verificar si email ya existe (normalizado)
+    // Verificar si email ya existe (normalizado)
     @Transactional(readOnly = true)
     public boolean existePorEmail(String email) {
         if (email == null) return false;
         return usuarioRepository.existsByEmail(email.trim().toLowerCase());
     }
 
-    // ✅ Buscar por username (para /me y otros)
+    // Buscar por username (para /me y otros)
     @Transactional(readOnly = true)
     public Usuario buscarPorUsername(String username) {
         return usuarioRepository.findByUsername(username.trim())
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado: " + username));
     }
 
-    // ✅ (Opcional) Buscar por email
+    // Buscar por email
     @Transactional(readOnly = true)
     public Usuario buscarPorEmail(String email) {
         return usuarioRepository.findByEmail(email.trim().toLowerCase())
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado con email: " + email));
     }
 
-    // ✅ Historial completo del usuario por ID
+    // Historial completo del usuario por ID
     @Transactional(readOnly = true)
     public UsuarioHistorialDTO obtenerHistorial(Long usuarioId) {
         var usuario = usuarioRepository.findById(usuarioId)
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
 
-        // 🛒 Órdenes del usuario
+        // Órdenes del usuario
         var ordenes = orderRepository.findByUsuarioId(usuarioId).stream()
                 .map(order -> UsuarioHistorialDTO.OrdenDTO.builder()
                         .id(order.getId())
@@ -87,7 +87,7 @@ public class UsuarioService {
                         .build())
                 .collect(Collectors.toList());
 
-        // 💆 Reservas del usuario
+        // Reservas del usuario
         var reservas = reservaRepository.findByUsuarioId(usuarioId).stream()
                 .map(reserva -> UsuarioHistorialDTO.ReservaDTO.builder()
                         .id(reserva.getId())
@@ -99,7 +99,7 @@ public class UsuarioService {
                         .build())
                 .collect(Collectors.toList());
 
-        // 📦 Respuesta final
+        // Respuesta final
         return UsuarioHistorialDTO.builder()
                 .id(usuario.getId())
                 .username(usuario.getUsername())

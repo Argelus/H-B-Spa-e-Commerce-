@@ -10,14 +10,14 @@ import java.util.Map;
 @Service
 public class WhatsappService {
 
-    // ✅ Se inyectan los valores desde application.properties
+    // Se inyectan los valores desde application.properties
     @Value("${whatsapp.api.url}")
     private String whatsappApiUrl;
 
     @Value("${whatsapp.api.token}")
     private String whatsappToken;
 
-    // 📩 Envía un mensaje de texto por WhatsApp
+    //Envía un mensaje de texto por WhatsApp
     public void enviarMensaje(String numero, String mensaje) {
 
         try {
@@ -45,10 +45,10 @@ public class WhatsappService {
             ResponseEntity<String> response = restTemplate.postForEntity(whatsappApiUrl, entity, String.class);
 
             // Muestra resultado en consola
-            System.out.println("📤 WhatsApp API response: " + response.getBody());
+            System.out.println("WhatsApp API response: " + response.getBody());
 
         } catch (Exception e) {
-            System.err.println("❌ Error al enviar mensaje de WhatsApp: " + e.getMessage());
+            System.err.println("Error al enviar mensaje de WhatsApp: " + e.getMessage());
         }
     }
 }

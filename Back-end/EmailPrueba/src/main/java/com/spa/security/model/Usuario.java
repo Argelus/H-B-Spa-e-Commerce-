@@ -30,7 +30,7 @@ public class Usuario implements UserDetails {
     private String password;
 
     @Column(nullable = false)
-    private String role = "ROLE_USER"; // 👈 por defecto será usuario normal
+    private String role = "ROLE_USER"; // por defecto será usuario normal
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

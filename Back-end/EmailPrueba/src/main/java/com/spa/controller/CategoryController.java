@@ -20,16 +20,16 @@ public class CategoryController {
     }
 
     // ------------------------------------------------------------------
-    // ➕ Crear nueva categoría (solo ADMIN)
+    // Crear nueva categoría (solo ADMIN)
     // ------------------------------------------------------------------
-    @PreAuthorize("hasRole('ADMIN')") // 🔒 Solo los administradores pueden crear
+    @PreAuthorize("hasRole('ADMIN')") // Solo los administradores pueden crear
     @PostMapping
     public ResponseEntity<Category> createCategory(@RequestBody Category category) {
         return ResponseEntity.ok(categoryService.saveCategory(category));
     }
 
     // ------------------------------------------------------------------
-    // 📋 Obtener todas las categorías (público)
+    //  Obtener todas las categorías (público)
     // ------------------------------------------------------------------
     @GetMapping
     public ResponseEntity<List<Category>> getAllCategories() {
@@ -37,7 +37,7 @@ public class CategoryController {
     }
 
     // ------------------------------------------------------------------
-    // 🔍 Obtener una categoría por su ID (público)
+    // Obtener una categoría por su ID (público)
     // ------------------------------------------------------------------
     @GetMapping("/{id}")
     public ResponseEntity<Category> getCategoryById(@PathVariable Long id) {
@@ -47,9 +47,9 @@ public class CategoryController {
     }
 
     // ------------------------------------------------------------------
-    // 🗑️ Eliminar una categoría (solo ADMIN)
+    // Eliminar una categoría (solo ADMIN)
     // ------------------------------------------------------------------
-    @PreAuthorize("hasRole('ADMIN')") // 🔒 Solo ADMIN puede eliminar
+    @PreAuthorize("hasRole('ADMIN')") //  Solo ADMIN puede eliminar
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteCategory(@PathVariable Long id) {
         categoryService.deleteCategory(id);

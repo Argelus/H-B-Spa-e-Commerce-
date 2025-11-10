@@ -21,7 +21,7 @@ public class ImageService {
         Map uploadResult = cloudinary.uploader().upload(
                 file.getBytes(),
                 ObjectUtils.asMap(
-                        "folder", "spa_services",  // 🔸 Carpeta organizada
+                        "folder", "spa_services",  // Carpeta organizada
                         "resource_type", "image"
                 )
         );
