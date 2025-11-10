@@ -1,7 +1,4 @@
-/**
- * Modal Manager - Sistema centralizado para manejo de modals
- * Evita duplicación de código y facilita mantenimiento
- */
+
 
 (function() {
   'use strict';
@@ -20,7 +17,7 @@
     });
   }
 
-  // Inicializar modals
+
   function initModals() {
     // FAQ Modal
     const faqModal = document.getElementById('faqModal');
@@ -71,7 +68,7 @@
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape') {
         if (window.closeFaqModalFunc) window.closeFaqModalFunc();
-        //if (window.closeCartModalFunc) window.closeCartModalFunc();
+       
       }
     });
   }

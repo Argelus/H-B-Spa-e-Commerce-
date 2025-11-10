@@ -8,6 +8,9 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
   <link rel="stylesheet" href="./styles/common.css">
   <link rel="stylesheet" href="./styles/index.css">
+
+  <link rel="preload" as="image" href="/Front-end/images/Nuevas/1000484075.jpg">
+  <link rel="preload" as="image" href="/Front-end/images/Nuevas/1000484102.jpg">
 </head>
 <body>
 
@@ -206,11 +209,9 @@
     <h2 class="display-5 fw-bold text-gris-humo mb-3">Opiniones de Nuestros Clientes</h2>
     <p class="text-muted mb-5">Conoce las experiencias reales de quienes disfrutan H&B Spa Jardín Balbuena.</p>
 
-    <!-- ⭐ Widget de Reseñas de Google (Elfsight) -->
+    <!--  Widget de Reseñas de Google (Elfsight) -->
     <script src="https://elfsightcdn.com/platform.js" async></script>
     <div class="elfsight-app-8d109ec9-038c-4db3-9255-64949513cb10" data-elfsight-app-lazy></div>
-
-    <!-- 🌿 Decorativo opcional -->
     <div class="mt-5">
       <i class="bi bi-flower3" style="font-size: 2rem; color: var(--turquesa-pastel);"></i>
     </div>
@@ -287,7 +288,6 @@
         <i class="bi bi-info-circle me-2" style="color: var(--turquesa-pastel);"></i>
         Encuentra respuestas rápidas a las preguntas más comunes sobre nuestros servicios.
       </p>
-      <!-- FAQ se carga dinámicamente desde faq-data.js -->
       <div data-faq="true" data-accordion-id="faqAccordion" data-id-prefix="faq"></div>
     </div>
   </div>
@@ -391,7 +391,6 @@
       });
     }
     
-    // Solo agregar listeners si los botones existen (más robusto)
     const prevButton = document.getElementById("prev");
     const nextButton = document.getElementById("next");
 
@@ -440,7 +439,7 @@
     }
     
     const observerOptions = {
-      root: null, // 
+      root: null, 
       rootMargin: '0px',
       threshold: 0.1 
     };

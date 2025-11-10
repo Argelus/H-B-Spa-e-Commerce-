@@ -11,7 +11,10 @@ header#hero {
     position: relative;
     height: 100vh;
     overflow: hidden;
+    background-color: #222; 
 }
+
+
 
 .carousel-item {
     height: 100vh;
@@ -30,7 +33,7 @@ header#hero {
 .hero-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, rgba(110, 191, 195, 0.3), rgba(0, 0, 0, 0.6));
+    background: linear-gradient(135deg, rgba(110, 191, 195, 0.4), rgba(0, 0, 0, 0.85));
 }
 
 .carousel-caption {
@@ -62,6 +65,7 @@ header#hero {
 #heroCarousel .carousel-item.active .carousel-caption p {
   transition-delay: 0.2s;
 }
+
 
 
 /* =================================
