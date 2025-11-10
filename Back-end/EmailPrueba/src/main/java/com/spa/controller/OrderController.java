@@ -52,7 +52,7 @@ public class OrderController {
     }
 
     // Actualizar estado (solo admin)
-    @PutMapping("/{id}/estado")
+    @PutMapping("/{ id}/estado")
     public Order actualizarEstado(@PathVariable Long id, @RequestParam String estado) {
         return orderService.actualizarEstado(id, estado);
     }
