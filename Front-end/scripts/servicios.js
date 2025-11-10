@@ -7,22 +7,19 @@ let categorias = new Set();
 
 async function cargarServiciosDesdeServidor() {
   try {
-    // Mostrar spinner de carga
     loadingServices.classList.remove("hidden");
 
-    // Reemplaza esta URL con la ruta real de tu backend
-    const response = await fetch("http://localhost:8080/api/service-categories"); // ← Ajusta si tu endpoint es diferente
+    const response = await fetch("http://localhost:8080/api/service-categories");
     if (!response.ok) throw new Error("Error al cargar los servicios");
 
     const data = await response.json();
-
-    // Transformar la estructura: extraer servicios y asignarles su categoría
     servicios = [];
 
     data.forEach(categoria => {
       if (Array.isArray(categoria.services)) {
         categoria.services.forEach(servicio => {
           servicios.push({
+            id: servicio.id,
             nombre: servicio.name,
             descripcion: servicio.description,
             imagen: servicio.imageUrl,
@@ -100,27 +97,23 @@ function mostrarServicios(categoria) {
         <h3>${s.nombre}</h3>
         <p>${s.descripcion}</p>
         <p class="service-info"> $${s.precio} MXN · ⏱️ ${s.duracion}</p>
-        <button class="btn-agendar" onclick="redirigirAReserva('${s.nombre}')">Agendar</button>
+        <button class="btn-agendar">Agendar</button>
       </div>
     `;
+
+    card.querySelector(".btn-agendar").addEventListener("click", () => {
+      const usuarioLogueado = localStorage.getItem("token");
+
+      if (usuarioLogueado) {
+        localStorage.setItem("servicioSeleccionadoNombre", s.nombre);
+        window.location.href = "../pages/profile.html#reservas";
+      } else {
+        window.location.href = "../pages/Login.html";
+      }
+    });
 
     servicesGrid.appendChild(card);
   });
 }
-function redirigirAReserva(servicioNombre) {
-  const usuarioLogueado = localStorage.getItem("token"); 
-
-  if (usuarioLogueado) {
-    
-    localStorage.setItem("servicioSeleccionado", servicioNombre);
-
-  
-    window.location.href = "../pages/profile.html#reservas";
-  } else {
-    
-    window.location.href = "../pages/Login.html";
-  }
-}
 
 document.addEventListener("DOMContentLoaded", cargarServiciosDesdeServidor);
-

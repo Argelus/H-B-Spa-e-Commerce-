@@ -153,10 +153,8 @@
         <form id="reservaForm" class="fade-in hidden">
           <!-- Servicio seleccionado -->
           <section class="form-section">
-            <h2 class="section-title"><span class="icon">✨</span>Selecciona tu Servicio</h2>
-            <select id="selectedServiceId" required>
-              <option value="">-- Cargando servicios... --</option>
-            </select>
+            <h2 class="section-title"><span class="icon"></span>Servicio Seleccionado:</h2>
+            <h3 id="servicioSeleccionadoTexto" class="fw-bold text-turquesa">Cargando servicio...</h3>
           </section>
 
           <!-- Datos del usuario -->
@@ -171,7 +169,7 @@
               <div class="form-group">
                 <label for="telefono">Teléfono (WhatsApp) <span class="required">*</span></label>
                 <input type="tel" id="telefono" required pattern="[0-9]{10}" placeholder="5512345678" />
-                <div class="form-hint">10 dígitos, recibirás confirmación</div>
+                <div class="form-hint">Número a 10 dígitos</div>
               </div>
             </div>
           </section>

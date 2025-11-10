@@ -2,13 +2,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const API_BASE = localStorage.getItem("API_BASE") || "http://localhost:8080/api";
   const token = localStorage.getItem("token");
 
-  // 🔐 Si no hay token -> a login
   if (!token) {
     window.location.href = "./Login.html";
     return;
   }
 
-  // Helper: fetch con auth
   const authFetch = async (url, options = {}) => {
     const opts = { ...options };
     opts.headers = new Headers(opts.headers || {});
@@ -34,10 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   logoutButtons.forEach(btn => {
     btn.addEventListener("click", () => {
-      localStorage.removeItem("token");
-      localStorage.removeItem("username");
-      localStorage.removeItem("role");
-      localStorage.removeItem("userId");
+      localStorage.clear();
       window.location.href = "./Login.html";
     });
   });
@@ -91,56 +86,25 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   })();
 
-  // Cargar historial de compras
-  (async () => {
-    if (!listaOrdenes) return;
-    try {
-      const r = await authFetch(`${API_BASE}/orders/mine`);
-      const ordenes = await r.json();
-      if (!Array.isArray(ordenes) || ordenes.length === 0) {
-        listaOrdenes.innerHTML = '<li class="list-group-item text-muted">Aún no has realizado compras.</li>';
-        return;
-      }
-      listaOrdenes.innerHTML = ordenes.map(o => {
-        const fecha = o.fechaCreacion || "";
-        const total = (o.total != null) ? `$${Number(o.total).toFixed(2)}` : "$0.00";
-        const estado = o.estado || "—";
-        return `
-          <li class="list-group-item d-flex justify-content-between align-items-center">
-            <span>Orden #${o.id}${fecha ? ` – ${fecha}` : ""}</span>
-            <span class="text-muted small me-3">${estado}</span>
-            <span class="badge bg-info rounded-pill">${total}</span>
-          </li>
-        `;
-      }).join("");
-    } catch (e) {
-      console.error("Error órdenes:", e);
-      listaOrdenes.innerHTML = '<li class="list-group-item text-danger">Error al cargar compras.</li>';
+  // Mostrar servicio seleccionado
+  function mostrarServicioSeleccionado() {
+    const servicioNombre = localStorage.getItem("servicioSeleccionadoNombre");
+    const textoEl = document.getElementById("servicioSeleccionadoTexto");
+
+    if (servicioNombre && textoEl) {
+      textoEl.textContent = servicioNombre;
+      localStorage.removeItem("servicioSeleccionadoNombre");
+    } else if (textoEl) {
+      textoEl.textContent = "No se ha seleccionado ningún servicio.";
     }
-  })();
+  }
 
   // Navegación por hash
   const seccionHash = window.location.hash?.replace("#", "");
   if (seccionHash && ["datos", "password", "reservas", "historial"].includes(seccionHash)) {
     mostrarSeccion(seccionHash);
-
-    // Seleccionar servicio si viene de botón "Agendar"
     if (seccionHash === "reservas") {
-      const servicioGuardado = localStorage.getItem("servicioSeleccionado");
-      if (servicioGuardado) {
-        const select = document.getElementById("selectedServiceId");
-        const intentarSeleccionar = () => {
-          const opciones = Array.from(select.options);
-          const opcion = opciones.find(opt => opt.textContent.trim() === servicioGuardado.trim());
-          if (opcion) {
-            opcion.selected = true;
-            localStorage.removeItem("servicioSeleccionado");
-          } else {
-            setTimeout(intentarSeleccionar, 300);
-          }
-        };
-        intentarSeleccionar();
-      }
+      mostrarServicioSeleccionado();
     }
   }
 });
