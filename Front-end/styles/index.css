@@ -498,7 +498,6 @@ section#servicios {
 }
 
 /* Estilos para el botón del Lightbox*/
-
 #lightbox-action-button {
   position: absolute;
   bottom: 50px; 
@@ -561,4 +560,8 @@ section#servicios {
   .carousel-item:first-child .btn-explorar {
     margin-bottom: 2rem;
   }
+}
+
+.img-ajuste-yumiko {
+  object-position: center 0%;
 }
