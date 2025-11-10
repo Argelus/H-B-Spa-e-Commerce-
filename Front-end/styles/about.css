@@ -1,37 +1,25 @@
-/* Ajustes específicos de About */
+
 body {
-  padding-top: 90px; /* evita que el navbar tape el título */
-   background: linear-gradient(160deg, var(--arena-suave) 0%, #ffffff 40%, var(--lila-rosa) 80%, var(--turquesa-pastel) 100%);
+  padding-top: 90px; 
+  background: linear-gradient(160deg, var(--arena-suave) 0%, #ffffff 40%, var(--lila-rosa) 80%, var(--turquesa-pastel) 100%);
   background-attachment: fixed;
 }
 
-/* Utilidades locales (por si no están en common.css) */
 .text-gris-humo {
   color: var(--gris-humo) !important;
 }
 
 .bg-turquesa-pastel {
-  /* Degradado más sutil con profundidad */
   background: linear-gradient(135deg, #8fd1d4 0%, #bce3e5 50%, #e9d8ec 100%);
-
-  /* Añade un toque de luz desde el centro */
   background-blend-mode: soft-light;
-
-  /* Sombra muy difusa para dar profundidad */
   box-shadow: 0 10px 40px rgba(110, 191, 195, 0.25);
-
-  /* Bordes suaves */
   border-radius: 20px;
-
-  /* Suaviza el contraste del texto */
   color: #3a3a3a;
 }
-
 
 .bg-lila-rosa-gradient {
   background: linear-gradient(135deg, var(--arena-suave), var(--lila-rosa));
 }
-
 
 .about-main {
   position: relative;
@@ -40,7 +28,6 @@ body {
 .about-section {
   position: relative;
 }
-
 
 .section-kicker {
   font-size: 0.9rem;
@@ -52,14 +39,10 @@ body {
   margin-bottom: 0.5rem;
 }
 
-
 .section-heading h2 {
   letter-spacing: 0.02em;
 }
 
-/* ====================================
-   🌟 HERO ACERCA DE
-   ==================================== */
 .about-hero {
   position: relative;
   padding: 3rem 2rem;
@@ -69,7 +52,6 @@ body {
   box-shadow: 0 18px 45px rgba(110, 191, 195, 0.15);
 }
 
-/* Decoraciones soft */
 .about-hero::before,
 .about-hero::after {
   content: "";
@@ -95,7 +77,6 @@ body {
   left: -30px;
 }
 
-/* Badge superior */
 .badge-soft-turquesa {
   display: inline-flex;
   align-items: center;
@@ -108,7 +89,6 @@ body {
   font-weight: 600;
 }
 
-/* Pills bajo el título */
 .about-tagline {
   margin-top: 0.25rem;
 }
@@ -125,7 +105,6 @@ body {
   box-shadow: 0 4px 18px rgba(110, 191, 195, 0.15);
 }
 
-/* Tarjeta de métricas */
 .about-metrics {
   border-radius: 20px;
   background: #ffffff;
@@ -172,9 +151,6 @@ body {
   padding: 0.7rem 0.8rem;
 }
 
-/* ====================================
-   📖 HISTORIA
-   ==================================== */
 .about-history {
   margin-top: 1rem;
 }
@@ -187,7 +163,6 @@ body {
   display: block;
 }
 
-/* Badge flotante sobre la foto */
 .about-image-badge {
   position: absolute;
   top: 12px;
@@ -201,7 +176,6 @@ body {
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
 }
 
-/* Lista elegante */
 .about-list {
   list-style: none;
   padding-left: 0;
@@ -225,9 +199,7 @@ body {
   background: var(--turquesa-pastel);
 }
 
-/* ====================================
-   🎯 MISIÓN Y VISIÓN
-   ==================================== */
+
 .about-mision-vision {
   padding: 2.5rem 0 0;
 }
@@ -263,7 +235,6 @@ body {
   opacity: 1;
 }
 
-/* Ícono circular de las tarjetas */
 .about-card-icon {
   width: 54px;
   height: 54px;
@@ -281,9 +252,6 @@ body {
   background: rgba(235, 210, 236, 0.16);
 }
 
-/* ====================================
-   🌈 NUESTROS VALORES — SCROLL
-   ==================================== */
 @keyframes pulsoPastel {
   0%, 100% { box-shadow: 0 0 15px rgba(110, 191, 195, 0.3); }
   50% { box-shadow: 0 0 25px rgba(235, 210, 236, 0.4); }
@@ -326,7 +294,6 @@ body {
   box-shadow: 0 14px 40px rgba(110, 191, 195, 0.3);
 }
 
-/* Scroll infinito */
 .valores-scroll-container {
   overflow: hidden;
   width: 100%;
@@ -359,7 +326,6 @@ body {
   }
 }
 
-/* Gradientes en los bordes para efecto de desvanecimiento */
 .valores-scroll-container::before,
 .valores-scroll-container::after {
   content: '';
@@ -381,7 +347,6 @@ body {
   background: linear-gradient(to left, var(--arena-suave), transparent);
 }
 
-/* Responsive valores */
 @media (max-width: 768px) {
   .valores-scroll-track {
     animation-duration: 30s;
@@ -397,9 +362,6 @@ body {
   }
 }
 
-/* ====================================
-   🌿 FILOSOFÍA DEL SPA
-   ==================================== */
 .about-philosophy-card {
   padding: 2.5rem 2.1rem;
   position: relative;
@@ -407,7 +369,6 @@ body {
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
 }
 
-/* efecto suave dentro */
 .about-philosophy-card::before {
   content: "";
   position: absolute;
@@ -422,7 +383,6 @@ body {
   z-index: 1;
 }
 
-/* Pills de filosofía */
 .about-philosophy-badges {
   display: flex;
   flex-direction: column;
@@ -440,9 +400,6 @@ body {
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
 }
 
-/* ====================================
-   👥 EQUIPO – CARRUSEL 3D
-   ==================================== */
 .equipo-card {
   border-radius: 22px;
   overflow: hidden;
@@ -478,7 +435,6 @@ body {
   transform: translateY(-2px);
 }
 
-/* 🌸 Carrusel 3D */
 .carousel-3d-container {
   position: relative;
   width: 100%;
@@ -547,7 +503,6 @@ body {
   pointer-events: none;
 }
 
-/* Pequeño blur en transición (clase que activa el JS) */
 .carousel-card.transitioning {
   filter: blur(4px);
 }
@@ -586,7 +541,6 @@ body {
   box-shadow: 0 6px 25px rgba(235, 210, 236, 0.4);
 }
 
-/* Indicadores */
 .carousel-indicator {
   position: absolute;
   bottom: 20px;
@@ -618,7 +572,6 @@ body {
   transform: scale(1.3);
 }
 
-/* 📱 Responsividad carrusel */
 @media (max-width: 768px) {
   .about-hero {
     padding: 2.2rem 1.4rem;
@@ -662,9 +615,6 @@ body {
   }
 }
 
-/* ====================================
-   💬 BOTONES FLOTANTES (FAQ/WS)
-   ==================================== */
 .faq-floating-btn,
 .whatsapp-floating-btn {
   position: fixed;
@@ -721,9 +671,6 @@ body {
   }
 }
 
-/* ====================================
-   ❓ PANEL FAQ SOBRE EL CONTENIDO
-   ==================================== */
 .faq-overlay {
   position: fixed;
   top: 0;
@@ -783,7 +730,6 @@ body {
   transform: scale(1.1);
 }
 
-/* Elementos FAQ individuales */
 .faq-item {
   background: var(--blanco);
   border-radius: 15px;
@@ -818,9 +764,6 @@ body {
   line-height: 1.7;
 }
 
-/* ====================================
-   🎖 CERTIFICACIONES
-   ==================================== */
 .about-certifications-card {
   position: relative;
   padding: 2.5rem 2rem;
@@ -849,7 +792,6 @@ body {
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
 }
 
-/* Ajustes responsive generales para About */
 @media (max-width: 992px) {
   .about-hero {
     margin-bottom: 2.5rem;
