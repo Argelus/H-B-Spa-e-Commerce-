@@ -442,6 +442,71 @@
     });
 
   }); 
+
+ if (window.innerWidth < 992) {
+  const container = document.querySelector('.carousel-3d');
+  if (container) {
+    const cards = Array.from(container.children);
+
+    cards.forEach(card => {
+      const clone = card.cloneNode(true);
+      container.appendChild(clone);
+    });
+
+    let scrollSpeed = 0.2; 
+    let scrollInterval;
+    let isDragging = false;
+
+    function startAutoScroll() {
+      if (isDragging) return;
+      stopAutoScroll();
+      scrollInterval = requestAnimationFrame(autoScroll);
+    }
+
+    function autoScroll() {
+      if (isDragging) return;
+      container.scrollLeft += scrollSpeed;
+
+      if (container.scrollLeft >= container.scrollWidth / 2) {
+        container.scrollLeft = 0;
+      }
+
+      scrollInterval = requestAnimationFrame(autoScroll);
+    }
+
+    function stopAutoScroll() {
+      cancelAnimationFrame(scrollInterval);
+    }
+
+    container.addEventListener('mousedown', () => {
+      isDragging = true;
+      stopAutoScroll();
+    });
+    container.addEventListener('mouseup', () => {
+      isDragging = false;
+      startAutoScroll();
+    });
+    container.addEventListener('mouseleave', () => {
+      if (isDragging) {
+        isDragging = false;
+        startAutoScroll();
+      }
+    });
+
+    container.addEventListener('touchstart', () => {
+      isDragging = true;
+      stopAutoScroll();
+    });
+    container.addEventListener('touchend', () => {
+      isDragging = false;
+      startAutoScroll();
+    });
+
+    startAutoScroll();
+  }
+}
+
+
   </script>
 </body>
 </html>
