@@ -55,15 +55,7 @@ header#hero {
   transition-delay: 0.2s;
 }
 
-<<<<<<< HEAD
-=======
 
-
-/* =================================
-   Sección Servicios (Galería)
-   ANIMACIONES CORREGIDAS
-==================================== */
->>>>>>> f208f194d747f2834788bebe7cd738162a433b95
 section#servicios {
     background: linear-gradient(180deg, #fff 0%, var(--arena-suave) 100%);
     padding: 5rem 0;
